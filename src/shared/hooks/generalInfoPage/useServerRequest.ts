@@ -6,7 +6,7 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useMeQuery } from '@/shared/api/services/auth/auth.api'
 import {
   useDeleteAvatarMutation,
-  useGetProfileQuery,
+  useGetProfileUserQuery,
   useUpdateAvatarMutation,
   useUpdateProfileMutation,
 } from '@/shared/api/services/profile/profile.api'
@@ -23,15 +23,13 @@ type Props = {
 export const useServerRequest = ({
   translate: { notAuthorization, serverNotAvailable, networkError },
 }: Props) => {
-  const { data, isError, error, isLoading } = useMeQuery()
+  const { error, isLoading } = useMeQuery()
 
   const {
     data: profileData,
     error: errorProfileData,
     isLoading: isLoadingProfileData,
-  } = useGetProfileQuery(data?.userId ? data?.userId.toString() : '', {
-    skip: isLoading || isError,
-  })
+  } = useGetProfileUserQuery()
 
   const [updateProfile, { isLoading: isLoadingUpdateProfile, error: errorUpdateProfile }] =
     useUpdateProfileMutation()

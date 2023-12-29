@@ -1,22 +1,86 @@
 .checkboxWrapper {
   display: flex;
-  gap: 11px;
+  width: 100%;
+  justify-content: center;
   align-items: center;
-  height: 2rem;
 }
+
+.checkboxLabel {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
 .checkbox {
   appearance: none;
-  width: 16px;
-  height: 16px;
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
   background-repeat: no-repeat;
   background-position: center center;
   cursor: pointer;
   vertical-align: middle;
   margin-right: 8px;
   border-radius: 3px;
-  border: none;
-  background-color: #fff;
+  border: 2px solid var(--color-light-100);
+  background-color: transparent;
+  outline: none;
+
+  &:checked {
+    background-color: var(--color-light-100);
+    background-image: url('../../assets/icons/checkbox/checked.svg');
+  }
+
+  &:disabled {
+    background-color: var(----color-dark-300);
+    border: 2px solid var(--color-dark-600);
+    background-image: url('../../assets/icons/checkbox/checked-disabled.svg');
+  }
 }
-.checkbox:checked {
-  background-image: url('../../assets/icons/checkbox/checked.svg');
+
+.check {
+  cursor: pointer;
+  position: absolute;
+  top: 51%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.checkboxLabel:hover input ~ .check {
+  background-color: var(--color-dark-600);
+}
+
+.checkboxLabel input:active ~ .check {
+  background-color: var(--color-dark-300);
+}
+
+.checkboxLabel input:focus-visible ~ .check {
+  background-color: var(--color-dark-700);
+}
+
+.checkboxLabel input:disabled ~ .check {
+  background-color: transparent;
+}
+
+.error {
+  margin: 0 auto;
+  padding: 0;
+  font-size: var(--font-size-s);
+  color: var(--color-danger-500);
+  line-height: 24px;
+}
+
+.checkboxDisabled {
+  background-color: #7e7676;
+}
+
+.labelDisabled {
+  color: #7e7676;
 }

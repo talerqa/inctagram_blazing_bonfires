@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import { useWizard } from 'react-use-wizard'
 
 import style from './Filters.module.scss'
@@ -15,7 +16,6 @@ import { useSlider } from '@/features/create-post/utils/useSlider'
 import backIcon from '@/shared/assets/icons/arrow back/back.svg'
 import next from '@/shared/assets/icons/filterPostPhoto/next.svg'
 import prev from '@/shared/assets/icons/filterPostPhoto/prev.svg'
-import closeIcon from '@/shared/assets/icons/logout/close.svg'
 import { Button, ButtonTheme } from '@/shared/ui/button/Button'
 
 export const Filters = () => {
@@ -23,19 +23,20 @@ export const Filters = () => {
   const cropContext = useImageCropContext()
   const { currentIndex, prevSlide, nextSlide } = useSlider(cropContext.photos.length)
   const setFilter = cropContext.setFilter(currentIndex)
+  const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
   return (
     <>
       <NewPostModal
         isOpen={cropContext.isOpen}
-        title={'Filters'}
+        title={t('Filters')}
         setIsOpen={() => cropContext.setIsOpenModal(true)}
         left={
           <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
         }
         right={
           <span style={{ cursor: 'pointer' }} onClick={nextStep}>
-            Next
+            {t('Next')}
           </span>
         }
       >
@@ -86,13 +87,11 @@ export const Filters = () => {
                     className={style.filterImage}
                     image={cropContext.photos[currentIndex].croppedUrl}
                     filter={filter.filter}
-                    onChange={(filteredImg: string) => {
-                      cropContext.setFilteredUrl(filteredImg, currentIndex)
-                    }}
+                    onChange={() => {}}
                     preserveAspectRatio={'contain'}
                   />
                 </div>
-                <div className={style.filterLabel}>{filter.name}</div>
+                <div className={style.filterLabel}>{t(`FiltersList.${filter.name}`)}</div>
               </div>
             ))}
           </div>

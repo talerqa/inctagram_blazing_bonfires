@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Logout } from './Logout'
 
 const meta: Meta<typeof Logout> = {
-  title: 'Components/logout',
+  title: 'Components/Logout',
   component: Logout,
 }
 

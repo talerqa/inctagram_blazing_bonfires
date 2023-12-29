@@ -2,63 +2,12 @@
   display: flex;
 }
 .profileContainer {
-  margin-left: 220px;
+  //margin-left: 220px;
   margin-bottom: 30px;
-  margin-right: 30px;
+  margin-right: 60px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  .headerContainer {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 40px;
-    padding-left: 20px;
-    .avatarContainer {
-      min-width: 204px;
-      min-height: 204px;
-      background-color: var(--color-dark-700);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .profileInfoContainer {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-left: 50px;
-      .profileTitleContainer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 20px;
-        .buttonProfileSetting {
-          width: 167px;
-          height: 36px;
-          background: #333333;
-          color: #ffffff;
-          font-size: 16px;
-        }
-      }
-      .subscribersContainer {
-        display: flex;
-        width: 370px;
-        justify-content: space-between;
-        font-size: 14px;
-        line-height: 24px;
-        font-weight: 400;
-        .countSubscribers {
-          font-weight: 700;
-        }
-      }
-      .description {
-        font-size: 16px;
-        line-height: 24px;
-        font-weight: 400;
-        width: 90%;
-      }
-    }
-  }
 
   .photosContainer {
     display: flex;
@@ -67,13 +16,16 @@
     align-items: center;
     margin-top: 60px;
     margin-left: 20px;
-    margin-right: 20px;
   }
 }
+
 .photoWrapper {
-  min-width: 234px;
-  min-height: 228px;
-  background-color: var(--color-dark-700);
   margin-top: 12px;
-  margin-right: 12px;
+}
+
+.photo {
+  width: 350px;
+  height: 350px;
+  margin-left: 6px;
+  cursor: pointer;
 }

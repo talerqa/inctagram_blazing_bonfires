@@ -2,10 +2,12 @@ import '../shared/styles/globals.scss'
 import { ReactElement, ReactNode, useEffect } from 'react'
 
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import { GetStaticProps } from 'next'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next/types'
 import { appWithTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { StoreProvider } from '../shared/providers/storeProvider'
 
@@ -17,6 +19,15 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
+}
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  if (locale === undefined) throw new Error()
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, 'common')),
+    },
+  }
 }
 
 function App({ Component, pageProps }: AppPropsWithLayout) {

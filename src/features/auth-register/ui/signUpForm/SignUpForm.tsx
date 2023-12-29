@@ -1,10 +1,9 @@
-/* eslint-disable no-useless-escape */
 import React, { useState } from 'react'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
-import { FieldErrors, SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { toast, Toaster } from 'react-hot-toast'
 import * as yup from 'yup'
 
@@ -13,71 +12,32 @@ import styles from './SignUpForm.module.scss'
 import { OAuth } from '@/features/auth-register/ui/oAuth/OAuth'
 import { SignUpType, useSignUpMutation } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
+import { registrationSchema } from '@/shared/constants/validation-schema/registrationSchema'
+import { RegistrationFormType } from '@/shared/types/schemaTypes'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
 import { Checkbox } from '@/shared/ui/checkbox/Checkbox'
 import FormContainer from '@/shared/ui/formContainer/FormContainer'
 import { Input, InputType } from '@/shared/ui/input/Input'
-import inputStyles from '@/shared/ui/input/Input.module.scss'
 import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
 import { Modal } from '@/shared/ui/modal/Modal'
 
-type FormType = {
-  userName: string
-  email: string
-  password: string
-  passwordConfirmation: string
-  agreement: boolean
-}
-
 export const SignUpForm = () => {
-  const {
-    t,
-    i18n: { t: tRoot },
-  } = useTranslation('common', { keyPrefix: 'Auth' })
-  const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
+  const { t } = useTranslation('common')
 
   const [signUp, { isLoading }] = useSignUpMutation()
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
+
   const callBackCloseWindow = () => setRegistrationSuccess(false)
 
-  const schema = yup.object().shape({
-    userName: yup
-      .string()
-      .min(6, tError('MinCharacters6'))
-      .max(20, tError('MaxCharacters30'))
-      .matches(/^[a-zA-Z0-9_-]*$/, tError('UserNameValidationError'))
-      .required(tError('RequiredField')),
-    email: yup
-      .string()
-      .min(2, tError('MinCharacters2'))
-      .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, tError('EmailValidationError'))
-      .required(tError('RequiredField')),
-    password: yup
-      .string()
-      .min(6, tError('MinCharacters6'))
-      .max(20, tError('MaxCharacters20'))
-      .matches(
-        /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_{|}~])[A-Za-z0-9!"#$%&'()*+,-./:;<=>?@[\]^_{|}~]+$/,
-        tError('PasswordValidationError')
-      )
-      .required(tError('RequiredField')),
-    passwordConfirmation: yup
-      .string()
-      .oneOf([yup.ref('password'), ''], tError('PasswordsMustMatch'))
-      .required(tError('RequiredField')),
-    agreement: yup.string().required(tError('RequiredField')),
-  })
-
   const {
-    watch,
-    register,
     handleSubmit,
-    getValues,
-    formState: { errors },
+    control,
+    watch,
+    trigger,
+    formState: { isValid },
     reset,
-  } = useForm<FormType | any>({
-    mode: 'onChange',
-    resolver: yupResolver(schema),
+  } = useForm<RegistrationFormType>({
+    resolver: yupResolver(registrationSchema(t)) as yup.InferType<yup.Schema>,
     defaultValues: {
       userName: '',
       email: '',
@@ -85,8 +45,11 @@ export const SignUpForm = () => {
       passwordConfirmation: '',
       agreement: false,
     },
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
   })
-  const password = watch('password')
+  const passwordConfirm = watch('passwordConfirmation')
+
   const onSubmit: SubmitHandler<SignUpType> = (data: SignUpType) => {
     signUp(data)
       .unwrap()
@@ -97,15 +60,6 @@ export const SignUpForm = () => {
       .catch(error => toast.error(error.data.messages[0].message))
   }
 
-  watch()
-  const isFillField = getValues([
-    'userName',
-    'email',
-    'password',
-    'passwordConfirmation',
-    'agreement',
-  ]).every(e => !!e)
-
   return (
     <>
       <Toaster position="top-right" />
@@ -115,85 +69,117 @@ export const SignUpForm = () => {
           <p>{t('LinkConfirmYourEmail')} </p>
         </Modal>
       )}
-      <FormContainer title={t('SignUp')}>
+      <FormContainer title={t('Auth.SignUp')}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer} noValidate>
-          <OAuth />
-          <Input
-            {...register('userName')}
-            type={InputType.TEXT}
-            label={t('UserName')}
-            placeholder={t('EnterName')}
-            className={inputStyles.input}
-            error={(errors as FieldErrors<FormType>)?.userName?.message}
-            disabled={isLoading}
+          <div className={styles.oAuth}>
+            <OAuth />
+          </div>
+          <Controller
+            control={control}
+            name="userName"
+            render={({ field, fieldState: { error } }) => (
+              <Input
+                type={InputType.TEXT}
+                label={t('Auth.UserName')}
+                placeholder={t('Auth.EnterName')}
+                error={error && error?.message}
+                classNameWrap={error ? '' : styles.inputUserName}
+                {...field}
+              />
+            )}
           />
-          <Input
-            {...register('email')}
-            label={t('Email')}
-            placeholder={t('EnterEmail')}
-            type={InputType.EMAIL}
-            className={inputStyles.input}
-            error={(errors as FieldErrors<FormType>)?.email?.message}
-            disabled={isLoading}
+          <Controller
+            control={control}
+            name="email"
+            render={({ field, fieldState: { error } }) => (
+              <Input
+                label={t('Auth.Email')}
+                placeholder={t('Auth.EnterEmail')}
+                type={InputType.EMAIL}
+                error={error && error?.message}
+                classNameWrap={error ? '' : styles.inputEmail}
+                {...field}
+              />
+            )}
           />
-          <Input
-            {...register('password')}
-            label={t('Password')}
-            placeholder={t('EnterPassword')}
-            type={InputType.PASSWORD}
-            className={inputStyles.input}
-            error={(errors as FieldErrors<FormType>)?.password?.message}
-            disabled={isLoading}
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, onBlur, value, ref }, fieldState: { error } }) => (
+              <Input
+                label={t('Auth.Password')}
+                placeholder={t('Auth.EnterPassword')}
+                type={InputType.PASSWORD}
+                error={error && error?.message}
+                value={value || ''}
+                onChange={onChange}
+                classNameWrap={error ? '' : styles.inputPassword}
+                onBlur={() => {
+                  onBlur()
+                  if (passwordConfirm.length) {
+                    return trigger(['password', 'passwordConfirmation'])
+                  }
+                }}
+                ref={ref}
+              />
+            )}
           />
-          <Input
-            {...register('passwordConfirmation')}
-            label={t('PasswordConfirmation')}
-            placeholder={t('EnterPasswordConfirmation')}
-            type={InputType.PASSWORD}
-            className={inputStyles.input}
-            error={(errors as FieldErrors<FormType>)?.passwordConfirmation?.message}
-            disabled={isLoading}
+          <Controller
+            control={control}
+            name="passwordConfirmation"
+            render={({ field: { value, onChange, onBlur, ref }, fieldState: { error } }) => (
+              <Input
+                label={t('Auth.PasswordConfirmation')}
+                placeholder={t('Auth.PasswordConfirmation')}
+                type={InputType.PASSWORD}
+                error={error && error?.message}
+                value={value || ''}
+                ref={ref}
+                classNameWrap={styles.inputPasswordConfirm}
+                onChange={onChange}
+                onBlur={onBlur}
+              />
+            )}
           />
           <div className={styles.agreementContainer}>
-            <Checkbox
-              {...register('agreement', {
-                required: 'Agreement checkbox is required',
-              })}
-              error={(errors as FieldErrors<FormType>)?.agreement?.message}
-              disabled={isLoading}
-              label={
-                <p className={styles.agreementText}>
-                  {t('AgreeToThe') + ' '}
-                  <Link href={RoutersPath.authTermsOfService} className={styles.agreementLink}>
-                    {t('TermsOfService')}
-                  </Link>
-                  {' ' + tRoot('And') + ' '}
-                  <Link
-                    href={{
-                      pathname: `${RoutersPath.authPrivacyPolicy}`,
-                      query: { previousPage: `${RoutersPath.signUp}` },
-                    }}
-                    className={styles.agreementLink}
-                  >
-                    {tRoot('PrivacyPolicy')}
-                  </Link>
-                </p>
-              }
+            <Controller
+              control={control}
+              name="agreement"
+              render={({ field }) => (
+                <Checkbox {...field}>
+                  <p className={styles.agreementText}>
+                    {t('Auth.AgreeToThe') + ' '}
+                    <Link href={RoutersPath.authTermsOfService} className={styles.agreementLink}>
+                      {t('Auth.TermsOfService')}
+                    </Link>
+                    {' ' + t('And') + ' '}
+                    <Link
+                      href={{
+                        pathname: `${RoutersPath.authPrivacyPolicy}`,
+                        query: { previousPage: `${RoutersPath.signUp}` },
+                      }}
+                      className={styles.agreementLink}
+                    >
+                      {t('PrivacyPolicy')}
+                    </Link>
+                  </p>
+                </Checkbox>
+              )}
             />
           </div>
-          <Button className={styles.signUpBtn} size={ButtonSize.STRETCHED} disabled={!isFillField}>
-            {t('SignUp')}
+          <Button className={styles.signUpBtn} size={ButtonSize.STRETCHED} disabled={!isValid}>
+            {t('Auth.SignUp')}
           </Button>
-          <p className={styles.helpText}>{t('HaveAccount?')}</p>
-          <Link href={RoutersPath.signIn}>
-            <Button
-              className={styles.oppositeBtn}
-              theme={ButtonTheme.CLEAR}
-              size={ButtonSize.SMALL}
-            >
-              {t('SignIn')}
-            </Button>
-          </Link>
+          <p className={styles.helpText}>{t('Auth.HaveAccount?')}</p>
+          <Button
+            className={styles.oppositeBtn}
+            theme={ButtonTheme.NOBORDER}
+            size={ButtonSize.SMALL}
+          >
+            <Link href={RoutersPath.signIn} className={styles.linkOppositeBtn} tabIndex={-1}>
+              {t('Auth.SignIn')}
+            </Link>
+          </Button>
         </form>
       </FormContainer>
     </>

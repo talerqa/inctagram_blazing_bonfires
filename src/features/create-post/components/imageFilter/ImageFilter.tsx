@@ -29,11 +29,23 @@ const SVG_ABSOLUTE_STYLE = {
 
 const NONE = [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
 
-const INVERT = [-1, 0, 0, 0, 1, 0, -1, 0, 0, 1, 0, 0, -1, 0, 1, 0, 0, 0, 1, 0]
-
-const GRAYSCALE = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+const GRAYSCALE = [
+  0.33, 0.33, 0.33, 0, 0, 0.33, 0.33, 0.33, 0, 0, 0.33, 0.33, 0.33, 0, 0, 0, 0, 0, 1, 0,
+]
 
 const SEPIA = [0.3, 0.45, 0.1, 0, 0, 0.2, 0.45, 0.1, 0, 0, 0.1, 0.3, 0.1, 0, 0, 0, 0, 0, 1, 0]
+
+const WARM = [1.2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
+const COOL = [0.9, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
+const BLACK_AND_WHITE = [
+  0.3, 0.6, 0.1, 0, 0, 0.3, 0.6, 0.1, 0, 0, 0.3, 0.6, 0.1, 0, 0, 0, 0, 0, 1, 0,
+]
+const VINTAGE = [0.9, 0.5, 0.4, 0, 0, 0.3, 0.8, 0.2, 0, 0, 0.1, 0.4, 0.9, 0, 0, 0, 0, 0, 1, 0]
+const CONTRAST = [2, 0, 0, 0, -0.5, 0, 2, 0, 0, -0.5, 0, 0, 2, 0, -0.5, 0, 0, 0, 1, 0]
+const BLUR = [
+  0.1, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
+  0.1,
+]
 
 function omit(object, keysToOmit) {
   const result = {}
@@ -52,6 +64,12 @@ const types = {
   INVERT: 'invert',
   GRAYSCALE: 'grayscale',
   SEPIA: 'sepia',
+  WARM: 'warm',
+  COOL: 'cool',
+  BLACK_AND_WHITE: 'black_and_white',
+  VINTAGE: 'vintage',
+  CONTRAST: 'contrast',
+  BLUR: 'blur',
 }
 
 function convertToDueTone(color1, color2) {
@@ -100,10 +118,20 @@ function ImageFilter({
 
       if (newFilter === types.GRAYSCALE) {
         newFilter = GRAYSCALE
-      } else if (newFilter === types.INVERT) {
-        newFilter = INVERT
       } else if (newFilter === types.SEPIA) {
         newFilter = SEPIA
+      } else if (newFilter === types.WARM) {
+        newFilter = WARM
+      } else if (newFilter === types.COOL) {
+        newFilter = COOL
+      } else if (newFilter === types.BLACK_AND_WHITE) {
+        newFilter = BLACK_AND_WHITE
+      } else if (newFilter === types.VINTAGE) {
+        newFilter = VINTAGE
+      } else if (newFilter === types.CONTRAST) {
+        newFilter = CONTRAST
+      } else if (newFilter === types.BLUR) {
+        newFilter = BLUR
       } else if (newFilter === types.DUOTONE) {
         newFilter = convertToDueTone(props.colorOne, props.colorTwo)
       }

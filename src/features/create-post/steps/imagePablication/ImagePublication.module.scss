@@ -14,15 +14,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.sliderButton {
-  background-color: rgba(76, 76, 76, 0.7);
-  border: none;
-  width: 60px;
-  height: 48px;
-  border-radius: 2px;
-  cursor: pointer;
+  .sliderButton {
+    background-color: rgba(76, 76, 76, 0.7);
+    border: none;
+    width: 60px;
+    height: 48px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
 }
 
 .sliderDotsBarWrapper {

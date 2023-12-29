@@ -23,9 +23,11 @@
     flex-direction: row;
     gap: 90px;
     margin-top: 70px;
+
     .button {
       width: 108px;
       height: 36px;
+      font-size: var(--font-size-s);
     }
   }
 }

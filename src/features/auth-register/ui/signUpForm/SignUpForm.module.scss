@@ -1,23 +1,38 @@
 .formContainer {
   display: flex;
-  gap: 1.5rem;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.agreementContainer {
-  display: flex;
-  align-items: center;
-  gap: 11px;
+.oAuth {
+  padding-bottom: 24px;
 }
+
+.inputUserName,
+.inputEmail,
+.inputPassword {
+  padding-bottom: 24px;
+}
+
+.inputPasswordConfirm {
+  padding-bottom: 12px;
+}
+
+.agreementContainer {
+  padding-left: 3px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
 .agreementText {
-  width: 17rem;
   color: var(--color-light-100);
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
 }
+
 .agreementLink {
   color: var(--color-info-300);
 }
@@ -30,13 +45,7 @@
 
 .signUpBtn {
   margin-top: 1rem;
-  &:hover {
-    background-color: var(--color-info-700);
-  }
-  &:disabled {
-    background-color: var(--color-info-100);
-    cursor: auto;
-  }
+  margin-bottom: 1rem;
 }
 
 .signUpBtnDisable {
@@ -46,9 +55,9 @@
 }
 
 .helpText {
-  margin-top: -0.3rem;
+  margin-bottom: 0.5rem;
 }
-.oppositeBtn {
-  border: none !important;
-  margin-top: -1rem;
+
+.linkOppositeBtn {
+  text-decoration: none;
 }

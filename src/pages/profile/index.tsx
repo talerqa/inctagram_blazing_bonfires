@@ -1,19 +1,19 @@
-import { FC } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { GetStaticProps } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import noImage from '../../shared/assets/icons/avatarProfile/notPhoto.png'
-
 import style from './profile.module.scss'
 
+import { PostModal } from '@/features/post/ui/postModal/PostModal'
+import { ProfileData } from '@/features/profileData/ProfileData'
+import {
+  useLazyGetPostQuery,
+  useLazyGetUserPostsQuery,
+} from '@/shared/api/services/posts/posts.api'
+import { useLazyGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { ShortLangs } from '@/shared/types/langSwitcherTypes'
-import { Button } from '@/shared/ui/button/Button'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -25,72 +25,93 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
+const postsAmount = 9
+
 function Profile() {
-  const {
-    t,
-    i18n: { t: tRoot, language },
-  } = useTranslation('common', { keyPrefix: 'Profile' })
-  const router = useRouter()
+  const [getProfile, { data: profileData }] = useLazyGetProfileUserQuery()
+  const [getUserPosts, { data: userPost }] = useLazyGetUserPostsQuery()
+  const [getPost, { data: postData }] = useLazyGetPostQuery()
+  const [isPostActive, setIsPostActive] = useState(false)
+
+  const [pageNumber, setPageNumber] = useState(1)
+  const [pageSize, setPageSize] = useState(postsAmount)
+  const [pageCount, setPageCount] = useState(1)
+  const [userId, setUserId] = useState<number | null>(null)
+  const [totalCount, setTotalCount] = useState(postsAmount)
+  const [endCursorPostId, setEndCursorPostId] = useState(0)
+  const [isFetching, setIsFetching] = useState(true)
+
+  const posts = userPost?.items || []
+
+  useEffect(() => {
+    getProfile()
+      .unwrap()
+      .then(res => {
+        if (res.id) {
+          setUserId(res.id)
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    if (userId && isFetching && posts.length < totalCount) {
+      getUserPosts({ userId, pageNumber, pageSize, endCursorPostId })
+        .unwrap()
+        .then(res => {
+          setPageCount(res.pagesCount)
+          setPageSize(prev => prev + postsAmount)
+          setIsFetching(false)
+          setTotalCount(res.totalCount)
+        })
+    }
+  }, [isFetching, userId])
+
+  const scrollHandler = () => {
+    const { scrollHeight } = document.documentElement
+    const { scrollTop } = document.documentElement
+    const { innerHeight } = window
+
+    if (scrollHeight - (scrollTop + innerHeight) < 100 && posts.length < totalCount) {
+      setIsFetching(true)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
+
+    return () => document.removeEventListener('scroll', scrollHandler)
+  }, [totalCount])
 
   return (
-    <div className={style.rootContainer}>
-      <div className={style.headerContainer}>
-        <div className={style.avatarContainer}>
-          <Image src={noImage} alt={'avatar'} width={48} height={48} />
-        </div>
-        <div className={style.profileInfoContainer}>
-          <div className={style.profileTitleContainer}>
-            <div>URLProfile</div>
-            <Button
-              className={style.buttonProfileSetting}
-              style={language === ShortLangs.RU ? { fontSize: '0.875rem' } : undefined}
-              onClick={() => router.push(`profile/general-information`)}
-            >
-              {tRoot('ProfileSetting')}
-            </Button>
-          </div>
-          <div className={style.subscribersContainer}>
-            <div>
-              <span className={style.countSubscribers}>2128</span> <br /> {t('Following')}
-            </div>
-            <div>
-              <span className={style.countSubscribers}>2128</span> <br /> {t('Followers')}
-            </div>
-            <div>
-              <span className={style.countSubscribers}>2128</span> <br /> {t('Publications')}
-            </div>
-          </div>
-        </div>
-        <div className={style.photosContainer}>
-          {/* {testPhotos.map((photo, i) => (
-            <Pictures key={i} url={photo} />
-          ))} */}
+    <div className={style.profileContainer}>
+      <ProfileData profileData={profileData} />
+      <div className={style.photosContainer}>
+        <div className={style.photoWrapper}>
+          {posts.map(p => {
+            return (
+              <img
+                key={p.id}
+                src={p?.images[0]?.url}
+                alt={'photo'}
+                className={style.photo}
+                onClick={() =>
+                  getPost(p.id)
+                    .unwrap()
+                    .then(() => setIsPostActive(true))
+                }
+              />
+            )
+          })}
+          {isPostActive && (
+            <PostModal
+              postData={postData}
+              setIsPostActive={setIsPostActive}
+              profileData={profileData}
+            />
+          )}
         </div>
       </div>
-    </div>
-  )
-}
-
-const testPhotos: string[] = [
-  noImage.src,
-  noImage.src,
-  noImage.src,
-  noImage.src,
-  noImage.src,
-  noImage.src,
-  noImage.src,
-  noImage.src,
-]
-
-type PostsProps = {
-  url: string
-}
-const Posts: FC<PostsProps> = ({ url }) => {
-  return (
-    <div className={style.photoWrapper}>
-      <Link href={`/profile/post`}>
-        <Image src={url} alt={'photo'} width={234} height={228} />
-      </Link>
     </div>
   )
 }

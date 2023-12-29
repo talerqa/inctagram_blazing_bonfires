@@ -1,0 +1,90 @@
+.wrapper {
+  width: 972px;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.title {
+  margin: 30px 0 6px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.listWrapper {
+  width: auto;
+  height: auto;
+  background-color: var(--color-dark-800);
+  border-radius: 2px;
+  border: 1px solid var(--color-dark-700);
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 12px 0px 12px 23px;
+}
+
+.listItem {
+
+}
+
+.footerWrapper {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+}
+
+.imgWrapper {
+  width: 96px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark-800);
+  border-radius: 2px;
+  border: 1px solid var(--color-dark-700);
+  cursor: pointer;
+}
+
+.img {
+  width: auto;
+}
+
+.currentSubscriptionRow {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.currentSubscriptionColumnName {
+  font-weight: 400;
+  color: var(--color-light-900);
+  margin-bottom: 12px;
+}
+
+.currentSubscriptionColumnData {
+  font-weight: 600;
+}
+
+.autoRenewalWrapper {
+  margin: 19px 0px 0px 24px;
+}
+
+.autoRenewalLabelStyle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.wrapperTop {
+  margin-top: -30px;
+}

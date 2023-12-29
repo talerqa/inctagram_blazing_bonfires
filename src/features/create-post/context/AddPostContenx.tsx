@@ -1,14 +1,14 @@
-import React, { PropsWithChildren } from 'react'
+import React, { createContext, PropsWithChildren, useContext, useState } from 'react'
 
 type AddPostContextType = {
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
 }
 
-export const AddPostContext = React.createContext<AddPostContextType | undefined>(undefined)
+export const AddPostContext = createContext<AddPostContextType | undefined>(undefined)
 
 const AddPostContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <AddPostContext.Provider value={{ isOpen, setIsOpen }}>
@@ -20,7 +20,7 @@ const AddPostContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 }
 
 export const useAddPostContext = () => {
-  const context = React.useContext(AddPostContext)
+  const context = useContext(AddPostContext)
 
   if (context === undefined) {
     throw new Error('useAddPostContext must be used within a AddPostContextProvider')

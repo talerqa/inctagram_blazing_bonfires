@@ -4,12 +4,12 @@ pipeline {
     agent any
     environment {
         ENV_TYPE = "production"
-        PORT = 3158
-        NAMESPACE = "blazingbonfires-click"
-        REGISTRY_HOSTNAME = "kozyrovladimir"
+        PORT = 3190
+        NAMESPACE = "blazingfire-click"
+        REGISTRY_HOSTNAME = "talerqa"
         REGISTRY = "registry.hub.docker.com"
-        PROJECT = "blazing-bonfires-frontend"
-        DEPLOYMENT_NAME = "blazing-bonfires-frontend-deployment"
+        PROJECT = "blazing-fire-project"
+        DEPLOYMENT_NAME = "blazing-fire-project-deployment"
         IMAGE_NAME = "${env.BUILD_ID}_${env.ENV_TYPE}_${env.GIT_COMMIT}"
         DOCKER_BUILD_NAME = "${env.REGISTRY_HOSTNAME}/${env.PROJECT}:${env.IMAGE_NAME}"
     }
@@ -33,7 +33,7 @@ pipeline {
              steps {
                  echo "Push image started..."
                      script {
-                          docker.withRegistry("https://${env.REGISTRY}", 'blazingbonfires-click') {
+                          docker.withRegistry("https://${env.REGISTRY}", 'blazingfire-click') {
                             app.push("${env.IMAGE_NAME}")
                         }
                      }

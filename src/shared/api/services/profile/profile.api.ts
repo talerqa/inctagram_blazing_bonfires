@@ -20,14 +20,14 @@ export const profileApi = createApi({
           }
         },
       }),
-      getProfile: build.query<ProfileUserType, string>({
-        query: id => {
+      getProfileUser: build.query<ProfileUserType, void>({
+        query: () => {
           return {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
             },
-            url: `users/profile/${id}`,
+            url: `users/profile`,
           }
         },
         providesTags: ['dataProfile'],
@@ -77,9 +77,9 @@ export const profileApi = createApi({
 })
 
 export const {
-  useGetAuthMeQuery,
-  useGetProfileQuery,
   useUpdateProfileMutation,
   useUpdateAvatarMutation,
   useDeleteAvatarMutation,
+  useLazyGetProfileUserQuery,
+  useGetProfileUserQuery,
 } = profileApi

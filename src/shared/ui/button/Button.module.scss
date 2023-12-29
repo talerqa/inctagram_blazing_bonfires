@@ -12,18 +12,55 @@
   border: 1px solid var(--color-info-500);
   color: var(--color-info-500);
 }
+
 .noborder {
   border: none;
-  outline: none;
   background: none;
-  color: var(--color-light-100);
-  font-weight: var(--font-weight-regular);
+  text-decoration: none;
+  color: var(--color-info-500);
+  outline: none;
+
+  &:hover {
+    color: var(--color-info-100);
+  }
+
+  &:focus {
+    color: var(--color-info-500);
+    outline: 1px solid var(--color-info-500);
+  }
+
+  &:active {
+    color: var(--color-info-700);
+  }
+
+  &:disabled {
+    color: var(--color-info-900);
+  }
 }
 
 .filled {
   color: var(--color-light-100);
   background: var(--color-info-500);
   border: none;
+  outline: none;
+
+  &:hover {
+    background-color: var(--color-info-100);
+  }
+
+  &:active {
+    background-color: var(--color-info-700);
+  }
+
+  &:focus {
+    background-color: var(--color-info-500);
+    border: 2px solid var(--color-info-700);
+  }
+
+  &:disabled {
+    background-color: var(--color-info-100);
+    cursor: auto;
+  }
 }
 
 .small {

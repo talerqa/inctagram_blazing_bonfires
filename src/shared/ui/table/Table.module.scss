@@ -1,0 +1,26 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 36px;
+}
+
+.head, .line {
+  height: 48px;
+}
+
+.head {
+  background-color: var(--color-dark-800);
+}
+
+.body {
+
+}
+
+.line {
+  border: 1px solid var(--color-dark-800)
+}
+
+.item {
+  text-align: left;
+  padding-left: 24px;
+}

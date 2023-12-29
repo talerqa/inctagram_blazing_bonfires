@@ -13,7 +13,7 @@ import { TableUsersList } from '@/shared/ui/tableUsersList/TableUsersList'
 
 const UsersList = () => {
   const selectOptions = ['Not selected', 'Blocked', 'Not blocked']
-  const usersPageSelect = ['5', '10', '30', '50', '100']
+  //const usersPageSelect = ['5', '10', '30', '50', '100']
 
   return (
     <div className={style.root}>
@@ -22,7 +22,7 @@ const UsersList = () => {
           <Image src={searchImg} alt="" className={style.searchImg} />
           <input className={style.inputSearch} placeholder="Search" />
         </div>
-        <Select selectionOptions={selectOptions} widthSelect={'234px'} />
+        <Select options={selectOptions} st={{ width: '234px' }} />
       </div>
       <div className={style.tableBlock}>
         <TableUsersList />

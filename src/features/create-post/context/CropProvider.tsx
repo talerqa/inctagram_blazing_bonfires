@@ -57,6 +57,8 @@ export type CropContextType = {
   isOpenModal: boolean
   setIsOpenModal: (isOpenModal: boolean) => void
   resetData: () => void
+  setIsSelectFromComputerOpen: (isSelectFromComputerOpen: boolean) => void
+  isSelectFromComputerOpen: boolean
 }
 
 export const CropContext = createContext<CropContextType | undefined>(undefined)
@@ -67,18 +69,24 @@ type Props = {
 
 const CropProvider: React.FC<Props> = ({ children }) => {
   // состояние модалки (открыта/закрыта)
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   // массив фотографий
   const [photos, setPhotos] = useState<PhotoType[]>(initialState)
 
+  // открытие компонента ImagePublication (Publication) при нажатии кнопки "Select from Computer" (AddPhoto)
+  const [isSelectFromComputerOpen, setIsSelectFromComputerOpen] = useState(false)
+
   // обработка фотографий и запись в массив
   const setPhotoList = (files: FileList) => {
+    const maxPhotos = 10
+
     processImageFiles(Array.from(files))
       .then(imageDataUrls => {
-        const photosPromises = imageDataUrls.map(url => {
+        const limitedImageDataUrls = imageDataUrls.slice(0, maxPhotos)
+        const photosPromises = limitedImageDataUrls.map(url => {
           return new Promise((resolve, reject) => {
             const image = new Image()
 
@@ -223,7 +231,13 @@ const CropProvider: React.FC<Props> = ({ children }) => {
 
   // очистка черновика фотографий
   const resetData = () => {
-    setPhotos(initialState)
+    const resetPhotos = photos.map(photo => ({
+      ...photo,
+      filteredUrl: photo.croppedUrl,
+      filter: CanvasFilters.NONE,
+    }))
+
+    setPhotos(resetPhotos)
   }
 
   return (
@@ -245,6 +259,8 @@ const CropProvider: React.FC<Props> = ({ children }) => {
         isOpenModal,
         setIsOpenModal,
         resetData,
+        setIsSelectFromComputerOpen,
+        isSelectFromComputerOpen,
       }}
     >
       <NextImage src={create} alt={''} onClick={() => setIsOpen(true)} />

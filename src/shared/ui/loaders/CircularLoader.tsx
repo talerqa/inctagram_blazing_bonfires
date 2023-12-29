@@ -7,7 +7,9 @@ import styles from '@/shared/ui/loaders/Loader.module.scss'
 export const CircularLoader = () => {
   return (
     <div className={styles.loaderWrapper}>
-      <CircularProgress />
+      <div className={styles.loader}>
+        <CircularProgress />
+      </div>
     </div>
   )
 }

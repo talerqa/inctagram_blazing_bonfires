@@ -10,6 +10,7 @@
   "Save": "Сохранить",
   "SaveChanges": "Сохранить",
   "SelectFromComputer": "Выбрать на устройстве",
+  "OpenDraft": "Открыть черновик",
   "ProfileSetting": "Настройки профиля",
   "ErrorTitle": "Ошибка!",
   "AttentionTitle": "Внимание!",
@@ -20,32 +21,32 @@
   "Yes": "Да",
   "No": "Нет",
   "Ok": "Ok",
-
   "Error": {
     "NetworkError": "Ошибка сети",
+    "TryAgain": "Ошибка, попробуйте позже",
     "ServerNotAvailable": "Ошибка! Сервер недоступен!",
     "NotAuthorization": "Вы не авторизованы, пожалуйста, войдите в свою учетную запись",
     "NotOfflineMode": "Сетевая ошибка. Извините, оффлайн режим еще не готов",
     "PasswordIncorrect": "Пароль неверен. Попробуйте еще раз",
     "EmailNotRegistered": "Этот адрес электронной почты не зарегистрирован. Пожалуйста, зарегистрируйтесь",
     "UserNameValidationError": "Только латинские буквы, цифры и \"_\", \"-\"",
-    "EmailValidationError": "Эл.адрес должен содержать A-Z, a-z, @",
-    "PasswordValidationError": "Заглавная, прописная буквы, число и символ",
+    "EmailValidationError": "Эл.адрес должен иметь форму example@example.com",
+    "PasswordValidationError": "Пароль должен включать в себя a-z, A-Z, ! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _` { | } ~",
     "MinCharacters1": "Минимум 1 символ",
     "MinCharacters2": "Минимум 2 символа",
     "MinCharacters6": "Минимум 6 символов",
-    "MinCharacters20": "Максимум 20 символов",
-    "MinCharacters30": "Максимум 30 символов",
-    "MinCharacters50": "Максимум 50 символов",
-    "MinCharacters200": "Максимум 200 символов",
+    "MaxCharacters20": "Максимум 20 символов",
+    "MaxCharacters30": "Максимум 30 символов",
+    "MaxCharacters50": "Максимум 50 символов",
+    "MaxCharacters200": "Максимум 200 символов",
     "PasswordMin6Max20": "Ваш пароль должен содержать от 6 до 20 символов",
     "StartLatterNotSpecial": "Поле должно начинаться с заглавной буквы и не содержать специальных символов",
     "RequiredField": "Поле обязательное для заполнения",
     "SomethingWentWrong": "Что-то пошло не так",
     "PasswordsMustMatch": "Пароли должны совпадать",
-    "MinAge": "Пользователь младше 13 лет не может создать профиль."
+    "MinAge": "Вам должно быть больше 13 лет",
+    "TransactionFailed": "Транзакция не прошла, пожалуйста, попробуйте позже"
   },
-
   "Auth": {
     "SignUp": "Регистрация",
     "SignIn": "Вход",
@@ -64,6 +65,7 @@
     "PasswordSent": "Пароль отправлен",
     "AgreeToThe": "Я согласен с",
     "TermsOfService": "Условия предоставления услуг",
+    "PrivacyPolicy": "Политика конфиденциальности",
     "BackToSignUp": "Назад к регистрации",
     "HaveAccount?": "У вас есть учетная запись?",
     "DontHaveAccount?": "Нет учетной записи?",
@@ -118,6 +120,28 @@
     "ReallyLogout": "Это ваше устройство, вы действительно хотите выйти?",
     "AllSessionsTerminated": "Все ваши сеансы на других устройствах завершены"
   },
+  "AccountManagement": {
+    "CurrentSubscription": "Текущая подписка",
+    "ExpireAt": "Истекает",
+    "NextPayment": "Следующий платеж",
+    "AutoRenewal": "Авто-обновление",
+    "AccountType": "Тип аккаунта",
+    "Personal": "Личный",
+    "Business": "Бизнес",
+    "YourSubscriptionCosts": "Стоимость подписки",
+    "$10per1Day": "$10 на 1 день",
+    "$50per7Days": "$50 на 7 дней",
+    "$100per1month": "$100 на 1 месяц",
+    "or": "или",
+    "PaymentSuccessful": "Оплата прошла успешно!"
+  },
+  "Payments": {
+    "DateOfPayment": "Дата платежа",
+    "EndDateOfSubscription": "Дата окончания подписки",
+    "Price": "Цена",
+    "SubscriptionType": "Тип подписки",
+    "PaymentType": "Тип оплаты"
+  },
   "Calendar": {
     "January": "Январь",
     "February": "Февраль",
@@ -138,5 +162,49 @@
     "Th": "Чт",
     "Fr": "Пт",
     "Sa": "Сб"
+  },
+  "TablePagination": {
+    "Show": "Показать",
+    "OnPage": "на странице"
+  },
+  "AddPost": {
+    "AddPhoto": "Добавить фотографию",
+    "Cropping": "Обрезка",
+    "Filters": "Фильтры",
+    "Publication": "Публикация",
+    "Next": "Далее",
+    "SelectFromComputer": "Выбрать на устройстве",
+    "OpenDraft": "Открыть черновик",
+    "Publish": "Опубликовать",
+    "FiltersList": {
+      "None": "Нет",
+      "Warm": "Теплый",
+      "Cool": "Холодный",
+      "Sepia": "Сепия",
+      "Black&White": "Черно-белый",
+      "Vintage": "Винтаж",
+      "Grayscale": "Оттенки серого",
+      "Contrast": "Контраст",
+      "Blur": "Размытие"
+    },
+    "Descriptions": "Добавьте описания публикаций",
+    "AddLocation": "Добавьте локацию",
+    "ClosePublication": "Вы действительно хотите закрыть создание публикации? Если закрыть, все будет удалено",
+    "Discard": "Сбросить",
+    "SaveDraft": "Сохранить черновик",
+    "Close": "Закрыть"
+  },
+  "Post": {
+    "Yes": "Да",
+    "No": "Нет",
+    "EditPost":"Редактировать пост",
+    "DeletePost": "Удалить пост",
+    "ClosePost": "Закрыть пост",
+    "Descriptions": "Добавьте описания публикаций",
+    "SaveChanges": "Сохранить изменения",
+    "Publish": " Опубликовать",
+    "DeleteUserPost": "Вы уверены, что хотите удалить этот пост?",
+    "CloseEditPost": "Вы действительно хотите завершить редактирование? Если вы закроете, внесенные вами изменения не будут сохранены.",
+    "AddComment": "Добавьте комментарий..."
   }
 }

@@ -9,7 +9,9 @@
   "Description": "Description",
   "Save": "Save",
   "SaveChanges": "Save Changes",
+  "AddProfilePhoto": "Add a Profile Photo",
   "SelectFromComputer": "Select from Computer",
+  "OpenDraft": "Open Draft",
   "ProfileSetting": "Profile Setting",
   "ErrorTitle": "Error!",
   "AttentionTitle": "Attention!",
@@ -20,17 +22,17 @@
   "Yes": "Yes",
   "No": "No",
   "Ok": "Ok",
-
   "Error": {
     "NetworkError": "Network error",
+    "TryAgain": "Error, try again late",
     "ServerNotAvailable": "Error! Server is not available!",
     "NotAuthorization": "You are not authorization, please enter in your account",
     "NotOfflineMode": "Network error. Sorry, offline mode isn&apos;t ready",
     "PasswordIncorrect": "The password is incorrect. Try again please ",
     "EmailNotRegistered": "This email address is not registered. Please register",
     "UserNameValidationError": "Only Latin letters, numbers and \"_\", \"-\"",
-    "EmailValidationError": "Email must contain A-Z, a-z , @",
-    "PasswordValidationError": "Uppercase, lowercase letters, a number and a symbol",
+    "EmailValidationError": "The email must match the format example@example.com",
+    "PasswordValidationError": "Password must contain a-z, A-Z,  ! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _` { | } ~",
     "MinCharacters1": "Minimum 1 characters",
     "MinCharacters2": "Minimum 2 characters",
     "MinCharacters6": "Minimum 6 characters",
@@ -43,7 +45,8 @@
     "RequiredField": "Required field",
     "SomethingWentWrong": "Something went wrong",
     "PasswordsMustMatch": "Passwords must match",
-    "MinAge": "A user under 13 cannot create a profile."
+    "MinAge": "A user under 13 cannot create a profile.",
+    "TransactionFailed": "Transaction failed, please try later"
   },
   "Auth": {
     "SignUp": "Sign Up",
@@ -63,6 +66,7 @@
     "EnterPasswordConfirmation": "Enter password confirmation",
     "AgreeToThe": "I agree to the",
     "TermsOfService": "Terms of Service",
+    "PrivacyPolicy": "Privacy Policy",
     "BackToSignUp": "Back to sign up",
     "HaveAccount?": "Do you have an account?",
     "DontHaveAccount?": "Don’t have an account?",
@@ -88,7 +92,6 @@
     "AccountManagement": "Account Management",
     "MyPayments": "My payments"
   },
-
   "Profile": {
     "Following": "Following",
     "Followers": "Followers",
@@ -118,6 +121,28 @@
     "ReallyLogout": "This is your device, do you really want to exit?",
     "AllSessionsTerminated": "All your sessions on other devices are terminated"
   },
+  "AccountManagement": {
+    "CurrentSubscription": "Current subscription",
+    "ExpireAt": "Expire at",
+    "NextPayment": "Next payment",
+    "AutoRenewal": "Auto-Renewal",
+    "AccountType": "Account type",
+    "Personal": "Personal",
+    "Business": "Business",
+    "YourSubscriptionCosts": "Your subscription costs",
+    "$10per1Day": "$10 per 1 day",
+    "$50per7Days": "$50 per 7 days",
+    "$100per1month": "$100 per 1 month",
+    "or": "or",
+    "PaymentSuccessful": "Payment was successful!"
+  },
+  "Payments": {
+    "DateOfPayment": "Date of payment",
+    "EndDateOfSubscription": "End date of subscription",
+    "Price": "Price",
+    "SubscriptionType": "Subscription Type",
+    "PaymentType": "Payment Type"
+  },
   "Calendar": {
     "January": "January",
     "February": "February",
@@ -138,5 +163,49 @@
     "Th": "Th",
     "Fr": "Fr",
     "Sa": "Sa"
+  },
+  "AddPost": {
+    "AddPhoto": "Add Photo",
+    "Cropping": "Cropping",
+    "Filters": "Filters",
+    "Publication": "Publication",
+    "Publish": "Publish",
+    "Next": "Next",
+    "SelectFromComputer": "Select from Computer",
+    "OpenDraft": "Open Draft",
+    "FiltersList": {
+      "None": "None",
+      "Warm": "Warm",
+      "Cool": "Cool",
+      "Sepia": "Sepia",
+      "Black&White": "Black & White",
+      "Vintage": "Vintage",
+      "Grayscale": "Grayscale",
+      "Contrast": "Contrast",
+      "Blur": "Blur"
+    },
+    "Descriptions": "Add publication descriptions",
+    "AddLocation": "Add location",
+    "ClosePublication": "Do you really want to close the creation of a publication? If you close everything will be deleted",
+    "Discard": "Discard",
+    "SaveDraft": "SaveDraft",
+    "Close": "Close"
+  },
+  "TablePagination": {
+    "Show": "Show",
+    "OnPage": "on page"
+  },
+  "Post": {
+    "Yes": "Yes",
+    "No": "No",
+    "EditPost": "Edit Post",
+    "DeletePost": "Delete Post",
+    "ClosePost": "Close Post",
+    "Descriptions": "Add publication descriptions",
+    "SaveChanges": "Save Changes",
+    "Publish": "Publish",
+    "DeleteUserPost": "Are you sure want to delete this post?",
+    "CloseEditPost": "Do you really want to finish editing? If you close the changes you have made will not be saved.",
+    "AddComment": "Add a Comment..."
   }
 }
