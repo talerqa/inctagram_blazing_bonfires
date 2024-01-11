@@ -11,11 +11,8 @@ import styles from './CreateNewPassForm.module.scss'
 import { useCreateNewPasswordMutation } from '@/shared/api/services/auth/auth.api'
 import { NewPasswordType } from '@/shared/api/services/auth/auth.api.types'
 import { RoutersPath } from '@/shared/constants/paths'
-import { Button, ButtonSize } from '@/shared/ui/button/Button'
-import FormContainer from '@/shared/ui/formContainer/FormContainer'
-import { Input, InputType } from '@/shared/ui/input/Input'
+import { FormContainer, Input, InputType, LinearLoader, Button, ButtonSize } from '@/shared/ui'
 import inputStyles from '@/shared/ui/input/Input.module.scss'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
 
 type FormType = {
   newPassword: string
@@ -73,7 +70,6 @@ export function CreateNewPassForm() {
     } else {
       data.recoveryCode = codeRecovery
     }
-
     createNewPassword(data)
       .unwrap()
       .then(() => {

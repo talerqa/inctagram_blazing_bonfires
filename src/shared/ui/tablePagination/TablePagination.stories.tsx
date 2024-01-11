@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { TablePagination } from './TablePagination'
+import { TablePagination } from '@/shared/ui'
 
 const meta: Meta<typeof TablePagination> = {
   component: TablePagination,
@@ -14,7 +14,7 @@ const meta: Meta<typeof TablePagination> = {
 export default meta
 type Story = StoryObj<typeof TablePagination>
 
-export const pagination: Story = {
+export const TablePaginationStory: Story = {
   args: {
     page: 1,
     itemsCountForPage: 10,

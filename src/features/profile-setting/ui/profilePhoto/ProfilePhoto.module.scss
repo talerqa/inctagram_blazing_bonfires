@@ -1,26 +1,31 @@
 .container {
   position: relative;
 }
+
 .photoContainer {
   position: relative;
-  width: 192px;
-  height: 192px;
-  background-color: var(--color-dark-800);
-  border-radius: 50%;
+
   overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  width: 192px;
+  height: 192px;
+
+  background-color: var(--color-dark-800);
+  border-radius: 50%;
 }
 
 .addPhotoBtn {
-  font-size: var(--font-size-m);
-  margin-top: 1.5rem;
   width: 100%;
+  margin-top: 1.5rem;
+  font-size: var(--font-size-m);
 }
+
 .delPhotoBtn {
   position: absolute;
+  z-index: 10;
   top: 0.75rem;
   right: 0.75rem;
-  z-index: 10;
 }

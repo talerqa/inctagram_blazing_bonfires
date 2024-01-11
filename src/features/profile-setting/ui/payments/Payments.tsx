@@ -8,9 +8,7 @@ import styles from './Payments.module.scss'
 import { useGetSubscriptionsQuery } from '@/shared/api'
 import { SubscriptionDataType } from '@/shared/api/services/subscriptions/subscriptions.api.types'
 import { formatDate } from '@/shared/libs/formatDates/formatDates'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
-import { Modal } from '@/shared/ui/modal/Modal'
-import { TablePagination } from '@/shared/ui/pagination/TablePagination'
+import { LinearLoader, Modal, TablePagination } from '@/shared/ui'
 
 export const Payments = () => {
   const { data: payments, isLoading, isError } = useGetSubscriptionsQuery(undefined)

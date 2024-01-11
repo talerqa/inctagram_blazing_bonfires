@@ -1,41 +1,51 @@
 .editDeleteButtonContainer {
   position: absolute;
+
   min-width: 137px;
   height: 85px;
-  background-color: var(--color-dark-500);
-  margin-left: 290px;
   margin-top: 135px;
+  margin-left: 290px;
+
+  background-color: var(--color-dark-500);
   border: 1px solid var(--color-dark-100);
+
   .buttonsContainer {
     display: flex;
     flex-direction: column;
     margin-top: 15px;
+
     .button {
       cursor: pointer;
-      border: 0;
-      background-color: transparent;
-      width: 100%;
+
       display: flex;
       align-items: center;
+
+      width: 100%;
+
+      background-color: transparent;
+      border: 0;
     }
+
     .button span {
-      white-space: nowrap;
       margin-left: 5px;
+      white-space: nowrap;
     }
   }
 }
 
 .modalWrapper {
-  width: 380px;
-  height: 152px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  width: 380px;
+  height: 152px;
+
   .textWrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     width: 320px;
     height: 72px;
     margin-top: 8px;
@@ -52,8 +62,6 @@
     margin-top: 17px;
 
     .button {
-      width: 108px;
-      height: 36px;
       font-size: var(--font-size-s);
     }
   }

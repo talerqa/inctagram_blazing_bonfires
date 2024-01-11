@@ -3,38 +3,26 @@ import { useTranslation } from 'next-i18next'
 
 import styles from './Device.module.scss'
 
-import desctopImage from '@/shared/assets/icons/devices/lightIcons/desktop.svg'
+import { UserSessionsType } from '@/shared/api'
+import desktopImage from '@/shared/assets/icons/devices/lightIcons/desktop.svg'
 import mobileImage from '@/shared/assets/icons/devices/lightIcons/mobile.svg'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 import { IconDevice } from '@/shared/ui/iconDevice/IconDevice'
 
 type Props = {
-  deviceName: string
-  lastActive: string
-  browserName: string
-  deviceId: number
-  ip: string
   isCurrent: boolean
   logoutCallback?: (id: number) => void
-  osName: string
-  deviceType: string
+  sessionData: UserSessionsType
 }
-export const Device = ({
-  osName,
-  ip,
-  isCurrent,
-  browserName,
-  lastActive,
-  deviceId,
-  logoutCallback,
-  deviceName,
-  deviceType,
-}: Props) => {
-  const {
-    t,
-    i18n: { t: tRoot },
-  } = useTranslation('common', { keyPrefix: 'Auth' })
+export const Device = ({ isCurrent, logoutCallback, sessionData }: Props) => {
+  const { deviceType, deviceId, deviceName, osName, browserName, lastActive, osVersion, ip } =
+    sessionData
+
+  const { t } = useTranslation('common', { keyPrefix: 'Auth' })
+
+  const lastActiveDate = new Date(lastActive).toLocaleDateString()
+  const deviceInfo = `${osName} ${osVersion} ${deviceName || ''} ${browserName}`
 
   return (
     <>
@@ -50,11 +38,11 @@ export const Device = ({
             </>
           ) : (
             <>
-              <Image src={deviceType === 'mobile' ? mobileImage : desctopImage} alt="device" />
+              <Image src={deviceType === 'mobile' ? mobileImage : desktopImage} alt="device" />
               <div className={styles.description}>
-                <h4>{`${osName === 'Mac OS' || osName === 'iOS' ? 'Apple' : ''} ${deviceName}`}</h4>
+                <h4>{deviceInfo}</h4>
                 <p>IP: {ip}</p>
-                <p>Last visit: {new Date(lastActive).toLocaleDateString()}</p>
+                <p>Last visit: {lastActiveDate}</p>
               </div>
             </>
           )}

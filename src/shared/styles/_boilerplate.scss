@@ -58,10 +58,10 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
   background: -webkit-linear-gradient(
-                  top,
-                  var(--color-dark-900) 0%,
-                  var(--color-dark-900) 50%,
-                  var(--color-dark-900) 51%,
-                  var(--color-dark-900) 100%
+    top,
+    var(--color-dark-900) 0%,
+    var(--color-dark-900) 50%,
+    var(--color-dark-900) 51%,
+    var(--color-dark-900) 100%
   );
 }

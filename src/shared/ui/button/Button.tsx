@@ -8,6 +8,7 @@ export enum ButtonTheme {
   NOBORDER = 'noborder',
   CLEAR = 'clear',
   FILLED = 'filled',
+  NOSTYLES = 'nostyles',
 }
 
 export enum ButtonSize {
@@ -15,6 +16,7 @@ export enum ButtonSize {
   MIDDLE = 'middle',
   LARGE = 'large',
   STRETCHED = 'stretched',
+  CLEAN = 'clean',
 }
 
 type Props = {

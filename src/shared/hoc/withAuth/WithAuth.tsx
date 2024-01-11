@@ -4,8 +4,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { useMeQuery } from '../../api/services/auth/auth.api'
-
+import { useMeQuery } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
 import { ShortLangs } from '@/shared/types/langSwitcherTypes'
 

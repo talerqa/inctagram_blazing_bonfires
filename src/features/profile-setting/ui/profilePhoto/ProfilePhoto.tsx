@@ -9,9 +9,7 @@ import { PhotoModal } from '@/features/profile-setting/ui/photoModal/PhotoModal'
 import { AvatarsType } from '@/shared/api/services/profile/profile.api.types'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { ShortLangs } from '@/shared/types/langSwitcherTypes'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
-import { Modal } from '@/shared/ui/modal/Modal'
-import { RemoveAvatarButton } from '@/shared/ui/removeButton/RemoveAvatarButton'
+import { RemoveAvatarButton, Modal, Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   outsideOnChange: (photo: Blob) => void

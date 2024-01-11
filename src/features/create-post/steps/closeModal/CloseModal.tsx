@@ -11,8 +11,7 @@ import NewPostModal from '@/features/create-post/ui/newPostModal/NewPostModal'
 import { filterBestQualityImages } from '@/features/create-post/utils/filterBestQualityImages'
 import { useUploadImageMutation } from '@/shared/api/services/posts/posts.api'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
+import { LinearLoader, Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   cropContext: CropContextType

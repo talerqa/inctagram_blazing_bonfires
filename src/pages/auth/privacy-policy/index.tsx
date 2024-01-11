@@ -10,7 +10,7 @@ import backIcon from '@/shared/assets/icons/icons/arrowBackIcon.svg'
 import { RoutersPath } from '@/shared/constants/paths'
 import { useGetQueryParams } from '@/shared/hooks/useGetQueryParams'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

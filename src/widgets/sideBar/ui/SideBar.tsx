@@ -19,7 +19,7 @@ import style from './SideBar.module.scss'
 import CreatePost from '@/features/create-post'
 import { Logout } from '@/features/logout/ui/logout/Logout'
 import { RoutersPath } from '@/shared/constants/paths'
-import { ButtonTheme } from '@/shared/ui/button/Button'
+import { ButtonTheme } from '@/shared/ui'
 
 export const SideBar = () => {
   const { t } = useTranslation('common')

@@ -6,7 +6,7 @@ import Image from 'next/image'
 import styles from './ZoomPanel.module.scss'
 
 import maxmMin from '@/shared/assets/icons/filterPostPhoto/maximize-outline.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 type ZoomPanelProps = {
   zoom: number

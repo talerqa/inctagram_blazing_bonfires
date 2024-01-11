@@ -11,7 +11,7 @@ import styles from './ConfirmedEmail.module.scss'
 import broConfirmImage from '@/shared/assets/icons/login/broCongratulations.svg'
 import { RoutersPath } from '@/shared/constants/paths'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

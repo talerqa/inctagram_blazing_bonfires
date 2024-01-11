@@ -116,7 +116,7 @@
   },
   "Devices": {
     "ThisDevices": "This devices",
-    "TerminateAllSession": "Terminate all other session",
+    "TerminateAllSession": "Terminate all other sessions",
     "ActiveSessions": "Active sessions",
     "ReallyLogout": "This is your device, do you really want to exit?",
     "AllSessionsTerminated": "All your sessions on other devices are terminated"
@@ -206,6 +206,43 @@
     "Publish": "Publish",
     "DeleteUserPost": "Are you sure want to delete this post?",
     "CloseEditPost": "Do you really want to finish editing? If you close the changes you have made will not be saved.",
-    "AddComment": "Add a Comment..."
+    "AddComment": "Add a Comment...",
+    "Answer": "Answer",
+    "Likes": "Likes",
+    "SecondsAgo": {
+      "one": "second ago",
+      "few": "seconds ago",
+      "many": "seconds ago"
+    },
+    "MinutesAgo": {
+      "one": "minute ago",
+      "few": "minutes ago",
+      "many": "minutes ago"
+    },
+    "HoursAgo": {
+      "one": "hour ago",
+      "few": "hours ago",
+      "many": "hours ago"
+    },
+    "DaysAgo": {
+      "one": "day ago",
+      "few": "days ago",
+      "many": "days ago"
+    },
+    "WeeksAgo": {
+      "one": "week ago",
+      "few": "weeks ago",
+      "many": "weeks ago"
+    },
+    "MonthsAgo": {
+      "one": "month ago",
+      "few": "months ago",
+      "many": "months ago"
+    },
+    "YearsAgo": {
+      "one": "year ago",
+      "few": "years ago",
+      "many": "years ago"
+    }
   }
 }

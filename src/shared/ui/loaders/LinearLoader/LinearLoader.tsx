@@ -2,7 +2,7 @@ import React from 'react'
 
 import { LinearProgress } from '@mui/material'
 
-import styles from './Loader.module.scss'
+import styles from '../Loader.module.scss'
 
 export const LinearLoader = () => {
   return (

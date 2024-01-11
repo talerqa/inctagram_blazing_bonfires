@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import React, { useState } from 'react'
 
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,30 +13,19 @@ import styles from './SignInForm.module.scss'
 import { OAuth } from '@/features/auth-register/ui/oAuth/OAuth'
 import { useLoginMutation, LoginFormType } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
-import { Button, ButtonSize } from '@/shared/ui/button/Button'
-import FormContainer from '@/shared/ui/formContainer/FormContainer'
-import { Input, InputType } from '@/shared/ui/input/Input'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
+import { LinearLoader, Input, InputType, FormContainer, Button, ButtonSize } from '@/shared/ui'
 
 export const SignInForm = () => {
-  const { t, i18n } = useTranslation('common', { keyPrefix: 'Auth' })
+  const { t } = useTranslation('common', { keyPrefix: 'Auth' })
   const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
 
   const schema = yup.object().shape({
-    email: yup
-      .string()
-      .min(2, tError('MinCharacters2'))
-      .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, tError('EmailValidationError'))
-      .required(tError('RequiredField')),
-    password: yup
-      .string()
-      .min(6, tError('MinCharacters6'))
-      .max(20, tError('MaxCharacters20'))
-      .required(tError('RequiredField')),
+    email: yup.string().required(tError('RequiredField')),
+    password: yup.string().required(tError('RequiredField')),
   })
 
-  const [passwordError, setPasswordError] = useState<string>('')
-  const [emailError, setEmailError] = useState<string>('')
+  const [passwordError, setPasswordError] = useState('')
+  const [emailError, setEmailError] = useState('')
   const [login, { isLoading }] = useLoginMutation()
   const router = useRouter()
 

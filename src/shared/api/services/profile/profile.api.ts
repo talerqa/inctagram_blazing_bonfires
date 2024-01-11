@@ -4,22 +4,17 @@ import { baseURL } from '../baseUrl.api'
 
 import { AvatarsType, BaseUserType, ProfileUserType } from './profile.api.types'
 
+import { algByDecodingToken } from '@/shared/api/utils/algByDecodingToken'
+
 export const profileApi = createApi({
   reducerPath: 'profileApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'same-origin' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: baseURL,
+    credentials: 'same-origin',
+  }),
   tagTypes: ['dataProfile'],
   endpoints: build => {
     return {
-      getAuthMe: build.query<BaseUserType, void>({
-        query: () => {
-          return {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
-            },
-            url: 'auth/me',
-          }
-        },
-      }),
       getProfileUser: build.query<ProfileUserType, void>({
         query: () => {
           return {

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { RoutersPath } from '@/shared/constants/paths'
 import { Flags, FullLangs, ShortLangs } from '@/shared/types/langSwitcherTypes'
 import { optionsType } from '@/shared/types/optionSwitcherTypes'
-import { Switcher } from '@/shared/ui/switcher/'
+import { Switcher } from '@/shared/ui'
 
 export const LanguageSelect = () => {
   const router = useRouter()

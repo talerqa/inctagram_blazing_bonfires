@@ -11,7 +11,7 @@ import OriginalAspectIcon from '@/features/create-post/ui/icons/OriginalAspectIc
 import SquareIcon from '@/features/create-post/ui/icons/SquareIcon'
 import VerticalRectangle from '@/features/create-post/ui/icons/VerticalRectangle'
 import sizePhoto from '@/shared/assets/icons/filterPostPhoto/size.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 interface AspectRatioPanelProps {
   handleAspectRatio: (aspect: number) => void

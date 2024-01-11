@@ -22,4 +22,5 @@ export const enum RoutersPath {
   superAdminPaymentsList = '/super-admin/payments-list',
   superAdminPostsList = '/super-admin/posts-list',
   apiAuthGithubLogin = 'https://inctagram.work/api/v1/auth/github/login',
+  apiAuthGoogleLogin = 'https://inctagram.work/api/v1/auth/google/login',
 }

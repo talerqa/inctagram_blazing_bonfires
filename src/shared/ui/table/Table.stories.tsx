@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Table } from './Table'
 
 import { SubscriptionDataType } from '@/shared/api/services/subscriptions/subscriptions.api.types'
-import { payments } from '@/shared/ui/table/constants'
 
 const meta: Meta<typeof Table> = {
   component: Table,

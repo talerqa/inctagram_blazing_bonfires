@@ -20,10 +20,7 @@ import { useChangeRoute } from '@/shared/hooks/generalInfoPage/useChangeRoute'
 import { useFormCache } from '@/shared/hooks/generalInfoPage/useFormCache'
 import { useServerRequest } from '@/shared/hooks/generalInfoPage/useServerRequest'
 import { setGeneralInfo } from '@/shared/providers/storeProvider/slices/profileSettings/generalInfoReducer'
-import { Button } from '@/shared/ui/button/Button'
-import { Input, InputType } from '@/shared/ui/input/Input'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
-import { Modal } from '@/shared/ui/modal/Modal'
+import { Modal, LinearLoader, Input, InputType, Button } from '@/shared/ui'
 import { Calendar } from '@/widgets/calendar/ui/Calendar'
 
 export const GeneralInfo = () => {

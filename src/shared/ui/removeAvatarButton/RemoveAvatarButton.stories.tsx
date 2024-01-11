@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { RemoveAvatarButton } from '@/shared/ui/removeButton/RemoveAvatarButton'
+import { RemoveAvatarButton } from '@/shared/ui'
 
 const meta: Meta<typeof RemoveAvatarButton> = {
   component: RemoveAvatarButton,

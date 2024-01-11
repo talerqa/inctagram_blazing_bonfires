@@ -13,7 +13,7 @@ import { PostsResponseType } from '@/shared/api/services/posts/posts.api.types'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import noImage from '@/shared/assets/icons/avatarProfile/notPhoto.png'
 import closeIcon from '@/shared/assets/icons/icons/closeIcon.svg'
-import { Button, ButtonSize } from '@/shared/ui/button/Button'
+import { Button, ButtonSize } from '@/shared/ui'
 
 type Props = {
   profileData: ProfileUserType | undefined

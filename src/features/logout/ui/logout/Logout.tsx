@@ -10,8 +10,7 @@ import style from './Logout.module.scss'
 import { useLogoutMutation, useMeQuery } from '@/shared/api'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
-import { Modal } from '@/shared/ui/modal/Modal'
+import { Modal, Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   className?: string

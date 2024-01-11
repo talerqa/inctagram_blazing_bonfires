@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 import NewPostModal from '@/features/create-post/ui/newPostModal/NewPostModal'
 import styles from '@/features/post/ui/editDeletePost/EditDeletePost.module.scss'
 import closeIcon from '@/shared/assets/icons/icons/closeIcon.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   closeEditModal: boolean

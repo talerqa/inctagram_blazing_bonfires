@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import styles from '@/pages/payment/access/Payment.module.scss'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { CircularLoader } from '@/shared/ui/loaders/CircularLoader'
+import { CircularLoader } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

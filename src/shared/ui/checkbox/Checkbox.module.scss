@@ -1,32 +1,37 @@
 .checkboxWrapper {
   display: flex;
-  width: 100%;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .checkboxLabel {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   position: relative;
   z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .checkbox {
-  appearance: none;
+  cursor: pointer;
+
   position: relative;
   z-index: 1;
+
   width: 18px;
   height: 18px;
+  margin-right: 8px;
+
+  vertical-align: middle;
+
+  appearance: none;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center center;
-  cursor: pointer;
-  vertical-align: middle;
-  margin-right: 8px;
-  border-radius: 3px;
   border: 2px solid var(--color-light-100);
-  background-color: transparent;
+  border-radius: 3px;
   outline: none;
 
   &:checked {
@@ -35,22 +40,25 @@
   }
 
   &:disabled {
-    background-color: var(----color-dark-300);
-    border: 2px solid var(--color-dark-600);
+    background-color: var(--color-dark-300);
     background-image: url('../../assets/icons/checkbox/checked-disabled.svg');
+    border: 2px solid var(--color-dark-600);
   }
 }
 
 .check {
   cursor: pointer;
+
   position: absolute;
   top: 51%;
   left: 42%;
   transform: translate(-50%, -50%);
-  height: 32px;
+
   width: 32px;
-  border-radius: 50%;
+  height: 32px;
+
   background-color: transparent;
+  border-radius: 50%;
 }
 
 .checkboxLabel:hover input ~ .check {
@@ -72,9 +80,10 @@
 .error {
   margin: 0 auto;
   padding: 0;
+
   font-size: var(--font-size-s);
-  color: var(--color-danger-500);
   line-height: 24px;
+  color: var(--color-danger-500);
 }
 
 .checkboxDisabled {

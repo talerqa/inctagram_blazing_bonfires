@@ -17,7 +17,7 @@ export enum FormOption {
   FORGOTPASSWORD = 'forgotPassword',
 }
 
-const FormContainer = ({ title, children, className }: Props) => {
+export const FormContainer = ({ title, children, className }: Props) => {
   return (
     <div className={classNames(styles.formContainer, {}, [className ? className : ''])}>
       <h3>{title}</h3>
@@ -25,5 +25,3 @@ const FormContainer = ({ title, children, className }: Props) => {
     </div>
   )
 }
-
-export default FormContainer

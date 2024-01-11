@@ -10,7 +10,7 @@ import { DotsBar } from '@/features/create-post/ui/dotsBar/DotsBar'
 import { useSlider } from '@/features/create-post/utils/useSlider'
 import next from '@/shared/assets/icons/filterPostPhoto/next.svg'
 import prev from '@/shared/assets/icons/filterPostPhoto/prev.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   cropContext: CropContextType

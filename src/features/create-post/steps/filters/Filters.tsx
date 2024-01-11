@@ -16,7 +16,7 @@ import { useSlider } from '@/features/create-post/utils/useSlider'
 import backIcon from '@/shared/assets/icons/arrow back/back.svg'
 import next from '@/shared/assets/icons/filterPostPhoto/next.svg'
 import prev from '@/shared/assets/icons/filterPostPhoto/prev.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 export const Filters = () => {
   const { nextStep, previousStep } = useWizard()

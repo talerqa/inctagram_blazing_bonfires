@@ -67,5 +67,3 @@ export {
   useCreateNewSubscriptionMutation,
   useCancelAutoRenewalMutation,
 } from './services/subscriptions/subscriptions.api'
-
-export { baseURL } from './services/baseUrl.api'

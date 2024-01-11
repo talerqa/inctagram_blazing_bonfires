@@ -14,7 +14,7 @@ const meta: Meta<typeof Management> = {
 export default meta
 type Story = StoryObj<typeof Management>
 
-export const management: Story = {
+export const ManagementStory: Story = {
   args: {
     page: 1,
     itemsCountForPage: 10,

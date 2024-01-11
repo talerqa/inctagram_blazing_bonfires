@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Payments } from './Payments'
 
-import { payments } from '@/shared/ui/table/constants'
-import { Table } from '@/shared/ui/table/Table'
+import { Table, payments } from '@/shared/ui'
 
 const meta: Meta<typeof Payments> = {
   component: Payments,
@@ -17,6 +16,6 @@ const meta: Meta<typeof Payments> = {
 export default meta
 type Story = StoryObj<typeof Payments>
 
-export const payment = () => {
+export const PaymentStory = () => {
   return <Table items={payments} />
 }

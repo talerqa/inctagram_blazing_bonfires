@@ -1,19 +1,19 @@
 .rootContainer {
   display: flex;
 }
+
 .profileContainer {
-  //margin-left: 220px;
-  margin-bottom: 30px;
-  margin-right: 60px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  margin-right: 60px;
+  margin-bottom: 30px;
 
   .photosContainer {
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
+
     margin-top: 60px;
     margin-left: 20px;
   }
@@ -24,8 +24,8 @@
 }
 
 .photo {
+  cursor: pointer;
   width: 350px;
   height: 350px;
   margin-left: 6px;
-  cursor: pointer;
 }

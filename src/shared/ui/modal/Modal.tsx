@@ -6,7 +6,7 @@ import closeImg from '../../assets/icons/logout/close.svg'
 
 import style from './Modal.module.scss'
 
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   title: string

@@ -9,7 +9,7 @@ import style from './AddPhotoSlider.module.scss'
 import { CropContextType } from '@/features/create-post/context/CropProvider'
 import addPhoto from '@/shared/assets/icons/addPhoto/addPhoto.svg'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   cropContext: CropContextType

@@ -4,7 +4,8 @@
   margin-bottom: 36px;
 }
 
-.head, .line {
+.head,
+.line {
   height: 48px;
 }
 
@@ -13,11 +14,10 @@
 }
 
 .body {
-
 }
 
 .line {
-  border: 1px solid var(--color-dark-800)
+  border: 1px solid var(--color-dark-800);
 }
 
 .item {

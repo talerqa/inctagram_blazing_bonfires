@@ -16,9 +16,7 @@ import {
 } from '@/shared/api/services/devices/devices.api'
 import { UserSessionsType } from '@/shared/api/services/devices/devices.api.types'
 import { RoutersPath } from '@/shared/constants/paths'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
-import { Modal } from '@/shared/ui/modal/Modal'
+import { Button, ButtonSize, ButtonTheme, LinearLoader, Modal } from '@/shared/ui'
 import { errorHandler } from '@/shared/utils/errorHandler'
 
 export function Devices() {
@@ -100,7 +98,7 @@ export function Devices() {
   const getCurrentDevice = (sessions: UserSessionsType[]): UserSessionsType | undefined => {
     const currentDeviceUA = new UAParser().getResult()
 
-    return sessions.find(session => {
+    const foundDevice = sessions.find(session => {
       return (
         session.browserName === currentDeviceUA.browser.name &&
         session.browserVersion === currentDeviceUA.browser.version &&
@@ -109,6 +107,13 @@ export function Devices() {
         session.deviceType === currentDeviceUA.device.type
       )
     })
+
+    if (foundDevice === undefined) {
+      router.push(RoutersPath.signIn)
+      localStorage.removeItem('accessToken')
+    }
+
+    return foundDevice
   }
 
   const logoutHandler = (id: number) => {
@@ -127,16 +132,7 @@ export function Devices() {
           {currentDevice && (
             <section>
               <h4> {t('ThisDevices')}</h4>
-              <Device
-                osName={currentDevice.osName}
-                deviceName={currentDevice.deviceName}
-                browserName={currentDevice.browserName}
-                ip={currentDevice.ip}
-                isCurrent={true}
-                lastActive={currentDevice.lastActive}
-                deviceId={currentDevice.deviceId}
-                deviceType={currentDevice.deviceType}
-              />
+              <Device sessionData={currentDevice} isCurrent={true} />
             </section>
           )}
           <Button
@@ -153,16 +149,10 @@ export function Devices() {
             {sessions.map(session => {
               return (
                 <Device
+                  sessionData={session}
                   key={session.deviceId}
                   isCurrent={false}
-                  osName={session.osName}
-                  browserName={session.browserName}
-                  deviceName={session.deviceName}
-                  ip={session.ip}
-                  lastActive={session.lastActive}
                   logoutCallback={id => logoutHandler(id)}
-                  deviceId={session.deviceId}
-                  deviceType={session.deviceType}
                 />
               )
             })}

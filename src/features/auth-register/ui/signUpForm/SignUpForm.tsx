@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import Link from 'next/link'
@@ -14,18 +14,24 @@ import { SignUpType, useSignUpMutation } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
 import { registrationSchema } from '@/shared/constants/validation-schema/registrationSchema'
 import { RegistrationFormType } from '@/shared/types/schemaTypes'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
-import { Checkbox } from '@/shared/ui/checkbox/Checkbox'
-import FormContainer from '@/shared/ui/formContainer/FormContainer'
-import { Input, InputType } from '@/shared/ui/input/Input'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
-import { Modal } from '@/shared/ui/modal/Modal'
+import {
+  Button,
+  ButtonSize,
+  ButtonTheme,
+  Checkbox,
+  FormContainer,
+  Input,
+  InputType,
+  LinearLoader,
+  Modal,
+} from '@/shared/ui'
 
 export const SignUpForm = () => {
   const { t } = useTranslation('common')
 
   const [signUp, { isLoading }] = useSignUpMutation()
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
+  const [email, setEmail] = useState('')
 
   const callBackCloseWindow = () => setRegistrationSuccess(false)
 
@@ -34,7 +40,7 @@ export const SignUpForm = () => {
     control,
     watch,
     trigger,
-    formState: { isValid },
+    formState: { isValid, errors, touchedFields },
     reset,
   } = useForm<RegistrationFormType>({
     resolver: yupResolver(registrationSchema(t)) as yup.InferType<yup.Schema>,
@@ -48,25 +54,43 @@ export const SignUpForm = () => {
     mode: 'onBlur',
     reValidateMode: 'onChange',
   })
+
   const passwordConfirm = watch('passwordConfirmation')
 
   const onSubmit: SubmitHandler<SignUpType> = (data: SignUpType) => {
     signUp(data)
       .unwrap()
       .then(() => {
+        setEmail(data.email)
         reset()
         setRegistrationSuccess(true)
       })
       .catch(error => toast.error(error.data.messages[0].message))
   }
 
+  useEffect(() => {
+    const touchedFieldsList = Object.keys(touchedFields) as Array<keyof RegistrationFormType>
+
+    touchedFieldsList.forEach((field: keyof RegistrationFormType) => {
+      if (errors[field]) {
+        trigger(field)
+      }
+    })
+  }, [t])
+
   return (
     <>
       <Toaster position="top-right" />
       {isLoading && <LinearLoader />}
       {registrationSuccess && (
-        <Modal title={t('EmailSent')} mainButton={'OK'} callBackCloseWindow={callBackCloseWindow}>
-          <p>{t('LinkConfirmYourEmail')} </p>
+        <Modal
+          title={t('Auth.EmailSent')}
+          mainButton={'OK'}
+          callBackCloseWindow={callBackCloseWindow}
+        >
+          <p>
+            {t('Auth.LinkConfirmYourEmail')} {email}
+          </p>
         </Modal>
       )}
       <FormContainer title={t('Auth.SignUp')}>

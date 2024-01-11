@@ -24,10 +24,7 @@ import {
 import payPal from '@/shared/assets/icons/payments/payPal.svg'
 import stripe from '@/shared/assets/icons/payments/stripe.svg'
 import { formatDate } from '@/shared/libs/formatDates/formatDates'
-import { Checkbox } from '@/shared/ui/checkbox/Checkbox'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
-import { Modal } from '@/shared/ui/modal/Modal'
-import { RoundCheckbox } from '@/shared/ui/roundCheckbox/RoundCheckbox'
+import { LinearLoader, Modal, RoundCheckbox, Checkbox } from '@/shared/ui'
 
 // create new subscription
 const schema = yup.object({

@@ -13,7 +13,7 @@ import NewPostModal from '@/features/create-post/ui/newPostModal/NewPostModal'
 import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import mockupPhoto from '@/shared/assets/icons/avatarProfile/notPhoto.png'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
-import { Button } from '@/shared/ui/button/Button'
+import { Button } from '@/shared/ui'
 
 export const AddPhoto = () => {
   const { nextStep } = useWizard()

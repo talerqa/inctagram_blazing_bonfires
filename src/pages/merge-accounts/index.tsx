@@ -8,7 +8,7 @@ import styles from './MergeAccounts.module.scss'
 
 import broImage from '@/shared/assets/icons/login/bro.svg'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

@@ -6,6 +6,11 @@ export type LoginFormType = {
 export type LoginType = {
   accessToken: string
 }
+export type LoginViaGoogleResponseType = {
+  accessToken: string
+  email: string
+}
+
 export type LogoutType = {
   statusCode: string
   messages: [

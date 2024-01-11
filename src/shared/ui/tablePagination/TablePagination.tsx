@@ -4,8 +4,8 @@ import { createTheme, ThemeProvider } from '@mui/material'
 import Pagination from '@mui/material/Pagination'
 import { useTranslation } from 'next-i18next'
 
-import styles from '@/shared/ui/pagination/TablePagination.module.scss'
-import { Select } from '@/shared/ui/select/Select'
+import { Select } from '@/shared/ui'
+import styles from '@/shared/ui/tablePagination/TablePagination.module.scss'
 
 export type PaginationPropsType = {
   page: number

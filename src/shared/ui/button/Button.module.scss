@@ -1,23 +1,27 @@
 .Button {
+  cursor: pointer;
+
   height: 36px;
+
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-bold);
-  cursor: pointer;
+
   border-radius: 2px;
 }
 
 .clear {
-  background: none;
-  outline: none;
-  border: 1px solid var(--color-info-500);
   color: var(--color-info-500);
+  background: none;
+  border: 1px solid var(--color-info-500);
+  outline: none;
 }
 
 .noborder {
-  border: none;
-  background: none;
-  text-decoration: none;
   color: var(--color-info-500);
+  text-decoration: none;
+
+  background: none;
+  border: none;
   outline: none;
 
   &:hover {
@@ -58,8 +62,8 @@
   }
 
   &:disabled {
-    background-color: var(--color-info-100);
     cursor: auto;
+    background-color: var(--color-info-100);
   }
 }
 
@@ -77,4 +81,12 @@
 
 .stretched {
   width: 100%;
+}
+
+.nostyles {
+
+}
+
+.clean {
+  width: initial;
 }

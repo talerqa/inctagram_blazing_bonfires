@@ -10,9 +10,9 @@
   background-repeat: no-repeat;
   background-position: right;
   background-size: 24px 24px;
-  background-image: url("down.svg");
+  background-image: url('down.svg');
   border-radius: 2px;
-  border: 1px solid #C2C2C2;
+  border: 1px solid #c2c2c2;
   cursor: pointer;
   position: relative;
 }
@@ -34,10 +34,10 @@
   padding: 0 10px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #C2C2C2;
-  border-right: 1px solid #C2C2C2;
-  border-left: 1px solid #C2C2C2;
-  transition: all .3s ease;
+  border-bottom: 1px solid #c2c2c2;
+  border-right: 1px solid #c2c2c2;
+  border-left: 1px solid #c2c2c2;
+  transition: all 0.3s ease;
 }
 
 .option:last-child {
@@ -46,19 +46,19 @@
 }
 
 .option:hover {
-  color: #0066CC;
+  color: #0066cc;
   cursor: pointer;
 }
 
 .activeOption {
   border: none;
-  background-color: #0066CC;
+  background-color: #0066cc;
   color: var(--color-text);
 }
 
 .activeOption:hover {
   color: var(--color-text);
-  background-color: #0066CC;
+  background-color: #0066cc;
 }
 
 /*.selectWrapper {*/
@@ -74,7 +74,7 @@
 }
 
 .select img {
-  fill: var(--color-text)
+  fill: var(--color-text);
 }
 
 .items {
@@ -116,5 +116,4 @@
       }
     }
   }
-
 }

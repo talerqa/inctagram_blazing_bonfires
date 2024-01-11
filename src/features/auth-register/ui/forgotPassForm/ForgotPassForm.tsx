@@ -14,12 +14,17 @@ import styles from './ForgotPassForm.module.scss'
 import { useRecoverPasswordMutation } from '@/shared/api/services/auth/auth.api'
 import { PasswordRecoveryType } from '@/shared/api/services/auth/auth.api.types'
 import { RoutersPath } from '@/shared/constants/paths'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button'
-import FormContainer from '@/shared/ui/formContainer/FormContainer'
-import { Input, InputType } from '@/shared/ui/input/Input'
+import {
+  Modal,
+  LinearLoader,
+  Input,
+  InputType,
+  FormContainer,
+  Button,
+  ButtonSize,
+  ButtonTheme,
+} from '@/shared/ui'
 import inputStyles from '@/shared/ui/input/Input.module.scss'
-import { LinearLoader } from '@/shared/ui/loaders/LinearLoader'
-import { Modal } from '@/shared/ui/modal/Modal'
 
 export function ForgotPass() {
   const { t } = useTranslation('common', { keyPrefix: 'Auth' })

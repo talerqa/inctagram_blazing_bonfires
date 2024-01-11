@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useVerifyEmailMutation } from '@/shared/api'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { ShortLangs } from '@/shared/types/langSwitcherTypes'
-import { CircularLoader } from '@/shared/ui/loaders/CircularLoader'
+import { CircularLoader } from '@/shared/ui'
 
 export const RegistrationConfirmation = () => {
   const [verifyEmail] = useVerifyEmailMutation()

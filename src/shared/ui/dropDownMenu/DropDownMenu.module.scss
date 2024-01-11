@@ -1,0 +1,162 @@
+.IconButton {
+  all: unset;
+  cursor: pointer;
+}
+
+.DropdownMenuContent,
+.DropdownMenuSubContent {
+  will-change: transform, opacity;
+  cursor: pointer;
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-500);;
+  border-radius: 6px;
+
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  > div {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    margin: 12px;
+
+    > p {
+      align-self: flex-end;
+    }
+  }
+}
+
+.DropdownMenuContent[data-side='top'],
+.DropdownMenuSubContent[data-side='top'] {
+  animation-name: slideDownAndFade;
+}
+
+.DropdownMenuContent[data-side='right'],
+.DropdownMenuSubContent[data-side='right'] {
+  animation-name: slideLeftAndFade;
+}
+
+.DropdownMenuContent[data-side='bottom'],
+.DropdownMenuSubContent[data-side='bottom'] {
+  animation-name: slideUpAndFade;
+}
+
+.DropdownMenuContent[data-side='left'],
+.DropdownMenuSubContent[data-side='left'] {
+  animation-name: slideRightAndFade;
+}
+
+.DropdownMenuItem,
+.DropdownMenuCheckboxItem,
+.DropdownMenuRadioItem,
+.DropdownMenuSubTrigger {
+  user-select: none;
+
+  position: relative;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+
+  height: 25px;
+  margin-bottom: 200px;
+  margin-left: 6px;
+  padding: 20px 10px;
+
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-light-100);
+
+  border-radius: 3px;
+  outline: none;
+}
+
+
+.DropdownMenuSeparator {
+  height: 1px;
+  margin: 5px;
+  background-color: var(--color-dark-500);
+}
+
+.DropdownMenuItemIndicator {
+  position: absolute;
+  left: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+}
+
+.IconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  height: 35px;
+
+  font-family: inherit;
+  color: var(--violet-11);
+
+  background-color: transparent;
+  border-radius: 100%;
+}
+
+.IconButton:hover {
+  background-color: var(--color-dark-500);;
+}
+
+.IconButton:focus {
+  box-shadow: 0 0 0 2px black;
+}
+
+@keyframes slideUpAndFade {
+  from {
+    transform: translateY(2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    transform: translateX(-2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    transform: translateY(-2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    transform: translateX(2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

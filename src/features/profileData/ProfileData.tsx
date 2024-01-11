@@ -9,7 +9,7 @@ import style from './ProfileData.module.scss'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import noImage from '@/shared/assets/icons/avatarProfile/notPhoto.png'
 import { ShortLangs } from '@/shared/types/langSwitcherTypes'
-import { Button } from '@/shared/ui/button/Button'
+import { Button } from '@/shared/ui'
 
 type Props = {
   profileData: ProfileUserType | undefined

@@ -8,8 +8,7 @@ import style from './usersLists.module.scss'
 
 import searchImg from '@/shared/assets/icons/input/search.svg'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { Select } from '@/shared/ui/select/Select'
-import { TableUsersList } from '@/shared/ui/tableUsersList/TableUsersList'
+import { Select, TableUsersList } from '@/shared/ui'
 
 const UsersList = () => {
   const selectOptions = ['Not selected', 'Blocked', 'Not blocked']

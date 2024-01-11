@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 import { GetStaticProps } from 'next'
-import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import style from './profile.module.scss'
 
 import { PostModal } from '@/features/post/ui/postModal/PostModal'
 import { ProfileData } from '@/features/profileData/ProfileData'
+import { PostsResponseType } from '@/shared/api'
 import {
   useLazyGetPostQuery,
   useLazyGetUserPostsQuery,
@@ -30,7 +30,7 @@ const postsAmount = 9
 function Profile() {
   const [getProfile, { data: profileData }] = useLazyGetProfileUserQuery()
   const [getUserPosts, { data: userPost }] = useLazyGetUserPostsQuery()
-  const [getPost, { data: postData }] = useLazyGetPostQuery()
+  const [getPost, { data: postData = {} as PostsResponseType }] = useLazyGetPostQuery()
   const [isPostActive, setIsPostActive] = useState(false)
 
   const [pageNumber, setPageNumber] = useState(1)

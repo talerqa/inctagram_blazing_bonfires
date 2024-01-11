@@ -1,28 +1,36 @@
 .checkboxWrapper {
   display: flex;
   gap: 11px;
-  align-items: center;
+  align-items: center; 
   height: 2rem;
 }
+
 .checkbox {
+  cursor: pointer;
+  content: '';
+
   position: relative;
-  left: 0;
   top: 0;
-  content: "";
-  border: 2px solid var(--color-light-100);
+  left: 0;
+
   width: 24px;
   height: 24px;
-  border-radius: 50%;
-  cursor: pointer;
+
   appearance: none;
+  border: 2px solid var(--color-light-100);
+  border-radius: 50%;
 }
+
 .checkbox:checked::before {
   content: '';
+
   position: absolute;
-  left: 3.5px;
   top: 3.5px;
-  background-color: var(--color-light-100);
+  left: 3.5px;
+
   width: 13px;
   height: 13px;
+
+  background-color: var(--color-light-100);
   border-radius: 50%;
 }

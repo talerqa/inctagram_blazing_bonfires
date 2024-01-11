@@ -1,29 +1,45 @@
 .formContainer {
   display: flex;
-  gap: 1.5rem;
   flex-direction: column;
+  gap: 1.5rem;
   align-items: center;
+
   width: 100%;
 }
+
 .signInForgotText {
   width: 100%;
+  margin-top: 12px;
+  margin-right: 4px;
+
+  color: var(--color-light-900);
   text-align: right;
-  margin-top: 1.5rem;
   text-decoration: none;
+
+  &:visited {
+    color: var(--color-light-900);
+  }
+
+  &:hover {
+    color: var(--color-light-1000);
+  }
 }
+
 .forgotHelpText {
-  color: var(--color-light-1000);
   margin-top: -1rem;
+  color: var(--color-light-1000);
 }
+
 .helpText {
   margin-top: -0.3rem;
 }
-.oppositeBtn {
-  border: none !important;
-  margin-top: -1rem;
 
+.oppositeBtn {
+  margin-top: -1rem;
   color: var(--color-info-500);
+  border: none !important;
 }
+
 .link {
   text-decoration: none;
 }

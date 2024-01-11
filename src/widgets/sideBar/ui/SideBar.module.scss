@@ -11,7 +11,6 @@
   min-height: calc(100vh - 60px);
   z-index: 10;
 
-
   .linkWrapper {
     display: flex;
     align-items: center;
@@ -43,10 +42,7 @@
     border: none;
     color: var(--color-light-100);
   }
-
 }
 .linkWrapperLast {
   margin-top: 0px !important;
 }
-
-

@@ -10,8 +10,7 @@ import styles from './PhotoModal.module.scss'
 
 import notPhotoImg from '@/shared/assets/icons/avatarProfile/notPhoto.png'
 import { resizerImage } from '@/shared/libs/resizerImage/resizerImage'
-import { Button, ButtonSize } from '@/shared/ui/button/Button'
-import { Modal } from '@/shared/ui/modal/Modal'
+import { Modal, Button, ButtonSize } from '@/shared/ui'
 
 type Props = {
   closeWindow: () => void

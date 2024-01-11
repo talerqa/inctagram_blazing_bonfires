@@ -12,18 +12,23 @@ import { useDeletePostMutation } from '@/shared/api/services/posts/posts.api'
 import { PostsResponseType } from '@/shared/api/services/posts/posts.api.types'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
-import { Button, ButtonTheme } from '@/shared/ui/button/Button'
+import { Button, ButtonTheme } from '@/shared/ui/'
 
 type Props = {
   postData: PostsResponseType | undefined
   setIsPostActive: (isPostActive: boolean) => void
-  setOpenBtn: (openBtn: boolean) => void
   profileData: ProfileUserType | undefined
   setIsOpenEdit: (isOpenEdit: boolean) => void
+  setIsDeleteModalOpen: (isDeleteModalOpen: boolean) => void
+  isDeleteModalOpen: boolean
 }
-export const EditDeletePost = ({ postData, setIsPostActive, setOpenBtn, setIsOpenEdit }: Props) => {
+export const EditDeletePost = ({
+  postData,
+  setIsPostActive,
+  setIsDeleteModalOpen,
+  isDeleteModalOpen,
+}: Props) => {
   const [deletePost] = useDeletePostMutation()
-  const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation('common', { keyPrefix: 'Post' })
   const removePostHandler = () => {
     if (postData) {
@@ -33,37 +38,15 @@ export const EditDeletePost = ({ postData, setIsPostActive, setOpenBtn, setIsOpe
     }
   }
 
-  const openDeleteModal = () => {
-    setIsOpen(true)
-  }
-
   const closeDeleteModal = () => {
-    setIsOpen(false)
-    setOpenBtn(false)
-  }
-
-  const openEditModal = () => {
-    setIsOpenEdit(true)
-    setOpenBtn(false)
+    setIsDeleteModalOpen(false)
   }
 
   return (
     <>
-      <div className={styles.editDeleteButtonContainer}>
-        <div className={styles.buttonsContainer}>
-          <button className={styles.button} onClick={openEditModal}>
-            <EditPost color="#fff" />
-            <span>{t('EditPost')}</span>
-          </button>
-          <button className={styles.button} onClick={openDeleteModal}>
-            <DeletePost color={'#fff'} />
-            <span>{t('DeletePost')}</span>
-          </button>
-        </div>
-      </div>
-      {isOpen && (
+      {isDeleteModalOpen && (
         <NewPostModal
-          isOpen={isOpen}
+          isOpen={isDeleteModalOpen}
           setIsOpen={closeDeleteModal}
           title={t('DeletePost')}
           right={
