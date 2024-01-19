@@ -2,12 +2,14 @@
   padding: 72px 136px 48px;
 
   .darkBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 222px;
     height: 228px;
+
     background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .buttonsContainer {

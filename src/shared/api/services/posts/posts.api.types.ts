@@ -1,4 +1,5 @@
-export type PostsResponseType = {
+export type PostResponseType = {
+  avatarOwner: string
   id: number
   description: string
   location: string
@@ -29,10 +30,23 @@ export type ImagesResponse = {
   images: ImageDataType[]
 }
 
-export type GetPostsResponseType = PostsResponseType & {
+export type GetPostsResponseType = PostResponseType & {
   avatarOwner: string
 }
 
+export type GetAllPublicPostsResponseType = {
+  totalCount: number
+  pageSize: number
+  totalUsers: number
+  items: PostResponseType[]
+}
+
+export type GetAllPostsArgs = {
+  endCursorPostId?: string // ID of the last uploaded publicPost. If endCursorPostId not provided, the first set of posts is returned.
+  pageSize?: string
+  sortBy?: string // 'id', 'description', 'location', 'createdAt
+  sortDirection?: 'desc' | 'asc' // default desc
+}
 export type GetUserPostsResponseType = {
   page: number
   pageSize: number

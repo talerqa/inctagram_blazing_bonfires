@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { HYDRATE } from 'next-redux-wrapper'
 
 import { baseURL } from '../baseUrl.api'
 
@@ -12,6 +13,11 @@ import {
 export const subscriptionsApi = createApi({
   reducerPath: 'subscriptionsApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath]
+    }
+  },
   tagTypes: ['dataPSubscriptions'],
   endpoints: build => {
     return {

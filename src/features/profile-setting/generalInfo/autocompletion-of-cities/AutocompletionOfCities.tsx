@@ -20,10 +20,11 @@ cities.push(...mergedCitiesBelarus)
 type Props = {
   error?: string
   callbackValue?: (value: string) => void
+  city: string
 }
 
-export const AutocompletionOfCities = ({ error, callbackValue }: Props) => {
-  const [value, setValue] = useState<string>('')
+export const AutocompletionOfCities = ({ error, callbackValue, city }: Props) => {
+  const [value, setValue] = useState(city || '')
   const [suggestions, setSuggestions] = useState<string[]>([])
 
   const onChange = (_: FormEvent<HTMLElement>, { newValue }: Autosuggest.ChangeEvent) => {
@@ -34,12 +35,12 @@ export const AutocompletionOfCities = ({ error, callbackValue }: Props) => {
   const onSuggestionsFetchRequested = ({ value }: Autosuggest.SuggestionsFetchRequestedParams) => {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
-
-    setSuggestions(
+    const preparedSuggestions =
       inputLength === 0
         ? []
         : cities.filter(city => city.toLowerCase().slice(0, inputLength) === inputValue)
-    )
+
+    setSuggestions(preparedSuggestions)
   }
 
   const onSuggestionsClearRequested = () => {

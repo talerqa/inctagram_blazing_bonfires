@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { ChangeEvent, FC, useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 import Image from 'next/image'
@@ -26,16 +26,26 @@ export const PhotoModal = ({ closeWindow, savePhoto }: Props) => {
 
   const selectedPhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const maxSizeForBack = 10 * 1024 * 1024
+    const allowedFormats = ['image/jpeg', 'image/png']
 
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0]
+
+      if (!allowedFormats.includes(file.type)) {
+        e.preventDefault()
+        setUploadError('Invalid file format! Please choose a JPEG or PNG image.')
+
+        return
+      }
 
       if (file.size > maxSizeForBack) {
         e.preventDefault()
         setUploadError('File is too big! Choose another photo less than 10Mb')
 
         return
-      } else setPhotoProfile(file)
+      } else {
+        setPhotoProfile(file)
+      }
     }
   }
 

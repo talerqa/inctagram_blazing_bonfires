@@ -1,0 +1,150 @@
+.commentContainerWrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 59px);
+
+  .commentContainerInner {
+    display: flex;
+    gap: 15px;
+    padding: 19px 24px 8px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .commentContainer {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+
+      .avatarContainer {
+        cursor: pointer;
+
+        position: relative;
+
+        overflow: hidden;
+
+        width: 40px;
+        height: 36px;
+
+        border-radius: 50px;
+      }
+
+      .commentTextAndLikeWrapper {
+        max-width: 385px;
+        width: 100%;
+
+
+        .commentTextContainer {
+          display: flex;
+          gap: 24px;
+          justify-content: space-between;
+
+          .commentText {
+            font-size: var(--font-size-s);
+            word-break: break-word;
+          }
+
+          .commentTextName {
+            font-weight: var(--font-weight-bold);
+          }
+        }
+
+        .commentInfoContainer {
+          display: inline-flex;
+          gap: 12px;
+          font-size: var(--font-size-xs);
+
+          .commentTime,
+          .commentLikes,
+          .commentAnswer {
+            cursor: pointer;
+            color: var(--color-light-900);
+          }
+
+          .commentAnswer {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .summaryContainer {
+    padding: 12px 24px 7px;
+    border-top: 1px solid var(--color-dark-100);
+    margin-top: auto;
+
+    .actionsContainer {
+      display: flex;
+      justify-content: space-between;
+      height: 24px;
+      margin-bottom: 20px;
+
+      .likeShareContainer {
+        display: flex;
+        gap: 24px;
+      }
+    }
+
+    .totalLikes {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+
+      .totalLikesCount {
+        color: var(--color-light-100);
+        font-size: var(--font-size-s);
+        line-height: var(--line-height-m);
+      }
+
+      .totalLikesAvatar {
+        border-radius: 24px;
+      }
+    }
+
+    .postDate {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-s);
+      color: var(--color-light-900);
+    }
+  }
+
+  .addCommentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 60px;
+    padding: 0 24px;
+
+    .addCommentForm {
+      display: flex;
+      justify-content: space-between;
+
+      .addCommentInput {
+        flex-grow: 1;
+        font-size: var(--font-size-s);
+        color: var(--color-light-100);
+
+        background-color: inherit;
+        border: none;
+        outline: none;
+      }
+
+      .addCommentButton {
+        cursor: pointer;
+        font-size: var(--font-size-m);
+        font-weight: 600;
+        color: var(--color-info-500);
+
+        background-color: inherit;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}
+
+

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
+import { HYDRATE } from 'next-redux-wrapper'
 
 import { baseURL } from '../baseUrl.api'
 
@@ -7,6 +8,11 @@ import { UserSessionsType } from './devices.api.types'
 export const devicesApi = createApi({
   reducerPath: 'devicesApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'same-origin' }),
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath]
+    }
+  },
   tagTypes: ['sessions'],
   endpoints: build => {
     return {

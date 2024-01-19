@@ -1,5 +1,6 @@
 .postContainer {
   position: fixed;
+  //z-index: 10;
   inset: 0;
 
   display: flex;
@@ -11,15 +12,14 @@
 
 .closeIconContainer {
   position: absolute;
-  z-index: 200;
-  top: 60px;
-  right: 24px;
-
-  width: 24px;
-  height: 24px;
+  top: -50px;
+  right: -80px;
+  cursor: pointer;
 }
 
 .post {
+  position: relative;
+
   display: flex;
   flex-direction: row;
 
@@ -62,8 +62,8 @@
 
     .avatarContainer {
       display: flex;
-        gap: 12px;
-        align-items: center;
+      gap: 12px;
+      align-items: center;
 
       .imgContainer {
         cursor: pointer;
@@ -81,7 +81,7 @@
     }
 
     button {
-      margin-right: -6px;
+      margin-right: -7px;
     }
   }
 }
@@ -89,8 +89,8 @@
 .userName {
   cursor: pointer;
 
-  font-size: 16px;
+  font-size: var(--font-size-m);
   font-weight: 600;
-  line-height: 24px;
+
   color: var(--color-light-100);
 }

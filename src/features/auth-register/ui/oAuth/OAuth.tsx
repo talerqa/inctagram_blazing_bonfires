@@ -2,11 +2,14 @@ import React from 'react'
 
 import { useGoogleLogin } from '@react-oauth/google'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { toast } from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 import styles from '@/features/auth-register/ui/oAuth/OAuth.module.scss'
+import { selectIsLoggedIn } from '@/shared/api'
 import { useLoginViaGoogleMutation } from '@/shared/api/services/auth/auth.api'
 import githubIcon from '@/shared/assets/icons/socialIcons/github-icon.svg'
 import googleIcon from '@/shared/assets/icons/socialIcons/google-icon.svg'
@@ -16,6 +19,7 @@ export const OAuth = () => {
   const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
   const router = useRouter()
   const [loginViaGoogle] = useLoginViaGoogleMutation()
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
   const loginGoogle = useGoogleLogin({
     // UseGoogleLogin handles login via Google. After we send request to log in via Google we
@@ -38,6 +42,10 @@ export const OAuth = () => {
 
   const onGithubLogin = () => {
     router.push(RoutersPath.apiAuthGithubLogin)
+  }
+
+  if (isLoggedIn) {
+    return <Link href={RoutersPath.profile} />
   }
 
   return (

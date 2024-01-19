@@ -7,13 +7,13 @@ import style from './PostImages.module.scss'
 import { DotsBar } from '@/features/create-post/ui/dotsBar/DotsBar'
 import { filterBestQualityImages } from '@/features/create-post/utils/filterBestQualityImages'
 import { useSlider } from '@/features/create-post/utils/useSlider'
-import { ImageDataType, PostsResponseType } from '@/shared/api/services/posts/posts.api.types'
+import { ImageDataType, PostResponseType } from '@/shared/api/services/posts/posts.api.types'
 import next from '@/shared/assets/icons/filterPostPhoto/next.svg'
 import prev from '@/shared/assets/icons/filterPostPhoto/prev.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
-  postData: PostsResponseType | undefined
+  postData: PostResponseType | undefined
 }
 export const PostImages = ({ postData }: Props) => {
   const [images, setImages] = useState<ImageDataType[]>([])

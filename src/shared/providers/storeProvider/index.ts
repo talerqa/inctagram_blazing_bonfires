@@ -1,5 +1,4 @@
 export {
-  store,
   type RootState,
   type AppThunk,
   type AppDispatch,

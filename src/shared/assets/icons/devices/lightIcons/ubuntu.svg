@@ -1,1 +1,16 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0,0,256,256"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><rect x="0" y="0" width="24" height="24" fill="none"></rect><path d="M3,12v-5.25l6,-1.32v6.48l-6,0.09M20,3v8.75l-10,0.15v-6.69l10,-2.21M3,13l6,0.09v6.81l-6,-1.15v-5.75M20,13.25v8.75l-10,-1.91v-7z" fill="#ffffff"></path></g></g></svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="800px"
+     height="800px" viewBox="0,0,256,256">
+    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+       stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+       stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+       font-size="none"
+       style="mix-blend-mode: normal">
+        <g transform="scale(10.66667,10.66667)">
+            <rect x="0" y="0" width="24" height="24" fill="none">
+            </rect>
+            <path d="M3,12v-5.25l6,-1.32v6.48l-6,0.09M20,3v8.75l-10,0.15v-6.69l10,-2.21M3,13l6,0.09v6.81l-6,-1.15v-5.75M20,13.25v8.75l-10,-1.91v-7z"
+                  fill="#ffffff">
+            </path>
+        </g>
+    </g>
+</svg>

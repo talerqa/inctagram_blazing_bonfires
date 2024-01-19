@@ -209,40 +209,34 @@
     "AddComment": "Add a Comment...",
     "Answer": "Answer",
     "Likes": "Likes",
+    "AnonymousUser": "Anonymous User",
     "SecondsAgo": {
       "one": "second ago",
-      "few": "seconds ago",
-      "many": "seconds ago"
+      "other": "seconds ago"
     },
     "MinutesAgo": {
       "one": "minute ago",
-      "few": "minutes ago",
-      "many": "minutes ago"
+      "other": "minutes ago"
     },
     "HoursAgo": {
       "one": "hour ago",
-      "few": "hours ago",
-      "many": "hours ago"
+      "other": "hours ago"
     },
     "DaysAgo": {
       "one": "day ago",
-      "few": "days ago",
-      "many": "days ago"
+      "other": "days ago"
     },
     "WeeksAgo": {
       "one": "week ago",
-      "few": "weeks ago",
-      "many": "weeks ago"
+      "other": "weeks ago"
     },
     "MonthsAgo": {
       "one": "month ago",
-      "few": "months ago",
-      "many": "months ago"
+      "other": "months ago"
     },
     "YearsAgo": {
       "one": "year ago",
-      "few": "years ago",
-      "many": "years ago"
+      "other": "years ago"
     }
   }
 }

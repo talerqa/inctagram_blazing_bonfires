@@ -6,16 +6,18 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { Controller, useForm } from 'react-hook-form'
 import { toast, Toaster } from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 import * as yup from 'yup'
 
 import styles from './SignInForm.module.scss'
 
 import { OAuth } from '@/features/auth-register/ui/oAuth/OAuth'
-import { useLoginMutation, LoginFormType } from '@/shared/api'
+import { useLoginMutation, LoginFormType, selectIsLoggedIn } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
 import { LinearLoader, Input, InputType, FormContainer, Button, ButtonSize } from '@/shared/ui'
 
 export const SignInForm = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
   const { t } = useTranslation('common', { keyPrefix: 'Auth' })
   const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
 

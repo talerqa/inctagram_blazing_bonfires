@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next'
 
 import style from './ProfileData.module.scss'
 
+import { ProfileFollowing } from '@/entities/profileFollowing'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import noImage from '@/shared/assets/icons/avatarProfile/notPhoto.png'
 import { ShortLangs } from '@/shared/types/langSwitcherTypes'
@@ -16,7 +17,6 @@ type Props = {
 }
 export const ProfileData = ({ profileData }: Props) => {
   const {
-    t,
     i18n: { t: tRoot, language },
   } = useTranslation('common', { keyPrefix: 'Profile' })
 
@@ -36,17 +36,7 @@ export const ProfileData = ({ profileData }: Props) => {
             {tRoot('ProfileSetting')}
           </Button>
         </div>
-        <div className={style.subscribersContainer}>
-          <div>
-            <span className={style.countSubscribers}>2128</span> <br /> {t('Following')}
-          </div>
-          <div>
-            <span className={style.countSubscribers}>2128</span> <br /> {t('Followers')}
-          </div>
-          <div>
-            <span className={style.countSubscribers}>2128</span> <br /> {t('Publications')}
-          </div>
-        </div>
+        <ProfileFollowing amountFollowing={2128} amountFollowers={2128} amountPublications={2128} />
       </div>
     </div>
   )

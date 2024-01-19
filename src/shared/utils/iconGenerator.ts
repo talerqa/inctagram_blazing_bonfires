@@ -30,11 +30,9 @@ export const findPathSVG = (name: string, isCurrent: boolean, theme?: string): s
       .toLocaleLowerCase()
   }
   const findFile = (files: svgFile[]): svgFile => {
-    const file = files.filter((file: svgFile) => {
+    return files.filter((file: svgFile) => {
       return findName(file) === name.toLocaleLowerCase()
     })[0]
-
-    return file
   }
 
   let defaultIcon

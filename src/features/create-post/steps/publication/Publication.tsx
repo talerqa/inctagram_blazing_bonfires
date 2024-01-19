@@ -68,7 +68,7 @@ export const Publication = () => {
         createPost(body)
           .unwrap()
           .then(() => {
-            toast.success('Post Created')
+            toast.success('PublicPost Created')
             setIsOpen(!isOpen)
           })
           .catch(error => {
@@ -89,7 +89,7 @@ export const Publication = () => {
     createPost(body)
       .unwrap()
       .then(() => {
-        toast.success('Post Created')
+        toast.success('PublicPost Created')
         localStorage.removeItem('uploadedImages')
         setIsOpen(!isOpen)
       })

@@ -1,48 +1,59 @@
 .sideBarContainer {
+  position: fixed;
+  z-index: 10;
+  top: 60px;
+
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
   align-items: center;
   justify-content: flex-start;
-  gap: 1.5rem;
+
   width: 220px;
-  position: fixed;
-  top: 60px;
-  border-right: 1px solid var(--color-dark-600);
   min-height: calc(100vh - 60px);
-  z-index: 10;
+
+  border-right: 1px solid var(--color-dark-300);
 
   .linkWrapper {
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 24px;
+
     width: 112px;
+    height: 24px;
 
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
-    letter-spacing: 0em;
     text-align: left;
-    cursor: pointer;
+    letter-spacing: 0;
+
     &:first-child {
       margin-top: 4.5rem;
     }
+
     &:nth-child(6) {
       margin-top: 60px;
     }
+
     &:last-child {
       margin-top: auto;
       margin-bottom: 4.5rem;
     }
+
     & img {
       margin-right: 10px;
     }
   }
+
   .logoutBtn {
-    border: none;
     color: var(--color-light-100);
+    border: none;
   }
 }
+
 .linkWrapperLast {
-  margin-top: 0px !important;
+  margin-top: 0 !important;
 }

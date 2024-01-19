@@ -1,1 +1,17 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0,0,256,256"><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8,8)"><g id="Layer_10"><path d="M23.43,1h-14.86c-1.97166,0 -3.57,1.59834 -3.57,3.57v22.86c0,1.97166 1.59834,3.57 3.57,3.57h14.86c1.97166,0 3.57,-1.59834 3.57,-3.57v-22.86c0,-1.97166 -1.59834,-3.57 -3.57,-3.57zM25,27.43c-0.00546,0.86482 -0.70518,1.56454 -1.57,1.57h-14.86c-0.86482,-0.00546 -1.56454,-0.70518 -1.57,-1.57v-22.86c0.00546,-0.86482 0.70518,-1.56454 1.57,-1.57h14.86c0.86482,0.00546 1.56454,0.70518 1.57,1.57z"></path><path d="M16,24.5c-0.82843,0 -1.5,0.67157 -1.5,1.5c0,0.82843 0.67157,1.5 1.5,1.5c0.82843,0 1.5,-0.67157 1.5,-1.5c0,-0.82843 -0.67157,-1.5 -1.5,-1.5zM16,26.5c-0.27614,0 -0.5,-0.22386 -0.5,-0.5c0,-0.27614 0.22386,-0.5 0.5,-0.5c0.27614,0 0.5,0.22386 0.5,0.5c0,0.27614 -0.22386,0.5 -0.5,0.5z"></path></g></g></g></svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="800px"
+     height="800px" viewBox="0,0,256,256">
+    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1"
+       stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+       stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+       font-size="none"
+       style="mix-blend-mode: normal">
+        <g transform="scale(8,8)">
+            <g id="Layer_10">
+                <path d="M23.43,1h-14.86c-1.97166,0 -3.57,1.59834 -3.57,3.57v22.86c0,1.97166 1.59834,3.57 3.57,3.57h14.86c1.97166,0 3.57,-1.59834 3.57,-3.57v-22.86c0,-1.97166 -1.59834,-3.57 -3.57,-3.57zM25,27.43c-0.00546,0.86482 -0.70518,1.56454 -1.57,1.57h-14.86c-0.86482,-0.00546 -1.56454,-0.70518 -1.57,-1.57v-22.86c0.00546,-0.86482 0.70518,-1.56454 1.57,-1.57h14.86c0.86482,0.00546 1.56454,0.70518 1.57,1.57z">
+                </path>
+                <path d="M16,24.5c-0.82843,0 -1.5,0.67157 -1.5,1.5c0,0.82843 0.67157,1.5 1.5,1.5c0.82843,0 1.5,-0.67157 1.5,-1.5c0,-0.82843 -0.67157,-1.5 -1.5,-1.5zM16,26.5c-0.27614,0 -0.5,-0.22386 -0.5,-0.5c0,-0.27614 0.22386,-0.5 0.5,-0.5c0.27614,0 0.5,0.22386 0.5,0.5c0,0.27614 -0.22386,0.5 -0.5,0.5z">
+                </path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,36 @@
+.post {
+  max-width: 234px;
+
+  .postContentWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  .postLinkWrapper {
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .showMore {
+    cursor: pointer;
+    color: var(--color-info-500);
+    text-decoration: underline;
+  }
+
+  .profileUrl {
+    cursor: pointer;
+  }
+
+  .postDescription {
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* This allows for wrapping at line breaks */
+  }
+
+}

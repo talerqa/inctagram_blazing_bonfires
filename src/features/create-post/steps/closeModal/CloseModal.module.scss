@@ -1,14 +1,16 @@
 .modalWrapper {
-  width: 380px;
-  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  width: 380px;
+  height: 250px;
+
   .textWrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     width: 320px;
     height: 72px;
     margin-top: 30px;

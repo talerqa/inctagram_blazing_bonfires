@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { HYDRATE } from 'next-redux-wrapper'
 
 import { baseURL } from '../baseUrl.api'
 
-import { AvatarsType, BaseUserType, ProfileUserType } from './profile.api.types'
-
-import { algByDecodingToken } from '@/shared/api/utils/algByDecodingToken'
+import { AvatarsType, ProfileUserType } from '@/shared/api'
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',
@@ -12,6 +11,11 @@ export const profileApi = createApi({
     baseUrl: baseURL,
     credentials: 'same-origin',
   }),
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath]
+    }
+  },
   tagTypes: ['dataProfile'],
   endpoints: build => {
     return {

@@ -42,7 +42,7 @@
   &:disabled {
     background-color: var(--color-dark-300);
     background-image: url('../../assets/icons/checkbox/checked-disabled.svg');
-    border: 2px solid var(--color-dark-600);
+    border: 2px solid var(--color-dark-300);
   }
 }
 
@@ -62,7 +62,7 @@
 }
 
 .checkboxLabel:hover input ~ .check {
-  background-color: var(--color-dark-600);
+  background-color: var(--color-dark-300);
 }
 
 .checkboxLabel input:active ~ .check {

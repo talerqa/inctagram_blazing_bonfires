@@ -9,7 +9,7 @@ import { appWithTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { WithAuth } from '@/shared/hoc/withAuth/WithAuth'
-import { StoreProvider } from '@/shared/providers/storeProvider'
+import { wrapper } from '@/shared/providers/storeProvider/model/store'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -40,14 +40,12 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
 
 function myApp(props: AppProps) {
   return (
-    <StoreProvider>
-      <GoogleOAuthProvider
-        clientId={'617342613759-f3kbvgm8l310fn40vh6qna2pv8u2uccr.apps.googleusercontent.com'}
-      >
-        <App {...props} />
-      </GoogleOAuthProvider>
-    </StoreProvider>
+    <GoogleOAuthProvider
+      clientId={'617342613759-f3kbvgm8l310fn40vh6qna2pv8u2uccr.apps.googleusercontent.com'}
+    >
+      <App {...props} />
+    </GoogleOAuthProvider>
   )
 }
 
-export default appWithTranslation(myApp)
+export default wrapper.withRedux(appWithTranslation(myApp))

@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/react'
-import { ApiDecorator } from '@/shared/config/storybook/apiDecorator/ApiDecorator'
-import { StyleDecorator } from '@/shared/config/storybook/styleDecorator/StyleDecorator'
-import { StoreDecorator } from '@/shared/providers/storeProvider/index'
+import { ApiDecorator, StyleDecorator } from '../src/shared/config/storybook'
+import { StoreDecorator } from '../src/shared/providers/storeProvider'
 
 const preview: Preview = {
   parameters: {
@@ -13,6 +12,7 @@ const preview: Preview = {
       },
     },
   },
+
   decorators: [StyleDecorator, ApiDecorator, StoreDecorator],
 }
 

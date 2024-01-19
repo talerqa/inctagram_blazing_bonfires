@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default */
 import React, { useState } from 'react'
 
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -115,7 +114,7 @@ export function ForgotPass() {
             </Button>
           </Link>
           <ReCAPTCHA
-            sitekey="6LeY2y0mAAAAANwI_paCWfoksCgBm1n2z9J0nwNQ" // replace to .env.production
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
             onChange={onChangeRecaptchaHandler}
             theme={'dark'}
             aria-required

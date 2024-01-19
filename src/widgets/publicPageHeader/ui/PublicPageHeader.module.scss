@@ -1,0 +1,44 @@
+@import '@/shared/styles/mediaQueries';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 60px;
+  padding: 0 4rem 0 3.75rem;
+
+  color: white;
+
+  background: var(--color-dark-700);
+  border-bottom: 1px solid #333;
+
+  @include media-extra-small {
+    padding: 0 0.2rem 0 0.2rem;
+  }
+
+  .logo {
+    font-size: var(--font-size-xxl);
+    font-weight: 600;
+    line-height: 36px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .headerRightSide {
+    display: flex;
+
+    .langSwitcherContainer {
+      width: 163px;
+      height: 36px;
+      margin-right: 36px;
+    }
+
+    .headerBtns {
+      > :first-child {
+        margin-right: 24px;
+      }
+    }
+  }
+}

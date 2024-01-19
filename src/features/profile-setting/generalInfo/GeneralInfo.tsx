@@ -258,11 +258,13 @@ export const GeneralInfo = () => {
               <Controller
                 name="city"
                 control={control}
-                render={({ field: { ref, value, ...args } }) => (
+                render={({ field: { ref, value, onChange, ...args } }) => (
                   <>
                     <label>{t('City')}</label>
                     <AutocompletionOfCities
                       error={(errors as FieldErrors<ProfileUserType>).city?.message}
+                      callbackValue={onChange}
+                      city={profileData.city || ''}
                       {...args}
                     />
                   </>

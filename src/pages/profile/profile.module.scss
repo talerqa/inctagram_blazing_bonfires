@@ -29,3 +29,10 @@
   height: 350px;
   margin-left: 6px;
 }
+
+.postsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}

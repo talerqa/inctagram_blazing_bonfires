@@ -8,12 +8,12 @@ import { useMeQuery } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
 import { ShortLangs } from '@/shared/types/langSwitcherTypes'
 
-// const publicPaths = []
-
 const emailConfirmationPaths = [
   RoutersPath.authExpiredVerificationLink,
   RoutersPath.authRegistrationConfirmation,
 ]
+
+const publicPaths = [RoutersPath.home]
 
 export const WithAuth: NextPage<PropsWithChildren> = ({ children }) => {
   const router = useRouter()
@@ -29,7 +29,7 @@ export const WithAuth: NextPage<PropsWithChildren> = ({ children }) => {
   // }
   const { data, error, isLoading, isError } = useMeQuery()
 
-  if (isError) {
+  if (isError && !publicPaths) {
     // if to use router.push will be infinite rerenders. Instead of it needs to use window.history.pushState to prevent rerenders
 
     let pageUnautorization = RoutersPath.signIn

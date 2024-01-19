@@ -36,8 +36,7 @@ body {
   font-family: var(--font-family-primary), sans-serif;
   line-height: var(--line-height-m);
   color: var(--color-light-100);
-
-  background-color: var(--color-dark-900);
+  background-color: var(--color-dark-1000);
 }
 
 p {
@@ -59,9 +58,9 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
   background: -webkit-linear-gradient(
     top,
-    var(--color-dark-900) 0%,
-    var(--color-dark-900) 50%,
-    var(--color-dark-900) 51%,
-    var(--color-dark-900) 100%
+    var(--color-dark-1000) 0%,
+    var(--color-dark-1000) 50%,
+    var(--color-dark-1000) 51%,
+    var(--color-dark-1000) 100%
   );
 }

@@ -56,7 +56,7 @@ export const schema = ({
       .min(2, minCharacters2)
       .max(30, maxCharacters30)
       .nullable()
-      .matches(/^[A-ZА-Я][a-zа-я]{2,30}$/, startLatterNotSpecial),
+      .matches(/^[A-ZА-Яa-zа-я-]+$/, startLatterNotSpecial),
     dateOfBirth: yup
       .date()
       .nullable()

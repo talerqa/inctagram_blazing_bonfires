@@ -1,0 +1,28 @@
+@import '@/shared/styles/mediaQueries';
+
+.subscribersContainer {
+  display: flex;
+  gap: 100px;
+
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  @include media-s-medium {
+    gap: 58px;
+  }
+
+  @include media-extra-small {
+    gap: 33px;
+  }
+}
+
+.text,
+.amount {
+  @include media-extra-small {
+    font-size: var(--font-size-12);
+  }
+}

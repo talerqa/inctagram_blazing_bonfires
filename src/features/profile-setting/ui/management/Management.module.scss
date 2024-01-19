@@ -15,14 +15,14 @@
 .listWrapper {
   width: auto;
   height: auto;
-  background-color: var(--color-dark-800);
+  background-color: var(--color-dark-500);
   border-radius: 2px;
   border: 1px solid var(--color-dark-700);
   margin-left: 25px;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 12px 0px 12px 23px;
+  padding: 12px 0 12px 23px;
 }
 
 .listItem {
@@ -46,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-dark-800);
+  background-color: var(--color-dark-500);
   border-radius: 2px;
   border: 1px solid var(--color-dark-700);
   cursor: pointer;
@@ -75,7 +75,7 @@
 }
 
 .autoRenewalWrapper {
-  margin: 19px 0px 0px 24px;
+  margin: 19px 0 0 24px;
 }
 
 .autoRenewalLabelStyle {

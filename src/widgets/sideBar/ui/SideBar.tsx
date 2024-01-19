@@ -70,9 +70,8 @@ export const SideBar = () => {
             {t('Home')}
           </div>
           <div className={style.linkWrapper}>
-            {/*<Image src={createImage} alt={''} />*/}
             <CreatePost />
-            {t('Create')}
+            <p>{t('Create')}</p>
           </div>
           <div
             style={router.pathname === RoutersPath.profile ? { color: '#397DF6' } : {}}

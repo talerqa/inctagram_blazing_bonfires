@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -6,16 +6,14 @@ import { useTranslation } from 'next-i18next'
 import styles from './EditDeletePost.module.scss'
 
 import NewPostModal from '@/features/create-post/ui/newPostModal/NewPostModal'
-import { DeletePost } from '@/features/post/ui/icons/DeletePost'
-import { EditPost } from '@/features/post/ui/icons/EditPost'
 import { useDeletePostMutation } from '@/shared/api/services/posts/posts.api'
-import { PostsResponseType } from '@/shared/api/services/posts/posts.api.types'
+import { PostResponseType } from '@/shared/api/services/posts/posts.api.types'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
 import { Button, ButtonTheme } from '@/shared/ui/'
 
 type Props = {
-  postData: PostsResponseType | undefined
+  postData: PostResponseType | undefined
   setIsPostActive: (isPostActive: boolean) => void
   profileData: ProfileUserType | undefined
   setIsOpenEdit: (isOpenEdit: boolean) => void
