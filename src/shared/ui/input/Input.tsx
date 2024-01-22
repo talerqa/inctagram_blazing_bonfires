@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, Ref, forwardRef, useState } from 'react'
 
+import { clsx } from 'clsx'
 import Image from 'next/image'
 
 import styles from './Input.module.scss'
@@ -48,6 +49,15 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       callback?.(e.currentTarget.value)
     }
 
+    const inputTypeMap: Record<InputType, string> = {
+      [InputType.SEARCH]: 'search',
+      [InputType.EMAIL]: 'email',
+      [InputType.PASSWORD]: 'password',
+      [InputType.TEXT]: 'text',
+      [InputType.TEL]: 'tel',
+      [InputType.LOCATION]: 'text',
+    }
+
     return (
       <div className={inputStylesWrapper}>
         <label className={styles.label}>{label}</label>
@@ -60,14 +70,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         <input
           ref={ref}
           className={inputStyles}
-          type={
-            // eslint-disable-next-line no-nested-ternary
-            type === InputType.PASSWORD && passwordInvisible
-              ? 'password'
-              : type === InputType.EMAIL
-              ? 'email'
-              : 'text'
-          }
+          type={inputTypeMap[type]}
           value={value}
           placeholder={placeholder}
           onChange={handleChange}

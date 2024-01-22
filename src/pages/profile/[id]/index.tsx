@@ -12,7 +12,6 @@ import {
   PublicProfilePostsResponseType,
   PublicProfileType,
 } from '@/shared/api/services/public/public.api.types'
-import { makePublicPageLayout } from '@/shared/layouts'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { wrapper } from '@/shared/providers/storeProvider/model/store'
 import { ServerSidePropsType } from '@/shared/types/commonTypes'

@@ -47,7 +47,7 @@ export const AutocompletionOfCities = ({ error, callbackValue, city }: Props) =>
     setSuggestions([])
   }
   const getSuggestionValue = (suggestion: string) => suggestion
-  const renderSuggestion = (suggestion: string) => <div>{suggestion}</div>
+  const renderSuggestion = (suggestion: string) => suggestion
 
   const inputProps = {
     placeholder: '',
