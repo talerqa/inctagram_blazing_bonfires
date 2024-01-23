@@ -8,7 +8,6 @@ import s from './index.module.scss'
 
 import { PublicPost } from '@/entities/publicPost'
 import { postsApi } from '@/shared/api'
-import { useGetAllPublicPostsQuery } from '@/shared/api/services/posts/posts.api'
 import { GetAllPublicPostsResponseType } from '@/shared/api/services/posts/posts.api.types'
 import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { wrapper } from '@/shared/providers/storeProvider/model/store'
@@ -33,8 +32,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     return {
       props: {
-        publicPostsData: data,
         ...(await serverSideTranslations(context.locale as string, 'common')),
+        publicPostsData: data,
       },
     }
   }

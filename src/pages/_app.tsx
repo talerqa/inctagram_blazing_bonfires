@@ -10,6 +10,7 @@ import { appWithTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { WithAuth } from '@/shared/hoc/withAuth/WithAuth'
+import { StoreProvider } from '@/shared/providers/storeProvider'
 import { wrapper } from '@/shared/providers/storeProvider/model/store'
 
 const client = new ApolloClient({
@@ -34,13 +35,16 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-function App({ Component, pageProps }: AppPropsWithLayout) {
+function App({ Component, ...rest }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page)
+  const { props } = wrapper.useWrappedStore(rest)
 
   return getLayout(
-    <WithAuth>
-      <Component {...pageProps} />
-    </WithAuth>
+    <StoreProvider>
+      <WithAuth>
+        <Component {...props.pageProps} />
+      </WithAuth>
+    </StoreProvider>
   )
 }
 

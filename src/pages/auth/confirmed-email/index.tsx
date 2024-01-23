@@ -3,8 +3,8 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'react-i18next'
 
 import styles from './ConfirmedEmail.module.scss'
 

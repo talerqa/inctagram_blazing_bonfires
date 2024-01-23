@@ -2,7 +2,7 @@
 import React from 'react'
 
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import s from './PublicPageHeader.module.scss'
 
@@ -25,15 +25,11 @@ export const PublicPageHeader = () => {
         <div className={s.headerBtns}>
           <Link href={RoutersPath.signIn}>
             <Button size={ButtonSize.CLEAN} theme={ButtonTheme.CLEAR}>
-              {/*{t('SignIn')}*/}
-              Sign in
+              {t('SignIn')}
             </Button>
           </Link>
           <Link href={RoutersPath.signUp}>
-            <Button size={ButtonSize.CLEAN}>
-              {/*{t('SignUp')}*/}
-              Sign up
-            </Button>
+            <Button size={ButtonSize.CLEAN}>{t('SignUp')}</Button>
           </Link>
         </div>
       </div>
