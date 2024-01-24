@@ -72,9 +72,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     return {
       props: {
+        ...(await serverSideTranslations(locale as string, 'common')),
         profileData: data[0].data,
         postData: post[0].data,
-        // ...(await serverSideTranslations(locale as string, 'common')),
       },
     }
   }

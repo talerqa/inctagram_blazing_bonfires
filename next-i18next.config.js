@@ -6,5 +6,7 @@ module.exports = {
     locales: ['en', 'ru'],
     localeDetection: false,
   },
+  localePath:
+    typeof window === 'undefined' ? require('path').resolve('./public/locales') : '/locales',
   react: { useSuspense: false }, //this line
 }

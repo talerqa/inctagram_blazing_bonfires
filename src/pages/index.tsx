@@ -33,6 +33,15 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         return error
       })
 
+    if (!data[0].data) {
+      return {
+        redirect: {
+          destination: '/404' /*  todo Редирект на 404  */,
+          permanent: false,
+        },
+      }
+    }
+
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, 'common')),
