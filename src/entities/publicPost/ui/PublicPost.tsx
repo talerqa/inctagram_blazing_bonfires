@@ -56,7 +56,6 @@ export const PublicPost = (post: PostResponseType) => {
         </div>
       </div>
       <div>{postCreatedAt}</div>
-      <p> {t('AnonymousUser')}</p>
       <p className={s.postDescription}>
         {fullText}{' '}
         {displayShowMore && (
