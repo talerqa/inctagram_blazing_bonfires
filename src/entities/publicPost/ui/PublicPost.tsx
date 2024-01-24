@@ -29,6 +29,8 @@ export const PublicPost = (post: PostResponseType) => {
   const postCreatedAt = findDate.difference(createdAt)
   const router = useRouter()
 
+  console.log(t(postCreatedAt))
+
   const { displayShowMore, isShowMoreActive, setIsShowMoreActive, fullText } = useTruncateText(
     description,
     80
@@ -56,6 +58,7 @@ export const PublicPost = (post: PostResponseType) => {
         </div>
       </div>
       <div>{postCreatedAt}</div>
+      <p> {t('AnonymousUser')}</p>
       <p className={s.postDescription}>
         {fullText}{' '}
         {displayShowMore && (

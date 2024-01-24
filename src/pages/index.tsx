@@ -18,6 +18,9 @@ import { RegisteredUsersTablo } from '@/shared/ui/registeredUsersTablo/ui/Regist
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   store => async context => {
     //fetch publicPosts
+
+    if (context.locale === undefined) throw new Error()
+
     store.dispatch(postsApi.endpoints?.getAllPublicPosts.initiate({ pageSize: '4' }))
 
     const data: Array<ServerSidePropsType<GetAllPublicPostsResponseType>> = await Promise.all(

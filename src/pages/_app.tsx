@@ -35,14 +35,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-function App({ Component, ...rest }: AppPropsWithLayout) {
+function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page)
-  const { props } = wrapper.useWrappedStore(rest)
 
   return getLayout(
     <StoreProvider>
       <WithAuth>
-        <Component {...props.pageProps} />
+        <Component {...pageProps} />
       </WithAuth>
     </StoreProvider>
   )

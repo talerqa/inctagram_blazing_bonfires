@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
 import { createWrapper } from 'next-redux-wrapper'
 
 import { authApi, devicesApi, profileApi, publicApi, subscriptionsApi } from '../../../api'
@@ -33,7 +34,7 @@ export const makeStore = () => {
   })
 }
 
-// setupListeners(store.dispatch)
+setupListeners(makeStore().dispatch)
 
 export type AppStore = ReturnType<typeof makeStore>
 export type RootState = ReturnType<AppStore['getState']>
