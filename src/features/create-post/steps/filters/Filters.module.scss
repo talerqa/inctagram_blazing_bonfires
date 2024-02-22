@@ -52,11 +52,12 @@
     flex-wrap: wrap;
     width: 500px;
     height: 500px;
+    padding: 10px 15px;
+    gap: 50px;
+    justify-content: space-between;
 
     .filterItem {
-      flex: 0 0 calc(33.33% - 10px);
-      margin: 5px;
-      padding: 10px 20px;
+      flex: 0 0 calc(33.33% - 50px);
       cursor: pointer;
       .filterImageContainer {
         display: flex;
