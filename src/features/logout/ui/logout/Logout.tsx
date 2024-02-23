@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import { CircularProgress } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -10,7 +9,7 @@ import style from './Logout.module.scss'
 import { useLogoutMutation, useMeQuery } from '@/shared/api'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { Modal, Button, ButtonSize, ButtonTheme } from '@/shared/ui'
+import { Modal, Button, ButtonSize, ButtonTheme, CircularLoader } from '@/shared/ui'
 
 type Props = {
   className?: string
@@ -50,7 +49,7 @@ export const Logout = ({ className, theme, size }: Props) => {
   }
 
   if (isLoading) {
-    return <CircularProgress />
+    return <CircularLoader />
   }
 
   return (
