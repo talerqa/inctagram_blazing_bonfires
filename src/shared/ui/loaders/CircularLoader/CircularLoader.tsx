@@ -1,15 +1,7 @@
 import React from 'react'
 
-import { CircularProgress } from '@mui/material'
-
-import styles from '@/shared/ui/loaders/Loader.module.scss'
+import s from '@/shared/ui/loaders/CircularLoader/CircularLoader.module.scss'
 
 export const CircularLoader = () => {
-  return (
-    <div className={styles.loaderWrapper}>
-      <div className={styles.loader}>
-        <CircularProgress />
-      </div>
-    </div>
-  )
+  return <span className={s.loader} />
 }
