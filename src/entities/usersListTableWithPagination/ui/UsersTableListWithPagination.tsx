@@ -1,44 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useQuery } from '@apollo/client'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { UserBlockStatus } from '@/__generated__/graphql'
 import { UsersListTable } from '@/entities/usersListTableWithPagination/ui/usersListTable/UsersListTable'
 import { GET_USERS_LIST } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
-import {
-  selectPageNumber,
-  selectPageSize,
-} from '@/pages/super-admin/modal/selectors/admin-selectors'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
-import { BlockedStatusType } from '@/pages/super-admin/users-list'
+import { useGetUserVariables } from '@/shared/hooks/useGetUserVariables'
 import { Pagination } from '@/shared/ui'
 import { SortType } from '@/shared/ui/_table/Table'
 
-export type UsersTableListWithPaginationType = {
-  searchValue: string
-  blockStatus: BlockedStatusType | UserBlockStatus
-}
-
-export const UsersTableListWithPagination = ({
-  searchValue,
-  blockStatus,
-}: UsersTableListWithPaginationType) => {
+export const UsersTableListWithPagination = () => {
   const dispatch = useDispatch()
-  const pageNumber = useSelector(selectPageNumber) // its currently selected page
-  const itemsPerPage = useSelector(selectPageSize)
-  const [sort, setSort] = useState<SortType | null>(null)
+  const { getUserVariables, sort, setSort } = useGetUserVariables()
 
   const { data: usersTableData } = useQuery(GET_USERS_LIST, {
-    variables: {
-      pageSize: itemsPerPage,
-      pageNumber: pageNumber,
-      sortBy: sort?.key,
-      sortDirection: sort?.direction,
-      searchTerm: searchValue, // searches only by userName. This is handled with local state, not redux.
-      statusFilter: blockStatus as UserBlockStatus,
-    },
+    variables: getUserVariables,
     context: {
       headers: {
         Authorization: `Basic ${getAdminBasicCredentials()}`,
@@ -73,12 +51,11 @@ export const UsersTableListWithPagination = ({
         totalPages={usersTableData.getUsers.pagination.pagesCount}
         totalCount={usersTableData.getUsers.pagination.totalCount}
         itemsPerPage={usersTableData.getUsers.pagination.pageSize}
-        currentPage={pageNumber}
+        currentPage={getUserVariables.pageNumber}
         handleSetItemsPerPage={handleSetItemsPerPage}
         selectOptions={selectOptionsOfDecksToDisplay}
       />
     </>
   )
 }
-
 const selectOptionsOfDecksToDisplay = ['10', '20', '30', '50', '100']

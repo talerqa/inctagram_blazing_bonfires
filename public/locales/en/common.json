@@ -225,7 +225,8 @@
     "AdvertisingPlacement": "Advertising placement",
     "AnotherReason": "Another reason",
     "AddReason": "Add reason",
-    "NotSelected": "Not selected"
+    "NotSelected": "Not selected",
+    "DeleteUser": "Delete User"
   },
   "Post": {
     "Yes": "Yes",
