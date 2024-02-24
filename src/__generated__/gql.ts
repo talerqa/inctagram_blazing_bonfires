@@ -27,6 +27,8 @@ const documents = {
     types.BanUserDocument,
   '\n  mutation UnbanUser($userId: Int!) {\n    unbanUser(userId: $userId)\n}\n  ':
     types.UnbanUserDocument,
+  '\n  mutation DeleteUser($userId: Int!) {\n    removeUser(userId: $userId)\n}\n  ':
+  types.DeleteUserDocument,
 }
 
 /**
@@ -85,6 +87,10 @@ export function gql(
 export function gql(
   source: '\n  mutation UnbanUser($userId: Int!) {\n    unbanUser(userId: $userId)\n}\n  '
 ): (typeof documents)['\n  mutation UnbanUser($userId: Int!) {\n    unbanUser(userId: $userId)\n}\n  ']
+
+export function gql(
+  source: '\n  mutation DeleteUser($userId: Int!) {\n    removeUser(userId: $userId)\n}\n  '
+): (typeof documents)['\n  mutation DeleteUser($userId: Int!) {\n    removeUser(userId: $userId)\n}\n  ']
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {}

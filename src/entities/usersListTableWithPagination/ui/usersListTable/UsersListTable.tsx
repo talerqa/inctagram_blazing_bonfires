@@ -19,10 +19,12 @@ import s from './UsersListTable.module.scss'
 import { User } from '@/__generated__/graphql'
 import {
   setBanModalOpenStatus,
+  setDeleteModalOpenStatus,
   setSelectedUser,
   setUnbanModalOpenStatus,
 } from '@/features/user-management/model/userManagementSlice'
 import { BannedIcon } from '@/shared/assets/icons'
+import DeleteUserIcon from '@/shared/assets/icons/deleteUser/deleteUserIcon'
 import { ThreeDots } from '@/shared/assets/icons/threeDots/icon/threeDots'
 import { SortType, TableHeader } from '@/shared/ui/_table/Table'
 
@@ -73,6 +75,11 @@ export const UsersListTable = ({
     dispatch(setSelectedUser(user))
   }
 
+  const openDeleteUserModal = (user: User) => {
+    dispatch(setDeleteModalOpenStatus(true))
+    dispatch(setSelectedUser(user))
+  }
+
   return (
     <>
       <NewTable>
@@ -100,18 +107,25 @@ export const UsersListTable = ({
                         icon + text
                       </RDropdownMenu.Item>
                       <RDropdownMenu.Item
-                        onSelect={e => openBanModal(user)}
+                        onSelect={() => openBanModal(user)}
                         className={s.DropdownMenuItem}
                       >
-                        <BannedIcon width={20} height={20} />
+                        <BannedIcon width={24} height={24} />
                         <Text>{t('Admin.BanInSystem')}</Text>
                       </RDropdownMenu.Item>
                       <RDropdownMenu.Item
-                        onSelect={e => openUnbanModal(user)}
+                        onSelect={() => openUnbanModal(user)}
                         className={s.DropdownMenuItem}
                       >
                         <ThreeDots />
-                        <Text>{t('Admin.Unban')}</Text>
+                        <Text>{t('Admin.UnbanUser')}</Text>
+                      </RDropdownMenu.Item>
+                      <RDropdownMenu.Item
+                        onSelect={() => openDeleteUserModal(user)}
+                        className={s.DropdownMenuItem}
+                      >
+                        <DeleteUserIcon />
+                        <Text>{t('Admin.DeleteUser')}</Text>
                       </RDropdownMenu.Item>
                     </DropdownMenu>
                   </div>

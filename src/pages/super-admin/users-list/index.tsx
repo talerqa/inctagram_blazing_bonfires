@@ -1,20 +1,19 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import s from './usersLists.module.scss'
 
 import { UsersTableListWithPagination } from '@/entities/usersListTableWithPagination/ui/UsersTableListWithPagination'
 import { UserBanModal } from '@/features/user-management'
 import {
-  selectBlockStatus,
-  setBanModalOpenStatus,
   setBlockStatus,
-  setSelectedUser,
+  setSearchParameter,
 } from '@/features/user-management/model/userManagementSlice'
+import { UserDeleteModal } from '@/features/user-management/ui/user-delete-modal/UserDeleteModal'
 import { UnbanUserModal } from '@/features/user-management/ui/user-unban-modal/UnbanUserModal'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
 import { getAdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
@@ -32,12 +31,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 const UsersList = () => {
   const dispatch = useDispatch()
-  const blockStatus = useSelector(selectBlockStatus)
 
   const inputValue = useRef<HTMLInputElement | null>(null)
-  const [searchValue, setSearchValue] = useState('')
 
-  const handleSearch = handleInputChange(setSearchValue, 500)
+  const handleSearch = handleInputChange(
+    (value: string) => dispatch(setSearchParameter(value)),
+    500
+  )
 
   const handleBlockStatusChange = (blockStatus: BlockedStatusType) => {
     dispatch(setBlockStatus(blockStatus))
@@ -64,9 +64,10 @@ const UsersList = () => {
           />
         </div>
       </div>
-      <UsersTableListWithPagination searchValue={searchValue} blockStatus={blockStatus} />
+      <UsersTableListWithPagination />
       <UserBanModal />
       <UnbanUserModal />
+      <UserDeleteModal />
     </div>
   )
 }

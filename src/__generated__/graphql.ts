@@ -400,8 +400,12 @@ export type BanUserMutation = { __typename?: 'Mutation'; banUser: boolean }
 export type UnbanUserMutationVariables = Exact<{
   userId: Scalars['Int']['input']
 }>
+export type DeleteUserMutationVariables = Exact<{
+  userId: Scalars['Int']['input']
+}>
 
 export type UnbanUserMutation = { __typename?: 'Mutation'; unbanUser: boolean }
+export type DeleteUserMutation = { __typename?: 'Mutation'; deleteUser: boolean }
 
 export const AvatarsFragmentFragmentDoc = {
   kind: 'Document',
@@ -844,3 +848,40 @@ export const UnbanUserDocument = {
     },
   ],
 } as unknown as DocumentNode<UnbanUserMutation, UnbanUserMutationVariables>
+
+export const DeleteUserDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'DeleteUser' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'userId' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'removeUser' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'userId' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'userId' } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteUserMutation, DeleteUserMutationVariables>
