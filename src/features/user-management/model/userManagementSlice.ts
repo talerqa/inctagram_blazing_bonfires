@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { SortDirection, User, UserBlockStatus } from '@/__generated__/graphql'
+import { User, UserBlockStatus } from '@/__generated__/graphql'
 import { BlockedStatusType } from '@/pages/super-admin/users-list'
 import { RootState } from '@/shared/providers/storeProvider'
-import { SortType } from '@/shared/ui/_table/Table'
 
 type UserManagementSInitialStateType = {
   blockStatus: BlockedStatusType | UserBlockStatus
@@ -11,6 +10,8 @@ type UserManagementSInitialStateType = {
   selectedUser: User | null
   banModalOpenStatus: boolean
   unbanModalOpenStatus: boolean
+  deleteModalOpenStatus: boolean
+  searchParameter: string
 }
 
 const userManagementSlice = createSlice({
@@ -21,6 +22,8 @@ const userManagementSlice = createSlice({
     selectedUser: null,
     banModalOpenStatus: false,
     unbanModalOpenStatus: false,
+    deleteModalOpenStatus: false,
+    searchParameter: '',
   },
   reducers: {
     setBlockStatus(state, action: PayloadAction<BlockedStatusType>) {
@@ -38,6 +41,12 @@ const userManagementSlice = createSlice({
     setUnbanModalOpenStatus(state, action: PayloadAction<boolean>) {
       state.unbanModalOpenStatus = action.payload
     },
+    setDeleteModalOpenStatus(state, action: PayloadAction<boolean>) {
+      state.deleteModalOpenStatus = action.payload
+    },
+    setSearchParameter(state, action: PayloadAction<string>) {
+      state.searchParameter = action.payload
+    },
     setSelectedUser(state, action: PayloadAction<User | null>) {
       state.selectedUser = action.payload
     },
@@ -50,6 +59,8 @@ export const {
   setBanModalOpenStatus,
   setUnbanModalOpenStatus,
   setSelectedUser,
+  setDeleteModalOpenStatus,
+  setSearchParameter,
 } = userManagementSlice.actions
 export default userManagementSlice.reducer
 
@@ -60,3 +71,6 @@ export const selectBanModalOpenStatus = (state: RootState) =>
   state.userManagement.banModalOpenStatus
 export const selectUnbanModalOpenStatus = (state: RootState) =>
   state.userManagement.unbanModalOpenStatus
+export const selectDeleteModalOpenStatus = (state: RootState) =>
+  state.userManagement.deleteModalOpenStatus
+export const selectSearchParameter = (state: RootState) => state.userManagement.searchParameter
