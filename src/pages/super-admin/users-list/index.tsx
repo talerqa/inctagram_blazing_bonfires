@@ -43,7 +43,10 @@ const UsersList = () => {
     dispatch(setBlockStatus(blockStatus))
   }
   const { t } = useTranslation('common', { keyPrefix: 'UserListTable' })
-  const selectOptions = [t('NotBlocked'), t('Blocked')]
+  const selectOptions = [
+    { label: t('NotBlocked'), value: 'NotBlocked' },
+    { label: t('Blocked'), value: 'Blocked' },
+  ]
 
   return (
     <div className={s.usersListPage}>

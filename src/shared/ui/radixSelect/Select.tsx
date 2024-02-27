@@ -6,11 +6,10 @@ import { clsx } from 'clsx'
 import s from './Select.module.scss'
 
 import { ArrowDownOutline } from '@/shared/assets/icons/arrows/Arrow-down'
-import { Input, InputType } from '@/shared/ui'
 
 export type SelectMenuProps = {
   onChangeOption: (value: any) => void
-  options: string[]
+  options: string[] | { value: string; label: string }[]
   placeholder?: string
   title?: string
   itemsPerPage?: number
@@ -18,6 +17,7 @@ export type SelectMenuProps = {
   icon?: ReactNode
   className?: string
   open?: boolean
+  variant?: 'default' | 'pagination'
 } & ComponentPropsWithoutRef<typeof RSelect.Root>
 
 export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProps>(
@@ -25,12 +25,13 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
     {
       onChangeOption,
       options,
-      placeholder = options[0],
+      placeholder = typeof options[0] === 'object' ? options[0].label : options[0],
       title,
       itemsPerPage,
       icon,
       className,
       open,
+      variant = 'default',
       ...rest
     }: SelectMenuProps,
     ref
@@ -46,7 +47,8 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
     }
 
     const classNames = {
-      trigger: clsx(s.trigger, className),
+      trigger: clsx(s.trigger, s[variant], className),
+      items: clsx(s.item, s[variant]),
     }
 
     return (
@@ -57,7 +59,6 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
           onOpenChange={toggleIsOpened}
           onValueChange={onChangeCallback}
           {...rest}
-          // ref={ref}
         >
           <RSelect.Trigger ref={ref} className={classNames['trigger']}>
             <RSelect.Value placeholder={placeholder} />
@@ -77,8 +78,12 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
               <RSelect.Viewport className={s.viewport}>
                 {' '}
                 {options.map((el, idx) => (
-                  <RSelect.Item className={s.item} key={idx} value={el}>
-                    <RSelect.ItemText>{el}</RSelect.ItemText>
+                  <RSelect.Item
+                    className={classNames['items']}
+                    key={idx}
+                    value={typeof el === 'object' ? el.value : el}
+                  >
+                    <RSelect.ItemText>{typeof el === 'object' ? el.label : el}</RSelect.ItemText>
                     <RSelect.ItemIndicator className={s.selected} />
                   </RSelect.Item>
                 ))}
