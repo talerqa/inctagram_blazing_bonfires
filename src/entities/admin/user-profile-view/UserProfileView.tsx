@@ -15,7 +15,7 @@ import { RoutersPath } from '@/shared/constants/paths'
 import { CircularLoader, Text } from '@/shared/ui'
 import { findDate } from '@/shared/utils/findDate'
 
-export const UserProfileView = ({ userName, profile, userBan, id, createdAt, email }: User) => {
+export const UserProfileView = ({ userName, profile, id }: Omit<User, '__typename'>) => {
   const router = useRouter()
   const createdAtDate = findDate.formatToNumeric(profile.createdAt)
   const { t } = useTranslation('common', { keyPrefix: 'Profile' })
