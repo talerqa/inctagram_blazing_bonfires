@@ -34,7 +34,8 @@ export const schema = ({
       .string()
       .min(6, minCharacters6)
       .max(30, maxCharacters30)
-      .matches(/[0-9A-Za-z_-]{6,30}$/, userNameValidationError)
+      //.matches(/[0-9A-Za-z_-]{6,30}$/, userNameValidationError)
+      .matches(/^[0-9A-Za-z_-]+$/, userNameValidationError)
       .nullable()
       .required(requiredField),
     firstName: yup
