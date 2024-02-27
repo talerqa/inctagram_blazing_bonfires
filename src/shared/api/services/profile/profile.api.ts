@@ -23,10 +23,10 @@ export const profileApi = createApi({
         query: () => {
           return {
             method: 'GET',
+            url: `users/profile`,
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
             },
-            url: `users/profile`,
           }
         },
         transformResponse: (baseQueryReturnValue: ProfileUserType) => {

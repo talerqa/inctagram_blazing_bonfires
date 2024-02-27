@@ -1,6 +1,7 @@
 import React from 'react'
 
 import * as RDropdownMenu from '@radix-ui/react-dropdown-menu'
+import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { useDispatch } from 'react-redux'
 
@@ -26,6 +27,7 @@ import {
 import { BannedIcon } from '@/shared/assets/icons'
 import DeleteUserIcon from '@/shared/assets/icons/deleteUser/deleteUserIcon'
 import { ThreeDots } from '@/shared/assets/icons/threeDots/icon/threeDots'
+import { RoutersPath } from '@/shared/constants/paths'
 import { SortType, TableHeader } from '@/shared/ui/_table/Table'
 
 type UsersListTableType = {
@@ -93,7 +95,16 @@ export const UsersListTable = ({
                 <TCell>
                   {user.profile.firstName} {user.profile.lastName}
                 </TCell>
-                <TCell>{user.userName}</TCell>
+                <TCell>
+                  <Link
+                    className={s.profileLink}
+                    href={
+                      RoutersPath.superAdminUserProfile + '/' + user.id + '/uploaded-posts-images'
+                    }
+                  >
+                    {user.userName}
+                  </Link>
+                </TCell>
                 <TCell>{new Date(user.createdAt).toLocaleDateString()}</TCell>
                 <TCell>
                   <div className={s.iconsContainer}>

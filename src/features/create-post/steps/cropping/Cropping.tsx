@@ -13,7 +13,7 @@ import { useImageCropContext } from '@/features/create-post/context/CropProvider
 import { DotsBar } from '@/features/create-post/ui/dotsBar/DotsBar'
 import NewPostModal from '@/features/create-post/ui/newPostModal/NewPostModal'
 import { calculateImageDimensions } from '@/features/create-post/utils/calculateImageDimensions'
-import backIcon from '@/shared/assets/icons/arrow back/back.svg'
+import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
 import next from '@/shared/assets/icons/filterPostPhoto/next.svg'
 import prev from '@/shared/assets/icons/filterPostPhoto/prev.svg'
 import { Button, ButtonTheme } from '@/shared/ui'

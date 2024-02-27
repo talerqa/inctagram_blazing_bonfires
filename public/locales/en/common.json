@@ -98,12 +98,17 @@
     "GeneralInformation": "General information",
     "Devices": "Devices",
     "AccountManagement": "Account Management",
-    "MyPayments": "My payments"
+    "MyPayments": "My payments",
+    "Payments": "Payments",
+    "UploadedPhotos": "Uploaded photos"
   },
   "Profile": {
     "Following": "Following",
     "Followers": "Followers",
-    "Publications": "Publications"
+    "Publications": "Publications",
+    "BackToUsersList": "Back to Users List",
+    "UserID": "UserID",
+    "ProfileCreationDate": "Profile Creation Date"
   },
   "ProfileSettings": {
     "UserName": "User Name",

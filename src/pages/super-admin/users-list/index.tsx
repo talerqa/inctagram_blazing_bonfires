@@ -8,13 +8,11 @@ import { useDispatch } from 'react-redux'
 import s from './usersLists.module.scss'
 
 import { UsersTableListWithPagination } from '@/entities/usersListTableWithPagination/ui/UsersTableListWithPagination'
-import { UserBanModal } from '@/features/user-management'
+import { UserBanModal, UserDeleteModal, UnbanUserModal } from '@/features/user-management'
 import {
   setBlockStatus,
   setSearchParameter,
 } from '@/features/user-management/model/userManagementSlice'
-import { UserDeleteModal } from '@/features/user-management/ui/user-delete-modal/UserDeleteModal'
-import { UnbanUserModal } from '@/features/user-management/ui/user-unban-modal/UnbanUserModal'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
 import { getAdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
 import { Input, InputType, RadixSelect } from '@/shared/ui'
