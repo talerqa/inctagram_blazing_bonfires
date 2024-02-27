@@ -98,10 +98,10 @@ export const Pagination = (props: PaginatorPropsType) => {
             <Text className={s.show}>{t('Show')}</Text>
             <RadixSelect
               placeholder={'10'}
-              className={s.triggerBtn}
               onChangeOption={handleSetItemsPerPage}
               options={selectOptions}
               itemsPerPage={itemsPerPage}
+              variant={'pagination'}
             />
             <Text className={s.perPage}>{t('PerPage')}</Text>
           </div>
