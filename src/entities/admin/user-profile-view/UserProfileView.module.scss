@@ -1,0 +1,65 @@
+@import '@/shared/styles/mediaQueries';
+
+.profileContainer {
+  .goBackLink {
+    cursor: pointer;
+
+    //margin-top: -3rem;
+    margin-bottom: 2rem;
+
+    svg {
+      margin-right: 1rem;
+    }
+  }
+
+  .profileDataContainer {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+    .avatar {
+      margin-bottom: 6px;
+      border-radius: 50%;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .profileLink {
+      cursor: pointer;
+    }
+
+    .withoutAvatarImg {
+      box-shadow: 0 0 2px var(--color-light-900);
+    }
+  }
+
+  .userIdAndCreationDate {
+    display: flex;
+    gap: 9rem;
+
+    .userId {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--font-size-14);
+      color: grey;
+
+      .userId_text {
+        color: white;
+      }
+    }
+
+    .creationDate {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--font-size-14);
+      color: grey;
+
+      .creationDate_text {
+        color: white;
+      }
+    }
+  }
+}

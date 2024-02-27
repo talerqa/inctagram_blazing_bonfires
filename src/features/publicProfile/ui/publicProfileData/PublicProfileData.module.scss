@@ -2,22 +2,23 @@
 
 .profileContainer {
   display: grid;
-  padding: 0 2px;
-  max-width: 972px;
-  grid-template-columns: auto;
-  grid-template-rows: 56px 71px;
   grid-template-areas:
     'avatar userName '
     'avatar profileInfo'
     'avatar info';
+  grid-template-columns: auto;
+  grid-template-rows: 56px 71px;
+
+  max-width: 972px;
+  padding: 0 2px;
 }
 
 .avatarContainer {
   display: flex;
   grid-area: avatar;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   .notAvatar {
     box-shadow: 0 0 2px var(--color-light-900);
@@ -25,8 +26,8 @@
 }
 
 .avatar {
-  border-radius: 50%;
   margin-bottom: 6px;
+  border-radius: 50%;
 
   svg {
     width: 20px;
@@ -38,22 +39,21 @@
   display: flex;
   grid-area: profileInfo;
   flex-direction: column;
+  align-items: flex-start;
 
   height: auto;
   margin: 0 0 0 38px;
-  align-items: flex-start;
 }
 
 .profileTitleContainer {
   display: flex;
   grid-area: info;
-  margin-left: 38px;
   flex-direction: column;
+  margin-left: 38px;
 }
 
 .fullText {
   max-width: 100%;
-
   word-break: break-word;
   white-space: pre-wrap;
 }
@@ -62,6 +62,7 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
 .userName {
   grid-area: userName;
   margin: 0 0 0 38px;
@@ -78,11 +79,11 @@
 
 @include media-small {
   .profileContainer {
-    grid-template-rows: auto auto;
     grid-template-areas:
       'avatar profileInfo'
       'userName userName'
       'info  info';
+    grid-template-rows: auto auto;
   }
 
   .avatar {

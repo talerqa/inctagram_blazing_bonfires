@@ -96,12 +96,17 @@
     "GeneralInformation": "Информация",
     "Devices": "Устройства",
     "AccountManagement": "Управление",
-    "MyPayments": "Платежи"
+    "MyPayments": "Платежи",
+    "Payments": "Платежи",
+    "UploadedPhotos": "Загруженные фотографии"
   },
   "Profile": {
     "Following": "Подписки",
     "Followers": "Подписчики",
-    "Publications": "Публикации"
+    "Publications": "Публикации",
+    "BackToUsersList": "Обратно к списку пользователей",
+    "UserID": "ID пользователя",
+    "ProfileCreationDate": "Дата создания профиля"
   },
   "ProfileSettings": {
     "UserName": "Пользователь",

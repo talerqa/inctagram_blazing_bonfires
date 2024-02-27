@@ -1,0 +1,10 @@
+@import '@/shared/styles/mediaQueries';
+
+.contentWrapper {
+  @include media-medium {
+    padding: 0;
+  }
+
+  width: 100%;
+  max-width: 972px;
+}

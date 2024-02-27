@@ -17,7 +17,7 @@ import {
 } from '@/shared/api/services/posts/posts.api'
 import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import { useGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
-import backIcon from '@/shared/assets/icons/arrow back/back.svg'
+import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
 import { LinearLoader, Input, InputType } from '@/shared/ui'
 
 export const Publication = () => {

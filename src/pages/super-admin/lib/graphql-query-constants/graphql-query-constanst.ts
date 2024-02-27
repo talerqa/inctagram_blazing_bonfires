@@ -100,3 +100,50 @@ export const DELETE_USER = gql(`
     removeUser(userId: $userId)
 }
   `)
+
+const IMAGES_FRAGMENT = gql(`
+  fragment ProfileImagesFragment on ImagePost {
+    id,
+    createdAt,
+    url,
+    width
+    height
+    fileSize
+  }
+`)
+
+export const GET_USER_PROFILE_POSTS_BY_ID = gql(`
+  query GetPostsByUser($userId: Int!, $endCursorId: Int) {
+  getPostsByUser(userId: $userId, endCursorId: $endCursorId){
+    pagesCount,
+    pageSize,
+    totalCount,
+    items {...ProfileImagesFragment} 
+  }
+}
+  `)
+
+export const GET_USER = gql(`
+  query GetUser($userId: Int!) {
+  getUser(userId: $userId){
+    id,
+    userName,
+    email,
+    createdAt,
+    profile {
+        id, 
+        userName,
+        firstName,
+        lastName,
+        city,
+        dateOfBirth,
+        aboutMe, 
+        createdAt, 
+        avatars {
+        	url, width, height, fileSize 
+        }
+      },
+    userBan { reason, createdAt } 
+  }
+}
+  `)

@@ -13,6 +13,19 @@ export const findDate = {
 
     return originalDate.toLocaleDateString(currentLang || 'en', options)
   },
+  // Format to "month day, year" all numbers format
+  formatToNumeric: (date: string) => {
+    const originalDate = new Date(date)
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }
+    const formattedDate = originalDate.toLocaleDateString('en-US', options)
+
+    // Replace '/' with '.'
+    return formattedDate.replace(/\//g, '.')
+  },
   // Find how much time passed from the date passed as arguments
   difference: (date: string) => {
     const { t, i18n } = useTranslation('common', { keyPrefix: 'Post' })

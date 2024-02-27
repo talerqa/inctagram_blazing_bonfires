@@ -35,7 +35,7 @@ export function useDeleteUserMutation() {
       })
     },
     optimisticResponse: () => {
-      return { userId: user?.id, deleteUser: true }
+      return { userId: user?.id, removeUser: true }
     },
     onQueryUpdated: observableQuery => {
       observableQuery.refetch()
