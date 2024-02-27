@@ -98,9 +98,7 @@ export const UsersListTable = ({
                 <TCell>
                   <Link
                     className={s.profileLink}
-                    href={
-                      RoutersPath.superAdminUserProfile + '/' + user.id + '/uploaded-posts-images'
-                    }
+                    href={RoutersPath.superAdminUserProfile + '/' + user.id}
                   >
                     {user.userName}
                   </Link>

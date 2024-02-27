@@ -1,7 +1,6 @@
 @import '@/shared/styles/mediaQueries';
 
 .postsContainer {
-
   @include media-medium {
     gap: 0.5rem;
   }

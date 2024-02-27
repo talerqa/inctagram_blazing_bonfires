@@ -13,9 +13,7 @@ export const Navbar = () => {
 
   const classNames = {
     uploadedPhotos: clsx(
-      router.pathname === `${RoutersPath.superAdminUserProfile}/[id]/uploaded-posts-images`
-        ? s['current-page']
-        : ''
+      router.pathname === `${RoutersPath.superAdminUserProfile}/[id]` ? s['current-page'] : ''
     ),
     payments: clsx(
       router.pathname === `${RoutersPath.superAdminUserProfile}/[id]/payments`
@@ -36,7 +34,7 @@ export const Navbar = () => {
 
   return (
     <nav className={s.navbar}>
-      <Link href={`${RoutersPath.superAdminUserProfile}/${router.query.id}/uploaded-posts-images`}>
+      <Link href={`${RoutersPath.superAdminUserProfile}/${router.query.id}`}>
         <h3 className={classNames.uploadedPhotos}>{t('Navbar.UploadedPhotos')}</h3>
       </Link>
       <Link href={`${RoutersPath.superAdminUserProfile}/${router.query.id}/payments`}>
