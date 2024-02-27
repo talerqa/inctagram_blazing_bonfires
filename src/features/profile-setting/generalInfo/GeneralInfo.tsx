@@ -328,7 +328,9 @@ export const GeneralInfo = () => {
             </div>
           </div>
           <div className={styles.line}></div>
-          <Button className={styles.button}>{tRoot('SaveChanges')}</Button>
+          <Button className={styles.button} disabled={Object.keys(errors).length > 0}>
+            {tRoot('SaveChanges')}
+          </Button>
         </form>
       )}
 

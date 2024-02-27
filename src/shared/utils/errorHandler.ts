@@ -24,7 +24,7 @@ export const errorHandler = (
     if (status === 401) {
       notAuthorizationHandler()
     } else {
-      const errorMessage = (error as serverError)?.data?.error ?? ServerErrorMessage
+      const errorMessage = (error as serverError)?.data?.messages[0]?.message ?? ServerErrorMessage
 
       toast.error(errorMessage, { id: errorMessage })
     }
