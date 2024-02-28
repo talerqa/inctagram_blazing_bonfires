@@ -5,16 +5,16 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useDispatch } from 'react-redux'
 
-import s from './usersLists.module.scss'
+import s from './users-lists.module.scss'
 
-import { UsersTableListWithPagination } from '@/entities/usersListTableWithPagination/ui/UsersTableListWithPagination'
+import { UsersTableListWithPagination } from '@/entities/users-list-table-with-pagination/ui/users-table-list-with-pagination'
 import { UserBanModal, UserDeleteModal, UnbanUserModal } from '@/features/user-management'
 import {
   setBlockStatus,
   setSearchParameter,
-} from '@/features/user-management/model/userManagementSlice'
+} from '@/features/user-management/model/user-management-slice'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
-import { getAdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { Input, InputType, RadixSelect } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { ContentWrapper } from '@/features/user-management'
-import ProfilePostsImages from '@/features/user-management/ui/profile-posts-images/ProfilePostsImages'
+import ProfilePostsImages from '@/features/user-management/ui/profile-posts-images/profile-posts-images'
 import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

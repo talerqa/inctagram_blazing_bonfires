@@ -2,13 +2,13 @@ import { useMutation } from '@apollo/client'
 import { useSelector } from 'react-redux'
 
 import { User } from '@/__generated__/graphql'
-import { selectSelectedUser } from '@/features/user-management/model/userManagementSlice'
+import { selectSelectedUser } from '@/features/user-management/model/user-management-slice'
 import {
   DELETE_USER,
   GET_USERS_LIST,
 } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
-import { useGetUserVariables } from '@/shared/hooks/useGetUserVariables'
+import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 
 export function useDeleteUserMutation() {
   const user = useSelector(selectSelectedUser)

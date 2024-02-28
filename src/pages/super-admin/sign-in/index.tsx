@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { AdminSignInForm } from '@/entities/admin'
-import { getAdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

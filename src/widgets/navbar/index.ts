@@ -1,1 +1,1 @@
-export { Navbar } from '@/widgets/navbar/ui/Navbar'
+export { Navbar } from '@/widgets/navbar/ui/navbar'

@@ -8,7 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import styles from './404.module.scss'
 
-import { Error404 } from '@/shared/assets/icons/error404/Error404'
+import { Error404 } from '@/shared/assets/icons/error-404/error-404'
 import { RoutersPath } from '@/shared/constants/paths'
 import { Button, Text } from '@/shared/ui'
 

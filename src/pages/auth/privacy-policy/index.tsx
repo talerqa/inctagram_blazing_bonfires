@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import styles from './PrivacyPolicy.module.scss'
+import styles from './privacy-policy.module.scss'
 
-import backIcon from '@/shared/assets/icons/icons/arrowBackIcon.svg'
+import backIcon from '@/shared/assets/icons/icons/arrow-back-icon.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { useGetQueryParams } from '@/shared/hooks/useGetQueryParams'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { useGetQueryParams } from '@/shared/hooks/use-get-query-params'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

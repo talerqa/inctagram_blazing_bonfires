@@ -16,7 +16,7 @@ import { EyeIcon } from '@/shared/assets/icons/eye/eye'
 import { EyeOffIcon } from '@/shared/assets/icons/eye/eyeoff'
 import { Location } from '@/shared/assets/icons/location/location'
 import SearchIcon from '@/shared/assets/icons/search/search'
-import { ErrorMessage } from '@/shared/ui/errorMessage/errorMessage'
+import { ErrorMessage } from '@/shared/ui/error-message/error-message'
 
 export enum InputType {
   SEARCH = 'search',

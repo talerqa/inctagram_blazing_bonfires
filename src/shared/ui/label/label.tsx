@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 import s from './label.module.scss'
 
-import { Text } from '@/shared/ui/text/Text'
+import { Text } from '@/shared/ui/text/text'
 type Props = {
   label: string | undefined
 } & ComponentPropsWithoutRef<typeof Text>
