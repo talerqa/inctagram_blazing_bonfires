@@ -4,6 +4,10 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import style from './sidebar.module.scss'
+
+import CreatePost from '@/features/create-post'
+import { Logout } from '@/features/logout/ui/logout/logout'
 import favoritesImage from '@/shared/assets/icons/side-bar/favorites.svg'
 import homeImage from '@/shared/assets/icons/side-bar/home.svg'
 import messengerImage from '@/shared/assets/icons/side-bar/messenger.svg'
@@ -13,11 +17,6 @@ import postsImage from '@/shared/assets/icons/side-bar/posts.svg'
 import searchImage from '@/shared/assets/icons/side-bar/search.svg'
 import statisticsImage from '@/shared/assets/icons/side-bar/statistics.svg'
 import userListImage from '@/shared/assets/icons/side-bar/user-list.svg'
-
-import style from './sidebar.module.scss'
-
-import CreatePost from '@/features/create-post'
-import { Logout } from '@/features/logout/ui/logout/logout'
 import { RoutersPath } from '@/shared/constants/paths'
 import { ButtonTheme } from '@/shared/ui'
 
