@@ -6,11 +6,12 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import styles from './management.module.scss'
-
 import { AccountType } from '../../../../entities/account-type'
 import { PaymentButtons } from '../../../../entities/payment-buttons'
 import { SubscriptionType } from '../../../../entities/subscription-type'
+
+import styles from './management.module.scss'
+
 import {
   useCancelAutoRenewalMutation,
   useCreateNewSubscriptionMutation,

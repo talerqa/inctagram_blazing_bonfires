@@ -4,9 +4,9 @@ import { UseFormGetValues } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState } from '../../providers/store-provider'
-import { setGeneralInfo } from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
 
 import { ProfileUserType, AvatarsType } from '@/shared/api'
+import { setGeneralInfo } from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
 
 type Props = {
   getValues: UseFormGetValues<any>

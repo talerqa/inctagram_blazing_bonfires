@@ -26,7 +26,7 @@ import {
 } from '@/features/user-management/model/user-management-slice'
 import { BannedIcon } from '@/shared/assets/icons'
 import DeleteUserIcon from '@/shared/assets/icons/delete-user/delete-user-icon'
-import { ThreeDots } from '@/shared/assets/icons/threeDots/icon/three-dots'
+import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'
 import { RoutersPath } from '@/shared/constants/paths'
 import { SortType, TableHeader } from '@/shared/ui/_table/table'
 

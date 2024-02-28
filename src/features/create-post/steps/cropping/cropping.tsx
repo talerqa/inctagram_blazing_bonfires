@@ -6,6 +6,7 @@ import AvatarEditor from 'react-avatar-editor'
 import { useWizard } from 'react-use-wizard'
 
 import { useSlider } from '../../utils/use-slider'
+
 import style from './cropping.module.scss'
 
 import { ButtonFilterPanel } from '@/features/create-post/components/button-filter-panel/button-filter-panel'

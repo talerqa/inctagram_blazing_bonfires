@@ -8,12 +8,11 @@ import { Controller, FieldErrors, useForm } from 'react-hook-form'
 import { Toaster } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 
-import { ProfilePhoto } from '@/features/profile-setting/ui/profile-photo/profile-photo'
-
 import { AutocompletionOfCities } from './autocompletion-of-cities/autocompletion-of-cities'
 import styles from './general-info.module.scss'
-import { schema } from '@/features/profile-setting/general-info/yup-schema/schema'
 
+import { schema } from '@/features/profile-setting/general-info/yup-schema/schema'
+import { ProfilePhoto } from '@/features/profile-setting/ui/profile-photo/profile-photo'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import { RoutersPath } from '@/shared/constants/paths'
 import { useChangeRoute } from '@/shared/hooks/general-info-page/use-change-route'

@@ -1,8 +1,8 @@
 import React, { ButtonHTMLAttributes, FC } from 'react'
 
-import { classNames } from '@/shared/libs/class-names/class-names'
-
 import cls from './button.module.scss'
+
+import { classNames } from '@/shared/libs/class-names/class-names'
 
 export enum ButtonTheme {
   NOBORDER = 'noborder',
