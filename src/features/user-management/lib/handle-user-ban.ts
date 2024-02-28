@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 
 import { User } from '@/__generated__/graphql'
-import { setUsersBlockReason } from '@/features/user-management/model/userManagementSlice'
+import { setUsersBlockReason } from '@/features/user-management/model/user-management-slice'
 import { BAN_USER } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 

@@ -4,17 +4,17 @@ import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Toaster } from 'react-hot-toast'
 
-import style from './ProfileId.module.scss'
+import style from './profile-id.module.scss'
 
-import { PublicProfileData, PublicProfilePosts } from '@/features/publicProfile'
+import { PublicProfileData, PublicProfilePosts } from '@/features/public-profile'
 import { publicApi } from '@/shared/api'
 import {
   PublicProfilePostsResponseType,
   PublicProfileType,
 } from '@/shared/api/services/public/public.api.types'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { wrapper } from '@/shared/providers/storeProvider/model/store'
-import { ServerSidePropsType } from '@/shared/types/commonTypes'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
+import { wrapper } from '@/shared/providers/store-provider/model/store'
+import { ServerSidePropsType } from '@/shared/types/common-types'
 import { ContentWrapper } from '@/shared/ui'
 
 type PropsType = {

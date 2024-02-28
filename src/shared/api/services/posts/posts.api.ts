@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { baseURL } from '../baseUrl.api'
+import { baseURL } from '../base-url.api'
 
 import {
   GetAllPostsArgs,

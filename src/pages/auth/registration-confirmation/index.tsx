@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { useVerifyEmailMutation } from '@/shared/api'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { ShortLangs } from '@/shared/types/langSwitcherTypes'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
+import { ShortLangs } from '@/shared/types/lang-switcher-types'
 import { CircularLoader } from '@/shared/ui'
 
 export const RegistrationConfirmation = () => {

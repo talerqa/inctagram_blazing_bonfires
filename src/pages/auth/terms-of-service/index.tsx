@@ -6,10 +6,10 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import styles from '@/pages/auth/privacy-policy/PrivacyPolicy.module.scss'
-import backIcon from '@/shared/assets/icons/icons/arrowBackIcon.svg'
+import styles from '@/pages/auth/privacy-policy/privacy-policy.module.scss'
+import backIcon from '@/shared/assets/icons/icons/arrow-back-icon.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

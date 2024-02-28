@@ -10,8 +10,8 @@ import { appWithTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Provider } from 'react-redux'
 
-import { WithAuth } from '@/shared/hoc/withAuth/WithAuth'
-import { wrapper } from '@/shared/providers/storeProvider/model/store'
+import { WithAuth } from '@/shared/hoc/with-auth/with-auth'
+import { wrapper } from '@/shared/providers/store-provider/model/store'
 
 const client = new ApolloClient({
   uri: 'https://inctagram.work/api/v1/graphql',

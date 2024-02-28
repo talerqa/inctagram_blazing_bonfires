@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { Devices } from '@/features/profile-setting/devices/Devices'
-import { settingLayout } from '@/shared/layouts/profileLayout/SettingLayout'
+import { Devices } from '@/features/profile-setting/devices/devices'
+import { settingLayout } from '@/shared/layouts/profile-layout/setting-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()

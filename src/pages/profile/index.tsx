@@ -6,15 +6,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import style from './profile.module.scss'
 
-import { PostModal } from '@/entities/postModal/PostModal'
-import { ProfileData } from '@/features/profileData/ProfileData'
+import { PostModal } from '@/entities/post-modal/post-modal'
+import { ProfileData } from '@/features/profile-data/profile-data'
 import { PostResponseType } from '@/shared/api'
 import {
   useLazyGetPublicPostQuery,
   useLazyGetPublicUserPostsQuery,
 } from '@/shared/api/services/posts/posts.api'
 import { useLazyGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
