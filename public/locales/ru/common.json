@@ -189,6 +189,19 @@
     "NotSelected": "Не выбрано",
     "Search": "Поиск"
   },
+  "PaymentsTable": {
+    "DateOfPayment": "Дата выплаты",
+    "EndDateOfSubscription": "Дата окончания подписки",
+    "Amount": "Цена, $",
+    "SubscriptionType": "Тип подписки",
+    "PaymentType": "Тип выплаты"
+  },
+  "FollowersTable": {
+    "UserID": "ID пользователя",
+    "UserName": "Ник пользователя",
+    "ProfileLink": "Ссылка на Профиль",
+    "SubscriptionDate": "Дата подписки"
+  },
   "AddPost": {
     "AddPhoto": "Добавить фотографию",
     "Cropping": "Обрезка",

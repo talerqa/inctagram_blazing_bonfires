@@ -1,7 +1,10 @@
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { ContentWrapper } from '@/features/user-management'
+import { ProfilePayments } from '@/features/user-management/ui/profile-payments/profile-payments'
+import ProfilePostsImages from '@/features/user-management/ui/profile-posts-images/profile-posts-images'
 import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -19,7 +22,13 @@ export async function getStaticPaths() {
 }
 
 const Payments = () => {
-  return <ContentWrapper>payments</ContentWrapper>
+  const router = useRouter()
+
+  return (
+    <ContentWrapper>
+      <ProfilePayments userId={Number(router.query.id)} />
+    </ContentWrapper>
+  )
 }
 
 Payments.getLayout = getAdminOnlyHeaderLayout

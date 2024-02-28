@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { ContentWrapper } from '@/features/user-management'
@@ -21,7 +22,14 @@ export async function getStaticPaths() {
 }
 
 const Following = () => {
-  return <ContentWrapper>following</ContentWrapper>
+  const router = useRouter()
+
+  return (
+    <ContentWrapper>
+      following
+      {/*<ProfileFollowers userId={Number(router.query.id)} />*/}
+    </ContentWrapper>
+  )
 }
 
 Following.getLayout = getAdminOnlyHeaderLayout
