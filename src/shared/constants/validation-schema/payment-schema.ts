@@ -1,6 +1,9 @@
-import * as yup from "yup";
+import * as yup from 'yup'
 
-import { PaymentType, SubscriptionType } from "@/shared/api/services/subscriptions/subscriptions.api.types";
+import {
+  PaymentType,
+  SubscriptionType,
+} from '@/shared/api/services/subscriptions/subscriptions.api.types'
 
 export const paymentSchema = (basePath: string) =>
   yup.object().shape({
