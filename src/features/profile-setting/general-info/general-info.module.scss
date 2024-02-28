@@ -55,7 +55,7 @@
 
     textarea {
       resize: none;
-      background-color: var(--color-dark-500);
+
     }
   }
 
@@ -79,12 +79,33 @@
     width: 100%;
     padding: 10px;
 
-    background: transparent;
-    border: 1px solid var(--color-dark-300);
+    background-color: var(--color-dark-500);
+    border: 1px solid var(--color-dark-100);
+    color: var(--color-light-900);
     outline: none;
 
-    &:focus {
-      border-color: var(--color-info-500);
+    &:hover:enabled {
+      border: 1px solid var(--color-light-900);
+      color: var(--color-light-900);
+    }
+    &:focus:enabled {
+      border: 1px solid var(--color-info-500);
+      outline: 1px solid var(--color-info-500);
+
+      &.errorMessage {
+        outline: none;
+        border: 1px solid var(--color-danger-500);
+      }
+    }
+
+    &:active:enabled {
+      color: var(--color-light-100);
+      border-color: var(--color-light-100);
+      outline: none;
+
+      &::placeholder {
+        color: var(--color-light-100);
+      }
     }
   }
 
