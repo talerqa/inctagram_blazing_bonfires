@@ -28,7 +28,7 @@ import { BannedIcon } from '@/shared/assets/icons'
 import DeleteUserIcon from '@/shared/assets/icons/delete-user/delete-user-icon'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'
 import { RoutersPath } from '@/shared/constants/paths'
-import { SortType, TableHeader } from '@/shared/ui/_table/table'
+import { SortType, TableHeader } from '@/shared/ui/table/table'
 
 type UsersListTableType = {
   users: User[]

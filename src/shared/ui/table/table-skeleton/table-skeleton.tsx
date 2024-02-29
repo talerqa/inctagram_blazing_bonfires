@@ -1,12 +1,8 @@
 import { ReactNode } from 'react'
 
-// import { Table, TCell, THeader, TRow } from '../Table'
-
-import Table from '@mui/material/Table'
+import { Table, TCell, THeader, TRow } from '../table'
 
 import s from './table-skeleton.module.scss'
-
-import { TCell, THeader, TRow } from '@/shared/ui'
 
 type CellComponent = (idx?: number) => ReactNode
 
@@ -15,7 +11,7 @@ export const TableWithPageLoadingSkeleton = ({ numRows }: { numRows: number }) =
     <>
       {/*<Header />*/}
       {/*<Page>*/}
-      {/*<FilterWidgetSkeleton />*/}
+      {/*  <FilterWidgetSkeleton />*/}
       <TableSkeleton numRows={numRows} />
       {/*</Page>*/}
     </>

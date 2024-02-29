@@ -9,7 +9,7 @@ import { useGetSubscriptionsQuery } from '@/shared/api'
 import { SubscriptionDataType } from '@/shared/api/services/subscriptions/subscriptions.api.types'
 import { formatDate } from '@/shared/libs/format-dates/format-dates'
 import { LinearLoader, Modal, Pagination, TBody, TCell, THead, THeader, TRow } from '@/shared/ui'
-import { Table } from '@/shared/ui/_table/table'
+import { Table } from '@/shared/ui/table/table'
 
 export const Payments = () => {
   const { data: payments, isLoading, isError } = useGetSubscriptionsQuery(undefined)
