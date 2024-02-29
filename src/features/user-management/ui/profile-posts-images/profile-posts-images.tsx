@@ -2,13 +2,17 @@ import React from 'react'
 
 import Image from 'next/image'
 
+import { getLoadedPostsImages } from '../../lib/get-loaded-posts-images'
+
 import s from './profile-posts-images.module.scss'
 
 import { ImagePost } from '@/__generated__/graphql'
-import { getLoadedPostsImages } from '@/features/user-management/lib/get-loaded-posts-images'
+import { CircularLoader } from '@/shared/ui'
 
 const ProfilePostsImages = ({ userId }: { userId: number }) => {
   const profilePosts = getLoadedPostsImages(userId)
+
+  if (!profilePosts) return <CircularLoader />
 
   return (
     <div className={s.postsContainer}>

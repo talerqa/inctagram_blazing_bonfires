@@ -218,6 +218,19 @@
     "NotSelected": "Not selected",
     "Search": "Search"
   },
+  "PaymentsTable": {
+    "DateOfPayment": "Date of Payment",
+    "EndDateOfSubscription": "End date of subscription",
+    "Amount": "Amount, $",
+    "SubscriptionType": "Subscription type",
+    "PaymentType": "Payment type"
+  },
+  "FollowersTable": {
+    "UserID": "User ID",
+    "UserName": "Username",
+    "ProfileLink": "Profile link",
+    "SubscriptionDate": "Subscription date"
+  },
   "Admin": {
     "BanUser": "Ban user",
     "UnbanUser": "Unban user",
