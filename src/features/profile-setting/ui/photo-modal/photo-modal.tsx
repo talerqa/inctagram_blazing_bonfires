@@ -1,7 +1,5 @@
-/* eslint-disable no-console */
 import React, { ChangeEvent, useRef, useState } from 'react'
 
-import Slider from '@mui/material/Slider'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import AvatarEditor from 'react-avatar-editor'
@@ -10,7 +8,7 @@ import styles from './photo-modal.module.scss'
 
 import notPhotoImg from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import { resizerImage } from '@/shared/libs/resizer-image/resizer-image'
-import { Modal, Button, ButtonSize } from '@/shared/ui'
+import { Slider, Modal, Button, ButtonSize } from '@/shared/ui'
 
 type Props = {
   closeWindow: () => void
@@ -22,7 +20,7 @@ export const PhotoModal = ({ closeWindow, savePhoto }: Props) => {
   const [photoProfile, setPhotoProfile] = useState<null | Blob | MediaSource>(null)
   const [uploadError, setUploadError] = useState('')
   const cropRef = useRef<null | any>(null)
-  const [slideValue, setSlideValue] = useState(10)
+  const [slideValue, setSlideValue] = useState([10])
 
   const selectedPhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const maxSizeForBack = 10 * 1024 * 1024
@@ -112,21 +110,15 @@ export const PhotoModal = ({ closeWindow, savePhoto }: Props) => {
                 border={8}
                 borderRadius={150}
                 color={[0, 0, 0, 0.72]}
-                scale={slideValue / 10}
+                scale={slideValue[0] / 10}
                 rotate={0}
               />
               <Slider
                 min={5}
                 max={50}
-                sx={{
-                  margin: '0.5rem auto',
-                  width: '80%',
-                  color: '#2f68cc',
-                }}
-                size="small"
-                defaultValue={slideValue}
                 value={slideValue}
-                onChange={(e: Event, value: number | number[]) => setSlideValue(value as number)}
+                defaultValue={slideValue}
+                onValueChange={(value: number[]) => setSlideValue(value)}
               />
 
               <Button
