@@ -9,7 +9,7 @@ import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 import { Pagination } from '@/shared/ui'
-import { SortType } from '@/shared/ui/_table/table'
+import { SortType } from '@/shared/ui/table/table'
 
 export const UsersTableListWithPagination = () => {
   const dispatch = useDispatch()

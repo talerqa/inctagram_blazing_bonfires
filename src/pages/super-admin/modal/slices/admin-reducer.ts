@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ProfileImagesFragmentFragment, SortDirection } from '@/__generated__/graphql'
-import { SortType } from '@/shared/ui/_table/table'
+import { SortType } from '@/shared/ui/table/table'
 
 type AdminInitialStateType = {
   pageSize: number

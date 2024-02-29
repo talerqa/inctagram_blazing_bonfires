@@ -1,13 +1,13 @@
 'use client'
 import { useState } from 'react'
 
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import styles from './header.module.scss'
 
-import { LanguageSelect } from '@/widgets/lang-switcher/index'
+import { NotificationIcon } from '@/shared/assets/icons'
+import { LanguageSelect } from '@/widgets/lang-switcher'
 
 export const Header = () => {
   const [count, setCounter] = useState(3)
@@ -27,7 +27,7 @@ export const Header = () => {
       <div className={styles.option}>
         {mainPath[1] !== 'super-admin' && (
           <div className={styles.ball}>
-            <NotificationsNoneIcon />
+            <NotificationIcon />
             <div className={styles.count}>{count}</div>
           </div>
         )}

@@ -11,7 +11,7 @@ import {
   selectPageNumber,
   selectPageSize,
 } from '@/pages/super-admin/modal/selectors/admin-selectors'
-import { SortType } from '@/shared/ui/_table/table'
+import { SortType } from '@/shared/ui/table/table'
 
 export type GetUserVariablesType = {
   pageSize: number

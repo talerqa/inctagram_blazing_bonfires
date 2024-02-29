@@ -1,59 +1,146 @@
-import * as React from 'react'
+import { ComponentPropsWithoutRef, FC, forwardRef } from 'react'
 
-import styles from './table.module.scss'
+import { clsx } from 'clsx'
+import { useTranslation } from 'next-i18next'
 
-import { SubscriptionDataType } from '@/shared/api/services/subscriptions/subscriptions.api.types'
-import { formatDate } from '@/shared/libs/format-dates/format-dates'
+import s from './table.module.scss'
 
-type Props = {
-  items: Array<SubscriptionDataType>
+import { SortDirection } from '@/__generated__/graphql'
+import { Sort, SortAsc, SortDesc } from '@/shared/assets/icons'
+
+export const THead = forwardRef<HTMLTableSectionElement, ComponentPropsWithoutRef<'thead'>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = {
+      thead: clsx(className, s.thead),
+    }
+
+    return <thead className={classNames.thead} {...rest} ref={ref}></thead>
+  }
+)
+
+export const TBody = forwardRef<HTMLTableSectionElement, ComponentPropsWithoutRef<'tbody'>>(
+  ({ className, children, ...rest }, ref) => {
+    const classNames = {
+      tbody: clsx(className, s.tbody),
+    }
+
+    return (
+      <tbody className={classNames.tbody} {...rest} ref={ref}>
+        {children}
+      </tbody>
+    )
+  }
+)
+
+export const TRow = forwardRef<HTMLTableRowElement, ComponentPropsWithoutRef<'tr'>>(
+  ({ className, children, ...rest }, ref) => {
+    const classNames = {
+      tr: clsx(className, s.tr),
+    }
+
+    return (
+      <tr className={classNames.tr} {...rest} ref={ref}>
+        {children}
+      </tr>
+    )
+  }
+)
+
+export const THeader = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'th'>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = { th: clsx(className, s.th) }
+
+    return <th className={classNames.th} {...rest} ref={ref}></th>
+  }
+)
+
+export const TCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'td'>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = { td: clsx(className, s.td) }
+
+    return <td className={classNames.td} {...rest} ref={ref}></td>
+  }
+)
+
+export const Table = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = {
+      table: clsx(className, s.table),
+    }
+
+    return <table className={classNames['table']} {...rest} ref={ref}></table>
+  }
+)
+
+// The forwardRef function allows you to expose
+// the ref prop so that parent components can pass
+// a ref to the Table component and have it apply that
+// ref to the underlying <table> element.
+// If you don't use forwardRef and simply expect a ref
+// as a regular prop, it won't work in the same way
+// because React won't automatically forward the ref
+// to the DOM element.
+
+// ComponentPropsWithoutRef<'table'>
+// is used to define the allowed props for the Table component,
+
+export type Column = {
+  key: string
+  sortable?: boolean
+  title: string
 }
 
-export const Table: React.FC<Props> = ({ items }) => {
+export type SortType = {
+  key: string
+  direction: SortDirection
+} | null
+
+export const TableHeader: FC<
+  Omit<
+    ComponentPropsWithoutRef<'thead'> & {
+      columns: Column[]
+      onSort?: (sort: SortType | null) => void
+      sort?: SortType
+    },
+    'children'
+  >
+> = ({ columns, onSort, sort, ...restProps }) => {
+  const { t } = useTranslation('common', { keyPrefix: 'UserListTable' })
+  const handleSort = (key: string, sortable?: boolean) => () => {
+    if (!onSort || !sortable) {
+      return
+    }
+
+    if (sort?.key !== key) {
+      return onSort({ direction: SortDirection.Asc, key })
+    }
+
+    if (sort.direction === SortDirection.Desc) {
+      return onSort(null)
+    }
+
+    return onSort({
+      direction: sort?.direction === SortDirection.Asc ? SortDirection.Desc : SortDirection.Asc,
+      key,
+    })
+  }
+
   return (
-    <table className={styles.table}>
-      <thead className={styles.head}>
-        <tr>
-          <th className={styles.item}>Date of Payment</th>
-          <th className={styles.item}>End date of subscription</th>
-          <th className={styles.item}>Price</th>
-          <th className={styles.item}>Subscription Type</th>
-          <th className={styles.item}>Payment Type</th>
-        </tr>
-      </thead>
-      <tbody className={styles.body}>
-        {items.map((item: SubscriptionDataType, index: number) => (
-          <tr key={index} className={styles.line}>
-            <td className={styles.item}>
-              {index + 1}, {formatDate(item.dateOfPayment, 'mm.dd.yyyy')}
-            </td>
-            <td className={styles.item}>{formatDate(item.endDateOfSubscription, 'mm.dd.yyyy')}</td>
-            <td className={styles.item}>{item.price}</td>
-            <td className={styles.item}>
-              {(() => {
-                if (item.subscriptionType === 'DAY') {
-                  return '1 day'
-                } else if (item.subscriptionType === 'WEEKLY') {
-                  return '7 days'
-                } else if (item.subscriptionType === 'MONTHLY') {
-                  return '1 month'
-                } else {
-                  return ''
-                }
-              })()}
-            </td>
-            <td className={styles.item}>
-              {(() => {
-                if (item.paymentType === 'PAYPAL') {
-                  return 'PayPal'
-                } else {
-                  return 'Stripe'
-                }
-              })()}
-            </td>
-          </tr>
+    <THead {...restProps}>
+      <TRow>
+        {columns.map(({ key, sortable = true, title }) => (
+          <THeader key={key} onClick={handleSort(key, sortable)}>
+            <div className={s.titleAndSortIcon}>
+              {title}
+              {!sort && (title === 'Profile link' || title === 'Date added') && <Sort />}
+              {sort && sort.key === key && (
+                <span>{sort.direction === SortDirection.Asc ? <SortAsc /> : <SortDesc />}</span>
+              )}
+            </div>
+          </THeader>
         ))}
-      </tbody>
-    </table>
+        <THeader />
+      </TRow>
+    </THead>
   )
 }
