@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useDispatch } from 'react-redux'
 
 import s from './payments-list.module.scss'
@@ -11,9 +13,19 @@ import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { Checkbox, Input, InputType } from '@/shared/ui'
 
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  if (locale === undefined) throw new Error()
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, 'common')),
+    },
+  }
+}
+
 const PaymentsList = () => {
   const inputValue = useRef<HTMLInputElement | null>(null)
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
   const dispatch = useDispatch()
   const handleSearch = handleInputChange(
     (value: string) => dispatch(setSearchParameter(value)),
@@ -23,7 +35,7 @@ const PaymentsList = () => {
   return (
     <div className={s.paymentsPage}>
       <div className={s.checkbox}>
-        <Checkbox fullWidth={false}>Auto update</Checkbox>
+        <Checkbox fullWidth={false}>{t('PaymentsTable.AutoUpdate')}</Checkbox>
       </div>
 
       <Input

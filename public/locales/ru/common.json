@@ -196,12 +196,14 @@
     "EndDateOfSubscription": "Дата окончания подписки",
     "Amount": "Цена, $",
     "SubscriptionType": "Тип подписки",
+    "Subscription": "Тип подписки",
     "PaymentType": "Тип выплаты",
-    "PaymentMethod": "Тип выплаты"
+    "PaymentMethod": "Тип выплаты",
+    "AutoUpdate": "Автоматические обновление"
   },
   "FollowersTable": {
     "UserID": "ID пользователя",
-    "UserName": "Ник пользователя",
+    "UserName": "Пользователь",
     "ProfileLink": "Ссылка на Профиль",
     "SubscriptionDate": "Дата подписки"
   },

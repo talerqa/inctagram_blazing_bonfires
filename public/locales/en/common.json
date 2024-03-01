@@ -153,9 +153,10 @@
     "DateOfPayment": "Date of payment",
     "EndDateOfSubscription": "End date of subscription",
     "Price": "Price",
+    "DateAdded": "Date added",
     "SubscriptionType": "Subscription Type",
     "Subscription": "Subscription",
-    "PaymentType": "Payment Type"
+    "PaymentType": "Payment Type",
   },
   "Calendar": {
     "January": "January",
@@ -226,7 +227,8 @@
     "SubscriptionType": "Subscription type",
     "PaymentType": "Payment type",
     "PaymentMethod": "Payment method",
-    "Subscription": "Subscription"
+    "Subscription": "Subscription",
+    "AutoUpdate": "Auto update"
   },
   "FollowersTable": {
     "UserID": "User ID",

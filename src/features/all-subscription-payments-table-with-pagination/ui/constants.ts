@@ -5,12 +5,12 @@ export function getAllSubscriptionPaymentsColumnHeaders() {
   const columns = [
     {
       key: 'username',
-      title: t('PaymentsTable.Username'),
+      title: t('Auth.UserName'),
       sortable: true,
     },
     {
       key: 'dateAdded',
-      title: t('PaymentsTable.DateAdded'),
+      title: t('Payments.DateAdded'),
       sortable: true,
     },
     {

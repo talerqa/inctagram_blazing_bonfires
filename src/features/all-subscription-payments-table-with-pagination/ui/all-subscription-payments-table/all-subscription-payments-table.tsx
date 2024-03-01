@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Image from 'next/image'
 
 import s from './all-subscription-payments-table.module.scss'
@@ -6,6 +8,7 @@ import { SubscriptionPaymentsModel } from '@/__generated__/graphql'
 import { convertTimeUnitToDays } from '@/shared/libs/format-dates/format-dates'
 import { CircularLoader, NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
+import { findDate } from '@/shared/utils'
 
 type UsersListTableType = {
   users: SubscriptionPaymentsModel[]
@@ -40,10 +43,10 @@ export const AllSubscriptionPaymentsTable = ({
                     alt={'avatar'}
                     className={s.avatar}
                   />
-                  <p>{user.id}</p>
+                  <p>{user.userName}</p>
                 </div>
               </TCell>
-              <TCell>{user.userName}</TCell>
+              <TCell>{findDate.formatToNumeric(user.createdAt)}</TCell>
               <TCell>{user.amount}</TCell>
               <TCell>{convertTimeUnitToDays(user.type)}</TCell>
               <TCell>{user.paymentMethod}</TCell>
