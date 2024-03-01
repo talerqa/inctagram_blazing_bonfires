@@ -1,0 +1,5 @@
+export { capitalizeString } from './little-helper-functions'
+export { isRenderSidebar } from './is-render-sidebar'
+export { findPathSVG } from './icon-generator'
+export { findDate } from './find-date'
+export { errorHandler } from './error-handler'

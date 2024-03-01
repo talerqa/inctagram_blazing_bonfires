@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { UserBlockStatus } from '@/__generated__/graphql'
+import { SortDirection, UserBlockStatus } from '@/__generated__/graphql'
 import {
   selectBlockStatus,
   selectSearchParameter,
@@ -13,12 +13,21 @@ import {
 } from '@/pages/super-admin/modal/selectors/admin-selectors'
 import { SortType } from '@/shared/ui/table/table'
 
+export type GetUserVariablesType = {
+  pageSize: number
+  pageNumber: number
+  sortBy: string
+  sortDirection: SortDirection
+  searchTerm: string
+  statusFilter: UserBlockStatus
+}
+
 export const useGetUserVariables = () => {
   const pageNumber = useSelector(selectPageNumber) // its currently selected page
   const itemsPerPage = useSelector(selectPageSize)
   const blockStatus = useSelector(selectBlockStatus)
   const searchValue = useSelector(selectSearchParameter)
-  const [sort, setSort] = useState<SortType | null>(null)
+  const [sort, setSort] = useState<SortType>({ direction: SortDirection.Desc, key: '' })
 
   return {
     getUserVariables: {

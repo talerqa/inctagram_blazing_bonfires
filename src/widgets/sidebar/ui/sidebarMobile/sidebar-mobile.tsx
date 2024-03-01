@@ -36,6 +36,22 @@ export const SidebarMobile = () => {
         ? style.linkWrapperActive
         : style.linkWrapper
     ),
+    statistics: clsx(
+      router.pathname === RoutersPath.superAdminStatistics
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
+    payments: clsx(
+      router.pathname === RoutersPath.superAdminPaymentsList
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
+    posts: clsx(
+      style.linkWrapperLast,
+      router.pathname === RoutersPath.superAdminPostsList
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
   }
 
   return (
@@ -46,22 +62,22 @@ export const SidebarMobile = () => {
             className={classNames.usersList}
             onClick={() => router.push(RoutersPath.superAdminUsersList)}
           >
-            <UserIcon />
+            <ProfileIcon />
           </div>
           <div
-            className={style.linkWrapper}
+            className={classNames.statistics}
             onClick={() => router.push(RoutersPath.superAdminStatistics)}
           >
             <StatisticsIcon />
           </div>
           <div
-            className={style.linkWrapper}
+            className={classNames.payments}
             onClick={() => router.push(RoutersPath.superAdminPaymentsList)}
           >
             <PaymentsIcon />
           </div>
           <div
-            className={`${style.linkWrapper} ${style.linkWrapperLast}`}
+            className={classNames.posts}
             onClick={() => router.push(RoutersPath.superAdminPostsList)}
           >
             <PostsIcon />

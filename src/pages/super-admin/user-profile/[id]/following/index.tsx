@@ -3,6 +3,7 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import { ProfileFollowing } from '@/entities/profile-following'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 
@@ -21,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const Following = () => {
-  return <AdminUserProfileLayout>following</AdminUserProfileLayout>
+  return <AdminUserProfileLayout>followings</AdminUserProfileLayout>
 }
 
 Following.getLayout = getAdminLayout

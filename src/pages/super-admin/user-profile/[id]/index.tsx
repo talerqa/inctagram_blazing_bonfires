@@ -4,7 +4,6 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/user-management'
 import ProfilePostsImages from '@/features/user-management/ui/profile-posts-images/profile-posts-images'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'

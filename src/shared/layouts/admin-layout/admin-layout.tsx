@@ -13,7 +13,6 @@ import { getSelectedUserProfileData } from '@/features/user-management/lib/get-s
 import { signInAdmin } from '@/pages/super-admin/modal/slices/admin-auth-reducer'
 import { selectIsMobile } from '@/shared/api/services/app/app.slice'
 import { RoutersPath } from '@/shared/constants/paths'
-import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 import { RootState } from '@/shared/providers/store-provider'
 import { Header } from '@/widgets/header'
 import { SideBar } from '@/widgets/sidebar'

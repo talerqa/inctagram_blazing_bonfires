@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { clsx } from 'clsx'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -16,7 +17,6 @@ import {
   ProfileIcon,
   SearchIcon,
   StatisticsIcon,
-  UserIcon,
 } from '@/shared/assets/icons'
 import favoritesImage from '@/shared/assets/icons/side-bar/favorites.svg'
 import { RoutersPath } from '@/shared/constants/paths'
@@ -28,33 +28,64 @@ export const SideBar = () => {
   const mainPath = router.pathname.split('/')
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  const classNames = {
+    myProfile: clsx(
+      router.pathname === RoutersPath.profile ? style.linkWrapperActive : style.linkWrapper
+    ),
+    search: clsx(router.pathname === 'replace' ? style.linkWrapperActive : style.linkWrapper),
+    messenger: clsx(router.pathname === 'replace' ? style.linkWrapperActive : style.linkWrapper),
+    createPost: style.linkWrapper,
+    home: clsx(router.pathname === RoutersPath.home ? style.linkWrapperActive : style.linkWrapper),
+    usersList: clsx(
+      router.pathname === RoutersPath.superAdminUsersList
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
+    statistics: clsx(
+      router.pathname === RoutersPath.superAdminStatistics
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
+    payments: clsx(
+      router.pathname === RoutersPath.superAdminPaymentsList
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
+    posts: clsx(
+      style.linkWrapperLast,
+      router.pathname === RoutersPath.superAdminPostsList
+        ? style.linkWrapperActive
+        : style.linkWrapper
+    ),
+  }
+
   return (
     <aside className={style.sideBarContainer}>
       {mainPath[1] === 'super-admin' ? (
         <div className={style.superAdminContainer}>
           <div
-            className={style.linkWrapper}
+            className={classNames.usersList}
             onClick={() => router.push(RoutersPath.superAdminUsersList)}
           >
-            <UserIcon />
+            <ProfileIcon />
             {t('UserList')}
           </div>
           <div
-            className={style.linkWrapper}
+            className={classNames.statistics}
             onClick={() => router.push(RoutersPath.superAdminStatistics)}
           >
             <StatisticsIcon />
             {t('Statistics')}
           </div>
           <div
-            className={style.linkWrapper}
+            className={classNames.payments}
             onClick={() => router.push(RoutersPath.superAdminPaymentsList)}
           >
             <PaymentsIcon />
             {t('PaymentsList')}
           </div>
           <div
-            className={`${style.linkWrapper} ${style.linkWrapperLast}`}
+            className={classNames.posts}
             onClick={() => router.push(RoutersPath.superAdminPostsList)}
           >
             <PostsIcon />
@@ -62,31 +93,23 @@ export const SideBar = () => {
           </div>
         </div>
       ) : (
-        <>
-          <div
-            style={router.pathname === '/' ? { color: '#397DF6' } : {}}
-            className={style.linkWrapper}
-            onClick={() => router.push('/')}
-          >
+        <div className={style.publicContainer}>
+          <div className={classNames.home} onClick={() => router.push('/')}>
             <HomeIcon />
             {t('Home')}
           </div>
-          <div className={style.linkWrapper}>
+          <div className={classNames.createPost}>
             <CreatePost />
           </div>
-          <div
-            style={router.pathname === RoutersPath.profile ? { color: '#397DF6' } : {}}
-            className={style.linkWrapper}
-            onClick={() => router.push(RoutersPath.profile)}
-          >
+          <div className={classNames.myProfile} onClick={() => router.push(RoutersPath.profile)}>
             <ProfileIcon />
             {t('MyProfile')}
           </div>
-          <div className={style.linkWrapper}>
+          <div className={classNames.messenger}>
             <MessengerIcon />
             {t('Messenger')}
           </div>
-          <div className={style.linkWrapper}>
+          <div className={classNames.search}>
             <SearchIcon />
             {t('Search')}
           </div>
@@ -106,7 +129,7 @@ export const SideBar = () => {
               theme={ButtonTheme.CLEAR}
             />
           </div>
-        </>
+        </div>
       )}
     </aside>
   )
