@@ -3,11 +3,12 @@ import React, { PropsWithChildren, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next/types'
 
+import { Navbar } from '../../../features/super-admin-user-management'
+
 import s from './admin-user-profile-layout.module.scss'
 
 import { UserProfileView } from '@/entities/admin'
-import { Navbar } from '@/features/user-management'
-import { getSelectedUserProfileData } from '@/features/user-management/lib/get-selected-user-profile-data'
+import { getSelectedUserProfileData } from '@/features/super-admin-user-profile/lib/get-selected-user-profile-data'
 import { Header } from '@/widgets/header'
 
 const AdminUserProfileLayout: NextPage<PropsWithChildren> = ({ children }) => {

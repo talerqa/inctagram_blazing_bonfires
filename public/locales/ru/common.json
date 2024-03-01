@@ -152,7 +152,9 @@
     "EndDateOfSubscription": "Дата окончания подписки",
     "Price": "Цена",
     "SubscriptionType": "Тип подписки",
-    "PaymentType": "Тип оплаты"
+    "PaymentType": "Тип оплаты",
+    "DateAdded": "Дата добавления",
+    "Subscription": "Подписка"
   },
   "Calendar": {
     "January": "Январь",
@@ -194,7 +196,8 @@
     "EndDateOfSubscription": "Дата окончания подписки",
     "Amount": "Цена, $",
     "SubscriptionType": "Тип подписки",
-    "PaymentType": "Тип выплаты"
+    "PaymentType": "Тип выплаты",
+    "PaymentMethod": "Тип выплаты"
   },
   "FollowersTable": {
     "UserID": "ID пользователя",

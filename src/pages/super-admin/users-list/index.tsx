@@ -7,12 +7,18 @@ import { useDispatch } from 'react-redux'
 
 import s from './users-lists.module.scss'
 
-import { UsersTableListWithPagination } from '@/entities/users-list-table-with-pagination/ui/users-table-list-with-pagination'
-import { UserBanModal, UserDeleteModal, UnbanUserModal } from '@/features/user-management'
+import { SortDirection } from '@/__generated__/graphql'
+import { AllSubscriptionPaymentsTable } from '@/features/all-subscription-payments-table-with-pagination/ui/all-subscription-payments-table/all-subscription-payments-table'
+import {
+  UnbanUserModal,
+  UserBanModal,
+  UserDeleteModal,
+} from '@/features/super-admin-user-management'
 import {
   setBlockStatus,
   setSearchParameter,
-} from '@/features/user-management/model/user-management-slice'
+} from '@/features/super-admin-user-management/model/user-management-slice'
+import { UsersTableListWithPagination } from '@/features/users-list-table-with-pagination/ui/users-table-list-with-pagination'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { Input, InputType, RadixSelect } from '@/shared/ui'

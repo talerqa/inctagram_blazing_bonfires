@@ -4,8 +4,9 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/user-management'
-import { ProfileFollowers } from '@/features/user-management/ui/profile-followers/profile-followers'
+import { ContentWrapper } from '../../../../../features/super-admin-user-management'
+
+import { ProfileFollowers } from '@/features/super-admin-user-profile/ui/profile-followers/profile-followers'
 import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

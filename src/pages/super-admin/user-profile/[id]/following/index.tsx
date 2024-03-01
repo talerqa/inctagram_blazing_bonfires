@@ -4,7 +4,8 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/user-management'
+import { ContentWrapper } from '../../../../../features/super-admin-user-management'
+
 import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

@@ -6,7 +6,7 @@ import { SortDirection, UserBlockStatus } from '@/__generated__/graphql'
 import {
   selectBlockStatus,
   selectSearchParameter,
-} from '@/features/user-management/model/user-management-slice'
+} from '@/features/super-admin-user-management/model/user-management-slice'
 import {
   selectPageNumber,
   selectPageSize,
