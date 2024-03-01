@@ -7,7 +7,7 @@ import { NewTable, TableSkeleton, TBody, TCell, TRow } from '../../../../../shar
 
 import { Subscription } from '@/__generated__/graphql'
 import { RoutersPath } from '@/shared/constants/paths'
-import { SortType, TableHeader } from '@/shared/ui/_table/table'
+import { SortType, TableHeader } from '@/shared/ui/table/table'
 import { capitalizeString, findDate } from '@/shared/utils'
 
 type ProfileFollowersTableType = {
