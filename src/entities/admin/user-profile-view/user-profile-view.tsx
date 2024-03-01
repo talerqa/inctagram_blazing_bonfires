@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { clsx } from 'clsx'
-import { prefix } from 'goober/prefixer'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
@@ -15,7 +15,7 @@ import { RoutersPath } from '@/shared/constants/paths'
 import { CircularLoader, Text } from '@/shared/ui'
 import { findDate } from '@/shared/utils/find-date'
 
-export const UserProfileView = ({ userName, profile, id }: Omit<User, '__typename'>) => {
+export const UserProfileView = ({ userName, profile, id }: User) => {
   const router = useRouter()
   const createdAtDate = findDate.formatToNumeric(profile.createdAt)
   const { t } = useTranslation('common', { keyPrefix: 'Profile' })
@@ -46,14 +46,9 @@ export const UserProfileView = ({ userName, profile, id }: Omit<User, '__typenam
           <Text as={'p'} size={'xl'} weight={'bold'} className={s.userName}>
             {userName}
           </Text>
-          <Text
-            onClick={() => router.push(`${RoutersPath.profile}/${id}`)}
-            as={'p'}
-            size={'small_link'}
-            className={s.profileLink}
-          >
+          <Link target="_blank" className={s.profileLink} href={`${RoutersPath.profile}/${id}`}>
             {profile.firstName} {profile.lastName}
-          </Text>
+          </Link>
         </div>
       </div>
       <div className={s.userIdAndCreationDate}>
