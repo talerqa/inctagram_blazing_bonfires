@@ -105,7 +105,6 @@ export const TableHeader: FC<
     'children'
   >
 > = ({ columns, onSort, sort, ...restProps }) => {
-  const { t } = useTranslation('common', { keyPrefix: 'UserListTable' })
   const handleSort = (key: string, sortable?: boolean) => () => {
     if (!onSort || !sortable) {
       return
@@ -132,7 +131,7 @@ export const TableHeader: FC<
           <THeader key={key} onClick={handleSort(key, sortable)}>
             <div className={s.titleAndSortIcon}>
               {title}
-              {!sort && (title === 'Profile link' || title === 'Date added') && <Sort />}
+              {!sort && sortable && <Sort />}
               {sort && sort.key === key && (
                 <span>{sort.direction === SortDirection.Asc ? <SortAsc /> : <SortDesc />}</span>
               )}

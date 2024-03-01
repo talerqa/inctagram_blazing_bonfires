@@ -51,6 +51,10 @@
   display: flex;
   align-items: center;
 
+  svg {
+    cursor: pointer;
+  }
+  
   :nth-child(1) {
     margin-left: 3px;
   }

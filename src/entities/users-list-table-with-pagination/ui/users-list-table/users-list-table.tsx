@@ -82,7 +82,12 @@ export const UsersListTable = ({
           {users.map(user => {
             return (
               <TRow key={user.id}>
-                <TCell>{user.id}</TCell>
+                <TCell>
+                  <div className={s.bannedIconWithUserIdContainer}>
+                    {user.userBan && <BannedIcon height={24} width={24} />}
+                    {user.id}
+                  </div>
+                </TCell>
                 <TCell>
                   {user.profile.firstName} {user.profile.lastName}
                 </TCell>
