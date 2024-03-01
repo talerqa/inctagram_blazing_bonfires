@@ -3,8 +3,8 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/user-management'
-import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
+import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -21,8 +21,8 @@ export async function getStaticPaths() {
 }
 
 const Followers = () => {
-  return <ContentWrapper>followers</ContentWrapper>
+  return <AdminUserProfileLayout>followers</AdminUserProfileLayout>
 }
 
-Followers.getLayout = getAdminOnlyHeaderLayout
+Followers.getLayout = getAdminLayout
 export default Followers

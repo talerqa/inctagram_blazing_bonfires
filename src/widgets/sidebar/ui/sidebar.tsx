@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -8,15 +8,17 @@ import style from './sidebar.module.scss'
 
 import CreatePost from '@/features/create-post'
 import { Logout } from '@/features/logout/ui/logout/logout'
+import {
+  HomeIcon,
+  MessengerIcon,
+  PaymentsIcon,
+  PostsIcon,
+  ProfileIcon,
+  SearchIcon,
+  StatisticsIcon,
+  UserIcon,
+} from '@/shared/assets/icons'
 import favoritesImage from '@/shared/assets/icons/side-bar/favorites.svg'
-import homeImage from '@/shared/assets/icons/side-bar/home.svg'
-import messengerImage from '@/shared/assets/icons/side-bar/messenger.svg'
-import myProfileImage from '@/shared/assets/icons/side-bar/my-profile.svg'
-import paymentsImage from '@/shared/assets/icons/side-bar/payments.svg'
-import postsImage from '@/shared/assets/icons/side-bar/posts.svg'
-import searchImage from '@/shared/assets/icons/side-bar/search.svg'
-import statisticsImage from '@/shared/assets/icons/side-bar/statistics.svg'
-import userListImage from '@/shared/assets/icons/side-bar/user-list.svg'
 import { RoutersPath } from '@/shared/constants/paths'
 import { ButtonTheme } from '@/shared/ui'
 
@@ -24,6 +26,7 @@ export const SideBar = () => {
   const { t } = useTranslation('common')
   const router = useRouter()
   const mainPath = router.pathname.split('/')
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <aside className={style.sideBarContainer}>
@@ -33,28 +36,28 @@ export const SideBar = () => {
             className={style.linkWrapper}
             onClick={() => router.push(RoutersPath.superAdminUsersList)}
           >
-            <Image src={userListImage} alt={''} />
+            <UserIcon />
             {t('UserList')}
           </div>
           <div
             className={style.linkWrapper}
             onClick={() => router.push(RoutersPath.superAdminStatistics)}
           >
-            <Image src={statisticsImage} alt={''} />
+            <StatisticsIcon />
             {t('Statistics')}
           </div>
           <div
             className={style.linkWrapper}
             onClick={() => router.push(RoutersPath.superAdminPaymentsList)}
           >
-            <Image src={paymentsImage} alt={''} />
+            <PaymentsIcon />
             {t('PaymentsList')}
           </div>
           <div
             className={`${style.linkWrapper} ${style.linkWrapperLast}`}
             onClick={() => router.push(RoutersPath.superAdminPostsList)}
           >
-            <Image src={postsImage} alt={''} />
+            <PostsIcon />
             {t('PostsList')}
           </div>
         </div>
@@ -65,7 +68,7 @@ export const SideBar = () => {
             className={style.linkWrapper}
             onClick={() => router.push('/')}
           >
-            <Image src={homeImage} alt={''} />
+            <HomeIcon />
             {t('Home')}
           </div>
           <div className={style.linkWrapper}>
@@ -76,19 +79,19 @@ export const SideBar = () => {
             className={style.linkWrapper}
             onClick={() => router.push(RoutersPath.profile)}
           >
-            <Image src={myProfileImage} alt={''} />
+            <ProfileIcon />
             {t('MyProfile')}
           </div>
           <div className={style.linkWrapper}>
-            <Image src={messengerImage} alt={''} />
+            <MessengerIcon />
             {t('Messenger')}
           </div>
           <div className={style.linkWrapper}>
-            <Image src={searchImage} alt={''} />
+            <SearchIcon />
             {t('Search')}
           </div>
           <div className={style.linkWrapper}>
-            <Image src={statisticsImage} alt={''} />
+            <StatisticsIcon />
             {t('Statistics')}
           </div>
           <div className={style.linkWrapper}>
@@ -96,7 +99,12 @@ export const SideBar = () => {
             {t('Favorites')}
           </div>
           <div className={style.linkWrapper}>
-            <Logout className={style.logoutBtn} theme={ButtonTheme.CLEAR} />
+            <Logout
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              className={style.logoutBtn}
+              theme={ButtonTheme.CLEAR}
+            />
           </div>
         </>
       )}
