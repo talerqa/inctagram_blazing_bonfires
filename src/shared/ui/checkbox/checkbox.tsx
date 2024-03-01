@@ -11,7 +11,7 @@ type Props = {
   disabled?: boolean
   error?: string
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  fullWidth: boolean
+  fullWidth?: boolean
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, Props>(
