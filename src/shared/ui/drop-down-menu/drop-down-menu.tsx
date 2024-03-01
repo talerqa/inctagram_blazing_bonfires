@@ -7,9 +7,16 @@ import s from './drop-down-menu.module.scss'
 export type DropDownMenuPropsType = {
   triggerIcon?: ReactNode
   children: ReactNode
+  side?: 'top' | 'right' | 'bottom' | 'left'
+  align?: 'start' | 'center' | 'end'
 }
 
-export const DropdownMenu = ({ triggerIcon, children }: DropDownMenuPropsType) => {
+export const DropdownMenu = ({
+  triggerIcon,
+  side = 'left',
+  align = 'start',
+  children,
+}: DropDownMenuPropsType) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -21,7 +28,13 @@ export const DropdownMenu = ({ triggerIcon, children }: DropDownMenuPropsType) =
       </RDropdownMenu.Trigger>
 
       <RDropdownMenu.Portal>
-        <RDropdownMenu.Content className={s.DropdownMenuContent} sideOffset={5} alignOffset={2}>
+        <RDropdownMenu.Content
+          side={side}
+          align={align}
+          className={s.DropdownMenuContent}
+          sideOffset={5}
+          alignOffset={2}
+        >
           {children}
         </RDropdownMenu.Content>
       </RDropdownMenu.Portal>

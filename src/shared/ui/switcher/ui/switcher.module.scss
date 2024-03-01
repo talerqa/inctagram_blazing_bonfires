@@ -1,3 +1,5 @@
+@import '@/shared/styles/media-queries';
+
 .select {
   position: relative;
   z-index: 3;
@@ -13,6 +15,10 @@
   border-radius: 0;
 
   .selectContent {
+    @include media-small {
+      border: none;
+    }
+
     cursor: pointer;
 
     display: flex;
@@ -30,12 +36,20 @@
       align-items: center;
 
       .description {
+        @include media-small {
+          display: none;
+        }
+
         margin-left: 10px;
       }
     }
   }
 
   .optionList {
+    @include media-small {
+      border: none;
+    }
+
     position: absolute;
 
     width: 100%;
@@ -50,6 +64,11 @@
       padding-bottom: 10px;
 
       .optionContent {
+        @include media-small {
+          justify-content: center;
+          padding-left: 0;
+        }
+
         display: flex;
         align-items: center;
         padding-left: 12px;
@@ -60,6 +79,10 @@
         }
 
         .description {
+          @include media-small {
+            display: none;
+          }
+
           margin-left: 10px;
         }
       }

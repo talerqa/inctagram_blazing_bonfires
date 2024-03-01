@@ -5,16 +5,6 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { useDispatch } from 'react-redux'
 
-import {
-  DropdownMenu,
-  NewTable,
-  TableSkeleton,
-  TBody,
-  TCell,
-  Text,
-  TRow,
-} from '../../../../shared/ui'
-
 import s from './users-list-table.module.scss'
 
 import { User } from '@/__generated__/graphql'
@@ -28,6 +18,7 @@ import { BannedIcon } from '@/shared/assets/icons'
 import DeleteUserIcon from '@/shared/assets/icons/delete-user/delete-user-icon'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'
 import { RoutersPath } from '@/shared/constants/paths'
+import { DropdownMenu, NewTable, TableSkeleton, TBody, TCell, Text, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
 
 type UsersListTableType = {

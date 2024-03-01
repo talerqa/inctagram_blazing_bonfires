@@ -8,11 +8,13 @@ import { authApi, devicesApi, profileApi, publicApi, subscriptionsApi } from '..
 import userManagementSlice from '@/features/user-management/model/user-management-slice'
 import adminAuthReducer from '@/pages/super-admin/modal/slices/admin-auth-reducer'
 import adminReducer from '@/pages/super-admin/modal/slices/admin-reducer'
+import { appReducer } from '@/shared/api/services/app/app.slice'
 import { authReducer } from '@/shared/api/services/auth/auth.slice'
 import { postsApi } from '@/shared/api/services/posts/posts.api'
 import generalInfoReducer from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
 
 const rootReducer = combineReducers({
+  app: appReducer,
   auth: authReducer,
   profileSetting: generalInfoReducer,
   admin: adminReducer,

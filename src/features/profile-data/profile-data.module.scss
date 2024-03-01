@@ -3,13 +3,16 @@
   margin-top: 40px;
 
   .avatarContainer {
-    overflow: hidden;
+    //overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 
     background-color: var(--color-dark-700);
-    border-radius: 50%;
+
+    & > img {
+      border-radius: 50%;
+    }
   }
 
   .profileInfoContainer {

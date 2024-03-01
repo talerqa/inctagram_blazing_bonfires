@@ -7,7 +7,7 @@ import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/adm
 import { useGetProfileFollowersQuery } from '@/shared/api/services/profile/profile.api'
 import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 import { CircularLoader } from '@/shared/ui'
-import { SortType } from '@/shared/ui/_table/table'
+import { SortType } from '@/shared/ui/table/table'
 
 export const ProfileFollowers = ({ userId }: { userId: number }) => {
   const dispatch = useDispatch()

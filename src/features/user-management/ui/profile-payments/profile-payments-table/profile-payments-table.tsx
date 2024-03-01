@@ -7,7 +7,7 @@ import s from './profile-payments-table.module.scss'
 import { Subscription } from '@/__generated__/graphql'
 import { RoutersPath } from '@/shared/constants/paths'
 import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
-import { SortType, TableHeader } from '@/shared/ui/_table/table'
+import { SortType, TableHeader } from '@/shared/ui/table/table'
 import { capitalizeString, findDate } from '@/shared/utils'
 
 type ProfilePaymentsTableType = {

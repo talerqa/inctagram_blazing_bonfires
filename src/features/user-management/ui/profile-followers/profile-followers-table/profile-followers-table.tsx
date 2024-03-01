@@ -2,12 +2,11 @@ import React from 'react'
 
 import Link from 'next/link'
 
-import s from '../../../../../entities/users-list-table-with-pagination/ui/users-list-table/users-list-table.module.scss'
-import { NewTable, TableSkeleton, TBody, TCell, TRow } from '../../../../../shared/ui'
-
 import { Subscription } from '@/__generated__/graphql'
+import s from '@/entities/users-list-table-with-pagination/ui/users-list-table/users-list-table.module.scss'
 import { RoutersPath } from '@/shared/constants/paths'
-import { SortType, TableHeader } from '@/shared/ui/_table/table'
+import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
+import { SortType, TableHeader } from '@/shared/ui/table/table'
 import { capitalizeString, findDate } from '@/shared/utils'
 
 type ProfileFollowersTableType = {

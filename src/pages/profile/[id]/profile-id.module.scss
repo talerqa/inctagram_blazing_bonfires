@@ -1,14 +1,13 @@
 @import '@/shared/styles/media-queries';
 
 .publicProfileWrapper {
-  margin: 24px auto 0;
   display: flex;
   justify-content: center;
   width: 100%;
+  margin: 3rem auto 0;
 }
 
 .contentWrapper {
-  gap: 36px;
 
   @include media-medium {
     max-width: 822px;
@@ -25,27 +24,22 @@
   @include media-extra-small {
     max-width: 441px;
   }
+
+  gap: 36px;
 }
 
 .publicProfileContainer {
-  display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
 }
 
-.profileContainer {
+.profileWrapper {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 48px;
 }
 
 .postsContainer {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-template-rows: auto;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
 
   @include media-large {
     gap: 10px;
@@ -67,4 +61,11 @@
   @include media-extra-small {
     gap: 3px;
   }
+
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: auto;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
 }

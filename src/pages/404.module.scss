@@ -1,17 +1,18 @@
 @import '@/shared/styles/media-queries';
 
 .wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  justify-items: center;
-  align-items: center;
-  padding: 100px;
 
   @include media-extra-small {
     padding: 10px;
   }
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  place-items: center center;
+
+  height: 100%;
+  padding: 100px;
 }
 
 .errorImage {
