@@ -1,3 +1,5 @@
+import { SubscriptionType } from '@/__generated__/graphql'
+
 export function formatDate(inputDate: string | number | Date, format: string) {
   const date = new Date(inputDate)
   const day = date.getDate().toString().padStart(2, '0') // День
@@ -9,4 +11,14 @@ export function formatDate(inputDate: string | number | Date, format: string) {
   format = format.replace('yyyy', year)
 
   return format
+}
+
+export function convertTimeUnitToDays(timeUnit: SubscriptionType) {
+  const mapTimeUnitToDays = {
+    DAY: '1 day',
+    WEEKLY: '7 days',
+    MONTHLY: '1 month',
+  }
+
+  return mapTimeUnitToDays[timeUnit]
 }
