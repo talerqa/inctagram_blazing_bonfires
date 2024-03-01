@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { clsx } from 'clsx'
+import { LinkProps } from 'next/link'
 
 import style from './text.module.scss'
 

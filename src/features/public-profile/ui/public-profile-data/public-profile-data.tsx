@@ -42,34 +42,36 @@ export const PublicProfileData = (props: PropsType) => {
           priority
         />
       </div>
-      <div className={style.profileInfoContainer}>
-        <ProfileFollowing
-          amountFollowing={212}
-          amountFollowers={212}
-          amountPublications={amountPost}
-        />
-      </div>
-      <div>
-        <Text as={'p'} size={'xxl'} weight={'bold'} className={style.userName}>
-          {userName}
-        </Text>
-      </div>
+      <div className={style.profileDataContainer}>
+        <div>
+          <Text as={'p'} size={'xxl'} weight={'bold'} className={style.userName}>
+            {userName}
+          </Text>
+        </div>
+        <div className={style.profileInfo}>
+          <ProfileFollowing
+            amountFollowing={212}
+            amountFollowers={212}
+            amountPublications={amountPost}
+          />
+        </div>
 
-      <div className={style.profileTitleContainer}>
-        <Text as={'p'} size={'regular'} weight={'regular'} className={style.fullText}>
-          {aboutMe ? fullText : ''}{' '}
-          {displayShowMore && (
-            <Text
-              onClick={() => setIsShowMoreActive(!isShowMoreActive)}
-              size={'link'}
-              color={'info'}
-              as={'span'}
-              className={style.showMore}
-            >
-              {isShowMoreActive ? 'Hide' : 'Show more'}
-            </Text>
-          )}
-        </Text>
+        <div className={style.profileTitleContainer}>
+          <Text as={'p'} size={'regular'} weight={'regular'} className={style.fullText}>
+            {aboutMe ? fullText : ''}{' '}
+            {displayShowMore && (
+              <Text
+                onClick={() => setIsShowMoreActive(!isShowMoreActive)}
+                size={'link'}
+                color={'info'}
+                as={'span'}
+                className={style.showMore}
+              >
+                {isShowMoreActive ? 'Hide' : 'Show more'}
+              </Text>
+            )}
+          </Text>
+        </div>
       </div>
     </div>
   )

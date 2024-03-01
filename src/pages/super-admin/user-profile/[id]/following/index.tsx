@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/user-management'
-import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
+import { ProfileFollowing } from '@/entities/profile-following'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
+import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -22,15 +22,8 @@ export async function getStaticPaths() {
 }
 
 const Following = () => {
-  const router = useRouter()
-
-  return (
-    <ContentWrapper>
-      following
-      {/*<ProfileFollowers userId={Number(router.query.id)} />*/}
-    </ContentWrapper>
-  )
+  return <AdminUserProfileLayout>followings</AdminUserProfileLayout>
 }
 
-Following.getLayout = getAdminOnlyHeaderLayout
+Following.getLayout = getAdminLayout
 export default Following

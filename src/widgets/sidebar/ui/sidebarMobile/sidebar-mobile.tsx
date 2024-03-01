@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { clsx } from 'clsx'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import style from './sidebar.module.scss'
+import style from './sidebar-mobile.module.scss'
 
 import CreatePost from '@/features/create-post'
-import { Logout } from '@/features/logout/ui/logout/logout'
 import {
   HomeIcon,
   MessengerIcon,
@@ -17,16 +15,13 @@ import {
   ProfileIcon,
   SearchIcon,
   StatisticsIcon,
+  UserIcon,
 } from '@/shared/assets/icons'
-import favoritesImage from '@/shared/assets/icons/side-bar/favorites.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { ButtonTheme } from '@/shared/ui'
 
-export const SideBar = () => {
-  const { t } = useTranslation('common')
+export const SidebarMobile = () => {
   const router = useRouter()
   const mainPath = router.pathname.split('/')
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const classNames = {
     myProfile: clsx(
@@ -68,68 +63,44 @@ export const SideBar = () => {
             onClick={() => router.push(RoutersPath.superAdminUsersList)}
           >
             <ProfileIcon />
-            {t('UserList')}
           </div>
           <div
             className={classNames.statistics}
             onClick={() => router.push(RoutersPath.superAdminStatistics)}
           >
             <StatisticsIcon />
-            {t('Statistics')}
           </div>
           <div
             className={classNames.payments}
             onClick={() => router.push(RoutersPath.superAdminPaymentsList)}
           >
             <PaymentsIcon />
-            {t('PaymentsList')}
           </div>
           <div
             className={classNames.posts}
             onClick={() => router.push(RoutersPath.superAdminPostsList)}
           >
             <PostsIcon />
-            {t('PostsList')}
           </div>
         </div>
       ) : (
-        <div className={style.publicContainer}>
+        <>
           <div className={classNames.home} onClick={() => router.push('/')}>
             <HomeIcon />
-            {t('Home')}
           </div>
           <div className={classNames.createPost}>
             <CreatePost />
           </div>
-          <div className={classNames.myProfile} onClick={() => router.push(RoutersPath.profile)}>
-            <ProfileIcon />
-            {t('MyProfile')}
-          </div>
           <div className={classNames.messenger}>
             <MessengerIcon />
-            {t('Messenger')}
           </div>
           <div className={classNames.search}>
             <SearchIcon />
-            {t('Search')}
           </div>
-          <div className={style.linkWrapper}>
-            <StatisticsIcon />
-            {t('Statistics')}
+          <div className={classNames.myProfile} onClick={() => router.push(RoutersPath.profile)}>
+            <ProfileIcon />
           </div>
-          <div className={style.linkWrapper}>
-            <Image src={favoritesImage} alt={''} />
-            {t('Favorites')}
-          </div>
-          <div className={style.linkWrapper}>
-            <Logout
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-              className={style.logoutBtn}
-              theme={ButtonTheme.CLEAR}
-            />
-          </div>
-        </div>
+        </>
       )}
     </aside>
   )

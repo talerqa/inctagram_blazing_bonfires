@@ -4,9 +4,9 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/user-management'
 import { ProfileFollowers } from '@/features/user-management/ui/profile-followers/profile-followers'
-import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
+import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -26,11 +26,11 @@ const Followers = () => {
   const router = useRouter()
 
   return (
-    <ContentWrapper>
+    <AdminUserProfileLayout>
       <ProfileFollowers userId={Number(router.query.id)} />
-    </ContentWrapper>
+    </AdminUserProfileLayout>
   )
 }
 
-Followers.getLayout = getAdminOnlyHeaderLayout
+Followers.getLayout = getAdminLayout
 export default Followers

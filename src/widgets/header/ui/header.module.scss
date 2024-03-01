@@ -1,4 +1,10 @@
+@import '@/shared/styles/media-queries';
+
 .header {
+  @include media-extra-small {
+    padding: 0 1rem;
+  }
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,6 +39,10 @@
     align-items: center;
 
     .ball {
+      @include media-extra-small {
+        margin-right: 0;
+      }
+
       cursor: pointer;
       display: flex;
       margin-right: 40px;
@@ -57,7 +67,7 @@
   }
 
   .langSwitcherContainer {
-    width: 163px;
+    width: 100%;
     height: 36px;
   }
 }

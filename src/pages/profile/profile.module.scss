@@ -1,21 +1,11 @@
-.rootContainer {
-  display: flex;
-}
-
 .profileContainer {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  max-width: 972px;
-  margin: 0 auto;
-
   .photosContainer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
 
-    margin-top: 60px;
+    margin-top: 3rem;
   }
 }
 
@@ -23,6 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: space-evenly;
 }
 
 .photo {
