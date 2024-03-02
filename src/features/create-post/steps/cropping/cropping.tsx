@@ -23,7 +23,7 @@ import { Button, ButtonTheme } from '@/shared/ui'
 export const Cropping = () => {
   const cropContext = useImageCropContext()
 
-  console.log(cropContext, 'cropContext')
+  console.log(cropContext.photos, 'cropContext.photos in cropping step')
   const { currentIndex, prevSlide, nextSlide, setCurrentIndex } = useSlider(
     cropContext.photos.length
   )

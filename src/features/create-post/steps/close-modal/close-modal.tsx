@@ -25,58 +25,52 @@ export const CloseModal = ({ cropContext }: Props) => {
     cropContext.resetData()
     cropContext.setIsOpenModal(false)
     cropContext.setIsOpen(false)
+    // localStorage.removeItem('uploadedImages') todo
     goToStep(0)
   }
-
   const handleClose = () => {
     cropContext.setIsOpenModal(false)
   }
-  const handleSave = async () => {
-    console.log('we  are in handleSave')
-    const formData = new FormData()
+  // const handleSave = async () => {
+  //   console.log('we  are in handleSave cropContext', cropContext)
+  //   const formData = new FormData()
+  //
+  //   // преобразование url всех изображений в file
+  //   for (const photo of cropContext.photos) {
+  //     const result = await fetch(photo.filteredUrl)
+  //
+  //     const blob = await result.blob()
+  //     const file = new File([blob], 'image', { type: 'image/jpeg' })
+  //
+  //     // Добавление file в FormData
+  //     formData.append('file', file)
+  //     console.log(formData, 'fileFormData')
+  //   }
 
-    console.log(formData, 'formData')
-    // преобразование url всех изображений в file
-    for (const photo of cropContext.photos) {
-      const result = await fetch(photo.filteredUrl)
-
-      const blob = await result.blob()
-      const file = new File([blob], 'image', { type: 'image/jpeg' })
-
-      // Добавление file в FormData
-      formData.append('file', file)
-      console.log(formData, 'fileFormData')
-      try {
-        localStorage.setItem('uploadedImages', JSON.stringify(formData))
-      } catch (e) {
-        console.log('baaaaad')
-      } finally {
-        console.log('gooood')
-        goToStep(0)
-        cropContext.resetData()
-        cropContext.setIsOpenModal(false)
-        cropContext.setIsOpen(false)
-      }
-    }
-
-    // uploadImage(formData)
-    //   .unwrap()
-    //   .then(res => {
-    //     const uploadedImages = res.images
-    //     const filteredPhoto = filterBestQualityImages(uploadedImages)
-    //
-    //     console.log(filteredPhoto, 'filteredPhoto')
-    //
-    //     console.log('we  are in uploadImages then')
-    //     localStorage.setItem('uploadedImages', JSON.stringify(filteredPhoto))
-    //     cropContext.setIsOpenModal(false)
-    //     cropContext.setIsOpen(false)
-    //   })
-    //   .catch(error => {
-    //     console.log('we  are in uploadImages catch')
-    //     toast.error(error.data.messages)
-    //   })
-    // goToStep(0)
+  // uploadImage(formData)
+  //   .unwrap()
+  //   .then(res => {
+  //     const uploadedImages = res.images
+  //     const filteredPhoto = filterBestQualityImages(uploadedImages)
+  //
+  //     console.log(filteredPhoto, 'filteredPhoto')
+  //
+  //     console.log('we  are in uploadImages then')
+  //     localStorage.setItem('uploadedImages', JSON.stringify(filteredPhoto))
+  //     cropContext.setIsOpenModal(false)
+  //     cropContext.setIsOpen(false)
+  //   })
+  //   .catch(error => {
+  //     console.log('we  are in uploadImages catch')
+  //     toast.error(error.data.messages)
+  //   })
+  // goToStep(0)
+  const handleSave = () => {
+    localStorage.setItem('uploadedImages', JSON.stringify(cropContext.photos))
+    cropContext.resetData()
+    cropContext.setIsOpenModal(false)
+    cropContext.setIsOpen(false)
+    goToStep(0)
   }
 
   return (
