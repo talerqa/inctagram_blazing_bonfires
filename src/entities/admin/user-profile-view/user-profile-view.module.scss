@@ -18,7 +18,6 @@
     margin-bottom: 1rem;
 
     .avatar {
-      margin-bottom: 6px;
       border-radius: 50%;
 
       svg {
@@ -29,6 +28,7 @@
 
     .profileLink {
       cursor: pointer;
+      color: white;
     }
 
     .withoutAvatarImg {

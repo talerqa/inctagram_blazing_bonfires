@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -15,9 +15,19 @@ type Props = {
   className?: string
   theme?: ButtonTheme
   size?: ButtonSize
+  isModalOpen: boolean
+  setIsModalOpen: (modalOpen: boolean) => void
+  hidden?: boolean
 }
 
-export const Logout = ({ className, theme, size }: Props) => {
+export const Logout = ({
+  className,
+  theme,
+  size,
+  isModalOpen,
+  setIsModalOpen,
+  hidden = false,
+}: Props) => {
   const {
     t,
     i18n: { t: tRoot },
@@ -27,7 +37,7 @@ export const Logout = ({ className, theme, size }: Props) => {
   const [logout, { isLoading }] = useLogoutMutation()
   const { data: userData } = useMeQuery()
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  // const [isModalOpen, setIsModalOpen] = useState(isModalOpen)
 
   const logoutApiHandler = () => {
     logout()
@@ -55,7 +65,7 @@ export const Logout = ({ className, theme, size }: Props) => {
   return (
     <>
       <Button
-        className={`${style.logoutButton} ${className}`}
+        className={`${style.logoutButton} ${className} ${hidden ? style.hidden : ''}`}
         theme={theme}
         size={size}
         onClick={openModal}

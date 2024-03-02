@@ -1,19 +1,11 @@
 import React from 'react'
 
-import { useQuery } from '@apollo/client'
-import { useTranslation } from 'next-i18next'
 import { useDispatch } from 'react-redux'
 
 import { getPaymentsColumnHeaders } from './constants'
 
 import { getUserPaymentsData } from '@/features/super-admin-user-profile/lib/get-payments-table-data'
 import { ProfilePaymentsTable } from '@/features/super-admin-user-profile/ui/profile-payments/profile-payments-table/profile-payments-table'
-import { UsersListTable } from '@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table'
-import {
-  GET_USER_PAYMENTS,
-  GET_USERS_LIST,
-} from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
-import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { GetUserVariablesType, useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 import { CircularLoader, Pagination } from '@/shared/ui'

@@ -9,11 +9,13 @@ import userManagementSlice from '@/features/super-admin-user-management/model/us
 import superAdminUserProfileSlice from '@/features/super-admin-user-profile/model/super-admin-user-profile.slice'
 import adminAuthReducer from '@/pages/super-admin/modal/slices/admin-auth-reducer'
 import adminReducer from '@/pages/super-admin/modal/slices/admin-reducer'
+import { appReducer } from '@/shared/api/services/app/app.slice'
 import { authReducer } from '@/shared/api/services/auth/auth.slice'
 import { postsApi } from '@/shared/api/services/posts/posts.api'
 import generalInfoReducer from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
 
 const rootReducer = combineReducers({
+  app: appReducer,
   auth: authReducer,
   adminUserProfile: superAdminUserProfileSlice,
   profileSetting: generalInfoReducer,

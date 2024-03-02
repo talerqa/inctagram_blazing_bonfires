@@ -20,9 +20,7 @@ export const CloseModal = ({ cropContext }: Props) => {
   const [uploadImage, { isLoading }] = useUploadImageMutation()
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
   const handleDiscard = () => {
-    cropContext.resetData()
     cropContext.setIsOpenModal(false)
-    cropContext.setIsOpen(false)
   }
   const handleSave = async () => {
     const formData = new FormData()
@@ -65,7 +63,7 @@ export const CloseModal = ({ cropContext }: Props) => {
             style={{ cursor: 'pointer' }}
             src={closeIcon}
             alt={''}
-            onClick={() => handleDiscard()}
+            onClick={handleDiscard}
           />
         }
       >
@@ -79,7 +77,6 @@ export const CloseModal = ({ cropContext }: Props) => {
               {t('Discard')}
             </Button>
             <Button className={style.button} onClick={handleSave}>
-              {' '}
               {t('SaveDraft')}
             </Button>
           </div>

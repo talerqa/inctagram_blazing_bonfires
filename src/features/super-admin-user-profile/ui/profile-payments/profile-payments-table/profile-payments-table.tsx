@@ -1,11 +1,7 @@
 import React from 'react'
 
-import Link from 'next/link'
-
-import s from './profile-payments-table.module.scss'
-
-import { Subscription } from '@/__generated__/graphql'
-import { RoutersPath } from '@/shared/constants/paths'
+import { Subscription, SubscriptionType } from '@/__generated__/graphql'
+import { convertTimeUnitToDays } from '@/shared/libs/format-dates/format-dates'
 import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
 import { capitalizeString, findDate } from '@/shared/utils'
@@ -35,15 +31,8 @@ export const ProfilePaymentsTable = ({
             <TRow key={item.id}>
               <TCell>{findDate.formatToNumeric(item.dateOfPayment)}</TCell>
               <TCell>{findDate.formatToNumeric(item.endDate)}</TCell>
-              <TCell>
-                <Link
-                  className={s.profileLink}
-                  href={RoutersPath.superAdminUserProfile + '/' + item.id}
-                >
-                  {item.price}
-                </Link>
-              </TCell>
-              <TCell>{item.type}</TCell>
+              <TCell>{item.price}</TCell>
+              <TCell>{convertTimeUnitToDays(item.type)}</TCell>
               <TCell>{capitalizeString(item.paymentType)}</TCell>
             </TRow>
           )

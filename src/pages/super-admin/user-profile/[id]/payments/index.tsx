@@ -2,10 +2,9 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ContentWrapper } from '@/features/super-admin-user-management'
 import { ProfilePayments } from '@/features/super-admin-user-profile/ui/profile-payments/profile-payments'
-import ProfilePostsImages from '@/features/super-admin-user-profile/ui/profile-posts-images/profile-posts-images'
-import { getAdminOnlyHeaderLayout } from '@/shared/layouts'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
+import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -25,11 +24,11 @@ const Payments = () => {
   const router = useRouter()
 
   return (
-    <ContentWrapper>
+    <AdminUserProfileLayout>
       <ProfilePayments userId={Number(router.query.id)} />
-    </ContentWrapper>
+    </AdminUserProfileLayout>
   )
 }
 
-Payments.getLayout = getAdminOnlyHeaderLayout
+Payments.getLayout = getAdminLayout
 export default Payments
