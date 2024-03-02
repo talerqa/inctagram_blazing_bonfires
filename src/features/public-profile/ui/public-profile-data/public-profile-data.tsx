@@ -3,10 +3,9 @@ import React from 'react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
 
-import { ProfileFollowing } from '../../../../entities/profile-following'
-
 import style from './public-profile-data.module.scss'
 
+import { ProfileFollowing } from '@/entities/profile-following'
 import { PublicProfileType } from '@/shared/api/services/public/public.api.types'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'

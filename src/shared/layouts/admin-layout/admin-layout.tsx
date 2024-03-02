@@ -40,6 +40,7 @@ const AdminLayout: NextPage<PropsWithChildren> = ({ children }) => {
       s.superAdminRightSideBody,
       router.pathname === RoutersPath.superAdminUsersList ? s.fullWidth : ''
     ),
+    adminRightSideBodyContainer: clsx(s.adminRightSideBodyContainer, s.fullWidth),
   }
 
   return (
@@ -47,7 +48,7 @@ const AdminLayout: NextPage<PropsWithChildren> = ({ children }) => {
       <Header />
       <div className={s.AdminLayoutBody}>
         {showSidebar && !isMobile && <SideBar />}
-        <div className={s.adminRightSideBodyContainer}>
+        <div className={classNames.adminRightSideBodyContainer}>
           <main className={classNames.superAdminRightSideBody}>{children}</main>
         </div>
         {showSidebar && isMobile && <SidebarMobile />}
