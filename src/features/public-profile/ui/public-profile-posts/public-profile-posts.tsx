@@ -14,6 +14,8 @@ export const PublicProfilePosts = (post: PostResponseType) => {
   const togglePostModal = () => setIsPostActive(prevState => !prevState)
   const notImageClass = clsx(style.postImage, !post.images[0]?.url && style.postNotImage)
 
+  console.log(post.images)
+
   return (
     <div className={style.post}>
       <Image
