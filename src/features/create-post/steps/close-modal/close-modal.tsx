@@ -27,6 +27,10 @@ export const CloseModal = ({ cropContext }: Props) => {
     cropContext.setIsOpen(false)
     goToStep(0)
   }
+
+  const handleClose = () => {
+    cropContext.setIsOpenModal(false)
+  }
   const handleSave = async () => {
     console.log('we  are in handleSave')
     const formData = new FormData()
@@ -83,12 +87,7 @@ export const CloseModal = ({ cropContext }: Props) => {
         title={t('Close')}
         setIsOpen={() => cropContext.setIsOpenModal(false)}
         right={
-          <NextImage
-            style={{ cursor: 'pointer' }}
-            src={closeIcon}
-            alt={''}
-            onClick={handleDiscard}
-          />
+          <NextImage style={{ cursor: 'pointer' }} src={closeIcon} alt={''} onClick={handleClose} />
         }
       >
         <div className={style.modalWrapper}>
