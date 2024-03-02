@@ -8,6 +8,7 @@ import { useWizard } from 'react-use-wizard'
 import style from './publication.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
+import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { ImagePublication } from '@/features/create-post/steps/image-publication/image-publication'
 import { SavedImage } from '@/features/create-post/steps/savedImage/saved-image'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
@@ -105,7 +106,8 @@ export const Publication = () => {
       <NewPostModal
         isOpen={isOpen}
         title={t('Publication')}
-        setIsOpen={setIsOpen}
+        // setIsOpen={setIsOpen}
+        setIsOpen={() => cropContext.setIsOpenModal(true)}
         left={
           <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
         }
@@ -163,6 +165,7 @@ export const Publication = () => {
           </div>
         </div>
       </NewPostModal>
+      {cropContext.isOpenModal && <CloseModal cropContext={cropContext} />}
     </>
   )
 }

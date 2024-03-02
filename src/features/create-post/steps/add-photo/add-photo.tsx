@@ -8,6 +8,7 @@ import { useWizard } from 'react-use-wizard'
 import styles from './add-photo.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
+import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { Publication } from '@/features/create-post/steps/publication/publication'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
@@ -16,6 +17,8 @@ import closeIcon from '@/shared/assets/icons/logout/close.svg'
 import { Button } from '@/shared/ui'
 
 export const AddPhoto = () => {
+  console.log('RenderAddPhoto')
+  const cropContext = useImageCropContext()
   const { nextStep } = useWizard()
   const { setPhotoList, isOpen, setIsOpen, setIsSelectFromComputerOpen } = useImageCropContext()
 
@@ -24,18 +27,19 @@ export const AddPhoto = () => {
   const [isPublicationOpen, setIsPublicationOpen] = useState(false)
   const [savedImage, setSavedImage] = useState<ImageDataType[]>([])
 
+  console.log(savedImage, 'savedImage')
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
-  useEffect(() => {
-    if (typeof localStorage !== 'undefined') {
-      const savedImagesString = localStorage.getItem('uploadedImages')
-      const savedImages = savedImagesString ? JSON.parse(savedImagesString) : null
-
-      if (savedImages) {
-        setSavedImage(savedImages)
-      }
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (typeof localStorage !== 'undefined') {
+  //     const savedImagesString = localStorage.getItem('uploadedImages')
+  //     const savedImages = savedImagesString ? JSON.parse(savedImagesString) : null
+  //
+  //     if (savedImages) {
+  //       setSavedImage(savedImages)
+  //     }
+  //   }
+  // }, [])
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files

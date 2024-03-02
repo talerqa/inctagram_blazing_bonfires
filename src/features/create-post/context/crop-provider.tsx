@@ -182,7 +182,7 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       })
   }
   // оригинальное соотношение сторон
-  const originalAspect = photos[0].width / photos[0].height
+  const originalAspect = photos[0]?.width / photos[0]?.height
 
   // запись в массив обрезанной фотографии
   const setCroppedUrl = (croppedUrl: string, index: number) => {
@@ -246,6 +246,8 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       filter: CanvasFilters.NONE,
     }))
 
+    // const resetPhotos: React.SetStateAction<PhotoType[]> = []
+    console.log('resetPhotos')
     setPhotos(resetPhotos)
   }
 

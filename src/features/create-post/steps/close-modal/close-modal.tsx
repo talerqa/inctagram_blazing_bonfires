@@ -3,6 +3,7 @@ import React from 'react'
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { toast } from 'react-hot-toast'
+import { useWizard } from 'react-use-wizard'
 
 import style from './close-modal.module.scss'
 
@@ -17,14 +18,20 @@ type Props = {
   cropContext: CropContextType
 }
 export const CloseModal = ({ cropContext }: Props) => {
-  const [uploadImage, { isLoading }] = useUploadImageMutation()
+  // const [uploadImage, { isLoading }] = useUploadImageMutation()
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
+  const { goToStep } = useWizard()
   const handleDiscard = () => {
+    cropContext.resetData()
     cropContext.setIsOpenModal(false)
+    cropContext.setIsOpen(false)
+    goToStep(0)
   }
   const handleSave = async () => {
+    console.log('we  are in handleSave')
     const formData = new FormData()
 
+    console.log(formData, 'formData')
     // преобразование url всех изображений в file
     for (const photo of cropContext.photos) {
       const result = await fetch(photo.filteredUrl)
@@ -34,26 +41,43 @@ export const CloseModal = ({ cropContext }: Props) => {
 
       // Добавление file в FormData
       formData.append('file', file)
-    }
-
-    uploadImage(formData)
-      .unwrap()
-      .then(res => {
-        const uploadedImages = res.images
-        const filteredPhoto = filterBestQualityImages(uploadedImages)
-
-        localStorage.setItem('uploadedImages', JSON.stringify(filteredPhoto))
+      console.log(formData, 'fileFormData')
+      try {
+        localStorage.setItem('uploadedImages', JSON.stringify(formData))
+      } catch (e) {
+        console.log('baaaaad')
+      } finally {
+        console.log('gooood')
+        goToStep(0)
+        cropContext.resetData()
         cropContext.setIsOpenModal(false)
         cropContext.setIsOpen(false)
-      })
-      .catch(error => {
-        toast.error(error.data.messages)
-      })
+      }
+    }
+
+    // uploadImage(formData)
+    //   .unwrap()
+    //   .then(res => {
+    //     const uploadedImages = res.images
+    //     const filteredPhoto = filterBestQualityImages(uploadedImages)
+    //
+    //     console.log(filteredPhoto, 'filteredPhoto')
+    //
+    //     console.log('we  are in uploadImages then')
+    //     localStorage.setItem('uploadedImages', JSON.stringify(filteredPhoto))
+    //     cropContext.setIsOpenModal(false)
+    //     cropContext.setIsOpen(false)
+    //   })
+    //   .catch(error => {
+    //     console.log('we  are in uploadImages catch')
+    //     toast.error(error.data.messages)
+    //   })
+    // goToStep(0)
   }
 
   return (
     <>
-      {isLoading && <LinearLoader />}
+      {/*{isLoading && <LinearLoader />}*/}
       <NewPostModal
         isOpen={cropContext.isOpenModal}
         title={t('Close')}

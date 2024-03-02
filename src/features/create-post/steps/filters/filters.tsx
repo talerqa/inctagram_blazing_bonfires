@@ -21,6 +21,8 @@ import { Button, ButtonTheme } from '@/shared/ui'
 export const Filters = () => {
   const { nextStep, previousStep } = useWizard()
   const cropContext = useImageCropContext()
+
+  console.log(cropContext.isOpenModal, 'cropContext.isOpenModal')
   const { currentIndex, prevSlide, nextSlide } = useSlider(cropContext.photos.length)
   const setFilter = cropContext.setFilter(currentIndex)
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })

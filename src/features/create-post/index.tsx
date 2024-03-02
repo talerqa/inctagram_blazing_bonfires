@@ -11,7 +11,7 @@ import { Publication } from '@/features/create-post/steps/publication/publicatio
 const CreatePost = () => {
   return (
     <CropProvider>
-      <Wizard>
+      <Wizard startIndex={0}>
         <AddPhoto />
         <Cropping />
         <Filters />
