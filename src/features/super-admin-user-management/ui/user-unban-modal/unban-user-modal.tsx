@@ -15,7 +15,7 @@ import {
   selectUnbanModalOpenStatus,
   setBanModalOpenStatus,
   setUnbanModalOpenStatus,
-} from '@/features/user-management/model/user-management-slice'
+} from '@/features/super-admin-user-management/model/user-management-slice'
 import { UNBAN_USER } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import closeIcon from '@/shared/assets/icons/icons/close-icon.svg'

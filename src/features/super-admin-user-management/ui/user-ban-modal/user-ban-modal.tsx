@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import s from './user-ban-modal.module.scss'
 
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
-import { useBanUserMutation } from '@/features/user-management/lib/handle-user-ban'
+import { useBanUserMutation } from '@/features/super-admin-user-management/lib/handle-user-ban'
 import {
   selectBanModalOpenStatus,
   selectSelectedUser,
   selectUserBlockReason,
   setBanModalOpenStatus,
   setUsersBlockReason,
-} from '@/features/user-management/model/user-management-slice'
+} from '@/features/super-admin-user-management/model/user-management-slice'
 import closeIcon from '@/shared/assets/icons/icons/close-icon.svg'
 import { Button, ButtonTheme, Input, InputType, RadixSelect, Text } from '@/shared/ui'
 

@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import { useSelector } from 'react-redux'
 
 import { User } from '@/__generated__/graphql'
-import { selectSelectedUser } from '@/features/user-management/model/user-management-slice'
+import { selectSelectedUser } from '@/features/super-admin-user-management/model/user-management-slice'
 import {
   DELETE_USER,
   GET_USERS_LIST,

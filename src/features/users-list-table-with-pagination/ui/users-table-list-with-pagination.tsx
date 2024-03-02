@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 
-import { UsersListTable } from '@/entities/users-list-table-with-pagination/ui/users-list-table/users-list-table'
+import { UsersListTable } from '@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table'
 import { GET_USERS_LIST } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'

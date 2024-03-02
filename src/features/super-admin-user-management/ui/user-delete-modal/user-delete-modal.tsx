@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import s from './user-delete-modal.module.scss'
 
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
-import { useDeleteUserMutation } from '@/features/user-management/lib/handle-user-delete'
+import { useDeleteUserMutation } from '@/features/super-admin-user-management/lib/handle-user-delete'
 import {
   selectDeleteModalOpenStatus,
   selectSelectedUser,
   setDeleteModalOpenStatus,
-} from '@/features/user-management/model/user-management-slice'
+} from '@/features/super-admin-user-management/model/user-management-slice'
 import closeIcon from '@/shared/assets/icons/icons/close-icon.svg'
 import { Button, ButtonTheme, Text } from '@/shared/ui'
 

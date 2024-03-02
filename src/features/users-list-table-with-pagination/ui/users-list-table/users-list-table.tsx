@@ -13,7 +13,7 @@ import {
   setDeleteModalOpenStatus,
   setSelectedUser,
   setUnbanModalOpenStatus,
-} from '@/features/user-management/model/user-management-slice'
+} from '@/features/super-admin-user-management/model/user-management-slice'
 import { BannedIcon } from '@/shared/assets/icons'
 import DeleteUserIcon from '@/shared/assets/icons/delete-user/delete-user-icon'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'

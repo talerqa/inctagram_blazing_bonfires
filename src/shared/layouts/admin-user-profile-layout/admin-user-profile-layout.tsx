@@ -6,8 +6,8 @@ import { NextPage } from 'next/types'
 import s from './admin-user-profile-layout.module.scss'
 
 import { UserProfileView } from '@/entities/admin'
-import { Navbar } from '@/features/user-management'
-import { getSelectedUserProfileData } from '@/features/user-management/lib/get-selected-user-profile-data'
+import { Navbar } from '@/features/super-admin-user-management'
+import { getSelectedUserProfileData } from '@/features/super-admin-user-profile/lib/get-selected-user-profile-data'
 
 export const AdminUserProfileLayout: NextPage<PropsWithChildren> = ({ children }) => {
   const router = useRouter()

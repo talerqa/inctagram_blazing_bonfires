@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { getUserFollowersColumns } from '@/features/user-management/ui/profile-followers/constants'
+import { getUserFollowersColumns } from '@/features/super-admin-user-profile/ui/profile-followers/constants'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { useGetProfileFollowersQuery } from '@/shared/api/services/profile/profile.api'
 import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'

@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 
-export function getPaymentsColumns() {
+export function getPaymentsColumnHeaders() {
   const { t } = useTranslation('common', { keyPrefix: 'PaymentsTable' })
   const columns = [
     {

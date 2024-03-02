@@ -1,10 +1,8 @@
-import React from 'react'
-
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import ProfilePostsImages from '@/features/user-management/ui/profile-posts-images/profile-posts-images'
+import ProfilePostsImages from '@/features/super-admin-user-profile/ui/profile-posts-images/profile-posts-images'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { AdminUserProfileLayout } from '@/shared/layouts/admin-user-profile-layout/admin-user-profile-layout'
 

@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { Subscription } from '@/__generated__/graphql'
-import s from '@/entities/users-list-table-with-pagination/ui/users-list-table/users-list-table.module.scss'
+import s from '@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table.module.scss'
 import { RoutersPath } from '@/shared/constants/paths'
 import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
