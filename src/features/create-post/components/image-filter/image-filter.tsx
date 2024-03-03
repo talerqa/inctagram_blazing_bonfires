@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useRef, RefObject} from 'react'
 
 import PropTypes from 'prop-types'
 
@@ -112,6 +112,8 @@ function ImageFilter({
   const [id] = useState(`${new Date().getTime()}${Math.random()}`.replace('.', ''))
   const [filterMatrix, setFilterMatrix] = useState(NONE)
 
+  const imageRef: RefObject<HTMLDivElement> = useRef(null);
+
   useEffect(() => {
     const getMatrix = (props, triggerCallback = false) => {
       let newFilter = props.filter
@@ -210,6 +212,10 @@ function ImageFilter({
       const filteredImageBase64 = canvas.toDataURL('image/png')
 
       onChange(filteredImageBase64)
+
+      if(imageRef.current) {
+        imageRef.current.focus()
+      }
     }
   }, [image, filterMatrix])
 
@@ -218,6 +224,8 @@ function ImageFilter({
       {...otherProps}
       className={`ImageFilter ${className}`}
       style={{ ...WRAPPER_STYLE, ...style }}
+      tabIndex={0}
+      ref={imageRef}
     >
       {renderImage && (
         <img
