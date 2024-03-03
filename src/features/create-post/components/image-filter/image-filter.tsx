@@ -108,6 +108,7 @@ function ImageFilter({
   colorOne,
   colorTwo,
   onChange,
+  tabIndexFlag,
 }) {
   const [id] = useState(`${new Date().getTime()}${Math.random()}`.replace('.', ''))
   const [filterMatrix, setFilterMatrix] = useState(NONE)
@@ -224,7 +225,7 @@ function ImageFilter({
       {...otherProps}
       className={`ImageFilter ${className}`}
       style={{ ...WRAPPER_STYLE, ...style }}
-      tabIndex={0}
+      tabIndex={tabIndexFlag ? 0 : -1}
       ref={imageRef}
     >
       {renderImage && (
