@@ -221,6 +221,7 @@ export const GeneralInfo = () => {
                       error={(errors as FieldErrors<ProfileUserType>).userName?.message}
                       classNameWrap={styles.myCustomLabel}
                       value={value ?? ''}
+                      required
                       {...args}
                     />
                   )}
@@ -236,6 +237,7 @@ export const GeneralInfo = () => {
                       error={(errors as FieldErrors<ProfileUserType>).firstName?.message}
                       classNameWrap={styles.myCustomLabel}
                       value={value ?? ''}
+                      required
                       {...args}
                     />
                   )}
@@ -251,6 +253,7 @@ export const GeneralInfo = () => {
                       error={(errors as FieldErrors<ProfileUserType>).lastName?.message}
                       classNameWrap={styles.myCustomLabel}
                       value={value ?? ''}
+                      required
                       {...args}
                     />
                   )}
