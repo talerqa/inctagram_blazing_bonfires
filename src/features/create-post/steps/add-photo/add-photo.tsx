@@ -77,7 +77,6 @@ export const AddPhoto = () => {
   const handleOpenDraft = () => {
     try {
       setImagesFromCache()
-    } catch (e) {
     } finally {
       void nextStep()
     }
