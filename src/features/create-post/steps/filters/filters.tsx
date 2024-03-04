@@ -82,8 +82,8 @@ export const Filters = () => {
                 key={index}
                 className={style.filterItem}
                 onClick={() => setFilter(filter.filter)}
-                onKeyDown={(event) => {
-                  if(event.key === 'Enter') {
+                onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) => {
+                  if (event.key === 'Enter') {
                     setFilter(filter.filter)
                   }
                 }}
