@@ -3,12 +3,9 @@
   margin-top: 40px;
 
   .avatarContainer {
-    //overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background-color: var(--color-dark-700);
 
     & > img {
       border-radius: 50%;
