@@ -128,7 +128,7 @@
     "SettingsSaved": "Your settings are saved!"
   },
   "Devices": {
-    "ThisDevices": "This devices",
+    "ThisDevices": "Current device",
     "TerminateAllSession": "Terminate all other sessions",
     "ActiveSessions": "Active sessions",
     "ReallyLogout": "This is your device, do you really want to exit?",
