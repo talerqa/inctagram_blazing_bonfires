@@ -30,10 +30,8 @@ export const AddPhoto = () => {
     if (typeof localStorage !== 'undefined') {
       const savedImagesString = localStorage.getItem('uploadedImages')
 
-      console.log(savedImagesString, 'savedImagesString')
       const savedImages = savedImagesString ? JSON.parse(savedImagesString) : null
 
-      console.log(savedImages, 'savedImagesAfterParse')
       if (savedImages) {
         setSavedImage(savedImages)
         cropContext.addPhotoFromCache(savedImages)
@@ -66,7 +64,6 @@ export const AddPhoto = () => {
         return
       }
     }
-    console.log(files, 'this files goooood')
     setPhotoList(files)
     await nextStep()
   }
@@ -81,7 +78,6 @@ export const AddPhoto = () => {
     try {
       setImagesFromCache()
     } catch (e) {
-      console.log('error')
     } finally {
       void nextStep()
     }

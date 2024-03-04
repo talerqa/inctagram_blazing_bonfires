@@ -247,8 +247,6 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       filter: CanvasFilters.NONE,
     }))
 
-    // const resetPhotos: React.SetStateAction<PhotoType[]> = []
-    console.log('resetPhotos')
     setPhotos(resetPhotos)
   }
 
