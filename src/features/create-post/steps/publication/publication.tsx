@@ -158,7 +158,7 @@ export const Publication = () => {
                   placeholder={''}
                   type={InputType.LOCATION}
                   style={{ marginBottom: '20px' }}
-                  classNameWrap={'myCustomLabel'}
+                  classnamewrap={'myCustomLabel'}
                 />
               </div>
             </div>

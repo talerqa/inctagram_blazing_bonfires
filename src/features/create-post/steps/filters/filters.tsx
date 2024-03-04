@@ -49,6 +49,7 @@ export const Filters = () => {
               onChange={(filteredImg: string) => {
                 cropContext.setFilteredUrl(filteredImg, currentIndex)
               }}
+              tabIndexFlag={false}
               preserveAspectRatio={'contain'}
             />
             {cropContext.photos.length > 1 && (
@@ -81,6 +82,11 @@ export const Filters = () => {
                 key={index}
                 className={style.filterItem}
                 onClick={() => setFilter(filter.filter)}
+                onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) => {
+                  if (event.key === 'Enter') {
+                    setFilter(filter.filter)
+                  }
+                }}
               >
                 <div className={style.filterImageContainer}>
                   <ImageFilter
@@ -89,6 +95,7 @@ export const Filters = () => {
                     filter={filter.filter}
                     onChange={() => {}}
                     preserveAspectRatio={'contain'}
+                    tabIndexFlag={true}
                   />
                 </div>
                 <div className={style.filterLabel}>{t(`FiltersList.${filter.name}`)}</div>

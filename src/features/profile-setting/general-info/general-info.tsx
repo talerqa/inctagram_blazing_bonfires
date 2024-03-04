@@ -219,7 +219,7 @@ export const GeneralInfo = () => {
                       type={InputType.TEXT}
                       placeholder={''}
                       error={(errors as FieldErrors<ProfileUserType>).userName?.message}
-                      classNameWrap={styles.myCustomLabel}
+                      classnamewrap={styles.myCustomLabel}
                       value={value ?? ''}
                       required
                       {...args}
@@ -235,7 +235,7 @@ export const GeneralInfo = () => {
                       placeholder={''}
                       type={InputType.TEXT}
                       error={(errors as FieldErrors<ProfileUserType>).firstName?.message}
-                      classNameWrap={styles.myCustomLabel}
+                      classnamewrap={styles.myCustomLabel}
                       value={value ?? ''}
                       required
                       {...args}
@@ -251,7 +251,7 @@ export const GeneralInfo = () => {
                       placeholder={''}
                       type={InputType.TEXT}
                       error={(errors as FieldErrors<ProfileUserType>).lastName?.message}
-                      classNameWrap={styles.myCustomLabel}
+                      classnamewrap={styles.myCustomLabel}
                       value={value ?? ''}
                       required
                       {...args}

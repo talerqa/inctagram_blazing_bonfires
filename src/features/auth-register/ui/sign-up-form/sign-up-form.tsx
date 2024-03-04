@@ -121,7 +121,7 @@ export const SignUpForm = () => {
                   label={t('Auth.UserName')}
                   placeholder={t('Auth.EnterName')}
                   error={error && error?.message}
-                  classNameWrap={error ? '' : styles.inputUserName}
+                  classnamewrap={error ? '' : styles.inputUserName}
                   {...field}
                 />
               )}
@@ -135,7 +135,7 @@ export const SignUpForm = () => {
                   placeholder={t('Auth.EnterEmail')}
                   type={InputType.EMAIL}
                   error={error && error?.message}
-                  classNameWrap={error ? '' : styles.inputEmail}
+                  classnamewrap={error ? '' : styles.inputEmail}
                   {...field}
                 />
               )}
@@ -151,7 +151,7 @@ export const SignUpForm = () => {
                   error={error && error?.message}
                   value={value || ''}
                   onChange={onChange}
-                  classNameWrap={error ? '' : styles.inputPassword}
+                  classnamewrap={error ? '' : styles.inputPassword}
                   onBlur={() => {
                     onBlur()
                     if (passwordConfirm.length) {
@@ -173,7 +173,7 @@ export const SignUpForm = () => {
                   error={error && error?.message}
                   value={value || ''}
                   ref={ref}
-                  classNameWrap={styles.inputPasswordConfirm}
+                  classnamewrap={styles.inputPasswordConfirm}
                   onChange={onChange}
                   onBlur={onBlur}
                 />
