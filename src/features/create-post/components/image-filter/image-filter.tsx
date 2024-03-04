@@ -151,7 +151,7 @@ function ImageFilter({
     setFilterMatrix(newFilterMatrix)
   }, [filter, colorOne, colorTwo])
 
-  const aspectRatio = preserveAspectRatio === 'cover' ? 'xMidYMid slice' : preserveAspectRatio
+  const aspectRatio = preserveAspectRatio === 'cover' ? 'xMidYMid slice' : 'xMidYMid meet'
   const renderImage = preserveAspectRatio === 'none'
 
   const svgMergedStyle = renderImage

@@ -27,7 +27,7 @@ export enum InputType {
   LOCATION = 'location',
 }
 export type InputProps = {
-  classNameWrap?: string
+  classnamewrap?: string
   error?: string
   label?: string
   location?: 'fixed' | 'relative'
