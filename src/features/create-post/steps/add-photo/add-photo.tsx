@@ -1,16 +1,13 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { toast, Toaster } from 'react-hot-toast'
 import { useWizard } from 'react-use-wizard'
-import { number } from 'yup'
 
 import styles from './add-photo.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
-import { Cropping } from '@/features/create-post/steps/cropping/cropping'
-import { Publication } from '@/features/create-post/steps/publication/publication'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import mockupPhoto from '@/shared/assets/icons/avatar-profile/not-photo.png'
@@ -18,7 +15,6 @@ import closeIcon from '@/shared/assets/icons/logout/close.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 export const AddPhoto = () => {
-  console.log('RenderAddPhoto')
   const cropContext = useImageCropContext()
   const { nextStep } = useWizard()
   const { setPhotoList, isOpen, setIsOpen, setIsSelectFromComputerOpen } = useImageCropContext()
@@ -28,20 +24,7 @@ export const AddPhoto = () => {
   const [isPublicationOpen, setIsPublicationOpen] = useState(false)
   const [savedImage, setSavedImage] = useState<ImageDataType[]>([])
 
-  // console.log(savedImage, 'savedImage')
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
-
-  // useEffect(() => {
-  //   // if (typeof localStorage !== 'undefined') {
-  //   //   const savedImagesString = localStorage.getItem('uploadedImages')
-  //   //   const savedImages = savedImagesString ? JSON.parse(savedImagesString) : null
-  //   //
-  //   //   if (savedImages) {
-  //   //     setSavedImage(savedImages)
-  //   //   }
-  //   // }
-  //   console.log('savedImageChanged')
-  // }, [savedImage])
 
   const setImagesFromCache = () => {
     if (typeof localStorage !== 'undefined') {
@@ -53,7 +36,7 @@ export const AddPhoto = () => {
       console.log(savedImages, 'savedImagesAfterParse')
       if (savedImages) {
         setSavedImage(savedImages)
-        // setNewPhotoList(savedImages) there is an error todo
+        cropContext.addPhotoFromCache(savedImages)
       }
     }
   }
@@ -83,7 +66,7 @@ export const AddPhoto = () => {
         return
       }
     }
-
+    console.log(files, 'this files goooood')
     setPhotoList(files)
     await nextStep()
   }
@@ -102,8 +85,6 @@ export const AddPhoto = () => {
     } finally {
       void nextStep()
     }
-
-    // setIsPublicationOpen(true)
   }
 
   return (
@@ -138,11 +119,6 @@ export const AddPhoto = () => {
             <Button onClick={openSelectHandler} className={styles.button}>
               {t('SelectFromComputer')}
             </Button>
-            {/*{savedImage.length > 0 && (*/}
-            {/*  <Button onClick={handleOpenDraft} className={styles.button}>*/}
-            {/*    {t('OpenDraft')}*/}
-            {/*  </Button>*/}
-            {/*)}*/}
             <Button
               onClick={handleOpenDraft}
               className={styles.button}
@@ -152,7 +128,6 @@ export const AddPhoto = () => {
               {t('OpenDraft')}
             </Button>
           </div>
-          {/*{isPublicationOpen && <Cropping />}*/}
         </div>
       </NewPostModal>
     </>

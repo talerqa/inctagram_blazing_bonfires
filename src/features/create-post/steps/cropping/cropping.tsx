@@ -23,7 +23,6 @@ import { Button, ButtonTheme } from '@/shared/ui'
 export const Cropping = () => {
   const cropContext = useImageCropContext()
 
-  console.log(cropContext.photos, 'cropContext.photos in cropping step')
   const { currentIndex, prevSlide, nextSlide, setCurrentIndex } = useSlider(
     cropContext.photos.length
   )
@@ -66,7 +65,6 @@ export const Cropping = () => {
     <>
       <NewPostModal
         isOpen={cropContext.isOpen}
-        // setIsOpen={cropContext.setIsOpen}
         setIsOpen={() => cropContext.setIsOpenModal(true)}
         left={
           <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
