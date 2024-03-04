@@ -152,3 +152,10 @@
     color: var(--color-dark-100);
   }
 }
+
+.required{
+  &::after{
+    content: "*";
+    color: var(--color-danger-500);
+  }
+}

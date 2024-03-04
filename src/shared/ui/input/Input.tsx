@@ -60,7 +60,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     error: clsx(s.error, disabled && s.disabled),
     iconButton: clsx(s.iconButton, disabled && s.disabled),
     inputClassName: clsx(s.input, s[type], error && s.errorMessage),
-    label: clsx(s.label, disabled && s.disabled),
+    label: clsx(s.label, disabled && s.disabled, rest.required && s.required),
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
