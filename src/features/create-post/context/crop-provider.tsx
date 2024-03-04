@@ -47,6 +47,7 @@ export type CropContextType = {
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
   photos: PhotoType[]
+  addPhotoFromCache: (photosFromCache: PhotoType[]) => void
   setPhotoList: (files: FileList) => void
   setCroppedUrl: (croppedUrl: string, index: number) => void
   setFilteredUrl: (filteredUrl: string, index: number) => void
@@ -182,7 +183,7 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       })
   }
   // оригинальное соотношение сторон
-  const originalAspect = photos[0].width / photos[0].height
+  const originalAspect = photos[0]?.width / photos[0]?.height
 
   // запись в массив обрезанной фотографии
   const setCroppedUrl = (croppedUrl: string, index: number) => {
@@ -249,12 +250,17 @@ const CropProvider: React.FC<Props> = ({ children }) => {
     setPhotos(resetPhotos)
   }
 
+  const addPhotoFromCache = (photosFromCache: PhotoType[]) => {
+    setPhotos(photosFromCache)
+  }
+
   return (
     <CropContext.Provider
       value={{
         isOpen,
         setIsOpen,
         photos,
+        addPhotoFromCache,
         setPhotoList,
         originalAspect,
         setCroppedUrl,

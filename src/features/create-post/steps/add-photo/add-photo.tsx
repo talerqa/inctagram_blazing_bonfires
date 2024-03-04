@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -8,14 +8,14 @@ import { useWizard } from 'react-use-wizard'
 import styles from './add-photo.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
-import { Publication } from '@/features/create-post/steps/publication/publication'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import mockupPhoto from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
-import { Button } from '@/shared/ui'
+import { Button, ButtonTheme } from '@/shared/ui'
 
 export const AddPhoto = () => {
+  const cropContext = useImageCropContext()
   const { nextStep } = useWizard()
   const { setPhotoList, isOpen, setIsOpen, setIsSelectFromComputerOpen } = useImageCropContext()
 
@@ -26,16 +26,18 @@ export const AddPhoto = () => {
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
-  useEffect(() => {
+  const setImagesFromCache = () => {
     if (typeof localStorage !== 'undefined') {
       const savedImagesString = localStorage.getItem('uploadedImages')
+
       const savedImages = savedImagesString ? JSON.parse(savedImagesString) : null
 
       if (savedImages) {
         setSavedImage(savedImages)
+        cropContext.addPhotoFromCache(savedImages)
       }
     }
-  }, [])
+  }
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
@@ -62,7 +64,6 @@ export const AddPhoto = () => {
         return
       }
     }
-
     setPhotoList(files)
     await nextStep()
   }
@@ -74,7 +75,11 @@ export const AddPhoto = () => {
   }
 
   const handleOpenDraft = () => {
-    setIsPublicationOpen(true)
+    try {
+      setImagesFromCache()
+    } finally {
+      void nextStep()
+    }
   }
 
   return (
@@ -109,13 +114,15 @@ export const AddPhoto = () => {
             <Button onClick={openSelectHandler} className={styles.button}>
               {t('SelectFromComputer')}
             </Button>
-            {savedImage.length > 0 && (
-              <Button onClick={handleOpenDraft} className={styles.button}>
-                {t('OpenDraft')}
-              </Button>
-            )}
+            <Button
+              onClick={handleOpenDraft}
+              className={styles.button}
+              disabled={localStorage.getItem('uploadedImages') === null}
+              theme={ButtonTheme.CLEAR}
+            >
+              {t('OpenDraft')}
+            </Button>
           </div>
-          {isPublicationOpen && <Publication />}
         </div>
       </NewPostModal>
     </>
