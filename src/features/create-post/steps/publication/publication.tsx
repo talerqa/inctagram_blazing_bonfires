@@ -73,11 +73,11 @@ export const Publication = () => {
             setIsOpen(!isOpen)
           })
           .catch(error => {
-            toast.error(error.data.messages[0].message)
+            toast.error(error.data.messages[0]?.message)
           })
       })
       .catch(error => {
-        toast.error(error.data.messages)
+        toast.error(error.data.messages[0]?.message)
       })
   }
   const handleSavedImagePublish = () => {
@@ -95,7 +95,7 @@ export const Publication = () => {
         setIsOpen(!isOpen)
       })
       .catch(error => {
-        toast.error(error.data.messages[0].message)
+        toast.error(error.data.error)
       })
   }
 
