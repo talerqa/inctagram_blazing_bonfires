@@ -82,7 +82,7 @@ export const Logout = ({
           extraButtonCB={logoutApiHandler}
         >
           {t('LogOutOfYourAccount')}
-          <span className={style.userName}> {!!userData && userData.email}</span> ?
+          <span className={style.userName}> {!!userData && userData.email} ?</span>
         </Modal>
       )}
     </>
