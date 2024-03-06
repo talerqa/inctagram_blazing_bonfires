@@ -16,7 +16,7 @@
     inset: 50% auto auto 50%;
     transform: translate(-50%, -50%);
 
-    width: 438px;
+    min-width: 438px;
     min-height: 240px;
     margin-right: -50%;
 
@@ -47,6 +47,7 @@
     .mainDescription {
       padding-top: 25px;
       padding-left: 20px;
+      padding-right: 20px;
 
       font-size: 16px;
       font-weight: 400;
