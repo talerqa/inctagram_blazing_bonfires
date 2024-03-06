@@ -121,39 +121,34 @@ export const Management = () => {
 
       {currentLocalSubs.length! > 0 && (
         <div className={styles.wrapper}>
-          <div>
-            <h3 className={styles.title}> {t('CurrentSubscription')}:</h3>
-            <div className={styles.listWrapper}>
-              <div className={styles.currentSubscriptionRow}>
-                <p className={styles.currentSubscriptionColumnName}>{t('ExpireAt')}:</p>
-                <p className={styles.currentSubscriptionColumnName} style={{ marginLeft: '10px' }}>
-                  {t('NextPayment')}:
-                </p>
-              </div>
-              {currentLocalSubs.map((item: SubscriptionDataType, index) => {
-                return (
-                  <div key={index}>
-                    <div className={styles.currentSubscriptionRow}>
-                      <p className={styles.currentSubscriptionColumnData}>
-                        {formatDate(item.endDateOfSubscription, 'mm.dd.yyyy')}
-                      </p>
-                      <p className={styles.currentSubscriptionColumnData}>
-                        {formatDate(item.dateOfPayment, 'mm.dd.yyyy')}
-                      </p>
-                    </div>
+          <h3 className={styles.title}> {t('CurrentSubscription')}:</h3>
+          <div className={styles.listWrapper}>
+            <div className={styles.currentSubscriptionRow}>
+              <p className={styles.currentSubscriptionColumnName}>{t('ExpireAt')}:</p>
+              <p className={styles.currentSubscriptionColumnName} style={{ marginLeft: '10px' }}>
+                {t('NextPayment')}:
+              </p>
+            </div>
+            {currentLocalSubs.map((item: SubscriptionDataType, index) => {
+              return (
+                <div key={index}>
+                  <div className={styles.currentSubscriptionRow}>
+                    <p className={styles.currentSubscriptionColumnData}>
+                      {formatDate(item.endDateOfSubscription, 'mm.dd.yyyy')}
+                    </p>
+                    <p className={styles.currentSubscriptionColumnData}>
+                      {formatDate(item.dateOfPayment, 'mm.dd.yyyy')}
+                    </p>
                   </div>
-                )
-              })}
-            </div>
+                </div>
+              )
+            })}
+          </div>
 
-            <div className={styles.autoRenewalWrapper}>
-              <Checkbox
-                onChange={handleHasAutoRenewal}
-                value={currentSubscriptions?.hasAutoRenewal}
-              >
-                <p className={styles.autoRenewalLabelStyle}> {t('AutoRenewal')}</p>
-              </Checkbox>
-            </div>
+          <div className={styles.autoRenewalWrapper}>
+            <Checkbox onChange={handleHasAutoRenewal} value={currentSubscriptions?.hasAutoRenewal}>
+              <p className={styles.autoRenewalLabelStyle}> {t('AutoRenewal')}</p>
+            </Checkbox>
           </div>
         </div>
       )}
