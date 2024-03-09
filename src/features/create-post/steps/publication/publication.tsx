@@ -9,29 +9,24 @@ import style from './publication.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
-import { ImagePublication } from '@/features/create-post/steps/image-publication/image-publication'
-import { SavedImage } from '@/features/create-post/steps/savedImage/saved-image'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import {
   useCreatePostMutation,
   useUploadImageMutation,
 } from '@/shared/api/services/posts/posts.api'
-import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import { useGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
 import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
 import { LinearLoader, Input, InputType } from '@/shared/ui'
 
 export const Publication = () => {
-  const { isOpen, setIsOpen, isSelectFromComputerOpen } = useImageCropContext()
+  const { isOpen } = useImageCropContext()
   const [text, setText] = useState<string>('')
-  const { previousStep } = useWizard()
+  const { previousStep, goToStep } = useWizard()
   const cropContext = useImageCropContext()
 
   const { data: profileData } = useGetProfileUserQuery()
   const [uploadImage, { isLoading: isUploadLoading }] = useUploadImageMutation()
   const [createPost, { isLoading: isCreatePostLoading }] = useCreatePostMutation()
-  const savedImagesString = localStorage.getItem('uploadedImages')
-  const savedImages: ImageDataType[] = savedImagesString ? JSON.parse(savedImagesString) : null
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
@@ -70,7 +65,13 @@ export const Publication = () => {
           .unwrap()
           .then(() => {
             toast.success('PublicPost Created')
-            setIsOpen(!isOpen)
+            cropContext.setIsOpenModal(false)
+            cropContext.setIsOpen(false)
+            localStorage.removeItem('uploadedImages')
+            cropContext.resetData()
+            setTimeout(() => {
+              goToStep(0)
+            })
           })
           .catch(error => {
             toast.error(error.data.messages[0]?.message)
@@ -78,24 +79,6 @@ export const Publication = () => {
       })
       .catch(error => {
         toast.error(error.data.messages[0]?.message)
-      })
-  }
-  const handleSavedImagePublish = () => {
-    const uploadIds = savedImages.map(image => image.uploadId)
-    const body = {
-      description: text,
-      childrenMetadata: uploadIds.map(uploadId => ({ uploadId })),
-    }
-
-    createPost(body)
-      .unwrap()
-      .then(() => {
-        toast.success('PublicPost Created')
-        localStorage.removeItem('uploadedImages')
-        setIsOpen(!isOpen)
-      })
-      .catch(error => {
-        toast.error(error.data.error)
       })
   }
 
@@ -106,28 +89,18 @@ export const Publication = () => {
       <NewPostModal
         isOpen={isOpen}
         title={t('Publication')}
-        // setIsOpen={setIsOpen}
         setIsOpen={() => cropContext.setIsOpenModal(true)}
         left={
           <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
         }
         right={
-          <span
-            style={{ cursor: 'pointer' }}
-            onClick={savedImages ? handleSavedImagePublish : handlePublish}
-          >
+          <span style={{ cursor: 'pointer' }} onClick={handlePublish}>
             {t('Publish')}
           </span>
         }
       >
         <div className={style.publishModalContent}>
-          <div className={style.sliderWrapper}>
-            {isSelectFromComputerOpen ? (
-              <ImagePublication cropContext={cropContext} />
-            ) : (
-              savedImages.length > 0 && <SavedImage savedImages={savedImages} />
-            )}
-          </div>
+          <div className={style.sliderWrapper}></div>
           <div className={style.publish}>
             <div className={style.publishContent}>
               <div className={style.avatarWrapper}>
