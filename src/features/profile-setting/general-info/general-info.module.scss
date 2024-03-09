@@ -18,15 +18,9 @@
 
     label {
       display: flex;
-      margin-top: 1.5rem;
       font-size: var(--font-size-m);
-      color: var(--color-dark-100);
+      color: var(--color-light-900);
     }
-  }
-
-  .myCustomLabel:nth-child(-n + 3) label::after {
-    content: '*';
-    color: var(--color-danger-500);
   }
 
   .photoContent {
@@ -144,4 +138,13 @@
     line-height: 24px;
     color: var(--color-danger-500);
   }
+}
+.textField {
+  margin-top: 48px;
+  width: 100%;
+  height: 100%;
+}
+.city {
+  margin-top: 24px;
+  margin-bottom: 24px;
 }

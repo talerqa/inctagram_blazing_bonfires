@@ -1,7 +1,12 @@
 import {
   ChangeEvent,
   ComponentPropsWithoutRef,
+  ElementRef,
+  ElementType,
+  ForwardedRef,
   forwardRef,
+  ReactNode,
+  Ref,
   useImperativeHandle,
   useRef,
   useState,
@@ -26,78 +31,105 @@ export enum InputType {
   TEL = 'tel',
   LOCATION = 'location',
 }
-export type InputProps = {
+export type InputProps<T extends ElementType = 'input' | 'textarea'> = {
+  as?: T
   classnamewrap?: string
   error?: string
   label?: string
   location?: 'fixed' | 'relative'
   callback?: (value: string) => void
+  resize?: boolean
   type?: InputType
-} & ComponentPropsWithoutRef<'input'>
+} & ComponentPropsWithoutRef<T> & { cols?: number | undefined; rows?: number | undefined }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const {
-    className,
-    disabled,
-    error,
-    label,
-    location = 'relative',
-    onChange,
-    callback,
-    type = InputType.TEXT,
-    ...rest
-  } = props
-  const [isShowPassword, setIsShowPassword] = useState(false)
-  const classes = {
-    container: clsx(
-      s.inputContainer,
-      error && s.errorMessage,
-      error && location === 'relative' && s.marginBottom,
-      label && s.marginTop,
+export const Input = forwardRef(
+  <T extends ElementType = 'input'>(props: InputProps<T>, ref: ElementRef<T>) => {
+    const {
+      as: Component = 'input',
       className,
-      disabled && s.disabled
-    ),
-    error: clsx(s.error, disabled && s.disabled),
-    iconButton: clsx(s.iconButton, disabled && s.disabled),
-    inputClassName: clsx(s.input, s[type], error && s.errorMessage),
-    label: clsx(s.label, disabled && s.disabled, rest.required && s.required),
-  }
+      disabled,
+      error,
+      label,
+      location = 'relative',
+      onChange,
+      callback,
+      type = InputType.TEXT,
+      cols,
+      resize = false,
+      rows,
+      ...rest
+    } = props
+    const [isShowPassword, setIsShowPassword] = useState(false)
+    const classes = {
+      container: clsx(
+        s.inputContainer,
+        error && s.errorMessage,
+        error && location === 'relative' && s.marginBottom,
+        label && s.marginTop,
+        className,
+        disabled && s.disabled
+      ),
+      error: clsx(s.error, disabled && s.disabled),
+      iconButton: clsx(s.iconButton, disabled && s.disabled),
+      inputClassName: clsx(
+        s.input,
+        s[type],
+        Component == 'textarea' && s.textarea,
+        error && s.errorMessage,
+        resize || s.resize
+      ),
+      label: clsx(s.label, disabled && s.disabled, rest.required && s.required),
+      location: clsx(s.eyeIcon, s.locationStyle),
+    }
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    onChange?.(e)
-    callback?.(e.target.value)
-  }
-  const inputRef = useRef<HTMLInputElement>(null)
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+      onChange?.(e)
+      callback?.(e.target.value)
+    }
+    const inputRef = useRef<HTMLInputElement>(null)
 
-  useImperativeHandle(ref, () => inputRef.current!, [])
+    useImperativeHandle(ref as Ref<unknown> | undefined, () => inputRef.current!, [])
 
-  return (
-    <div className={classes.container}>
-      <Label className={classes.label} label={label} />
-      <div className={s.searchIcons}>
-        {type === 'search' && <SearchIcon className={s.icon} disabled={disabled} />}
+    return (
+      <div className={classes.container}>
+        {label && <Label className={classes.label} label={label} />}
+        {type === 'search' && (
+          <div className={s.searchIcons}>
+            <SearchIcon className={s.icon} disabled={disabled} />
+          </div>
+        )}
+        <Component
+          className={classes.inputClassName}
+          disabled={disabled}
+          id={label}
+          onChange={handleChange}
+          type={isShowPassword || type === 'search' ? 'text' : type}
+          {...rest}
+          cols={cols}
+          ref={inputRef as any}
+          rows={rows}
+        />
+
+        {type === 'password' && (
+          <button
+            className={classes.iconButton}
+            onClick={() => !disabled && setIsShowPassword(value => !value)}
+            type={'button'}
+          >
+            {isShowPassword ? (
+              <EyeIcon className={s.eyeIcon} disabled={disabled} />
+            ) : (
+              <EyeOffIcon className={s.eyeIcon} disabled={disabled} />
+            )}
+          </button>
+        )}
+        {type === 'location' && <Location className={classes.location} disabled={disabled} />}
+        {error && <ErrorMessage className={classes.error} error={error} />}
       </div>
-      <input
-        className={classes.inputClassName}
-        disabled={disabled}
-        id={label}
-        onChange={handleChange}
-        type={isShowPassword || type === 'search' ? 'text' : type}
-        {...rest}
-        ref={inputRef}
-      />
-
-      <button
-        className={classes.iconButton}
-        onClick={() => !disabled && setIsShowPassword(value => !value)}
-        type={'button'}
-      >
-        {isShowPassword
-          ? type === 'password' && <EyeIcon className={s.eyeIcon} disabled={disabled} />
-          : type === 'password' && <EyeOffIcon className={s.eyeIcon} disabled={disabled} />}
-        {type === 'location' && <Location className={s.eyeIcon} disabled={disabled} />}
-      </button>
-      <ErrorMessage className={classes.error} error={error} />
-    </div>
-  )
-})
+    )
+  }
+) as <T extends ElementType = 'input'>(
+  props: InputProps<T> & {
+    ref?: ForwardedRef<ElementRef<T>>
+  }
+) => ReactNode
