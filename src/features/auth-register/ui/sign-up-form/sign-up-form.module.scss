@@ -35,7 +35,10 @@
 }
 
 .agreementLink {
-  color: var(--color-info-300);
+  color: var(--color-info-500);
+  &:visited {
+    color: var(--color-info-500);
+  }
 }
 
 .socialIconContainer {
@@ -67,4 +70,7 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+}
+.oppositeBtn {
+  color: var(--color-info-500);
 }

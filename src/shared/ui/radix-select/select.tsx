@@ -53,7 +53,7 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
 
     return (
       <div className={s.wrapper}>
-        <div className={s.title}>{title}</div>
+        {title && <div className={s.title}>{title}</div>}
         <RSelect.Root
           open={open}
           onOpenChange={toggleIsOpened}

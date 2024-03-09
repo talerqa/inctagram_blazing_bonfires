@@ -1,15 +1,15 @@
 .inputContainer {
   position: relative;
-  height: 36px;
-  width: 100%;
 
-  .searchIcons {
+  width: 100%;
+  height: 100%;
+
+
     .icon {
       position: absolute;
       z-index: 0;
-      top: 50%;
       left: 12px;
-      transform: translateY(-50%);
+      transform: translateY(8px);
 
       width: 20px;
       height: 20px;
@@ -18,7 +18,7 @@
 
       fill: var(--color-light-900);
     }
-  }
+
 
   &:active {
     .searchIcons {
@@ -51,7 +51,7 @@
 
 .input {
   width: 100%;
-  height: 36px;
+  min-height: 36px;
   padding-left: 11px;
 
   color: var(--color-light-900);
@@ -111,7 +111,7 @@
 }
 .error {
   position: absolute;
-  top: 42px;
+  bottom: -30px;
   left: 0;
   color: var(--color-danger-500);
   border-color: var(--color-danger-500);
@@ -121,10 +121,10 @@
 .eyeIcon {
   position: absolute;
   z-index: 1;
-  top: 50%;
+
   right: 0;
-  bottom: 50%;
-  transform: translateY(-50%);
+
+  transform: translateY(-75%);
 
   width: 24px;
   height: 24px;
@@ -133,10 +133,13 @@
 
   color: var(--color-dark-100);
 }
-
+.locationStyle {
+  cursor: auto;
+  transform: translateY(25%);
+}
 .label {
   position: absolute;
-  bottom: 32px;
+  top: -20px;
   left: 0;
   font-size: var(--font-size-s);
   color: var(--color-light-900);
@@ -158,4 +161,10 @@
     content: "*";
     color: var(--color-danger-500);
   }
+}
+.textarea {
+  background-color: var(--color-dark-500);
+}
+.resize {
+  resize: none;
 }

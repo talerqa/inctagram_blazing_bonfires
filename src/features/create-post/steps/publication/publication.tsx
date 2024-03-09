@@ -116,23 +116,17 @@ export const Publication = () => {
                 <div className={style.userName}>{profileData?.userName}</div>
               </div>
               <div className={style.description}>
-                <label className={style.label}>{t('Descriptions')}</label>
-                <textarea
+                <Input
+                  as={'textarea'}
+                  label={t('Descriptions')}
                   rows={6}
                   cols={60}
                   value={text}
                   maxLength={500}
                   onChange={handleChange}
-                  style={{ backgroundColor: 'black', width: '100%' }}
                 />
                 <div className={style.maxLength}> {text.length}/500</div>
-                <Input
-                  label={t('AddLocation')}
-                  placeholder={''}
-                  type={InputType.LOCATION}
-                  style={{ marginBottom: '20px' }}
-                  classnamewrap={'myCustomLabel'}
-                />
+                <Input label={t('AddLocation')} type={InputType.LOCATION} />
               </div>
             </div>
           </div>

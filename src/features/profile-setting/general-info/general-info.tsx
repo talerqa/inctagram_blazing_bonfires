@@ -19,7 +19,8 @@ import { useChangeRoute } from '@/shared/hooks/general-info-page/use-change-rout
 import { useFormCache } from '@/shared/hooks/general-info-page/use-form-cache'
 import { useServerRequest } from '@/shared/hooks/general-info-page/use-server-request'
 import { setGeneralInfo } from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
-import { Modal, LinearLoader, Input, InputType, Button } from '@/shared/ui'
+import { Modal, LinearLoader, Button } from '@/shared/ui'
+import { ControlledTextField } from '@/shared/ui/controlled/controlled-textfield/controlled-text-field'
 import { Calendar } from '@/widgets/calendar/ui/calendar'
 
 export const GeneralInfo = () => {
@@ -210,53 +211,23 @@ export const GeneralInfo = () => {
             </div>
             <div className={styles.textFieldsContent}>
               <div className={styles.textContainer}>
-                <Controller
+                <ControlledTextField
+                  label={t('UserName')}
                   name="userName"
                   control={control}
-                  render={({ field: { ref, value, ...args } }) => (
-                    <Input
-                      label={t('UserName')}
-                      type={InputType.TEXT}
-                      placeholder={''}
-                      error={(errors as FieldErrors<ProfileUserType>).userName?.message}
-                      classnamewrap={styles.myCustomLabel}
-                      value={value ?? ''}
-                      required
-                      {...args}
-                    />
-                  )}
+                  required
                 />
-                <Controller
+                <ControlledTextField
+                  label={t('FirstName')}
                   name="firstName"
                   control={control}
-                  render={({ field: { ref, value, ...args } }) => (
-                    <Input
-                      label={t('FirstName')}
-                      placeholder={''}
-                      type={InputType.TEXT}
-                      error={(errors as FieldErrors<ProfileUserType>).firstName?.message}
-                      classnamewrap={styles.myCustomLabel}
-                      value={value ?? ''}
-                      required
-                      {...args}
-                    />
-                  )}
+                  required
                 />
-                <Controller
+                <ControlledTextField
+                  label={t('LastName')}
                   name="lastName"
                   control={control}
-                  render={({ field: { ref, value, ...args } }) => (
-                    <Input
-                      label={t('LastName')}
-                      placeholder={''}
-                      type={InputType.TEXT}
-                      error={(errors as FieldErrors<ProfileUserType>).lastName?.message}
-                      classnamewrap={styles.myCustomLabel}
-                      value={value ?? ''}
-                      required
-                      {...args}
-                    />
-                  )}
+                  required
                 />
               </div>
               <Controller
@@ -304,29 +275,14 @@ export const GeneralInfo = () => {
                   </div>
                 )}
               />
-
-              <div className={styles.textareaContent}>
-                <label className={styles.aboutMeLabel}>{t('AboutMe')}</label>
-                <Controller
-                  name="aboutMe"
-                  control={control}
-                  render={({ field: { ref, value, ...args } }) => (
-                    <textarea
-                      rows={4}
-                      cols={50}
-                      placeholder=""
-                      className={styles.aboutMeTextarea}
-                      value={value ?? ''}
-                      {...args}
-                    />
-                  )}
-                />
-                {errors && (
-                  <p className={styles.errorTextarea}>
-                    {(errors as FieldErrors<ProfileUserType>).aboutMe?.message}
-                  </p>
-                )}
-              </div>
+              <ControlledTextField
+                as={'textarea'}
+                className={styles.textField}
+                control={control}
+                label={t('AboutMe')}
+                name={'aboutMe'}
+                rows={4}
+              />
             </div>
           </div>
           <div className={styles.line}></div>
