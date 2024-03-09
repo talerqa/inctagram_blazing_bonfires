@@ -41,7 +41,7 @@ export const PublicPost = (post: PostResponseType) => {
     <div className={s.post} key={id}>
       <div className={s.postLinkWrapper}>
         <Image
-          src={images[0].url}
+          src={images[0]?.url}
           width={234}
           height={240}
           alt="Picture of the post"
