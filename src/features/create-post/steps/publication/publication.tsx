@@ -14,13 +14,12 @@ import {
   useCreatePostMutation,
   useUploadImageMutation,
 } from '@/shared/api/services/posts/posts.api'
-import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import { useGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
 import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
 import { LinearLoader, Input, InputType } from '@/shared/ui'
 
 export const Publication = () => {
-  const { isOpen, setIsOpen, isSelectFromComputerOpen } = useImageCropContext()
+  const { isOpen } = useImageCropContext()
   const [text, setText] = useState<string>('')
   const { previousStep, goToStep } = useWizard()
   const cropContext = useImageCropContext()
@@ -28,7 +27,6 @@ export const Publication = () => {
   const { data: profileData } = useGetProfileUserQuery()
   const [uploadImage, { isLoading: isUploadLoading }] = useUploadImageMutation()
   const [createPost, { isLoading: isCreatePostLoading }] = useCreatePostMutation()
-  const savedImagesString = localStorage.getItem('uploadedImages')
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
