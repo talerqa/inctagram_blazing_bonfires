@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -26,10 +26,6 @@ export const AddPhoto = () => {
   const [errorImageText, setErrorImageText] = useState<string>('')
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
-
-  useEffect(() => {
-    setErrorImageText('')
-  }, [])
 
   const setImagesFromCache = () => {
     if (typeof localStorage !== 'undefined') {
