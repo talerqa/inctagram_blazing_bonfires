@@ -2,12 +2,12 @@ import React, { ChangeEvent, useRef, useState } from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
-import { toast, Toaster } from 'react-hot-toast'
 import { useWizard } from 'react-use-wizard'
 
 import styles from './add-photo.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
+import ErrorMessageImage from '@/features/create-post/ui/error-image-message/errorMessageImage'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import mockupPhoto from '@/shared/assets/icons/avatar-profile/not-photo.png'
@@ -23,6 +23,7 @@ export const AddPhoto = () => {
 
   const [isPublicationOpen, setIsPublicationOpen] = useState(false)
   const [savedImage, setSavedImage] = useState<ImageDataType[]>([])
+  const [errorImageText, setErrorImageText] = useState<string>('')
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
@@ -48,18 +49,20 @@ export const AddPhoto = () => {
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const allowedFormats = ['image/jpeg', 'image/png']
-      const maxSizeInBytes = 20 * 1024 * 1024
+      const maxSizeInBytes = 10 * 1024 * 1024
 
       if (!allowedFormats.includes(file.type)) {
         // Формат файла не подходит
-        toast('Пожалуйста, выберите файлы в формате JPEG или PNG.')
+        setErrorImageText(t('ErrorFormatImage'))
+        // toast('Пожалуйста, выберите файлы в формате JPEG или PNG.')
 
         return
       }
 
       if (file.size > maxSizeInBytes) {
         // Размер файла превышает лимит
-        toast('Пожалуйста, выберите файлы размером не более 20 МБ.')
+        setErrorImageText(t('ErrorSizeImage'))
+        // toast('Пожалуйста, выберите файлы размером не более 20 МБ.')
 
         return
       }
@@ -84,20 +87,24 @@ export const AddPhoto = () => {
 
   return (
     <>
-      <Toaster position={'bottom-center'} />
       <NewPostModal
         isOpen={isOpen}
         title={t('AddPhoto')}
         setIsOpen={setIsOpen}
+        setIsErrorMessage={setErrorImageText}
         right={
           <NextImage
             style={{ cursor: 'pointer' }}
             src={closeIcon}
             alt={''}
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              setIsOpen(false)
+              setErrorImageText('')
+            }}
           />
         }
       >
+        <ErrorMessageImage error={errorImageText} />
         <div className={styles.addPhotoContentContainer}>
           <div className={styles.darkBox}>
             <NextImage src={mockupPhoto} alt={'mockup photo'} />

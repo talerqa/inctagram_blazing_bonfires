@@ -204,7 +204,10 @@
     "ClosePublication": "Do you really want to close the creation of a publication? If you close everything will be deleted",
     "Discard": "Discard",
     "SaveDraft": "Save draft",
-    "Close": "Close"
+    "Close": "Close",
+    "ErrorFormatImage": "The format of the uploaded photo must be PNG and JPEG",
+    "ErrorSizeImage": "Photo size must be less than 10 MB!",
+    "Error": "Error! "
   },
   "TablePagination": {
     "Show": "Show",
