@@ -7,6 +7,7 @@ import { useWizard } from 'react-use-wizard'
 
 import style from './publication.module.scss'
 
+import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { ImagePublication } from '@/features/create-post/steps/image-publication/image-publication'
@@ -16,7 +17,7 @@ import {
   useUploadImageMutation,
 } from '@/shared/api/services/posts/posts.api'
 import { useGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
-import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
+import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import { LinearLoader, Input, InputType } from '@/shared/ui'
 
 export const Publication = () => {
@@ -91,14 +92,8 @@ export const Publication = () => {
         isOpen={isOpen}
         title={t('Publication')}
         setIsOpen={() => cropContext.setIsOpenModal(true)}
-        left={
-          <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
-        }
-        right={
-          <span className={style.publishBtn} onClick={handlePublish}>
-            {t('Publish')}
-          </span>
-        }
+        left={<ArrowBack2 onClick={previousStep} />}
+        right={<NextStepLink onClick={handlePublish} title={'Publish'} />}
       >
         <div className={style.publishModalContent}>
           <div className={style.sliderWrapper}>

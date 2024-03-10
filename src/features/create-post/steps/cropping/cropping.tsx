@@ -10,12 +10,13 @@ import { useSlider } from '../../utils/use-slider'
 import style from './cropping.module.scss'
 
 import { ButtonFilterPanel } from '@/features/create-post/components/button-filter-panel/button-filter-panel'
+import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { DotsBar } from '@/features/create-post/ui/dots-bar/dots-bar'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { calculateImageDimensions } from '@/features/create-post/utils/calculate-image-dimensions'
-import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
+import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
@@ -66,15 +67,9 @@ export const Cropping = () => {
       <NewPostModal
         isOpen={cropContext.isOpen}
         setIsOpen={() => cropContext.setIsOpenModal(true)}
-        left={
-          <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
-        }
+        left={<ArrowBack2 onClick={previousStep} />}
         title={t('Cropping')}
-        right={
-          <span style={{ cursor: 'pointer' }} onClick={nextStepHandler}>
-            {t('Next')}
-          </span>
-        }
+        right={<NextStepLink onClick={nextStepHandler} title={'Next'} />}
       >
         <div className={style.editorContainer}>
           <div className={style.sliderWrapper}>
