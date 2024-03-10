@@ -4,10 +4,9 @@ import Image from 'next/image'
 import router from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { ProfileFollowing } from '../../entities/profile-following'
-
 import style from './profile-data.module.scss'
 
+import { ProfileFollowing } from '@/entities/profile-following'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
 import noImage from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import { ShortLangs } from '@/shared/types/lang-switcher-types'
@@ -17,8 +16,6 @@ type Props = {
   profileData: ProfileUserType | undefined
 }
 export const ProfileData = ({ profileData }: Props) => {
-  const lastAddedAvatar = profileData?.avatars?.[profileData?.avatars.length - 1]?.url ?? noImage
-
   const {
     i18n: { t: tRoot, language },
   } = useTranslation('common', { keyPrefix: 'Profile' })
@@ -26,7 +23,12 @@ export const ProfileData = ({ profileData }: Props) => {
   return (
     <div className={style.headerContainer}>
       <div className={style.avatarContainer}>
-        <Image src={lastAddedAvatar ?? noImage} alt={'avatar'} width={204} height={204} />
+        <Image
+          src={profileData?.avatars?.[0]?.url ?? noImage}
+          alt={'avatar'}
+          width={204}
+          height={204}
+        />
       </div>
       <div className={style.profileInfoContainer}>
         <div className={style.profileTitleContainer}>
