@@ -95,7 +95,7 @@ export const Publication = () => {
           <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
         }
         right={
-          <span style={{ cursor: 'pointer' }} onClick={handlePublish}>
+          <span className={style.publishBtn} onClick={handlePublish}>
             {t('Publish')}
           </span>
         }
