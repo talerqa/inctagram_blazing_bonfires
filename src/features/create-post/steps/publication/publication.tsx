@@ -9,6 +9,7 @@ import style from './publication.module.scss'
 
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
+import { ImagePublication } from '@/features/create-post/steps/image-publication/image-publication'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import {
   useCreatePostMutation,
@@ -100,7 +101,9 @@ export const Publication = () => {
         }
       >
         <div className={style.publishModalContent}>
-          <div className={style.sliderWrapper}></div>
+          <div className={style.sliderWrapper}>
+            <ImagePublication cropContext={cropContext} />
+          </div>
           <div className={style.publish}>
             <div className={style.publishContent}>
               <div className={style.avatarWrapper}>
