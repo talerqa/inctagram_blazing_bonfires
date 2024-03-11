@@ -108,7 +108,7 @@ function ImageFilter({
   colorOne,
   colorTwo,
   onChange,
-}) {
+}: any) {
   const [id] = useState(`${new Date().getTime()}${Math.random()}`.replace('.', ''))
   const [filterMatrix, setFilterMatrix] = useState(NONE)
 

@@ -49,7 +49,7 @@ export const Filters = () => {
               onChange={(filteredImg: string) => {
                 cropContext.setFilteredUrl(filteredImg, currentIndex)
               }}
-              preserveAspectRatio={'contain'}
+              preserveAspectRatio={''}
             />
             {cropContext.photos.length > 1 && (
               <>
@@ -88,7 +88,7 @@ export const Filters = () => {
                     image={cropContext.photos[currentIndex].croppedUrl}
                     filter={filter.filter}
                     onChange={() => {}}
-                    preserveAspectRatio={'contain'}
+                    preserveAspectRatio={''}
                   />
                 </div>
                 <div className={style.filterLabel}>{t(`FiltersList.${filter.name}`)}</div>

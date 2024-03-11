@@ -17,14 +17,14 @@ const ProfilePostsImages = ({ userId }: { userId: number }) => {
   return (
     <div className={s.postsContainer}>
       {profilePosts?.map((postImage: ImagePost) => (
-        <div key={postImage.id} className={s.postWrapper}>
+        <figure key={postImage.id} className={s.postWrapper}>
           <Image
             key={postImage.id}
             src={postImage.url as string}
             fill={true}
             alt={"User's post image"}
           />
-        </div>
+        </figure>
       ))}
     </div>
   )
