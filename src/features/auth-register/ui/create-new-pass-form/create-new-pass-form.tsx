@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { SubmitHandler, useForm, FieldValues } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import styles from './create-new-pass-form.module.scss'
@@ -12,7 +12,6 @@ import { useCreateNewPasswordMutation } from '@/shared/api/services/auth/auth.ap
 import { NewPasswordType } from '@/shared/api/services/auth/auth.api.types'
 import { RoutersPath } from '@/shared/constants/paths'
 import { FormContainer, Input, InputType, LinearLoader, Button, ButtonSize } from '@/shared/ui'
-import inputStyles from '@/shared/ui/input/Input.module.scss'
 
 type FormType = {
   newPassword: string
@@ -96,7 +95,6 @@ export function CreateNewPassForm() {
             label={t('Password')}
             type={InputType.PASSWORD}
             placeholder={t('EnterPassword')}
-            className={inputStyles.input}
             error={errors.newPassword && errors.newPassword?.message}
           />
           <Input
@@ -108,7 +106,6 @@ export function CreateNewPassForm() {
             label={t('PasswordConfirmation')}
             type={InputType.PASSWORD}
             placeholder={t('EnterPasswordConfirmation')}
-            className={inputStyles.input}
             error={errors.newPasswordConfirmation && errors.newPasswordConfirmation?.message}
           />
           <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>

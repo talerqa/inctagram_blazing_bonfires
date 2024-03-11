@@ -23,7 +23,6 @@ import {
   ButtonSize,
   ButtonTheme,
 } from '@/shared/ui'
-import inputStyles from '@/shared/ui/input/Input.module.scss'
 
 export function ForgotPass() {
   const { t } = useTranslation('common', { keyPrefix: 'Auth' })
@@ -82,7 +81,6 @@ export function ForgotPass() {
             label={t('Email')}
             type={InputType.EMAIL}
             placeholder={t('EnterEmail')}
-            className={inputStyles.input}
             error={errors.email && errors.email?.message}
           />
           <p className={styles.forgotHelpText}>{t('EnterEmailForGetInstruction')}</p>
