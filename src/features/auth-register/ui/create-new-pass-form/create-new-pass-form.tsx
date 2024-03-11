@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { SubmitHandler, useForm, FieldValues } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import styles from './create-new-pass-form.module.scss'
