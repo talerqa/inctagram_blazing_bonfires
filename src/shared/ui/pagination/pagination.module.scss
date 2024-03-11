@@ -1,4 +1,10 @@
+@import '@/shared/styles/media-queries';
+
 .paginationContainer {
+  @include media-medium {
+    margin-bottom: 75px;
+  }
+
   all: unset;
 
   display: flex;

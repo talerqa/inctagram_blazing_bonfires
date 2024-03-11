@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux'
 
+import s from './table-with-pagination-container.module.scss'
+
 import { getAllSubscriptionPayments } from '@/features/all-subscription-payments-table-with-pagination/lib/get-all-subscription-payments'
 import { AllSubscriptionPaymentsTable } from '@/features/all-subscription-payments-table-with-pagination/ui/all-subscription-payments-table/all-subscription-payments-table'
 import { getAllSubscriptionPaymentsColumnHeaders } from '@/features/all-subscription-payments-table-with-pagination/ui/constants'
@@ -32,13 +34,15 @@ export const AllSubscriptionPaymentsTableWithPagination = () => {
 
   return (
     <>
-      <AllSubscriptionPaymentsTable
-        skeletonRowsNum={allSubscriptionPayments.getPayments.pageSize}
-        users={allSubscriptionPayments.getPayments.items}
-        handleSort={handleSort}
-        sort={sort}
-        columns={columns}
-      />
+      <div className={s.subscriptionPaymentsTableWrapper}>
+        <AllSubscriptionPaymentsTable
+          skeletonRowsNum={allSubscriptionPayments.getPayments.pageSize}
+          users={allSubscriptionPayments.getPayments.items}
+          handleSort={handleSort}
+          sort={sort}
+          columns={columns}
+        />
+      </div>
       <Pagination
         handlePageChange={handlePageChange}
         totalPages={allSubscriptionPayments.getPayments.pagesCount}

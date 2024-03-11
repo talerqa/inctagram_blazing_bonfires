@@ -41,7 +41,7 @@ const PaymentsList = () => {
       <Input
         ref={inputValue}
         type={InputType.SEARCH}
-        className={s.search}
+        className={s.searchInput}
         placeholder={t('Search')}
         onChange={handleSearch}
       />
