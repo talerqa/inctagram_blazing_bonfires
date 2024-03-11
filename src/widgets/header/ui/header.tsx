@@ -28,49 +28,51 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
   return (
     <>
       <header className={styles.header}>
-        <Link href="/" className={styles.logo}>
-          Inctagram
-          {mainPath[1] === 'super-admin' && (
-            <span className={styles.adminDescription}>
-              <span className={styles.adminDescriptionThin}>Super</span>Admin
-            </span>
-          )}
-        </Link>
-        <div className={styles.option}>
-          {mainPath[1] !== 'super-admin' && (
-            <div className={styles.ball}>
-              <NotificationIcon />
-              <div className={styles.count}>{count}</div>
+        <div className={styles.headerWrapper}>
+          <Link href="/" className={styles.logo}>
+            Inctagram
+            {mainPath[1] === 'super-admin' && (
+              <span className={styles.adminDescription}>
+                <span className={styles.adminDescriptionThin}>Super</span>Admin
+              </span>
+            )}
+          </Link>
+          <div className={styles.option}>
+            {mainPath[1] !== 'super-admin' && (
+              <div className={styles.ball}>
+                <NotificationIcon />
+                <div className={styles.count}>{count}</div>
+              </div>
+            )}
+            <div className={styles.langSwitcherContainer}>
+              <LanguageSelect />
             </div>
-          )}
-          <div className={styles.langSwitcherContainer}>
-            <LanguageSelect />
+            {isMobile && (
+              <>
+                <DropdownMenu triggerIcon={<ThreeDots />}>
+                  <RDropdownMenu.Item
+                    onSelect={() => router.push(RoutersPath.profileGeneralInformation)}
+                  >
+                    <EditPost />
+                    <p>{t('ProfileSetting')}</p>
+                  </RDropdownMenu.Item>
+                  <RDropdownMenu.Item onSelect={() => {}}>
+                    <DeletePost />
+                    <p>{t('Statistics')}</p>
+                  </RDropdownMenu.Item>
+                  <RDropdownMenu.Item onSelect={() => {}}>
+                    <EditPost />
+                    <p>{t('Favorites')}</p>
+                  </RDropdownMenu.Item>
+                  <RDropdownMenu.Item onSelect={() => setIsModalOpen(true)}>
+                    <Image src={logoutImg} alt={''} />
+                    <span className={styles.description}>{t('Auth.LogOut')}</span>
+                  </RDropdownMenu.Item>
+                </DropdownMenu>
+                <Logout hidden={true} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+              </>
+            )}
           </div>
-          {isMobile && (
-            <>
-              <DropdownMenu triggerIcon={<ThreeDots />}>
-                <RDropdownMenu.Item
-                  onSelect={() => router.push(RoutersPath.profileGeneralInformation)}
-                >
-                  <EditPost />
-                  <p>{t('ProfileSetting')}</p>
-                </RDropdownMenu.Item>
-                <RDropdownMenu.Item onSelect={() => {}}>
-                  <DeletePost />
-                  <p>{t('Statistics')}</p>
-                </RDropdownMenu.Item>
-                <RDropdownMenu.Item onSelect={() => {}}>
-                  <EditPost />
-                  <p>{t('Favorites')}</p>
-                </RDropdownMenu.Item>
-                <RDropdownMenu.Item onSelect={() => setIsModalOpen(true)}>
-                  <Image src={logoutImg} alt={''} />
-                  <span className={styles.description}>{t('Auth.LogOut')}</span>
-                </RDropdownMenu.Item>
-              </DropdownMenu>
-              <Logout hidden={true} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-            </>
-          )}
         </div>
       </header>
     </>
