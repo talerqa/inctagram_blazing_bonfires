@@ -12,7 +12,6 @@ import { useCreateNewPasswordMutation } from '@/shared/api/services/auth/auth.ap
 import { NewPasswordType } from '@/shared/api/services/auth/auth.api.types'
 import { RoutersPath } from '@/shared/constants/paths'
 import { FormContainer, Input, InputType, LinearLoader, Button, ButtonSize } from '@/shared/ui'
-import inputStyles from '@/shared/ui/input/Input.module.scss'
 
 type FormType = {
   newPassword: string

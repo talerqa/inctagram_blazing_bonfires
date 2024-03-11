@@ -23,7 +23,6 @@ import {
   ButtonSize,
   ButtonTheme,
 } from '@/shared/ui'
-import inputStyles from '@/shared/ui/input/Input.module.scss'
 
 export function ForgotPass() {
   const { t } = useTranslation('common', { keyPrefix: 'Auth' })
