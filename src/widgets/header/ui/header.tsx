@@ -56,13 +56,11 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
                     <EditPost />
                     <p>{t('ProfileSetting')}</p>
                   </RDropdownMenu.Item>
-                  <RDropdownMenu.Item onSelect={() => {
-                  }}>
+                  <RDropdownMenu.Item onSelect={() => {}}>
                     <DeletePost />
                     <p>{t('Statistics')}</p>
                   </RDropdownMenu.Item>
-                  <RDropdownMenu.Item onSelect={() => {
-                  }}>
+                  <RDropdownMenu.Item onSelect={() => {}}>
                     <EditPost />
                     <p>{t('Favorites')}</p>
                   </RDropdownMenu.Item>
