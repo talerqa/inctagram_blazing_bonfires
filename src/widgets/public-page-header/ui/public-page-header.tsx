@@ -14,22 +14,24 @@ export const PublicPageHeader = () => {
 
   return (
     <header className={s.header}>
-      <Link href="/" className={s.logo}>
-        Inctagram
-      </Link>
-      <div className={s.headerRightSide}>
-        <div className={s.langSwitcherContainer}>
-          <LanguageSelect />
-        </div>
-        <div className={s.headerBtns}>
-          <Link href={RoutersPath.signIn}>
-            <Button size={ButtonSize.CLEAN} theme={ButtonTheme.CLEAR}>
-              {t('SignIn')}
-            </Button>
-          </Link>
-          <Link href={RoutersPath.signUp}>
-            <Button size={ButtonSize.CLEAN}>{t('SignUp')}</Button>
-          </Link>
+      <div className={s.headerWrapper}>
+        <Link href="/" className={s.logo}>
+          Inctagram
+        </Link>
+        <div className={s.headerRightSide}>
+          <div className={s.langSwitcherContainer}>
+            <LanguageSelect />
+          </div>
+          <div className={s.headerBtns}>
+            <Link href={RoutersPath.signIn}>
+              <Button size={ButtonSize.CLEAN} theme={ButtonTheme.CLEAR}>
+                {t('SignIn')}
+              </Button>
+            </Link>
+            <Link href={RoutersPath.signUp}>
+              <Button size={ButtonSize.CLEAN}>{t('SignUp')}</Button>
+            </Link>
+          </div>
         </div>
       </div>
     </header>

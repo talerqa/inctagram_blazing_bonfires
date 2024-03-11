@@ -2,6 +2,7 @@
 
 .contentBody {
   display: flex;
+  width: 100%;
 
   .main {
     width: 100%;
@@ -31,4 +32,9 @@
     display: flex;
     justify-content: center;
   }
+}
+
+.contentWrapper{
+  max-width: 1280px;
+  margin: 0 auto;
 }

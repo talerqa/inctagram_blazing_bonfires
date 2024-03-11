@@ -23,11 +23,13 @@ const BaseLayout: NextPage<PropsWithChildren> = ({ children }) => {
   return (
     <>
       {isLoggedIn ? <Header isMobile={isMobile} /> : <PublicPageHeader />}
-      <div className={style.contentBody}>
-        {!isMobile && isLoggedIn && isSidebar && <SideBar />}
-        <main className={isSidebar ? style.mainWithSidebar : style.main}>
-          <div className={style.rightSideBody}>{children}</div>
-        </main>
+      <div className={style.contentWrapper}>
+        <div className={style.contentBody}>
+          {!isMobile && isLoggedIn && isSidebar && <SideBar />}
+          <main className={isSidebar ? style.mainWithSidebar : style.main}>
+            <div className={style.rightSideBody}>{children}</div>
+          </main>
+        </div>
       </div>
       {isMobile && isLoggedIn && isSidebar && <SidebarMobile />}
     </>
