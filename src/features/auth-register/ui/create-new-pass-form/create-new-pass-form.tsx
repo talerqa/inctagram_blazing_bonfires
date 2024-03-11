@@ -96,7 +96,6 @@ export function CreateNewPassForm() {
             label={t('Password')}
             type={InputType.PASSWORD}
             placeholder={t('EnterPassword')}
-            className={inputStyles.input}
             error={errors.newPassword && errors.newPassword?.message}
           />
           <Input
@@ -108,7 +107,6 @@ export function CreateNewPassForm() {
             label={t('PasswordConfirmation')}
             type={InputType.PASSWORD}
             placeholder={t('EnterPasswordConfirmation')}
-            className={inputStyles.input}
             error={errors.newPasswordConfirmation && errors.newPasswordConfirmation?.message}
           />
           <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>
