@@ -13,13 +13,13 @@
     align-items: center;
 
     width: 100%;
-    padding: 4.5rem 3.5rem 4rem;
+    padding: 3.5rem 3.5rem 4rem;
 
     .superAdminRightSideBody {
       display: flex;
       flex-flow: column wrap;
+      align-items: center;
       width: 100%;
-      max-width: 972px;
     }
   }
 }

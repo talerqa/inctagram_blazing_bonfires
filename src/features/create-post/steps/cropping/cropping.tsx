@@ -10,17 +10,20 @@ import { useSlider } from '../../utils/use-slider'
 import style from './cropping.module.scss'
 
 import { ButtonFilterPanel } from '@/features/create-post/components/button-filter-panel/button-filter-panel'
+import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
+import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { DotsBar } from '@/features/create-post/ui/dots-bar/dots-bar'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { calculateImageDimensions } from '@/features/create-post/utils/calculate-image-dimensions'
-import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
+import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 export const Cropping = () => {
   const cropContext = useImageCropContext()
+
   const { currentIndex, prevSlide, nextSlide, setCurrentIndex } = useSlider(
     cropContext.photos.length
   )
@@ -60,60 +63,59 @@ export const Cropping = () => {
   )
 
   return (
-    <NewPostModal
-      isOpen={cropContext.isOpen}
-      setIsOpen={cropContext.setIsOpen}
-      left={<Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />}
-      title={t('Cropping')}
-      right={
-        <span style={{ cursor: 'pointer' }} onClick={nextStepHandler}>
-          {t('Next')}
-        </span>
-      }
-    >
-      <div className={style.editorContainer}>
-        <div className={style.sliderWrapper}>
-          <AvatarEditor
-            className={style.imageFullWidth}
-            ref={editor}
-            width={width}
-            height={height}
-            border={0}
-            image={cropContext.photos[index].url} // Ссылка на изображение
-            scale={cropContext.photos[index].zoom} // Масштаб
-            position={cropContext.photos[index].position} // Позиция
-            onPositionChange={positionChange}
+    <>
+      <NewPostModal
+        isOpen={cropContext.isOpen}
+        setIsOpen={() => cropContext.setIsOpenModal(true)}
+        left={<ArrowBack2 onClick={previousStep} />}
+        title={t('Cropping')}
+        right={<NextStepLink onClick={nextStepHandler} title={'Next'} />}
+      >
+        <div className={style.editorContainer}>
+          <div className={style.sliderWrapper}>
+            <AvatarEditor
+              className={style.imageFullWidth}
+              ref={editor}
+              width={width}
+              height={height}
+              border={0}
+              image={cropContext.photos[index].url} // Ссылка на изображение
+              scale={cropContext.photos[index].zoom} // Масштаб
+              position={cropContext.photos[index].position} // Позиция
+              onPositionChange={positionChange}
+            />
+            {cropContext.photos.length > 1 && (
+              <>
+                <div className={style.sliderButtonsContainer}>
+                  <Button
+                    theme={ButtonTheme.CLEAR}
+                    className={style.sliderButton}
+                    onClick={prevSlide}
+                  >
+                    <Image src={prev} alt={''} />
+                  </Button>
+                  <Button
+                    theme={ButtonTheme.CLEAR}
+                    className={style.sliderButton}
+                    onClick={nextSlide}
+                  >
+                    <Image src={next} alt={''} />
+                  </Button>
+                </div>
+                <div className={style.sliderDotsBarWrapper}>
+                  <DotsBar activeIndex={index} count={cropContext.photos.length} />
+                </div>
+              </>
+            )}
+          </div>
+          <ButtonFilterPanel
+            setCurrentIndex={setCurrentIndex}
+            index={index}
+            cropContext={cropContext}
           />
-          {cropContext.photos.length > 1 && (
-            <>
-              <div className={style.sliderButtonsContainer}>
-                <Button
-                  theme={ButtonTheme.CLEAR}
-                  className={style.sliderButton}
-                  onClick={prevSlide}
-                >
-                  <Image src={prev} alt={''} />
-                </Button>
-                <Button
-                  theme={ButtonTheme.CLEAR}
-                  className={style.sliderButton}
-                  onClick={nextSlide}
-                >
-                  <Image src={next} alt={''} />
-                </Button>
-              </div>
-              <div className={style.sliderDotsBarWrapper}>
-                <DotsBar activeIndex={index} count={cropContext.photos.length} />
-              </div>
-            </>
-          )}
         </div>
-        <ButtonFilterPanel
-          setCurrentIndex={setCurrentIndex}
-          index={index}
-          cropContext={cropContext}
-        />
-      </div>
-    </NewPostModal>
+      </NewPostModal>
+      {cropContext.isOpenModal && <CloseModal cropContext={cropContext} />}
+    </>
   )
 }

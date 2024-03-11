@@ -20,11 +20,11 @@ import {
   ButtonTheme,
   Checkbox,
   FormContainer,
-  Input,
   InputType,
   LinearLoader,
   Modal,
 } from '@/shared/ui'
+import { ControlledTextField } from '@/shared/ui/controlled/controlled-textfield/controlled-text-field'
 
 export const SignUpForm = () => {
   const { t } = useTranslation('common')
@@ -38,7 +38,6 @@ export const SignUpForm = () => {
   const {
     handleSubmit,
     control,
-    watch,
     trigger,
     formState: { isValid, errors, touchedFields },
     reset,
@@ -54,9 +53,6 @@ export const SignUpForm = () => {
     mode: 'onBlur',
     reValidateMode: 'onChange',
   })
-
-  const passwordConfirm = watch('passwordConfirmation')
-
   const onSubmit: SubmitHandler<SignUpType> = (data: SignUpType) => {
     signUp(data)
       .unwrap()
@@ -112,72 +108,31 @@ export const SignUpForm = () => {
             <OAuth />
           </div>
           <div className={styles.textContainer}>
-            <Controller
+            <ControlledTextField
               control={control}
               name="userName"
-              render={({ field, fieldState: { error } }) => (
-                <Input
-                  type={InputType.TEXT}
-                  label={t('Auth.UserName')}
-                  placeholder={t('Auth.EnterName')}
-                  error={error && error?.message}
-                  classNameWrap={error ? '' : styles.inputUserName}
-                  {...field}
-                />
-              )}
+              label={t('Auth.UserName')}
+              placeholder={t('Auth.EnterName')}
             />
-            <Controller
+            <ControlledTextField
               control={control}
               name="email"
-              render={({ field, fieldState: { error } }) => (
-                <Input
-                  label={t('Auth.Email')}
-                  placeholder={t('Auth.EnterEmail')}
-                  type={InputType.EMAIL}
-                  error={error && error?.message}
-                  classNameWrap={error ? '' : styles.inputEmail}
-                  {...field}
-                />
-              )}
+              label={t('Auth.Email')}
+              placeholder={t('Auth.EnterEmail')}
             />
-            <Controller
+            <ControlledTextField
               control={control}
               name="password"
-              render={({ field: { onChange, onBlur, value, ref }, fieldState: { error } }) => (
-                <Input
-                  label={t('Auth.Password')}
-                  placeholder={t('Auth.EnterPassword')}
-                  type={InputType.PASSWORD}
-                  error={error && error?.message}
-                  value={value || ''}
-                  onChange={onChange}
-                  classNameWrap={error ? '' : styles.inputPassword}
-                  onBlur={() => {
-                    onBlur()
-                    if (passwordConfirm.length) {
-                      return trigger(['password', 'passwordConfirmation'])
-                    }
-                  }}
-                  ref={ref}
-                />
-              )}
+              label={t('Auth.Password')}
+              placeholder={t('Auth.EnterPassword')}
+              type={InputType.PASSWORD}
             />
-            <Controller
+            <ControlledTextField
               control={control}
               name="passwordConfirmation"
-              render={({ field: { value, onChange, onBlur, ref }, fieldState: { error } }) => (
-                <Input
-                  label={t('Auth.PasswordConfirmation')}
-                  placeholder={t('Auth.PasswordConfirmation')}
-                  type={InputType.PASSWORD}
-                  error={error && error?.message}
-                  value={value || ''}
-                  ref={ref}
-                  classNameWrap={styles.inputPasswordConfirm}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                />
-              )}
+              label={t('Auth.PasswordConfirmation')}
+              placeholder={t('Auth.PasswordConfirmation')}
+              type={InputType.PASSWORD}
             />
           </div>
           <div className={styles.agreementContainer}>
@@ -216,7 +171,7 @@ export const SignUpForm = () => {
             size={ButtonSize.SMALL}
           >
             <Link href={RoutersPath.signIn} className={styles.linkOppositeBtn} tabIndex={-1}>
-              {t('Auth.SignIn')}
+              <p className={styles.oppositeBtn}>{t('Auth.SignIn')}</p>
             </Link>
           </Button>
         </form>

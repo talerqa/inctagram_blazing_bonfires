@@ -152,7 +152,9 @@
     "EndDateOfSubscription": "Дата окончания подписки",
     "Price": "Цена",
     "SubscriptionType": "Тип подписки",
-    "PaymentType": "Тип оплаты"
+    "PaymentType": "Тип оплаты",
+    "DateAdded": "Дата добавления",
+    "Subscription": "Подписка"
   },
   "Calendar": {
     "January": "Январь",
@@ -194,11 +196,14 @@
     "EndDateOfSubscription": "Дата окончания подписки",
     "Amount": "Цена, $",
     "SubscriptionType": "Тип подписки",
-    "PaymentType": "Тип выплаты"
+    "Subscription": "Тип подписки",
+    "PaymentType": "Тип выплаты",
+    "PaymentMethod": "Тип выплаты",
+    "AutoUpdate": "Автоматические обновление"
   },
   "FollowersTable": {
     "UserID": "ID пользователя",
-    "UserName": "Ник пользователя",
+    "UserName": "Пользователь",
     "ProfileLink": "Ссылка на Профиль",
     "SubscriptionDate": "Дата подписки"
   },
@@ -227,7 +232,10 @@
     "ClosePublication": "Вы действительно хотите закрыть создание публикации? Если закрыть, все будет удалено",
     "Discard": "Сбросить",
     "SaveDraft": "Сохранить черновик",
-    "Close": "Закрыть"
+    "Close": "Закрыть",
+    "ErrorFormatImage": "Пожалуйста, выберите файлы в формате JPEG или PNG.",
+    "ErrorSizeImage": "Пожалуйста, выберите файлы размером не более 10 МБ.",
+    "Error": "Ошибка! "
   },
   "Admin": {
     "BanUser": "Заблокировать пользователя",

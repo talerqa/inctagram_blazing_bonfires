@@ -7,13 +7,14 @@ import { useWizard } from 'react-use-wizard'
 import style from './filters.module.scss'
 
 import ImageFilter from '@/features/create-post/components/image-filter/image-filter'
+import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
 import { filterNames } from '@/features/create-post/constants/canvas-filters'
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { DotsBar } from '@/features/create-post/ui/dots-bar/dots-bar'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { useSlider } from '@/features/create-post/utils/use-slider'
-import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
+import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
@@ -31,14 +32,8 @@ export const Filters = () => {
         isOpen={cropContext.isOpen}
         title={t('Filters')}
         setIsOpen={() => cropContext.setIsOpenModal(true)}
-        left={
-          <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
-        }
-        right={
-          <span style={{ cursor: 'pointer' }} onClick={nextStep}>
-            {t('Next')}
-          </span>
-        }
+        left={<ArrowBack2 onClick={previousStep} />}
+        right={<NextStepLink onClick={nextStep} title={'Next'} />}
       >
         <div className={style.filtersModalContent}>
           <div className={style.sliderWrapper}>
@@ -49,7 +44,8 @@ export const Filters = () => {
               onChange={(filteredImg: string) => {
                 cropContext.setFilteredUrl(filteredImg, currentIndex)
               }}
-              preserveAspectRatio={''}
+              tabIndexFlag={false}
+              preserveAspectRatio={'contain'}
             />
             {cropContext.photos.length > 1 && (
               <>
@@ -81,6 +77,11 @@ export const Filters = () => {
                 key={index}
                 className={style.filterItem}
                 onClick={() => setFilter(filter.filter)}
+                onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) => {
+                  if (event.key === 'Enter') {
+                    setFilter(filter.filter)
+                  }
+                }}
               >
                 <div className={style.filterImageContainer}>
                   <ImageFilter
@@ -88,7 +89,8 @@ export const Filters = () => {
                     image={cropContext.photos[currentIndex].croppedUrl}
                     filter={filter.filter}
                     onChange={() => {}}
-                    preserveAspectRatio={''}
+                    preserveAspectRatio={'contain'}
+                    tabIndexFlag={true}
                   />
                 </div>
                 <div className={style.filterLabel}>{t(`FiltersList.${filter.name}`)}</div>

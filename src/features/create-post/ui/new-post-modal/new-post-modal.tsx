@@ -11,13 +11,19 @@ interface NewPostModalProps {
   left?: ReactNode
   right?: ReactNode
   children: any
+  setIsErrorMessage?: (setError: string) => void
 }
 
 const NewPostModal: React.FC<NewPostModalProps> = props => {
   return (
     <Dialog
       open={props.isOpen}
-      onClose={() => props.setIsOpen(false)}
+      onClose={() => {
+        props.setIsOpen(false)
+        if (props.setIsErrorMessage) {
+          props.setIsErrorMessage('')
+        }
+      }}
       className={styles.modalWrapper}
     >
       <Dialog.Panel className={styles.modal}>

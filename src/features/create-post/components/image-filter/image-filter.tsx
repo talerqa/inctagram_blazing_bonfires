@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useRef, RefObject} from 'react'
 
 import PropTypes from 'prop-types'
 
@@ -108,9 +108,12 @@ function ImageFilter({
   colorOne,
   colorTwo,
   onChange,
-}: any) {
+  tabIndexFlag,
+}) {
   const [id] = useState(`${new Date().getTime()}${Math.random()}`.replace('.', ''))
   const [filterMatrix, setFilterMatrix] = useState(NONE)
+
+  const imageRef: RefObject<HTMLDivElement> = useRef(null);
 
   useEffect(() => {
     const getMatrix = (props, triggerCallback = false) => {
@@ -148,7 +151,7 @@ function ImageFilter({
     setFilterMatrix(newFilterMatrix)
   }, [filter, colorOne, colorTwo])
 
-  const aspectRatio = preserveAspectRatio === 'cover' ? 'xMidYMid slice' : preserveAspectRatio
+  const aspectRatio = preserveAspectRatio === 'cover' ? 'xMidYMid slice' : 'xMidYMid meet'
   const renderImage = preserveAspectRatio === 'none'
 
   const svgMergedStyle = renderImage
@@ -210,6 +213,10 @@ function ImageFilter({
       const filteredImageBase64 = canvas.toDataURL('image/png')
 
       onChange(filteredImageBase64)
+
+      if(imageRef.current) {
+        imageRef.current.focus()
+      }
     }
   }, [image, filterMatrix])
 
@@ -218,6 +225,8 @@ function ImageFilter({
       {...otherProps}
       className={`ImageFilter ${className}`}
       style={{ ...WRAPPER_STYLE, ...style }}
+      tabIndex={tabIndexFlag ? 0 : -1}
+      ref={imageRef}
     >
       {renderImage && (
         <img

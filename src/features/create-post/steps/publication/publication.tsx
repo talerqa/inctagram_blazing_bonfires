@@ -7,30 +7,28 @@ import { useWizard } from 'react-use-wizard'
 
 import style from './publication.module.scss'
 
+import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
 import { useImageCropContext } from '@/features/create-post/context/crop-provider'
+import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { ImagePublication } from '@/features/create-post/steps/image-publication/image-publication'
-import { SavedImage } from '@/features/create-post/steps/savedImage/saved-image'
 import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import {
   useCreatePostMutation,
   useUploadImageMutation,
 } from '@/shared/api/services/posts/posts.api'
-import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
 import { useGetProfileUserQuery } from '@/shared/api/services/profile/profile.api'
-import backIcon from '@/shared/assets/icons/arrow-back/back.svg'
+import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import { LinearLoader, Input, InputType } from '@/shared/ui'
 
 export const Publication = () => {
-  const { isOpen, setIsOpen, isSelectFromComputerOpen } = useImageCropContext()
+  const { isOpen } = useImageCropContext()
   const [text, setText] = useState<string>('')
-  const { previousStep } = useWizard()
+  const { previousStep, goToStep } = useWizard()
   const cropContext = useImageCropContext()
 
   const { data: profileData } = useGetProfileUserQuery()
   const [uploadImage, { isLoading: isUploadLoading }] = useUploadImageMutation()
   const [createPost, { isLoading: isCreatePostLoading }] = useCreatePostMutation()
-  const savedImagesString = localStorage.getItem('uploadedImages')
-  const savedImages: ImageDataType[] = savedImagesString ? JSON.parse(savedImagesString) : null
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
@@ -69,32 +67,20 @@ export const Publication = () => {
           .unwrap()
           .then(() => {
             toast.success('PublicPost Created')
-            setIsOpen(!isOpen)
+            cropContext.setIsOpenModal(false)
+            cropContext.setIsOpen(false)
+            localStorage.removeItem('uploadedImages')
+            cropContext.resetData()
+            setTimeout(() => {
+              goToStep(0)
+            })
           })
           .catch(error => {
-            toast.error(error.data.messages[0].message)
+            toast.error(error.data.messages[0]?.message)
           })
       })
       .catch(error => {
-        toast.error(error.data.messages)
-      })
-  }
-  const handleSavedImagePublish = () => {
-    const uploadIds = savedImages.map(image => image.uploadId)
-    const body = {
-      description: text,
-      childrenMetadata: uploadIds.map(uploadId => ({ uploadId })),
-    }
-
-    createPost(body)
-      .unwrap()
-      .then(() => {
-        toast.success('PublicPost Created')
-        localStorage.removeItem('uploadedImages')
-        setIsOpen(!isOpen)
-      })
-      .catch(error => {
-        toast.error(error.data.messages[0].message)
+        toast.error(error.data.messages[0]?.message)
       })
   }
 
@@ -105,26 +91,13 @@ export const Publication = () => {
       <NewPostModal
         isOpen={isOpen}
         title={t('Publication')}
-        setIsOpen={setIsOpen}
-        left={
-          <Image style={{ cursor: 'pointer' }} src={backIcon} alt={''} onClick={previousStep} />
-        }
-        right={
-          <span
-            style={{ cursor: 'pointer' }}
-            onClick={savedImages ? handleSavedImagePublish : handlePublish}
-          >
-            {t('Publish')}
-          </span>
-        }
+        setIsOpen={() => cropContext.setIsOpenModal(true)}
+        left={<ArrowBack2 onClick={previousStep} />}
+        right={<NextStepLink onClick={handlePublish} title={'Publish'} />}
       >
         <div className={style.publishModalContent}>
           <div className={style.sliderWrapper}>
-            {isSelectFromComputerOpen ? (
-              <ImagePublication cropContext={cropContext} />
-            ) : (
-              savedImages.length > 0 && <SavedImage savedImages={savedImages} />
-            )}
+            <ImagePublication cropContext={cropContext} />
           </div>
           <div className={style.publish}>
             <div className={style.publishContent}>
@@ -141,28 +114,23 @@ export const Publication = () => {
                 <div className={style.userName}>{profileData?.userName}</div>
               </div>
               <div className={style.description}>
-                <label className={style.label}>{t('Descriptions')}</label>
-                <textarea
+                <Input
+                  as={'textarea'}
+                  label={t('Descriptions')}
                   rows={6}
                   cols={60}
                   value={text}
                   maxLength={500}
                   onChange={handleChange}
-                  style={{ backgroundColor: 'black', width: '100%' }}
                 />
                 <div className={style.maxLength}> {text.length}/500</div>
-                <Input
-                  label={t('AddLocation')}
-                  placeholder={''}
-                  type={InputType.LOCATION}
-                  style={{ marginBottom: '20px' }}
-                  classNameWrap={'myCustomLabel'}
-                />
+                <Input label={t('AddLocation')} type={InputType.LOCATION} />
               </div>
             </div>
           </div>
         </div>
       </NewPostModal>
+      {cropContext.isOpenModal && <CloseModal cropContext={cropContext} />}
     </>
   )
 }

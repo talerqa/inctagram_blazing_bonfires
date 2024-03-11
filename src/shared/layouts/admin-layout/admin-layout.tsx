@@ -7,9 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import s from './admin-layout.module.scss'
 
-import { UserProfileView } from '@/entities/admin'
-import { Navbar } from '@/features/user-management'
-import { getSelectedUserProfileData } from '@/features/user-management/lib/get-selected-user-profile-data'
 import { signInAdmin } from '@/pages/super-admin/modal/slices/admin-auth-reducer'
 import { selectIsMobile } from '@/shared/api/services/app/app.slice'
 import { RoutersPath } from '@/shared/constants/paths'
@@ -23,7 +20,10 @@ const AdminLayout: NextPage<PropsWithChildren> = ({ children }) => {
   const router = useRouter()
   const isAdminLogged = useSelector((state: RootState) => state.adminAuth.isAdminLogged)
   const isMobile = useSelector(selectIsMobile)
-  const showSidebar = router.pathname === RoutersPath.superAdminUsersList && isAdminLogged
+  const showSidebar =
+    (router.pathname === RoutersPath.superAdminUsersList ||
+      router.pathname === RoutersPath.superAdminPaymentsList) &&
+    isAdminLogged
 
   useEffect(() => {
     const adminAuthenticated = Boolean(sessionStorage.getItem('adminAuth'))
@@ -40,6 +40,7 @@ const AdminLayout: NextPage<PropsWithChildren> = ({ children }) => {
       s.superAdminRightSideBody,
       router.pathname === RoutersPath.superAdminUsersList ? s.fullWidth : ''
     ),
+    adminRightSideBodyContainer: clsx(s.adminRightSideBodyContainer, s.fullWidth),
   }
 
   return (
@@ -47,7 +48,7 @@ const AdminLayout: NextPage<PropsWithChildren> = ({ children }) => {
       <Header />
       <div className={s.AdminLayoutBody}>
         {showSidebar && !isMobile && <SideBar />}
-        <div className={s.adminRightSideBodyContainer}>
+        <div className={classNames.adminRightSideBodyContainer}>
           <main className={classNames.superAdminRightSideBody}>{children}</main>
         </div>
         {showSidebar && isMobile && <SidebarMobile />}

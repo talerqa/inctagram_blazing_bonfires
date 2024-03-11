@@ -128,7 +128,7 @@
     "SettingsSaved": "Your settings are saved!"
   },
   "Devices": {
-    "ThisDevices": "This devices",
+    "ThisDevices": "Current device",
     "TerminateAllSession": "Terminate all other sessions",
     "ActiveSessions": "Active sessions",
     "ReallyLogout": "This is your device, do you really want to exit?",
@@ -153,7 +153,9 @@
     "DateOfPayment": "Date of payment",
     "EndDateOfSubscription": "End date of subscription",
     "Price": "Price",
+    "DateAdded": "Date added",
     "SubscriptionType": "Subscription Type",
+    "Subscription": "Subscription",
     "PaymentType": "Payment Type"
   },
   "Calendar": {
@@ -202,7 +204,10 @@
     "ClosePublication": "Do you really want to close the creation of a publication? If you close everything will be deleted",
     "Discard": "Discard",
     "SaveDraft": "Save draft",
-    "Close": "Close"
+    "Close": "Close",
+    "ErrorFormatImage": "The format of the uploaded photo must be PNG and JPEG",
+    "ErrorSizeImage": "Photo size must be less than 10 MB!",
+    "Error": "Error! "
   },
   "TablePagination": {
     "Show": "Show",
@@ -223,7 +228,10 @@
     "EndDateOfSubscription": "End date of subscription",
     "Amount": "Amount, $",
     "SubscriptionType": "Subscription type",
-    "PaymentType": "Payment type"
+    "PaymentType": "Payment type",
+    "PaymentMethod": "Payment method",
+    "Subscription": "Subscription",
+    "AutoUpdate": "Auto update"
   },
   "FollowersTable": {
     "UserID": "User ID",

@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react'
-import { ApiDecorator, StyleDecorator } from '../src/shared/config/storybook'
-import { StoreDecorator } from '../src/shared/providers/storeProvider'
+import { ApiDecorator, StyleDecorator } from "@/shared/config/storybook"
+import { StoreDecorator } from '../src/shared/providers/store-provider/ui/store-provider'
 
 const preview: Preview = {
   parameters: {

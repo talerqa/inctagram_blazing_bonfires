@@ -130,7 +130,7 @@ export function Devices() {
       {!!sessions && sessions.length > 0 && (
         <div className={styles.container}>
           {currentDevice && (
-            <section>
+            <section className={styles.currentDevice}>
               <h4> {t('ThisDevices')}</h4>
               <Device sessionData={currentDevice} isCurrent={true} />
             </section>

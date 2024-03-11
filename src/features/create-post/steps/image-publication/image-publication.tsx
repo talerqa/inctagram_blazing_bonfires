@@ -27,7 +27,8 @@ export const ImagePublication = ({ cropContext }: Props) => {
         onChange={(filteredImg: string) => {
           cropContext.setFilteredUrl(filteredImg, currentIndex)
         }}
-        preserveAspectRatio={''}
+        preserveAspectRatio={'contain'}
+        tabIndexFlag={false}
       />
 
       {cropContext.photos.length > 1 && (
