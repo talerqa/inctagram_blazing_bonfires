@@ -30,6 +30,7 @@ export enum InputType {
   TEXT = 'text',
   TEL = 'tel',
   LOCATION = 'location',
+  FRAMELESS = 'frameless',
 }
 export type InputProps<T extends ElementType = 'input' | 'textarea'> = {
   as?: T
@@ -73,8 +74,8 @@ export const Input = forwardRef(
       iconButton: clsx(s.iconButton, disabled && s.disabled),
       inputClassName: clsx(
         s.input,
+        Component == 'textarea' && type !== InputType.FRAMELESS && s.textarea,
         s[type],
-        Component == 'textarea' && s.textarea,
         error && s.errorMessage,
         resize || s.resize
       ),
