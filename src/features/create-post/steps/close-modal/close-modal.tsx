@@ -7,7 +7,7 @@ import { useWizard } from 'react-use-wizard'
 import style from './close-modal.module.scss'
 
 import { CropContextType } from '@/features/create-post/context/crop-provider'
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
 

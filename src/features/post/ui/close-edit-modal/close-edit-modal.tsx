@@ -3,7 +3,7 @@ import React from 'react'
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
 
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import styles from '@/features/post/ui/edit-delete-post/edit-delete-post.module.scss'
 import closeIcon from '@/shared/assets/icons/icons/close-icon.svg'
 import { Button, ButtonTheme } from '@/shared/ui'

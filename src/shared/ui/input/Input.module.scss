@@ -116,6 +116,7 @@
   border: none;
   outline: none;
   background-color: transparent;
+  font-size: var(--font-size-14);
   &::placeholder {
     font-size: var(--font-size-14);
   }

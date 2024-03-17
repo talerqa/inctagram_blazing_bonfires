@@ -4,10 +4,10 @@ import Image from 'next/image'
 
 import style from './image-publication.module.scss'
 
-import ImageFilter from '@/features/create-post/components/image-filter/image-filter'
+import { ImageFilter } from '@/features/create-post/components'
 import { CropContextType } from '@/features/create-post/context/crop-provider'
-import { DotsBar } from '@/features/create-post/ui/dots-bar/dots-bar'
-import { useSlider } from '@/features/create-post/utils/use-slider'
+import { DotsBar } from '@/features/create-post/ui'
+import { useSlider } from '@/features/create-post/utils'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
 import { Button, ButtonTheme } from '@/shared/ui'

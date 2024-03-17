@@ -6,12 +6,10 @@ import { useWizard } from 'react-use-wizard'
 
 import styles from './add-photo.module.scss'
 
-import { useImageCropContext } from '@/features/create-post/context/crop-provider'
-import ErrorMessageImage from '@/features/create-post/ui/error-image-message/errorMessageImage'
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
-import { ImageDataType } from '@/shared/api/services/posts/posts.api.types'
+import { ErrorMessageImage, NewPostModal } from '@/features/create-post/ui'
 import mockupPhoto from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import closeIcon from '@/shared/assets/icons/logout/close.svg'
+import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 export const AddPhoto = () => {
@@ -21,8 +19,6 @@ export const AddPhoto = () => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const [isPublicationOpen, setIsPublicationOpen] = useState(false)
-  const [savedImage, setSavedImage] = useState<ImageDataType[]>([])
   const [errorImageText, setErrorImageText] = useState<string>('')
 
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
@@ -34,7 +30,6 @@ export const AddPhoto = () => {
       const savedImages = savedImagesString ? JSON.parse(savedImagesString) : null
 
       if (savedImages) {
-        setSavedImage(savedImages)
         cropContext.addPhotoFromCache(savedImages)
       }
     }

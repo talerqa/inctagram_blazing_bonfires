@@ -97,7 +97,7 @@ function convertToDueTone(color1, color2) {
   ]
 }
 
-function ImageFilter({
+export const ImageFilter = ({
   image,
   filter,
   preserveAspectRatio,
@@ -109,14 +109,14 @@ function ImageFilter({
   colorTwo,
   onChange,
   tabIndexFlag,
-}) {
+}) => {
   const [id] = useState(`${new Date().getTime()}${Math.random()}`.replace('.', ''))
   const [filterMatrix, setFilterMatrix] = useState(NONE)
 
   const imageRef: RefObject<HTMLDivElement> = useRef(null);
 
   useEffect(() => {
-    const getMatrix = (props, triggerCallback = false) => {
+    const getMatrix = (props) => {
       let newFilter = props.filter
 
       if (newFilter === types.GRAYSCALE) {
@@ -140,9 +140,6 @@ function ImageFilter({
       }
 
       // Создаем <canvas> элемент
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-
       return newFilter
     }
 
@@ -278,4 +275,3 @@ ImageFilter.defaultProps = {
   svgProps: {},
 }
 
-export default ImageFilter

@@ -14,7 +14,7 @@ interface NewPostModalProps {
   setIsErrorMessage?: (setError: string) => void
 }
 
-const NewPostModal: React.FC<NewPostModalProps> = props => {
+export const NewPostModal: React.FC<NewPostModalProps> = props => {
   return (
     <Dialog
       open={props.isOpen}
@@ -39,5 +39,3 @@ const NewPostModal: React.FC<NewPostModalProps> = props => {
     </Dialog>
   )
 }
-
-export default NewPostModal

@@ -5,20 +5,16 @@ import { useTranslation } from 'next-i18next'
 import AvatarEditor from 'react-avatar-editor'
 import { useWizard } from 'react-use-wizard'
 
-import { useSlider } from '../../utils/use-slider'
-
 import style from './cropping.module.scss'
 
-import { ButtonFilterPanel } from '@/features/create-post/components/button-filter-panel/button-filter-panel'
-import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
-import { useImageCropContext } from '@/features/create-post/context/crop-provider'
+import { ButtonFilterPanel, NextStepLink } from '@/features/create-post/components'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
-import { DotsBar } from '@/features/create-post/ui/dots-bar/dots-bar'
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
-import { calculateImageDimensions } from '@/features/create-post/utils/calculate-image-dimensions'
+import { DotsBar, NewPostModal } from '@/features/create-post/ui'
+import { calculateImageDimensions, useSlider } from '@/features/create-post/utils'
 import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
+import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 export const Cropping = () => {
@@ -31,15 +27,12 @@ export const Cropping = () => {
 
   const { nextStep, previousStep } = useWizard()
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
-  const positionChange = (position: { x: number; y: number }) => {
-    cropContext.setPosition(index)(position)
-  }
 
-  const editor = useRef(null)
+  const editor = useRef<AvatarEditor>(null)
 
   const handleSave = () => {
     if (editor.current) {
-      const canvas = editor.current as any
+      const canvas = editor.current
       const croppedImage = canvas.getImageScaledToCanvas().toDataURL()
 
       cropContext.setCroppedUrl(croppedImage, index)
@@ -81,8 +74,6 @@ export const Cropping = () => {
               border={0}
               image={cropContext.photos[index].url} // Ссылка на изображение
               scale={cropContext.photos[index].zoom} // Масштаб
-              position={cropContext.photos[index].position} // Позиция
-              onPositionChange={positionChange}
             />
             {cropContext.photos.length > 1 && (
               <>
@@ -92,14 +83,14 @@ export const Cropping = () => {
                     className={style.sliderButton}
                     onClick={prevSlide}
                   >
-                    <Image src={prev} alt={''} />
+                    <Image src={prev} alt={'prev'} />
                   </Button>
                   <Button
                     theme={ButtonTheme.CLEAR}
                     className={style.sliderButton}
                     onClick={nextSlide}
                   >
-                    <Image src={next} alt={''} />
+                    <Image src={next} alt={'next'} />
                   </Button>
                 </div>
                 <div className={style.sliderDotsBarWrapper}>
