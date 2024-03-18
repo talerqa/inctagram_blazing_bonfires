@@ -15,7 +15,6 @@ type Props = {
   cropContext: CropContextType
 }
 export const CloseModal = ({ cropContext }: Props) => {
-  // const [uploadImage, { isLoading }] = useUploadImageMutation()
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
   const { goToStep } = useWizard()
   const handleDiscard = () => {
