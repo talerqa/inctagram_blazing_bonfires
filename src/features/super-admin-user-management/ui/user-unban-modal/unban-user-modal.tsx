@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import s from './unban-user-modal.module.scss'
 
 import { User } from '@/__generated__/graphql'
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import {
   selectBanModalOpenStatus,
   selectSelectedUser,

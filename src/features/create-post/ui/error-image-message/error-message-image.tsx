@@ -2,12 +2,12 @@ import React from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import s from './errorMessageImage.module.scss'
+import s from './error-message-image.module.scss'
 
 type Props = {
   error: string | undefined
 }
-const ErrorMessageImage = (props: Props) => {
+export const ErrorMessageImage = (props: Props) => {
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
   const { error } = props
 
@@ -22,5 +22,3 @@ const ErrorMessageImage = (props: Props) => {
     )
   )
 }
-
-export default ErrorMessageImage

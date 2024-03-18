@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react'
+import React, { createContext, ReactNode, useState } from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -287,13 +287,4 @@ const CropProvider: React.FC<Props> = ({ children }) => {
   )
 }
 
-export const useImageCropContext = () => {
-  const context = useContext(CropContext)
-
-  if (!context) {
-    throw new Error('useImageCropContext must be used with in a CropProvider')
-  }
-
-  return context
-}
 export default CropProvider

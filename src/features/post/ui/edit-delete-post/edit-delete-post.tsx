@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 
 import styles from './edit-delete-post.module.scss'
 
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { useDeletePostMutation } from '@/shared/api/services/posts/posts.api'
 import { PostResponseType } from '@/shared/api/services/posts/posts.api.types'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'

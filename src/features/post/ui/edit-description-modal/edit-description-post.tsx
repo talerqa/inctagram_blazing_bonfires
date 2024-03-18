@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 
 import style from './edit-description-post.module.scss'
 
-import NewPostModal from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
 import { CloseEditModal } from '@/features/post/ui/close-edit-modal/close-edit-modal'
 import { PostImages } from '@/features/post/ui/post-images-modal/post-images'
 import { useUpdatePostMutation } from '@/shared/api/services/posts/posts.api'
