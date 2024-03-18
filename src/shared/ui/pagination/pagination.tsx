@@ -97,7 +97,7 @@ export const Pagination = (props: PaginatorPropsType) => {
           <div className={s.numOfPages}>
             <Text className={s.show}>{t('Show')}</Text>
             <RadixSelect
-              placeholder={'10'}
+              placeholder={itemsPerPage.toString()}
               onChangeOption={handleSetItemsPerPage}
               options={selectOptions}
               itemsPerPage={itemsPerPage}
