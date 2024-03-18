@@ -3,7 +3,7 @@ export const PaymentsIcon = ({
   fill = 'white',
 }: {
   className?: string
-  fill?: 'white' | 'black'
+  fill?: string
 }) => {
   return (
     <svg
@@ -11,7 +11,7 @@ export const PaymentsIcon = ({
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fill}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g clipPath="url(#clip0_8924_12670)">

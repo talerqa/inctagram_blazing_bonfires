@@ -1,6 +1,10 @@
 @import '@/shared/styles/media-queries';
 
 .navbar {
+  @include media-small {
+    align-items: flex-end;
+  }
+
   display: flex;
   text-align: center;
 }

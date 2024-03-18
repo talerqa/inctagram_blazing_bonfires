@@ -2,7 +2,6 @@ import React from 'react'
 
 import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 
 import style from './sidebar-mobile.module.scss'
 
@@ -15,7 +14,6 @@ import {
   ProfileIcon,
   SearchIcon,
   StatisticsIcon,
-  UserIcon,
 } from '@/shared/assets/icons'
 import { RoutersPath } from '@/shared/constants/paths'
 

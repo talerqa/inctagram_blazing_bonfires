@@ -41,6 +41,7 @@ export type InputProps<T extends ElementType = 'input' | 'textarea'> = {
   callback?: (value: string) => void
   resize?: boolean
   type?: InputType
+  className?: string
 } & ComponentPropsWithoutRef<T> & { cols?: number | undefined; rows?: number | undefined }
 
 export const Input = forwardRef(

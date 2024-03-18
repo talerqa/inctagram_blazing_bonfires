@@ -55,7 +55,7 @@
   }
 
   .linkWrapperActive {
-    svg {
+    svg, path {
       fill: var(--color-info-700);
       stroke: var(--color-info-700);
     }
