@@ -29,13 +29,13 @@ export const ButtonFilterPanel = ({ cropContext, index, setCurrentIndex }: Props
       <div className={style.leftPanel}>
         <div>
           <AspectRatioPanel
-            originalAspect={cropContext.photos[index].originalAspect}
+            originalAspect={cropContext.photos[index]?.originalAspect}
             handleAspectRatio={handleAspectRatio}
           />
         </div>
         <div>
           <ZoomPanel
-            zoom={cropContext.photos[index].zoom}
+            zoom={cropContext.photos[index]?.zoom}
             handleZoomChange={handleZoomChange}
             index={index}
           />

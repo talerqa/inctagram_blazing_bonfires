@@ -44,7 +44,7 @@ export const Cropping = () => {
   const editorContainerHeight = 500
 
   const { width, height } = calculateImageDimensions(
-    cropContext.photos[index].currentAspect,
+    cropContext.photos[index]?.currentAspect,
     editorContainerWidth,
     editorContainerHeight
   )
@@ -66,8 +66,8 @@ export const Cropping = () => {
               width={width}
               height={height}
               border={0}
-              image={cropContext.photos[index].url} // Ссылка на изображение
-              scale={cropContext.photos[index].zoom} // Масштаб
+              image={cropContext.photos[index]?.url} // Ссылка на изображение
+              scale={cropContext.photos[index]?.zoom} // Масштаб
             />
             {cropContext.photos.length > 1 && <SlideBar styles={style} />}
           </div>

@@ -181,6 +181,8 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       .then(newPhotos => {
         const updatedPhotos = photos.concat(newPhotos as PhotoType[])
 
+        dispatch(setPhotosCount(updatedPhotos.length))
+
         setPhotos(updatedPhotos)
       })
       .catch(error => {
