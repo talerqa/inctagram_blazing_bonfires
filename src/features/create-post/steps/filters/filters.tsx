@@ -1,26 +1,23 @@
 import React from 'react'
 
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
+import { useSelector } from 'react-redux'
 import { useWizard } from 'react-use-wizard'
 
 import style from './filters.module.scss'
 
-import { ImageFilter, NextStepLink } from '@/features/create-post/components'
+import { ImageFilter, NextStepLink, SlideBar } from '@/features/create-post/components'
 import { filterNames } from '@/features/create-post/constants/canvas-filters'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
-import { DotsBar, NewPostModal } from '@/features/create-post/ui'
-import { useSlider } from '@/features/create-post/utils/use-slider'
+import { NewPostModal } from '@/features/create-post/ui'
+import { selectCurrentPhotoIndex } from '@/shared/api/services/posts/post.slice'
 import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
-import next from '@/shared/assets/icons/filter-post-photo/next.svg'
-import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
 import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
-import { Button, ButtonTheme } from '@/shared/ui'
 
 export const Filters = () => {
   const { nextStep, previousStep } = useWizard()
   const cropContext = useImageCropContext()
-  const { currentIndex, prevSlide, nextSlide } = useSlider(cropContext.photos.length)
+  const currentIndex = useSelector(selectCurrentPhotoIndex)
   const setFilter = cropContext.setFilter(currentIndex)
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
@@ -45,29 +42,7 @@ export const Filters = () => {
               tabIndexFlag={false}
               preserveAspectRatio={'contain'}
             />
-            {cropContext.photos.length > 1 && (
-              <>
-                <div className={style.sliderButtonsContainer}>
-                  <Button
-                    theme={ButtonTheme.CLEAR}
-                    className={style.sliderButton}
-                    onClick={prevSlide}
-                  >
-                    <Image src={prev} alt={''} />
-                  </Button>
-                  <Button
-                    theme={ButtonTheme.CLEAR}
-                    className={style.sliderButton}
-                    onClick={nextSlide}
-                  >
-                    <Image src={next} alt={''} />
-                  </Button>
-                </div>
-                <div className={style.sliderDotsBarWrapper}>
-                  <DotsBar activeIndex={currentIndex} count={cropContext.photos.length} />
-                </div>
-              </>
-            )}
+            {cropContext.photos.length > 1 && <SlideBar styles={style} />}
           </div>
           <div className={style.filters}>
             {filterNames.map((filter, index) => (

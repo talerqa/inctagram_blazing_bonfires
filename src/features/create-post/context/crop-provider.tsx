@@ -2,11 +2,13 @@ import React, { createContext, ReactNode, useState } from 'react'
 
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
+import { useDispatch } from 'react-redux'
 
 import s from './crop-provider.module.scss'
 
 import { CanvasFilters } from '@/features/create-post/constants/canvas-filters'
 import { processImageFiles } from '@/features/create-post/utils/process-image-files'
+import { setCurrentPhotoIndex, setPhotosCount } from '@/shared/api/services/posts/post.slice'
 import create from '@/shared/assets/icons/side-bar/create.svg'
 
 export type PhotoType = {
@@ -72,6 +74,7 @@ type Props = {
 }
 
 const CropProvider: React.FC<Props> = ({ children }) => {
+  const dispatch = useDispatch()
   const { t } = useTranslation('common')
 
   // состояние модалки (открыта/закрыта)
@@ -130,6 +133,8 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       })
       .then(photos => {
         setPhotos(photos as PhotoType[])
+        dispatch(setPhotosCount(photos.length))
+        dispatch(setCurrentPhotoIndex(0))
       })
       .catch(error => {
         // Обработка ошибки при загрузке изображения

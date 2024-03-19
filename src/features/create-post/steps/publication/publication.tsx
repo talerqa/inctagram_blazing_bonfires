@@ -7,10 +7,10 @@ import { useWizard } from 'react-use-wizard'
 
 import style from './publication.module.scss'
 
-import { NextStepLink } from '@/features/create-post/components/next-step-link/next-step-link'
+import { NextStepLink } from '@/features/create-post/components'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { ImagePublication } from '@/features/create-post/steps/image-publication/image-publication'
-import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { NewPostModal } from '@/features/create-post/ui'
 import {
   useCreatePostMutation,
   useUploadImageMutation,
