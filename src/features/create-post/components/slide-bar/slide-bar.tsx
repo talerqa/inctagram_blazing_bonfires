@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import styles from '@/../css-modules'
-import { DotsBar } from '@/features/create-post/ui/dots-bar'
+import { DotsBar } from '@/features/create-post/ui/'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
 import { useSlider } from '@/shared/hooks/use-slider'
