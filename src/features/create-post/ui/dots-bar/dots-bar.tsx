@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { clsx } from 'clsx'
 import { useSelector } from 'react-redux'
 
@@ -7,7 +5,7 @@ import style from './dots-bar.module.scss'
 
 import { selectCurrentPhotoIndex, selectPhotosCount } from '@/shared/api/services/posts/post.slice'
 
-export const DotsBar: React.FC = () => {
+export const DotsBar = () => {
   const activeIndex = useSelector(selectCurrentPhotoIndex)
   const count = useSelector(selectPhotosCount)
 
