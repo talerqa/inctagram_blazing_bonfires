@@ -1,4 +1,3 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { createWrapper } from 'next-redux-wrapper'
@@ -11,6 +10,7 @@ import adminAuthReducer from '@/pages/super-admin/modal/slices/admin-auth-reduce
 import adminReducer from '@/pages/super-admin/modal/slices/admin-reducer'
 import { appReducer } from '@/shared/api/services/app/app.slice'
 import { authReducer } from '@/shared/api/services/auth/auth.slice'
+import { postReducer } from '@/shared/api/services/posts/post.slice'
 import { postsApi } from '@/shared/api/services/posts/posts.api'
 import generalInfoReducer from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
 
@@ -18,6 +18,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   adminUserProfile: superAdminUserProfileSlice,
+  post: postReducer,
   profileSetting: generalInfoReducer,
   admin: adminReducer,
   adminAuth: adminAuthReducer,

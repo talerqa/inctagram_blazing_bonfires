@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useTranslation } from 'next-i18next'
+import { useSelector } from 'react-redux'
 import { useWizard } from 'react-use-wizard'
 
 import style from './filters.module.scss'
@@ -9,14 +10,14 @@ import { ImageFilter, NextStepLink, SlideBar } from '@/features/create-post/comp
 import { filterNames } from '@/features/create-post/constants/canvas-filters'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { NewPostModal } from '@/features/create-post/ui'
-import { useSlider } from '@/features/create-post/utils'
+import { selectCurrentPhotoIndex } from '@/shared/api/services/posts/post.slice'
 import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
 
 export const Filters = () => {
   const { nextStep, previousStep } = useWizard()
   const cropContext = useImageCropContext()
-  const { currentIndex, prevSlide, nextSlide } = useSlider(cropContext.photos.length)
+  const currentIndex = useSelector(selectCurrentPhotoIndex)
   const setFilter = cropContext.setFilter(currentIndex)
   const { t } = useTranslation('common', { keyPrefix: 'AddPost' })
 
@@ -41,9 +42,7 @@ export const Filters = () => {
               tabIndexFlag={false}
               preserveAspectRatio={'contain'}
             />
-            {cropContext.photos.length > 1 && (
-              <SlideBar nextSlide={nextSlide} prevSlide={prevSlide} styles={style} />
-            )}
+            {cropContext.photos.length > 1 && <SlideBar styles={style} />}
           </div>
           <div className={style.filters}>
             {filterNames.map((filter, index) => (

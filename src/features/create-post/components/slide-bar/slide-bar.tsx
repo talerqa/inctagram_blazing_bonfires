@@ -1,17 +1,14 @@
-import React, { MouseEventHandler } from 'react'
-
 import Image from 'next/image'
 
 import styles from '@/../css-modules'
+import { DotsBar } from '@/features/create-post/ui/dots-bar'
 import next from '@/shared/assets/icons/filter-post-photo/next.svg'
 import prev from '@/shared/assets/icons/filter-post-photo/prev.svg'
+import { useSlider } from '@/shared/hooks/use-slider'
 import { Button, ButtonTheme } from '@/shared/ui'
-type props = {
-  prevSlide: MouseEventHandler<HTMLButtonElement>
-  nextSlide: MouseEventHandler<HTMLButtonElement>
-  styles: styles
-}
-export const SlideBar = ({ prevSlide, nextSlide, styles }: props) => {
+export const SlideBar = ({ styles }: { styles: styles }) => {
+  const { nextSlide, prevSlide } = useSlider()
+
   return (
     <>
       <div className={styles.sliderButtonsContainer}>
@@ -21,6 +18,9 @@ export const SlideBar = ({ prevSlide, nextSlide, styles }: props) => {
         <Button theme={ButtonTheme.CLEAR} className={styles.sliderButton} onClick={nextSlide}>
           <Image src={next} alt={'next'} />
         </Button>
+      </div>
+      <div className={styles.sliderDotsBarWrapper}>
+        <DotsBar />
       </div>
     </>
   )

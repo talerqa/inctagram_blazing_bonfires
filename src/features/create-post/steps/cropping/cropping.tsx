@@ -16,9 +16,7 @@ import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
 export const Cropping = () => {
   const cropContext = useImageCropContext()
 
-  const { currentIndex, nextSlide, prevSlide, setCurrentIndex } = useSlider(
-    cropContext.photos.length
-  )
+  const { currentIndex, setCurrentIndex } = useSlider()
   const index = currentIndex
 
   const { nextStep, previousStep } = useWizard()
@@ -71,9 +69,7 @@ export const Cropping = () => {
               image={cropContext.photos[index].url} // Ссылка на изображение
               scale={cropContext.photos[index].zoom} // Масштаб
             />
-            {cropContext.photos.length > 1 && (
-              <SlideBar nextSlide={nextSlide} prevSlide={prevSlide} styles={style} />
-            )}
+            {cropContext.photos.length > 1 && <SlideBar styles={style} />}
           </div>
           <ButtonFilterPanel
             setCurrentIndex={setCurrentIndex}

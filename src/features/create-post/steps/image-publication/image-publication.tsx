@@ -1,16 +1,18 @@
 import React from 'react'
 
+import { useSelector } from 'react-redux'
+
 import style from './image-publication.module.scss'
 
 import { ImageFilter, SlideBar } from '@/features/create-post/components'
 import { CropContextType } from '@/features/create-post/context/crop-provider'
-import { useSlider } from '@/features/create-post/utils'
+import { selectCurrentPhotoIndex } from '@/shared/api/services/posts/post.slice'
 
 type Props = {
   cropContext: CropContextType
 }
 export const ImagePublication = ({ cropContext }: Props) => {
-  const { currentIndex, prevSlide, nextSlide } = useSlider(cropContext.photos.length)
+  const currentIndex = useSelector(selectCurrentPhotoIndex)
 
   return (
     <>
@@ -25,9 +27,7 @@ export const ImagePublication = ({ cropContext }: Props) => {
         tabIndexFlag={false}
       />
 
-      {cropContext.photos.length > 1 && (
-        <SlideBar nextSlide={nextSlide} prevSlide={prevSlide} styles={style} />
-      )}
+      {cropContext.photos.length > 1 && <SlideBar styles={style} />}
     </>
   )
 }
