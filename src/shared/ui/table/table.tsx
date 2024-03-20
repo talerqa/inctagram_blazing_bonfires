@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef, FC, forwardRef } from 'react'
 
 import { clsx } from 'clsx'
-import { useTranslation } from 'next-i18next'
 
 import s from './table.module.scss'
 
