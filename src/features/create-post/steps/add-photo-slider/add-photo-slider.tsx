@@ -3,25 +3,28 @@ import React, { ChangeEvent, useRef } from 'react'
 import { Popover } from '@headlessui/react'
 import Image from 'next/image'
 import { toast, Toaster } from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import style from './add-photo-slider.module.scss'
 
 import { CropContextType } from '@/features/create-post/context/crop-provider'
-import { setPhotosCount } from '@/shared/api/services/posts/post.slice'
+import {
+  selectCurrentPhotoIndex,
+  setCurrentPhotoIndex,
+} from '@/shared/api/services/posts/post.slice'
 import addPhoto from '@/shared/assets/icons/add-photo/add-photo.svg'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
   cropContext: CropContextType
-  setCurrentIndex: (index: number) => void
 }
 
-export const AddPhotoSlider = ({ cropContext, setCurrentIndex }: Props) => {
+export const AddPhotoSlider = ({ cropContext }: Props) => {
   const dispatch = useDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
   const photosLength = cropContext.photos.length
+  const currentIndex = useSelector(selectCurrentPhotoIndex)
   const handlerAddImageClick = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
 
@@ -58,7 +61,9 @@ export const AddPhotoSlider = ({ cropContext, setCurrentIndex }: Props) => {
   const handleDeleteClick = (index: number) => {
     if (photosLength > 1) {
       cropContext.deletePhoto(index)
-      dispatch(setPhotosCount(photosLength - 1))
+      if ((index === currentIndex && index > 0) || index < currentIndex) {
+        dispatch(setCurrentPhotoIndex(currentIndex - 1))
+      }
     } else {
       cropContext.setIsOpenModal(true)
     }
@@ -80,7 +85,7 @@ export const AddPhotoSlider = ({ cropContext, setCurrentIndex }: Props) => {
                   height={50}
                   objectFit="cover"
                   className={style.thumbnailImage}
-                  onClick={() => setCurrentIndex(index)}
+                  onClick={() => setCurrentPhotoIndex(index)}
                 />
                 <button className={style.deleteButton} onClick={() => handleDeleteClick(index)}>
                   x

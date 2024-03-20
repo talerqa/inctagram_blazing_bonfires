@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 
 import { useTranslation } from 'next-i18next'
 import AvatarEditor from 'react-avatar-editor'
+import { useSelector } from 'react-redux'
 import { useWizard } from 'react-use-wizard'
 
 import style from './cropping.module.scss'
@@ -9,14 +10,15 @@ import style from './cropping.module.scss'
 import { ButtonFilterPanel, NextStepLink, SlideBar } from '@/features/create-post/components'
 import { CloseModal } from '@/features/create-post/steps/close-modal/close-modal'
 import { NewPostModal } from '@/features/create-post/ui'
-import { calculateImageDimensions, useSlider } from '@/features/create-post/utils'
+import { calculateImageDimensions } from '@/features/create-post/utils'
+import { selectCurrentPhotoIndex } from '@/shared/api/services/posts/post.slice'
 import { ArrowBack2 } from '@/shared/assets/icons/arrow-back-icon/arrow-back2'
 import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
 
 export const Cropping = () => {
   const cropContext = useImageCropContext()
 
-  const { currentIndex, setCurrentIndex } = useSlider()
+  const currentIndex = useSelector(selectCurrentPhotoIndex)
   const index = currentIndex
 
   const { nextStep, previousStep } = useWizard()
@@ -29,7 +31,7 @@ export const Cropping = () => {
       const canvas = editor.current
       const croppedImage = canvas.getImageScaledToCanvas().toDataURL()
 
-      cropContext.setCroppedUrl(croppedImage, index)
+      cropContext.setCroppedUrl(croppedImage, currentIndex)
     }
   }
 
@@ -71,11 +73,7 @@ export const Cropping = () => {
             />
             {cropContext.photos.length > 1 && <SlideBar styles={style} />}
           </div>
-          <ButtonFilterPanel
-            setCurrentIndex={setCurrentIndex}
-            index={index}
-            cropContext={cropContext}
-          />
+          <ButtonFilterPanel index={index} cropContext={cropContext} />
         </div>
       </NewPostModal>
       {cropContext.isOpenModal && <CloseModal cropContext={cropContext} />}
