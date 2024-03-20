@@ -128,7 +128,12 @@ export const TableHeader: FC<
     <THead {...restProps}>
       <TRow>
         {columns.map(({ key, sortable = true, title }) => (
-          <THeader key={key} onClick={handleSort(key, sortable)}>
+          <THeader
+            key={key}
+            onClick={handleSort(key, sortable)}
+            style={{ width: '23%' }}
+            className={s.mainColumn}
+          >
             <div className={s.titleAndSortIcon}>
               {title}
               {!sort && sortable && <Sort />}
@@ -138,7 +143,7 @@ export const TableHeader: FC<
             </div>
           </THeader>
         ))}
-        <THeader />
+        <THeader style={{ width: '8%' }} className={s.lastColumn} />
       </TRow>
     </THead>
   )
