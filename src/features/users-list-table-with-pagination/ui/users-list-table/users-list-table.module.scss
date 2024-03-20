@@ -6,8 +6,7 @@
 
 .iconsContainer {
   display: flex;
-  justify-content: space-evenly;
-  width: 75px;
+  justify-content: flex-end;
 
   tr td:last-child {
     display: flex;

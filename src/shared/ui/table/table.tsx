@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef, FC, forwardRef } from 'react'
 
 import { clsx } from 'clsx'
-import { useTranslation } from 'next-i18next'
 
 import s from './table.module.scss'
 
@@ -128,7 +127,7 @@ export const TableHeader: FC<
     <THead {...restProps}>
       <TRow>
         {columns.map(({ key, sortable = true, title }) => (
-          <THeader key={key} onClick={handleSort(key, sortable)}>
+          <THeader key={key} onClick={handleSort(key, sortable)} style={{ width: '23%' }}>
             <div className={s.titleAndSortIcon}>
               {title}
               {!sort && sortable && <Sort />}
@@ -138,7 +137,7 @@ export const TableHeader: FC<
             </div>
           </THeader>
         ))}
-        <THeader />
+        <THeader style={{ width: '8%' }} />
       </TRow>
     </THead>
   )

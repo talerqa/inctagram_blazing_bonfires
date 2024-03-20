@@ -45,6 +45,7 @@
 .th {
   padding: 6px 24px;
   text-align: left;
+  height: 50px;
 }
 
 .titleAndSortIcon {
@@ -54,7 +55,7 @@
   svg {
     cursor: pointer;
   }
-  
+
   :nth-child(1) {
     margin-left: 3px;
   }
