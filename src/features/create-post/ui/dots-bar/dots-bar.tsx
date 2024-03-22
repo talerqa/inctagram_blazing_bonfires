@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux'
 
 import style from './dots-bar.module.scss'
 
-import { selectCurrentPhotoIndex } from '@/shared/api/services/posts/post.slice'
-import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
+import { selectCurrentPhotoIndex, selectPhotosCount } from '@/shared/api/services/posts/post.slice'
 
 export const DotsBar = () => {
-  const cropContext = useImageCropContext()
   const activeIndex = useSelector(selectCurrentPhotoIndex)
-  const count = cropContext.photos.length
+  const count = useSelector(selectPhotosCount)
 
   return (
     <div className={style.dotWrapper}>

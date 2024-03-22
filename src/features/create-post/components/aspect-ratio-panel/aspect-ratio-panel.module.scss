@@ -4,11 +4,12 @@
 
 .buttonPanel {
   position: absolute;
-  background-color: #4c4c4c;
+  background-color: var(--color-dark-500);
   padding: 10px;
   border-radius: 2px;
   bottom: 42px;
   width: 160px;
+  opacity: 80%;
 }
 
 .button {
@@ -23,4 +24,32 @@
 
 .image {
   fill: white;
+}
+
+.popoverBtn {
+  .sizeButton {
+    background-color: var(--color-dark-500);
+    opacity: 80%;
+    border: none;
+    .ratioIcon {
+      display: inline-flex;
+    }
+    .ratioIconOpen {
+      display: none;
+    }
+  }
+  &[data-headlessui-state='open'] {
+    .ratioIcon {
+      display: none;
+    }
+    .ratioIconOpen {
+      display: inline-flex;
+    }
+  }
+}
+.aspect {
+  color: var(--color-light-900);
+}
+.current {
+  color: var(--color-light-100);
 }

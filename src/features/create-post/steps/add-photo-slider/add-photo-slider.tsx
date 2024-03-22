@@ -9,11 +9,14 @@ import style from './add-photo-slider.module.scss'
 
 import { CropContextType } from '@/features/create-post/context/crop-provider'
 import {
+  setPhotosCount,
   selectCurrentPhotoIndex,
   setCurrentPhotoIndex,
 } from '@/shared/api/services/posts/post.slice'
-import addPhoto from '@/shared/assets/icons/add-photo/add-photo.svg'
-import noImage from '@/shared/assets/icons/image/no-image.svg'
+import CloseIcon from '@/shared/assets/icons/close-icon/close-icon'
+import ImageIcon from '@/shared/assets/icons/image/image-icon'
+import ImageIconOpen from '@/shared/assets/icons/image/image-icon-open'
+import PlusCircle from '@/shared/assets/icons/plus-circle/plus-circle'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 type Props = {
@@ -54,15 +57,17 @@ export const AddPhotoSlider = ({ cropContext }: Props) => {
     cropContext.setNewPhotoList(files)
   }
 
-  const openSelectHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const openSelectHandler = (event: React.MouseEvent<SVGSVGElement>) => {
     event.preventDefault()
     inputRef.current?.click()
   }
+  const changeCurrentPhotoIndex = (index: number) => dispatch(setCurrentPhotoIndex(index))
   const handleDeleteClick = (index: number) => {
     if (photosLength > 1) {
       cropContext.deletePhoto(index)
+      dispatch(setPhotosCount(photosLength - 1))
       if ((index === currentIndex && index > 0) || index < currentIndex) {
-        dispatch(setCurrentPhotoIndex(currentIndex - 1))
+        changeCurrentPhotoIndex(currentIndex - 1)
       }
     } else {
       cropContext.setIsOpenModal(true)
@@ -80,16 +85,17 @@ export const AddPhotoSlider = ({ cropContext }: Props) => {
               <div key={index} className={style.buttonImageWrapper}>
                 <Image
                   src={photo.url}
-                  alt=""
-                  width={50}
-                  height={50}
+                  alt="img"
+                  height={82}
+                  width={82 * photo.originalAspect}
                   objectFit="cover"
                   className={style.thumbnailImage}
-                  onClick={() => setCurrentPhotoIndex(index)}
+                  onClick={() => changeCurrentPhotoIndex(index)}
                 />
-                <button className={style.deleteButton} onClick={() => handleDeleteClick(index)}>
-                  x
-                </button>
+                <CloseIcon
+                  className={style.deleteButton}
+                  onClick={() => handleDeleteClick(index)}
+                />
               </div>
             ))}
             <div className={style.buttonsContainer}>
@@ -101,28 +107,16 @@ export const AddPhotoSlider = ({ cropContext }: Props) => {
                 ref={inputRef}
                 className={style.inputPhoto}
               />
-              <Button
-                onClick={openSelectHandler}
-                className={style.button}
-                disabled={isButtonDisabled}
-              >
-                <Image src={addPhoto} alt={''} width={20} height={20} />
-              </Button>
+              {isButtonDisabled || (
+                <PlusCircle onClick={openSelectHandler} className={style.button} />
+              )}
             </div>
           </div>
         </Popover.Panel>
-        <Popover.Button as="div">
+        <Popover.Button as="div" className={style.popoverBtn}>
           <Button theme={ButtonTheme.CLEAR} className={style.sizeButton}>
-            <Image
-              src={noImage}
-              alt=""
-              style={{
-                width: '24px',
-                height: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            />
+            <ImageIconOpen className={style.imageIconOpen} />
+            <ImageIcon className={style.imageIcon} />
           </Button>
         </Popover.Button>
       </Popover>
