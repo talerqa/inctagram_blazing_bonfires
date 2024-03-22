@@ -5,17 +5,33 @@
 .zoomPanel {
   position: absolute;
   bottom: 42px;
-  background-color: #4c4c4c;
+  background-color: var(--color-dark-500);
+  opacity: 80%;
   padding: 10px;
   border-radius: 2px;
 }
 
-.sizeButton {
-  background-color: #4c4c4c;
-  border: none;
-  width: 36px;
-}
-
 .image {
   fill: white;
+}
+.popoverBtn {
+  .sizeButton {
+    background-color: var(--color-dark-500);
+    opacity: 80%;
+    border: none;
+    .zoomIcon {
+      display: inline-flex;
+    }
+    .zoomIconOpen {
+      display: none;
+    }
+  }
+  &[data-headlessui-state='open'] {
+    .zoomIcon {
+      display: none;
+    }
+    .zoomIconOpen {
+      display: inline-flex;
+    }
+  }
 }

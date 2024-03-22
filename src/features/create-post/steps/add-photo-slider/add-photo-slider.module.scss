@@ -1,11 +1,13 @@
 .buttonPanel {
   position: absolute;
-  background-color: var(--color-dark-300);
-  padding: 10px;
+  background-color: var(--color-dark-500);
+  opacity: 80%;
+  padding: 12px;
   bottom: 51px;
   right: 12px;
   .thumbnailContainer {
     display: flex;
+
     .buttonImageWrapper {
       position: relative;
       display: flex;
@@ -19,15 +21,15 @@
         position: absolute;
         top: 5px;
         right: 5px;
-        width: 10px;
-        height: 8px;
-        background-color: var(--color-dark-100);
-        color: white;
+        width: 12px;
+        height: 12px;
+        background-color: var(--color-dark-300);
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 6px;
         cursor: pointer;
+        border-radius: 2px;
       }
     }
   }
@@ -41,13 +43,31 @@
   }
 
   .button {
-    width: 100%;
-    background-color: var(--color-dark-300);
-    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
 }
-.sizeButton {
-  background-color: var(--color-dark-300);
-  border: none;
-  width: 36px;
+.popoverBtn {
+  .sizeButton {
+    background-color: var(--color-dark-500);
+    opacity: 80%;
+    border: none;
+    .imageIconOpen {
+      display: inline-flex;
+    }
+    .imageIcon {
+      display: none;
+    }
+  }
+  &[data-headlessui-state='open'] {
+      .imageIconOpen {
+        display: none;
+      }
+    .imageIcon {
+      display: inline-flex;
+    }
+  }
 }
+

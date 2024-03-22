@@ -8,7 +8,7 @@ import s from './crop-provider.module.scss'
 
 import { CanvasFilters } from '@/features/create-post/constants/canvas-filters'
 import { processImageFiles } from '@/features/create-post/utils/process-image-files'
-import { setCurrentPhotoIndex } from '@/shared/api/services/posts/post.slice'
+import { setCurrentPhotoIndex, setPhotosCount } from '@/shared/api/services/posts/post.slice'
 import create from '@/shared/assets/icons/side-bar/create.svg'
 
 export type PhotoType = {
@@ -114,7 +114,7 @@ const CropProvider: React.FC<Props> = ({ children }) => {
                 filteredUrl: url,
                 zoom: 1,
                 originalAspect: image.width / image.height,
-                currentAspect: image.width / image.height,
+                currentAspect: 1,
                 position: {
                   x: 0,
                   y: 0,
@@ -133,6 +133,7 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       })
       .then(photos => {
         setPhotos(photos as PhotoType[])
+        dispatch(setPhotosCount(photos.length))
         dispatch(setCurrentPhotoIndex(0))
       })
       .catch(error => {
@@ -160,7 +161,7 @@ const CropProvider: React.FC<Props> = ({ children }) => {
                 filteredUrl: url,
                 zoom: 1,
                 originalAspect: image.width / image.height,
-                currentAspect: image.width / image.height,
+                currentAspect: 1,
                 position: {
                   x: 0,
                   y: 0,
@@ -179,6 +180,8 @@ const CropProvider: React.FC<Props> = ({ children }) => {
       })
       .then(newPhotos => {
         const updatedPhotos = photos.concat(newPhotos as PhotoType[])
+
+        dispatch(setPhotosCount(updatedPhotos.length))
 
         setPhotos(updatedPhotos)
       })

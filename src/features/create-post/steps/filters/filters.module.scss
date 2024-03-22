@@ -25,7 +25,8 @@
   }
 
   .sliderButton {
-    background-color: rgba(76, 76, 76, 0.7);
+    background-color: var(--color-dark-500);
+    opacity: 80%;
     border: none;
     width: 60px;
     height: 48px;

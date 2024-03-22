@@ -28,6 +28,7 @@ export const ButtonFilterPanel = ({ cropContext, index }: Props) => {
       <div className={style.leftPanel}>
         <div>
           <AspectRatioPanel
+            currentAspect={cropContext.photos[index]?.currentAspect}
             originalAspect={cropContext.photos[index]?.originalAspect}
             handleAspectRatio={handleAspectRatio}
           />

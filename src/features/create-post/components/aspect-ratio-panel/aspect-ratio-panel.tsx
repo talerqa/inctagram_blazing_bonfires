@@ -1,19 +1,19 @@
 import React from 'react'
 
 import { Popover } from '@headlessui/react'
-import Image from 'next/image'
 
 import styles from './aspect-ratio-panel.module.scss'
 
-import style from '@/features/create-post/components/button-filter-panel/button-filter-panel.module.scss'
 import HorizontalRectangle from '@/features/create-post/ui/icons/horizontal-rectangle'
 import OriginalAspectIcon from '@/features/create-post/ui/icons/original-aspect-icon'
 import SquareIcon from '@/features/create-post/ui/icons/square-icon'
 import VerticalRectangle from '@/features/create-post/ui/icons/vertical-rectangle'
-import sizePhoto from '@/shared/assets/icons/filter-post-photo/size.svg'
+import RatioIcon from '@/shared/assets/icons/ratio-icon/ratio-icon'
+import RatioIconOpen from '@/shared/assets/icons/ratio-icon/ratio-icon-open'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 interface AspectRatioPanelProps {
+  currentAspect: number
   handleAspectRatio: (aspect: number) => void
   originalAspect: number
 }
@@ -25,6 +25,7 @@ const aspectRatio = {
 }
 
 const AspectRatioPanel: React.FC<AspectRatioPanelProps> = ({
+  currentAspect,
   originalAspect,
   handleAspectRatio,
 }) => {
@@ -37,8 +38,10 @@ const AspectRatioPanel: React.FC<AspectRatioPanelProps> = ({
             handleAspectRatio(originalAspect)
           }}
         >
-          <span>Оригинал</span>
-          <OriginalAspectIcon color={'#fff'} />
+          <span className={currentAspect === originalAspect ? styles.current : styles.aspect}>
+            Оригинал
+          </span>
+          <OriginalAspectIcon color={currentAspect === originalAspect ? '#fff' : '#8D9094'} />
         </button>
         <button
           className={styles.button}
@@ -46,8 +49,8 @@ const AspectRatioPanel: React.FC<AspectRatioPanelProps> = ({
             handleAspectRatio(aspectRatio.square)
           }}
         >
-          <span>1:1</span>
-          <SquareIcon color={'#fff'} />
+          <span className={currentAspect === 1 ? styles.current : styles.aspect}>1:1</span>
+          <SquareIcon color={currentAspect === 1 ? '#fff' : '#8D9094'} />
         </button>
         <button
           className={styles.button}
@@ -55,8 +58,8 @@ const AspectRatioPanel: React.FC<AspectRatioPanelProps> = ({
             handleAspectRatio(aspectRatio.verticalRectangle)
           }}
         >
-          <span>4:5</span>
-          <VerticalRectangle color={'#fff'} />
+          <span className={currentAspect === 4 / 5 ? styles.current : styles.aspect}>4:5</span>
+          <VerticalRectangle color={currentAspect === 4 / 5 ? '#fff' : '#8D9094'} />
         </button>
         <button
           className={styles.button}
@@ -64,13 +67,14 @@ const AspectRatioPanel: React.FC<AspectRatioPanelProps> = ({
             handleAspectRatio(aspectRatio.horizontalRectangle)
           }}
         >
-          <span>16:9</span>
-          <HorizontalRectangle color={'#fff'} />
+          <span className={currentAspect === 16 / 9 ? styles.current : styles.aspect}>16:9</span>
+          <HorizontalRectangle color={currentAspect === 16 / 9 ? '#fff' : '#8D9094'} />
         </button>
       </Popover.Panel>
-      <Popover.Button as="div">
-        <Button theme={ButtonTheme.CLEAR} className={style.sizeButton}>
-          <Image src={sizePhoto} alt={''} />
+      <Popover.Button as="div" className={styles.popoverBtn}>
+        <Button theme={ButtonTheme.CLEAR} className={styles.sizeButton}>
+          <RatioIcon className={styles.ratioIcon} />
+          <RatioIconOpen className={styles.ratioIconOpen} />
         </Button>
       </Popover.Button>
     </Popover>

@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import {
   selectCurrentPhotoIndex,
+  selectPhotosCount,
   setCurrentPhotoIndex,
 } from '@/shared/api/services/posts/post.slice'
-import { useImageCropContext } from '@/shared/hooks/use-image-crop-context'
 
 export const useSlider = () => {
-  const cropContext = useImageCropContext()
   const dispatch = useDispatch()
-  const length = cropContext.photos.length
+  const length = useSelector(selectPhotosCount)
   const currentIndex = useSelector(selectCurrentPhotoIndex)
   const setCurrentIndex = (index: number) => dispatch(setCurrentPhotoIndex(index))
 
