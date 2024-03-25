@@ -39,6 +39,9 @@
       height: 48px;
       border-radius: 2px;
       cursor: pointer;
+      :hover {
+        opacity: 70%;
+      }
     }
   }
 
@@ -51,4 +54,8 @@
     padding-left: 8px;
     padding-right: 8px;
   }
+}
+.imageFullWidth {
+  transition: 0.6s ease;
+  float: left;
 }

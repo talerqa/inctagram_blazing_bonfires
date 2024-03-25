@@ -18,6 +18,7 @@
   background-color: transparent;
 
   width: 100%;
+  padding-right: 0;
   display: flex;
   justify-content: space-between;
 }
@@ -37,6 +38,12 @@
     .ratioIconOpen {
       display: none;
     }
+    &:hover {
+      .ratioIcon {
+        display: inline-flex;
+        opacity: 0.7;
+      }
+    }
   }
   &[data-headlessui-state='open'] {
     .ratioIcon {
@@ -45,7 +52,13 @@
     .ratioIconOpen {
       display: inline-flex;
     }
+    &:hover {
+      .ratioIcon {
+        display: none;
+      }
+    }
   }
+
 }
 .aspect {
   color: var(--color-light-900);
