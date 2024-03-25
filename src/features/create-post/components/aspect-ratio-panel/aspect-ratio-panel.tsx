@@ -5,9 +5,9 @@ import { Popover } from '@headlessui/react'
 import styles from './aspect-ratio-panel.module.scss'
 
 import HorizontalRectangle from '@/features/create-post/ui/icons/horizontal-rectangle'
-import OriginalAspectIcon from '@/features/create-post/ui/icons/original-aspect-icon'
 import SquareIcon from '@/features/create-post/ui/icons/square-icon'
 import VerticalRectangle from '@/features/create-post/ui/icons/vertical-rectangle'
+import ImageIcon from '@/shared/assets/icons/image/image-icon'
 import RatioIcon from '@/shared/assets/icons/ratio-icon/ratio-icon'
 import RatioIconOpen from '@/shared/assets/icons/ratio-icon/ratio-icon-open'
 import { Button, ButtonTheme } from '@/shared/ui'
@@ -41,7 +41,10 @@ const AspectRatioPanel: React.FC<AspectRatioPanelProps> = ({
           <span className={currentAspect === originalAspect ? styles.current : styles.aspect}>
             Оригинал
           </span>
-          <OriginalAspectIcon color={currentAspect === originalAspect ? '#fff' : '#8D9094'} />
+          <ImageIcon
+            fill={currentAspect === originalAspect ? '#fff' : '#8D9094'}
+            style={{ marginRight: -3 }}
+          />
         </button>
         <button
           className={styles.button}

@@ -55,18 +55,29 @@
     opacity: 80%;
     border: none;
     .imageIconOpen {
-      display: inline-flex;
+      display: none;
     }
     .imageIcon {
-      display: none;
+      display: inline-flex;
+    }
+    &:hover {
+      .imageIcon {
+        display: inline-flex;
+        opacity: 0.7;
+      }
     }
   }
   &[data-headlessui-state='open'] {
-      .imageIconOpen {
+      .imageIcon {
         display: none;
       }
-    .imageIcon {
+    .imageIconOpen {
       display: inline-flex;
+    }
+    &:hover {
+      .imageIcon {
+        display: none;
+      }
     }
   }
 }

@@ -31,7 +31,7 @@ export const NewPostModal: React.FC<NewPostModalProps> = props => {
         <div className={styles.modalHeader}>
           {props.left}
           <Dialog.Title className={styles.modalTitle}>{props.title}</Dialog.Title>
-          {props.right}
+          <div className={styles.link}>{props.right}</div>
         </div>
         {/*content*/}
         <div className={styles.modalContent}>{props.children}</div>
