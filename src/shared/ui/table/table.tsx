@@ -130,10 +130,16 @@ export const TableHeader: FC<
           <THeader key={key} onClick={handleSort(key, sortable)} style={{ width: '23%' }}>
             <div className={s.titleAndSortIcon}>
               {title}
-              {!sort && sortable && <Sort />}
-              {sort && sort.key === key && (
-                <span>{sort.direction === SortDirection.Asc ? <SortAsc /> : <SortDesc />}</span>
-              )}
+              {sortable &&
+                (sort && sort.key === key ? (
+                  <span style={{ marginTop: '7px' }}>
+                    {sort.direction === SortDirection.Asc ? <SortAsc /> : <SortDesc />}
+                  </span>
+                ) : (
+                  <span style={{ marginTop: '10px' }}>
+                    <Sort />
+                  </span>
+                ))}
             </div>
           </THeader>
         ))}
