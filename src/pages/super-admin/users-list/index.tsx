@@ -7,8 +7,6 @@ import { useDispatch } from 'react-redux'
 
 import s from './users-lists.module.scss'
 
-import { SortDirection } from '@/__generated__/graphql'
-import { AllSubscriptionPaymentsTable } from '@/features/all-subscription-payments-table-with-pagination/ui/all-subscription-payments-table/all-subscription-payments-table'
 import {
   UnbanUserModal,
   UserBanModal,
@@ -20,6 +18,7 @@ import {
 } from '@/features/super-admin-user-management/model/user-management-slice'
 import { UsersTableListWithPagination } from '@/features/users-list-table-with-pagination/ui/users-table-list-with-pagination'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
+import { setPageNumber } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { Input, InputType, RadixSelect } from '@/shared/ui'
 
@@ -45,11 +44,12 @@ const UsersList = () => {
 
   const handleBlockStatusChange = (blockStatus: BlockedStatusType) => {
     dispatch(setBlockStatus(blockStatus))
+    dispatch(setPageNumber(1))
   }
   const { t } = useTranslation('common', { keyPrefix: 'UserListTable' })
   const selectOptions = [
-    { label: t('NotBlocked'), value: 'NotBlocked' },
-    { label: t('Blocked'), value: 'Blocked' },
+    { label: t('NotBlocked'), value: 'UNBLOCKED' },
+    { label: t('Blocked'), value: 'BLOCKED' },
   ]
 
   return (

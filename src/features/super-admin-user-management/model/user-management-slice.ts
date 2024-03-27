@@ -27,10 +27,7 @@ const userManagementSlice = createSlice({
   },
   reducers: {
     setBlockStatus(state, action: PayloadAction<BlockedStatusType>) {
-      state.blockStatus =
-        action.payload === ('Blocked' as BlockedStatusType)
-          ? UserBlockStatus.Blocked
-          : UserBlockStatus.All
+      state.blockStatus = action.payload
     },
     setUsersBlockReason(state, action: PayloadAction<string>) {
       state.usersBlockReason = action.payload

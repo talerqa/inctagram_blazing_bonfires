@@ -80,6 +80,8 @@ export const UsersListTable = ({
         <TBody>
           {!users && <TableSkeleton numRows={skeletonRowsNum} />}
           {users.map(user => {
+            const banned = !!user.userBan
+
             return (
               <TRow key={user.id}>
                 <TCell>
@@ -103,28 +105,24 @@ export const UsersListTable = ({
                 <TCell>
                   <div className={s.iconsContainer}>
                     <DropdownMenu triggerIcon={<ThreeDots />}>
-                      <RDropdownMenu.Item
-                        onSelect={e => {
-                          e.preventDefault()
-                        }}
-                        className={s.DropdownMenuItem}
-                      >
-                        icon + text
-                      </RDropdownMenu.Item>
-                      <RDropdownMenu.Item
-                        onSelect={() => openBanModal(user)}
-                        className={s.DropdownMenuItem}
-                      >
-                        <BannedIcon width={24} height={24} />
-                        <Text>{t('Admin.BanInSystem')}</Text>
-                      </RDropdownMenu.Item>
-                      <RDropdownMenu.Item
-                        onSelect={() => openUnbanModal(user)}
-                        className={s.DropdownMenuItem}
-                      >
-                        <ThreeDots />
-                        <Text>{t('Admin.UnbanUser')}</Text>
-                      </RDropdownMenu.Item>
+                      {banned || (
+                        <RDropdownMenu.Item
+                          onSelect={() => openBanModal(user)}
+                          className={s.DropdownMenuItem}
+                        >
+                          <BannedIcon width={24} height={24} />
+                          <Text>{t('Admin.BanInSystem')}</Text>
+                        </RDropdownMenu.Item>
+                      )}
+                      {banned && (
+                        <RDropdownMenu.Item
+                          onSelect={() => openUnbanModal(user)}
+                          className={s.DropdownMenuItem}
+                        >
+                          <ThreeDots />
+                          <Text>{t('Admin.UnbanUser')}</Text>
+                        </RDropdownMenu.Item>
+                      )}
                       <RDropdownMenu.Item
                         onSelect={() => openDeleteUserModal(user)}
                         className={s.DropdownMenuItem}

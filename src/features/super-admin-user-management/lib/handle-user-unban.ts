@@ -4,16 +4,16 @@ import { useSelector } from 'react-redux'
 import { User } from '@/__generated__/graphql'
 import { selectSelectedUser } from '@/features/super-admin-user-management/model/user-management-slice'
 import {
-  BAN_USER,
   GET_USERS_LIST,
+  UNBAN_USER,
 } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 
-export function useBanUserMutation() {
+export function useUnbanUserMutation() {
   const user = useSelector(selectSelectedUser)
   const { getUserVariables } = useGetUserVariables()
-  const [banUser] = useMutation(BAN_USER, {
+  const [unbanUser] = useMutation(UNBAN_USER, {
     update: cache => {
       const data = cache.readQuery({
         query: GET_USERS_LIST,
@@ -25,13 +25,13 @@ export function useBanUserMutation() {
         getUsers: {
           ...data?.getUsers,
           users:
-            getUserVariables.statusFilter === 'UNBLOCKED'
+            getUserVariables.statusFilter === 'BLOCKED'
               ? data?.getUsers?.users.filter(el => el.id !== user?.id)
               : data?.getUsers?.users.map(el =>
                   el.id === user?.id
                     ? {
                         ...el,
-                        userBan: { createdAt: Date(), reason: '' },
+                        userBan: null,
                       }
                     : el
                 ),
@@ -45,17 +45,16 @@ export function useBanUserMutation() {
       })
     },
     optimisticResponse: () => {
-      return { userId: user?.id, banUser: true }
+      return { userId: user?.id, unbanUser: true }
     },
     onQueryUpdated: observableQuery => {
       void observableQuery.refetch()
     },
   })
 
-  const handleBanUser = (banReason: string, user: User | null) => {
-    void banUser({
+  const handleUnbanUser = (user: User | null) => {
+    void unbanUser({
       variables: {
-        banReason,
         userId: user?.id || 0,
       },
       context: {
@@ -66,5 +65,5 @@ export function useBanUserMutation() {
     })
   }
 
-  return handleBanUser
+  return handleUnbanUser
 }

@@ -38,12 +38,12 @@ export function useDeleteUserMutation() {
       return { userId: user?.id, removeUser: true }
     },
     onQueryUpdated: observableQuery => {
-      observableQuery.refetch()
+      void observableQuery.refetch()
     },
   })
 
   const handleDeleteUser = (user: User | null) => {
-    deleteUser({
+    void deleteUser({
       variables: {
         userId: user?.id || 0,
       },
