@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useDispatch } from 'react-redux'
@@ -15,7 +15,10 @@ export const UsersTableListWithPagination = () => {
   const dispatch = useDispatch()
   const { getUserVariables, sort, setSort } = useGetUserVariables()
 
-  const { data: usersTableData } = useQuery(GET_USERS_LIST, {
+  useEffect(() => {
+    void refetch()
+  }, [getUserVariables.statusFilter])
+  const { data: usersTableData, refetch } = useQuery(GET_USERS_LIST, {
     variables: getUserVariables,
     context: {
       headers: {

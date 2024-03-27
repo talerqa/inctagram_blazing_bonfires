@@ -1,23 +1,18 @@
 import React from 'react'
 
-import { useMutation } from '@apollo/client'
 import NextImage from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './unban-user-modal.module.scss'
 
-import { User } from '@/__generated__/graphql'
 import { NewPostModal } from '@/features/create-post/ui/new-post-modal/new-post-modal'
+import { useUnbanUserMutation } from '@/features/super-admin-user-management/lib/handle-user-unban'
 import {
-  selectBanModalOpenStatus,
   selectSelectedUser,
   selectUnbanModalOpenStatus,
-  setBanModalOpenStatus,
   setUnbanModalOpenStatus,
 } from '@/features/super-admin-user-management/model/user-management-slice'
-import { UNBAN_USER } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
-import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import closeIcon from '@/shared/assets/icons/icons/close-icon.svg'
 import { Button, ButtonTheme, Text } from '@/shared/ui'
 
@@ -26,21 +21,7 @@ export const UnbanUserModal = () => {
   const dispatch = useDispatch()
   const user = useSelector(selectSelectedUser)
   const isOpen = useSelector(selectUnbanModalOpenStatus)
-  const [unbanUser] = useMutation(UNBAN_USER)
-
-  const handleUnbanUser = () => {
-    unbanUser({
-      variables: {
-        userId: user?.id || 0,
-      },
-      context: {
-        headers: {
-          Authorization: `Basic ${getAdminBasicCredentials()}`,
-        },
-      },
-    })
-    dispatch(setUnbanModalOpenStatus(false))
-  }
+  const handleUnbanUser = useUnbanUserMutation()
 
   return (
     <NewPostModal
@@ -72,7 +53,13 @@ export const UnbanUserModal = () => {
             >
               {t('No')}
             </Button>
-            <Button className={s.button} onClick={handleUnbanUser}>
+            <Button
+              className={s.button}
+              onClick={() => {
+                handleUnbanUser(user)
+                dispatch(setUnbanModalOpenStatus(false))
+              }}
+            >
               {t('Yes')}
             </Button>
           </div>
