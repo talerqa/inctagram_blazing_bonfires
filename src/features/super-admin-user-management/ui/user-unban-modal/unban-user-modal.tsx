@@ -39,7 +39,7 @@ export const UnbanUserModal = () => {
     >
       <div className={s.modalContentWrapper}>
         <Text>
-          {t('Admin.AreYouSureYouWantToUnban')}, <b>{user?.userName}</b> ?
+          {t('Admin.AreYouSureYouWantToUnban')} <b>{user?.userName}</b> ?
         </Text>
 
         <div className={s.btnsContainer}>
