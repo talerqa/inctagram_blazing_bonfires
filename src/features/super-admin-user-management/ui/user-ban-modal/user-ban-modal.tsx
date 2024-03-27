@@ -69,21 +69,16 @@ export const UserBanModal = () => {
       }
     >
       <div className={s.modalContentWrapper}>
-        <div className={s.textWrapper}>
-          <Text className={s.text}>
-            Are you sure you want to ban this user, <b>{user?.userName}</b> ?
-          </Text>
-        </div>
+        <Text>
+          Are you sure you want to ban this user, <b>{user?.userName}</b> ?
+        </Text>
 
         <div className={s.btnsAndSelectContainer}>
-          <div className={s.select}>
-            <RadixSelect
-              className={s.triggerBtn}
-              onChangeOption={handleSetUsersBlockReason}
-              options={banReasons}
-              placeholder={t('Admin.ReasonForBan')}
-            />
-          </div>
+          <RadixSelect
+            onChangeOption={handleSetUsersBlockReason}
+            options={banReasons}
+            placeholder={t('Admin.ReasonForBan')}
+          />
           {banningReason.startsWith(t('Admin.AnotherReason')) && (
             <Input
               placeholder={t('Admin.AddReason')}

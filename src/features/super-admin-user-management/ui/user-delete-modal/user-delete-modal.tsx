@@ -30,7 +30,7 @@ export const UserDeleteModal = () => {
       title={'Delete user'}
       right={
         <NextImage
-          style={{ cursor: 'pointer' }}
+          className={s.closeIcon}
           src={closeIcon}
           alt={''}
           onClick={() => dispatch(setDeleteModalOpenStatus(false))}
@@ -38,11 +38,9 @@ export const UserDeleteModal = () => {
       }
     >
       <div className={s.modalContentWrapper}>
-        <div className={s.textWrapper}>
-          <Text className={s.text}>
-            Are you sure to delete user <b>{user?.userName}</b> ?
-          </Text>
-        </div>
+        <Text className={s.text}>
+          Are you sure to delete user <b>{user?.userName}</b> ?
+        </Text>
 
         <div className={s.btnsContainer}>
           <div className={s.btns}>
