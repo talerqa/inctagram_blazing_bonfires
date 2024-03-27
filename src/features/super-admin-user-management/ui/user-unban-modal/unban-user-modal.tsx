@@ -38,13 +38,11 @@ export const UnbanUserModal = () => {
       }
     >
       <div className={s.modalContentWrapper}>
-        <div className={s.textWrapper}>
-          <Text className={s.text}>
-            {t('Admin.AreYouSureYouWantToUnban')}, <b>{user?.userName}</b> ?
-          </Text>
-        </div>
+        <Text>
+          {t('Admin.AreYouSureYouWantToUnban')}, <b>{user?.userName}</b> ?
+        </Text>
 
-        <div className={s.btnsAndSelectContainer}>
+        <div className={s.btnsContainer}>
           <div className={s.btns}>
             <Button
               theme={ButtonTheme.CLEAR}
