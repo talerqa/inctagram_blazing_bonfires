@@ -61,7 +61,7 @@ export const UserBanModal = () => {
       title={t('Admin.BanUser')}
       right={
         <NextImage
-          style={{ cursor: 'pointer' }}
+          className={s.closeIcon}
           src={closeIcon}
           alt={''}
           onClick={() => dispatch(setBanModalOpenStatus(false))}
@@ -69,8 +69,8 @@ export const UserBanModal = () => {
       }
     >
       <div className={s.modalContentWrapper}>
-        <Text>
-          {t('Admin.AreYouSureYouWantToBan')} <b>{user?.userName}</b> ?
+        <Text size={'regular'}>
+          {t('Admin.AreYouSureYouWantToBan')} <b>{user?.userName}</b>?
         </Text>
 
         <div className={s.btnsAndSelectContainer}>
@@ -78,6 +78,7 @@ export const UserBanModal = () => {
             onChangeOption={handleSetUsersBlockReason}
             options={banReasons}
             placeholder={t('Admin.ReasonForBan')}
+            className={s.select}
           />
           {banningReason.startsWith(t('Admin.AnotherReason')) && (
             <Input

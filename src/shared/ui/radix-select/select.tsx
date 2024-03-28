@@ -47,7 +47,7 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
     }
 
     const classNames = {
-      trigger: clsx(s.trigger, s[variant], className),
+      trigger: clsx(s.trigger, s[variant], isOpened && s.triggerActive, className),
       items: clsx(s.item, s[variant]),
     }
 
@@ -60,8 +60,8 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
           onValueChange={onChangeCallback}
           {...rest}
         >
-          <RSelect.Trigger ref={ref} className={classNames['trigger']}>
-            <RSelect.Value placeholder={placeholder} />
+          <RSelect.Trigger ref={ref} className={classNames.trigger}>
+            <RSelect.Value placeholder={placeholder} className={s.value} />
             <RSelect.Icon>
               {icon || <ArrowDownOutline className={isOpened ? s.iconRotated : s.icon} />}
             </RSelect.Icon>
@@ -76,7 +76,6 @@ export const Select = forwardRef<ElementRef<typeof RSelect.Root>, SelectMenuProp
               side={'bottom'}
             >
               <RSelect.Viewport className={s.viewport}>
-                {' '}
                 {options.map((el, idx) => (
                   <RSelect.Item
                     className={classNames['items']}

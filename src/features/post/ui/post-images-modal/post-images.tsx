@@ -32,7 +32,15 @@ export const PostImages = ({ postData }: Props) => {
 
   return (
     <div className={style.sliderWrapper}>
-      {images.length && <Image src={images[currentIndex]?.url} alt={''} height={560} width={490} />}
+      {images.length && (
+        <Image
+          src={images[currentIndex]?.url}
+          alt={''}
+          height={562}
+          width={490}
+          style={{ objectFit: 'cover' }}
+        />
+      )}
       {images.length > 1 && <SlideBar styles={style} />}
     </div>
   )
