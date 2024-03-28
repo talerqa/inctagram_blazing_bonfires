@@ -38,8 +38,8 @@ export const UserDeleteModal = () => {
       }
     >
       <div className={s.modalContentWrapper}>
-        <Text className={s.text}>
-          {t('Admin.AreYouSureYouWantDeleteUser')} <b>{user?.userName}</b> ?
+        <Text size={'regular'}>
+          {t('Admin.AreYouSureYouWantDeleteUser')} <b>{user?.userName}</b>?
         </Text>
 
         <div className={s.btnsContainer}>

@@ -30,7 +30,7 @@ export const UnbanUserModal = () => {
       title={t('Admin.UnbanUser')}
       right={
         <NextImage
-          style={{ cursor: 'pointer' }}
+          className={s.closeIcon}
           src={closeIcon}
           alt={''}
           onClick={() => dispatch(setUnbanModalOpenStatus(false))}
@@ -38,8 +38,8 @@ export const UnbanUserModal = () => {
       }
     >
       <div className={s.modalContentWrapper}>
-        <Text>
-          {t('Admin.AreYouSureYouWantToUnban')} <b>{user?.userName}</b> ?
+        <Text size={'regular'}>
+          {t('Admin.AreYouSureYouWantToUnban')} <b>{user?.userName}</b>?
         </Text>
 
         <div className={s.btnsContainer}>

@@ -42,15 +42,13 @@ export const CloseModal = ({ cropContext }: Props) => {
         title={t('Close')}
         setIsOpen={() => cropContext.setIsOpenModal(false)}
         right={
-          <NextImage style={{ cursor: 'pointer' }} src={closeIcon} alt={''} onClick={handleClose} />
+          <NextImage className={style.closeIcon} src={closeIcon} alt={''} onClick={handleClose} />
         }
       >
         <div className={style.modalWrapper}>
-          <div className={style.textWrapper}>
-            <p className={style.text}>{t('ClosePublication')}</p>
-          </div>
+          <p>{t('ClosePublication')}</p>
 
-          <div className={style.buttonsContainer}>
+          <div className={style.btns}>
             <Button theme={ButtonTheme.CLEAR} className={style.button} onClick={handleDiscard}>
               {t('Discard')}
             </Button>

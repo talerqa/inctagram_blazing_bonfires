@@ -27,13 +27,16 @@
   font-size: var(--font-size-m);
   font-weight: 400;
   line-height: var(--line-height-m);
-  color: var(--color-light-900);
+  color: var(--color-light-100);
 
   background: transparent;
   border: 1px solid var(--color-dark-100);
   border-radius: 2px;
   outline: unset;
 
+  &[data-placeholder] {
+    color: var(--color-light-900);
+  }
   &:focus {
     border: 1px solid var(--color-info-500);
     outline: 1px solid var(--color-info-500);
@@ -72,7 +75,7 @@
   font-size: var(--font-size-m);
   font-weight: 400;
   line-height: var(--line-height-m);
-  color: var(--color-light-900);
+  color: var(--color-light-100);
 
   background: var(--color-dark-500);
 
@@ -118,4 +121,7 @@
     color: var(--color-light-100);
     background-color: var(--color-dark-100);
   }
+}
+.triggerActive {
+  color: var(--color-light-100);
 }

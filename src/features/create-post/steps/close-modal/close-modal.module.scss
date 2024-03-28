@@ -1,35 +1,25 @@
 .modalWrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
+  padding: 32px 24px;
+  max-width: 400px;
 
-  width: 380px;
-  height: 250px;
 
-  .textWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 320px;
-    height: 72px;
-    margin-top: 30px;
-
-    .text {
-      font-size: 16px;
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      .button {
+        padding: 6px 24px;
+      }
     }
-  }
 
-  .buttonsContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 90px;
-    margin-top: 70px;
-
-    .button {
-      width: 108px;
-      height: 36px;
-      font-size: var(--font-size-s);
-    }
+  button {
+    padding: 8px;
   }
+}
+.closeIcon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
