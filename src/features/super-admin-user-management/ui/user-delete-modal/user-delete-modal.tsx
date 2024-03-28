@@ -27,7 +27,7 @@ export const UserDeleteModal = () => {
     <NewPostModal
       isOpen={isOpen}
       setIsOpen={value => dispatch(setDeleteModalOpenStatus(value))}
-      title={'Delete user'}
+      title={t('Admin.DeleteUser')}
       right={
         <NextImage
           className={s.closeIcon}
@@ -39,7 +39,7 @@ export const UserDeleteModal = () => {
     >
       <div className={s.modalContentWrapper}>
         <Text className={s.text}>
-          Are you sure to delete user <b>{user?.userName}</b> ?
+          {t('Admin.AreYouSureYouWantDeleteUser')} <b>{user?.userName}</b> ?
         </Text>
 
         <div className={s.btnsContainer}>
