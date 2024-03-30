@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
-import { useQuery } from '@apollo/client'
-import { useDispatch } from 'react-redux'
+import { useQuery } from "@apollo/client";
+import { useDispatch } from "react-redux";
 
-import { UsersListTable } from '@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table'
-import { GET_USERS_LIST } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
-import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
-import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
-import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
-import { Pagination } from '@/shared/ui'
-import { SortType } from '@/shared/ui/table/table'
+import { UsersListTable } from "@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table";
+import { GET_USERS_LIST } from "@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst";
+import { getAdminBasicCredentials } from "@/pages/super-admin/lib/utils/utils";
+import { setPageNumber, setPageSize } from "@/pages/super-admin/modal/slices/admin-reducer";
+import { useGetUserVariables } from "@/shared/hooks/use-get-user-variables";
+import { Pagination, TableSkeleton } from "@/shared/ui";
+import { SortType } from "@/shared/ui/table/table";
 
 export const UsersTableListWithPagination = () => {
   const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export const UsersTableListWithPagination = () => {
     },
   })
 
-  if (!usersTableData) return null
+  if (!usersTableData) return <TableSkeleton key={'skeleton10'} numRows={10} />
 
   const handleSetItemsPerPage = (numOfItemsPerPage: number) => {
     dispatch(setPageNumber(1))
