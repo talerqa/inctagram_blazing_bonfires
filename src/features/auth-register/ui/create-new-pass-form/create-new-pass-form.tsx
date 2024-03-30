@@ -108,6 +108,7 @@ export function CreateNewPassForm() {
             placeholder={t('EnterPasswordConfirmation')}
             error={errors.newPasswordConfirmation && errors.newPasswordConfirmation?.message}
           />
+          <p>{tError('PasswordMin6Max20')}</p>
           <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>
             {t('CreateNewPassword')}
           </Button>

@@ -115,10 +115,7 @@ export function ForgotPass() {
               </Link>
             </div>
             <ReCAPTCHA
-              sitekey={
-                (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string) ||
-                '6LeY2y0mAAAAANwI_paCWfoksCgBm1n2z9J0nwNQ'
-              }
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
               onChange={onChangeRecaptchaHandler}
               theme={'dark'}
               aria-required

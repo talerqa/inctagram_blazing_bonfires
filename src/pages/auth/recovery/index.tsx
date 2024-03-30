@@ -16,9 +16,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-const CreateNewPassword = () => {
+const RecoveryPage = () => {
   return <CreateNewPassForm />
 }
 
-CreateNewPassword.getLayout = getLayout
-export default CreateNewPassword
+RecoveryPage.getLayout = getLayout
+export default RecoveryPage

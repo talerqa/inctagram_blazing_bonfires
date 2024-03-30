@@ -15,15 +15,14 @@
 
   .mainWindow {
     @include media-mobile {
-
-      @include media-mobile {
-        button {width: 100% !important;}
-      }
-
       display: flex;
       flex-direction: column;
       min-width: 240px;
       text-align: center;
+
+      button {
+        width: 100%;
+      }
     }
 
     position: absolute;
@@ -32,7 +31,7 @@
 
     min-width: 438px;
     min-height: 240px;
-    margin-right: -50%;
+    margin-right: -40%;
 
     background: #333;
     border: 1px solid #4c4c4c;
