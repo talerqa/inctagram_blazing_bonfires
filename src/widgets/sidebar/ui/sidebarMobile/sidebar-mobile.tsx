@@ -2,10 +2,12 @@ import React from 'react'
 
 import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
 import style from './sidebar-mobile.module.scss'
 
 import CreatePost from '@/features/create-post'
+import { selectAdminLoading, setAdminLoading } from '@/pages/super-admin/modal/slices/admin-reducer'
 import {
   HomeIcon,
   MessengerIcon,
@@ -16,10 +18,13 @@ import {
   StatisticsIcon,
 } from '@/shared/assets/icons'
 import { RoutersPath } from '@/shared/constants/paths'
+import { RootState } from '@/shared/providers/store-provider'
+import { CircularLoader } from '@/shared/ui'
 
 export const SidebarMobile = () => {
   const router = useRouter()
   const mainPath = router.pathname.split('/')
+  const isAdminLoading = useSelector(selectAdminLoading)
 
   const classNames = {
     myProfile: clsx(
@@ -56,30 +61,36 @@ export const SidebarMobile = () => {
     <aside className={style.sideBarContainer}>
       {mainPath[1] === 'super-admin' ? (
         <div className={style.superAdminContainer}>
-          <div
-            className={classNames.usersList}
-            onClick={() => router.push(RoutersPath.superAdminUsersList)}
-          >
-            <ProfileIcon />
-          </div>
-          <div
-            className={classNames.statistics}
-            onClick={() => router.push(RoutersPath.superAdminStatistics)}
-          >
-            <StatisticsIcon />
-          </div>
-          <div
-            className={classNames.payments}
-            onClick={() => router.push(RoutersPath.superAdminPaymentsList)}
-          >
-            <PaymentsIcon />
-          </div>
-          <div
-            className={classNames.posts}
-            onClick={() => router.push(RoutersPath.superAdminPostsList)}
-          >
-            <PostsIcon />
-          </div>
+          {isAdminLoading ? (
+            <CircularLoader />
+          ) : (
+            <>
+              <div
+                className={classNames.usersList}
+                onClick={() => router.push(RoutersPath.superAdminUsersList)}
+              >
+                <ProfileIcon />
+              </div>
+              <div
+                className={classNames.statistics}
+                onClick={() => router.push(RoutersPath.superAdminStatistics)}
+              >
+                <StatisticsIcon />
+              </div>
+              <div
+                className={classNames.payments}
+                onClick={() => router.push(RoutersPath.superAdminPaymentsList)}
+              >
+                <PaymentsIcon />
+              </div>
+              <div
+                className={classNames.posts}
+                onClick={() => router.push(RoutersPath.superAdminPostsList)}
+              >
+                <PostsIcon />
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <>
