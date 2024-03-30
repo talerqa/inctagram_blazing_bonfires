@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Table, TBody, TCell, THeader, TRow } from "../table";
+import { Table, TBody, TCell, THeader, TRow } from '../table'
 
 import s from './table-skeleton.module.scss'
 
