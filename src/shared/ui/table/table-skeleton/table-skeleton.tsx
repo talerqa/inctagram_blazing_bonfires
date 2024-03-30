@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Table, TCell, THeader, TRow } from '../table'
+import { Table, TBody, TCell, THeader, TRow } from '../table'
 
 import s from './table-skeleton.module.scss'
 
@@ -36,15 +36,17 @@ export const TableSkeleton = ({ numRows }: { numRows: number }) => {
 
   return (
     <Table className={s.tg}>
-      <TRow key={'222'}>
-        {Array.from({ length: 4 }, (_, idx) => (
-          <THeader key={idx}>
-            <div className={s.line}></div>
-          </THeader>
-        ))}
-        <THeader />
-      </TRow>
-      {Array.from({ length: numRows }, (_, idx) => renderRow(renderCell, idx))}
+      <TBody>
+        <TRow key={'222'}>
+          {Array.from({ length: 4 }, (_, idx) => (
+            <THeader key={idx}>
+              <div className={s.line}></div>
+            </THeader>
+          ))}
+          <THeader />
+        </TRow>
+        {Array.from({ length: numRows }, (_, idx) => renderRow(renderCell, idx))}
+      </TBody>
     </Table>
   )
 }
