@@ -7,7 +7,7 @@ import { AllSubscriptionPaymentsTable } from '@/features/all-subscription-paymen
 import { getAllSubscriptionPaymentsColumnHeaders } from '@/features/all-subscription-payments-table-with-pagination/ui/constants'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { GetUserVariablesType, useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
-import { Pagination, TableSkeleton } from "@/shared/ui";
+import { Pagination, TableSkeleton } from '@/shared/ui'
 import { SortType } from '@/shared/ui/table/table'
 
 export const AllSubscriptionPaymentsTableWithPagination = () => {
