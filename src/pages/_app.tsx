@@ -1,5 +1,5 @@
 import '../shared/styles/globals.scss'
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { GoogleOAuthProvider } from '@react-oauth/google'
@@ -8,10 +8,11 @@ import type { AppProps } from 'next/app'
 import { NextPage } from 'next/types'
 import { appWithTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 
-import { WithAuth } from '@/shared/hoc/withAuth/WithAuth'
-import { wrapper } from '@/shared/providers/storeProvider/model/store'
+import { setIsMobile } from '@/shared/api/services/app/app.slice'
+import { WithAuth } from '@/shared/hoc/with-auth/with-auth'
+import { wrapper } from '@/shared/providers/store-provider/model/store'
 
 const client = new ApolloClient({
   uri: 'https://inctagram.work/api/v1/graphql',
@@ -37,6 +38,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    handleResize()
+    function handleResize() {
+      dispatch(setIsMobile(window.innerWidth < 768))
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return getLayout(
     <WithAuth>
@@ -44,6 +56,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
     </WithAuth>
   )
 }
+
 const TranslateApp = appWithTranslation(App)
 
 function myApp(props: AppProps) {

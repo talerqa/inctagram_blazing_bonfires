@@ -1,23 +1,26 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import s from './usersLists.module.scss'
+import s from './users-lists.module.scss'
 
-import { UsersTableListWithPagination } from '@/entities/usersListTableWithPagination/ui/UsersTableListWithPagination'
-import { UserBanModal } from '@/features/user-management'
+import { SortDirection } from '@/__generated__/graphql'
+import { AllSubscriptionPaymentsTable } from '@/features/all-subscription-payments-table-with-pagination/ui/all-subscription-payments-table/all-subscription-payments-table'
 import {
-  selectBlockStatus,
-  setBanModalOpenStatus,
+  UnbanUserModal,
+  UserBanModal,
+  UserDeleteModal,
+} from '@/features/super-admin-user-management'
+import {
   setBlockStatus,
-  setSelectedUser,
-} from '@/features/user-management/model/userManagementSlice'
-import { UnbanUserModal } from '@/features/user-management/ui/user-unban-modal/UnbanUserModal'
+  setSearchParameter,
+} from '@/features/super-admin-user-management/model/user-management-slice'
+import { UsersTableListWithPagination } from '@/features/users-list-table-with-pagination/ui/users-table-list-with-pagination'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
-import { getAdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
+import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 import { Input, InputType, RadixSelect } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -32,18 +35,22 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 const UsersList = () => {
   const dispatch = useDispatch()
-  const blockStatus = useSelector(selectBlockStatus)
 
   const inputValue = useRef<HTMLInputElement | null>(null)
-  const [searchValue, setSearchValue] = useState('')
 
-  const handleSearch = handleInputChange(setSearchValue, 500)
+  const handleSearch = handleInputChange(
+    (value: string) => dispatch(setSearchParameter(value)),
+    500
+  )
 
   const handleBlockStatusChange = (blockStatus: BlockedStatusType) => {
     dispatch(setBlockStatus(blockStatus))
   }
   const { t } = useTranslation('common', { keyPrefix: 'UserListTable' })
-  const selectOptions = [t('NotBlocked'), t('Blocked')]
+  const selectOptions = [
+    { label: t('NotBlocked'), value: 'NotBlocked' },
+    { label: t('Blocked'), value: 'Blocked' },
+  ]
 
   return (
     <div className={s.usersListPage}>
@@ -64,9 +71,10 @@ const UsersList = () => {
           />
         </div>
       </div>
-      <UsersTableListWithPagination searchValue={searchValue} blockStatus={blockStatus} />
+      <UsersTableListWithPagination />
       <UserBanModal />
       <UnbanUserModal />
+      <UserDeleteModal />
     </div>
   )
 }

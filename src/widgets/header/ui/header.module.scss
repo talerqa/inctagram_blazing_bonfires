@@ -1,0 +1,73 @@
+@import '@/shared/styles/media-queries';
+
+.header {
+  @include media-extra-small {
+    padding: 0 1rem;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 60px;
+  padding: 0 4rem 0 3.75rem;
+
+  color: white;
+
+  background: var(--color-dark-700);
+  border-bottom: 1px solid #333;
+
+  .logo {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 36px;
+    color: white;
+    text-decoration: none;
+
+    .adminDescription {
+      font-size: 12px;
+
+      .adminDescriptionThin {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+
+    .ball {
+      @include media-extra-small {
+        margin-right: 0;
+      }
+
+      cursor: pointer;
+      display: flex;
+      margin-right: 40px;
+    }
+
+    .count {
+      position: relative;
+      right: 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 13px;
+      height: 13px;
+
+      font-size: 8px;
+
+      background: red;
+      border-radius: 50%;
+    }
+  }
+
+  .langSwitcherContainer {
+    width: 100%;
+    height: 36px;
+  }
+}

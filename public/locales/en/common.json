@@ -15,7 +15,7 @@
   "AddProfilePhoto": "Add a Profile Photo",
   "SelectFromComputer": "Select from Computer",
   "OpenDraft": "Open Draft",
-  "ProfileSetting": "Profile Setting",
+  "ProfileSetting": "Profile Settings",
   "ErrorTitle": "Error!",
   "AttentionTitle": "Attention!",
   "Notification": "Notification",
@@ -30,7 +30,7 @@
     "TryAgain": "Error, try again late",
     "ServerNotAvailable": "Error! Server is not available!",
     "UsernameAlreadyExist": "User with this userName is already exist",
-    "NotAuthorization": "You are not authorization, please enter in your account",
+    "NotAuthorization": "You are not authorized, please log in to your account",
     "NotOfflineMode": "Network error. Sorry, offline mode isn&apos;t ready",
     "PasswordIncorrect": "The password is incorrect. Try again please ",
     "EmailNotRegistered": "This email address is not registered. Please register",
@@ -98,24 +98,29 @@
     "GeneralInformation": "General information",
     "Devices": "Devices",
     "AccountManagement": "Account Management",
-    "MyPayments": "My payments"
+    "MyPayments": "My payments",
+    "Payments": "Payments",
+    "UploadedPhotos": "Uploaded photos"
   },
   "Profile": {
     "Following": "Following",
     "Followers": "Followers",
-    "Publications": "Publications"
+    "Publications": "Publications",
+    "BackToUsersList": "Back to Users List",
+    "UserID": "UserID",
+    "ProfileCreationDate": "Profile Creation Date"
   },
   "ProfileSettings": {
-    "UserName": "User Name",
+    "UserName": "Username",
     "EnterUserName": "Enter your user name",
     "FirstName": "First Name",
     "EnterFirstName": "Enter your first name",
     "LastName": "Last Name",
     "EnterLastName": "Enter your last name",
-    "DateBirthday": "Date of birthday",
+    "DateBirthday": "Date of birth",
     "City": "City",
     "EnterCity": "Enter your city",
-    "AboutMe": "About me",
+    "AboutMe": "About Me",
     "WriteAboutYourself": "Write about yourself",
     "BackToSignUpProfileSettings": "Back to profile setting",
     "AddProfilePhoto": "Add a Profile Photo",
@@ -148,7 +153,9 @@
     "DateOfPayment": "Date of payment",
     "EndDateOfSubscription": "End date of subscription",
     "Price": "Price",
+    "DateAdded": "Date added",
     "SubscriptionType": "Subscription Type",
+    "Subscription": "Subscription",
     "PaymentType": "Payment Type"
   },
   "Calendar": {
@@ -196,7 +203,7 @@
     "AddLocation": "Add location",
     "ClosePublication": "Do you really want to close the creation of a publication? If you close everything will be deleted",
     "Discard": "Discard",
-    "SaveDraft": "SaveDraft",
+    "SaveDraft": "Save draft",
     "Close": "Close"
   },
   "TablePagination": {
@@ -213,6 +220,22 @@
     "NotSelected": "Not selected",
     "Search": "Search"
   },
+  "PaymentsTable": {
+    "DateOfPayment": "Date of Payment",
+    "EndDateOfSubscription": "End date of subscription",
+    "Amount": "Amount, $",
+    "SubscriptionType": "Subscription type",
+    "PaymentType": "Payment type",
+    "PaymentMethod": "Payment method",
+    "Subscription": "Subscription",
+    "AutoUpdate": "Auto update"
+  },
+  "FollowersTable": {
+    "UserID": "User ID",
+    "UserName": "Username",
+    "ProfileLink": "Profile link",
+    "SubscriptionDate": "Subscription date"
+  },
   "Admin": {
     "BanUser": "Ban user",
     "UnbanUser": "Unban user",
@@ -225,7 +248,8 @@
     "AdvertisingPlacement": "Advertising placement",
     "AnotherReason": "Another reason",
     "AddReason": "Add reason",
-    "NotSelected": "Not selected"
+    "NotSelected": "Not selected",
+    "DeleteUser": "Delete User"
   },
   "Post": {
     "Yes": "Yes",

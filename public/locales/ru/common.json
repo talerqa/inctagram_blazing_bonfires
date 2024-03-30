@@ -96,12 +96,17 @@
     "GeneralInformation": "Информация",
     "Devices": "Устройства",
     "AccountManagement": "Управление",
-    "MyPayments": "Платежи"
+    "MyPayments": "Платежи",
+    "Payments": "Платежи",
+    "UploadedPhotos": "Загруженные фотографии"
   },
   "Profile": {
     "Following": "Подписки",
     "Followers": "Подписчики",
-    "Publications": "Публикации"
+    "Publications": "Публикации",
+    "BackToUsersList": "Обратно к списку пользователей",
+    "UserID": "ID пользователя",
+    "ProfileCreationDate": "Дата создания профиля"
   },
   "ProfileSettings": {
     "UserName": "Пользователь",
@@ -147,7 +152,9 @@
     "EndDateOfSubscription": "Дата окончания подписки",
     "Price": "Цена",
     "SubscriptionType": "Тип подписки",
-    "PaymentType": "Тип оплаты"
+    "PaymentType": "Тип оплаты",
+    "DateAdded": "Дата добавления",
+    "Subscription": "Подписка"
   },
   "Calendar": {
     "January": "Январь",
@@ -184,6 +191,22 @@
     "NotSelected": "Не выбрано",
     "Search": "Поиск"
   },
+  "PaymentsTable": {
+    "DateOfPayment": "Дата выплаты",
+    "EndDateOfSubscription": "Дата окончания подписки",
+    "Amount": "Цена, $",
+    "SubscriptionType": "Тип подписки",
+    "Subscription": "Тип подписки",
+    "PaymentType": "Тип выплаты",
+    "PaymentMethod": "Тип выплаты",
+    "AutoUpdate": "Автоматические обновление"
+  },
+  "FollowersTable": {
+    "UserID": "ID пользователя",
+    "UserName": "Пользователь",
+    "ProfileLink": "Ссылка на Профиль",
+    "SubscriptionDate": "Дата подписки"
+  },
   "AddPost": {
     "AddPhoto": "Добавить фотографию",
     "Cropping": "Обрезка",
@@ -213,7 +236,7 @@
   },
   "Admin": {
     "BanUser": "Заблокировать пользователя",
-    "Unban": "Разблокировать пользователя",
+    "UnbanUser": "Разблокировать пользователя",
     "BanInSystem": "Заблокировать в системе",
     "AreYouSureYouWantToBan": "Вы уверены, что хотите заблокировать пользователя",
     "AreYouSureYouWantToUnban": "Вы уверены, что хотите разблокировать пользователя",
@@ -223,7 +246,8 @@
     "AdvertisingPlacement": "Размещение рекламы",
     "AnotherReason": "Другие причины",
     "AddReason": "Добавьте причину",
-    "NotSelected": "Не выбрана"
+    "NotSelected": "Не выбрана",
+    "DeleteUser": "Удалить пользователя"
   },
   "Post": {
     "Yes": "Да",

@@ -1,9 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { baseURL } from '../baseUrl.api'
+import { baseURL } from '../base-url.api'
 
 import { AvatarsType, ProfileUserType } from '@/shared/api'
+import {
+  GetUserFollowersResponseType,
+  GetUserFollowingsResponseType,
+} from '@/shared/api/services/profile/profile.api.types'
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',
@@ -23,10 +27,10 @@ export const profileApi = createApi({
         query: () => {
           return {
             method: 'GET',
+            url: `users/profile`,
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
             },
-            url: `users/profile`,
           }
         },
         transformResponse: (baseQueryReturnValue: ProfileUserType) => {
@@ -78,6 +82,28 @@ export const profileApi = createApi({
         },
         invalidatesTags: ['dataProfile'],
       }),
+      getProfileFollowings: build.query<GetUserFollowingsResponseType, { userName: string }>({
+        query: ({ userName }) => {
+          return {
+            method: 'GET',
+            url: `users/${userName}}/following`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+            },
+          }
+        },
+      }),
+      getProfileFollowers: build.query<GetUserFollowersResponseType, { userName: string }>({
+        query: ({ userName }) => {
+          return {
+            method: 'GET',
+            url: `users/${userName}}/followers`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+            },
+          }
+        },
+      }),
     }
   },
 })
@@ -88,4 +114,6 @@ export const {
   useDeleteAvatarMutation,
   useLazyGetProfileUserQuery,
   useGetProfileUserQuery,
+  useGetProfileFollowingsQuery,
+  useGetProfileFollowersQuery,
 } = profileApi

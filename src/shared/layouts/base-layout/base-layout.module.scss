@@ -1,0 +1,34 @@
+@import '@/shared/styles/media-queries';
+
+.contentBody {
+  display: flex;
+
+  .main {
+    width: 100%;
+    padding-top: 3.75rem;
+  }
+
+  .mainWithSidebar {
+    width: 100%;
+    margin: 0 auto;
+
+    .rightSideBody {
+      width: 100%;
+      max-width: 972px;
+      margin: 0 auto;
+    }
+
+  }
+
+  .superAdminBody {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 4rem 0 2rem;
+  }
+
+  .AdminLayoutBody {
+    display: flex;
+    justify-content: center;
+  }
+}

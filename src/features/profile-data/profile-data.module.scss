@@ -1,0 +1,50 @@
+.headerContainer {
+  display: flex;
+  margin-top: 40px;
+
+  .avatarContainer {
+    //overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-dark-700);
+
+    & > img {
+      border-radius: 50%;
+    }
+  }
+
+  .profileInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: calc(100% - 204px);
+    margin-left: 50px;
+
+    .profileTitleContainer {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+
+      .buttonProfileSetting {
+        width: 167px;
+        height: 36px;
+        margin-left: auto;
+
+        font-size: 16px;
+        color: #fff;
+
+        background: #333;
+      }
+    }
+
+    .description {
+      width: 90%;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+  }
+}

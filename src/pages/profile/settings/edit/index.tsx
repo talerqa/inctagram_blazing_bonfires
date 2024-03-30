@@ -4,8 +4,8 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import styles from '@/pages/payment/access/Payment.module.scss'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import styles from '@/pages/payment/access/payment.module.scss'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { CircularLoader } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

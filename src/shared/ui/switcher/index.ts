@@ -1,1 +1,1 @@
-export { Switcher } from '@/shared/ui/switcher/ui/Switcher'
+export { Switcher } from '@/shared/ui/switcher/ui/switcher'

@@ -1,0 +1,33 @@
+.logoutButton {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  color: white;
+
+  background: inherit;
+  border: none;
+
+  &:hover {
+    background-color: inherit;
+  }
+
+  &:active {
+    border: none;
+  }
+
+  .description {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.userName {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}

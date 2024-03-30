@@ -6,11 +6,11 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import styles from './ConfirmedEmail.module.scss'
+import styles from './confirmed-email.module.scss'
 
-import broConfirmImage from '@/shared/assets/icons/login/broCongratulations.svg'
+import broConfirmImage from '@/shared/assets/icons/login/bro-congratulations.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { Button, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

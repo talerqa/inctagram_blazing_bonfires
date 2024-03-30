@@ -8,13 +8,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast, Toaster } from 'react-hot-toast'
 
-import styles from './ExpiredVerificationLink.module.scss'
+import styles from './expired-verification-link.module.scss'
 
 import { useResendVerificationLinkMutation } from '@/shared/api/services/auth/auth.api'
 import { ResendVerificationLinkType } from '@/shared/api/services/auth/auth.api.types'
-import broResend from '@/shared/assets/icons/login/broResend.svg'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { ShortLangs } from '@/shared/types/langSwitcherTypes'
+import broResend from '@/shared/assets/icons/login/bro-resend.svg'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
+import { ShortLangs } from '@/shared/types/lang-switcher-types'
 import { Modal, CircularLoader, Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
