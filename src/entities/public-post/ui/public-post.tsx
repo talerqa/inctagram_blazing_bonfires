@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useSelector } from 'react-redux'
 
 import s from './public-post.module.scss'
 
 import { PostModal } from '@/entities/post-modal/post-modal'
-import { PostResponseType } from '@/shared/api'
+import { PostResponseType, selectIsLoggedIn } from '@/shared/api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { RoutersPath } from '@/shared/constants/paths'
 import { useTruncateText } from '@/shared/hooks'
@@ -33,7 +34,14 @@ export const PublicPost = (post: PostResponseType) => {
     description,
     80
   )
-  const togglePostModal = () => setIsPostActive(!isPostActive)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const togglePostModal = (id: number) => {
+    if (!isLoggedIn) {
+      router.push(`${RoutersPath.profile}/${ownerId}/?data=${id}`)
+    } else {
+      setIsPostActive(!isPostActive)
+    }
+  }
 
   const userName = `${firstName} ${lastName}` || t('AnonymousUser')
 
@@ -45,7 +53,7 @@ export const PublicPost = (post: PostResponseType) => {
           width={234}
           height={240}
           alt="Picture of the post"
-          onClick={togglePostModal}
+          onClick={() => togglePostModal(id)}
         />
         <div
           className={s.postContentWrapper}
@@ -64,7 +72,7 @@ export const PublicPost = (post: PostResponseType) => {
           </span>
         )}
       </p>
-      {isPostActive && <PostModal postData={post} togglePostModal={togglePostModal} />}
+      {isPostActive && <PostModal postData={post} togglePostModal={() => togglePostModal(id)} />}
     </div>
   )
 }
