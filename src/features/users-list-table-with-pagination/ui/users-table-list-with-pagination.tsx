@@ -13,7 +13,7 @@ import {
 } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { RoutersPath } from '@/shared/constants/paths'
 import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
-import { Pagination } from '@/shared/ui'
+import { Pagination, TableSkeleton } from '@/shared/ui'
 import { SortType } from '@/shared/ui/table/table'
 
 export const UsersTableListWithPagination = () => {
@@ -43,7 +43,8 @@ export const UsersTableListWithPagination = () => {
   if (!loading) {
     dispatch(setAdminLoading(false))
   }
-  if (!usersTableData) return null
+
+  if (!usersTableData) return <TableSkeleton key={'skeleton10'} numRows={10} />
 
   const handleSetItemsPerPage = (numOfItemsPerPage: number) => {
     dispatch(setPageNumber(1))

@@ -5,14 +5,18 @@
   width: 100%;
 
   .main {
+    @include media-mobile {
+      padding-top: 0;
+    }
+
     width: 100%;
     padding-top: 3.75rem;
   }
 
   .mainWithSidebar {
-    width: 100%;
     display: flex;
     justify-content: center;
+    width: 100%;
 
     .rightSideBody {
       width: 100%;

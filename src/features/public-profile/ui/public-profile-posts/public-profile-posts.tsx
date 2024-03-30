@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 
 import { clsx } from 'clsx'
 import Image from 'next/image'
@@ -9,10 +9,15 @@ import { PostModal } from '@/entities/post-modal/post-modal'
 import { PostResponseType } from '@/shared/api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 
-export const PublicProfilePosts = (post: PostResponseType) => {
+type Props = PostResponseType & { clickedPostId?: number | undefined }
+export const PublicProfilePosts = (post: Props) => {
   const [isPostActive, setIsPostActive] = useState(false)
   const togglePostModal = () => setIsPostActive(prevState => !prevState)
   const notImageClass = clsx(style.postImage, !post.images[0]?.url && style.postNotImage)
+
+  useLayoutEffect(() => {
+    post.clickedPostId === post.id && setIsPostActive(true)
+  }, [])
 
   return (
     <div className={style.post}>
