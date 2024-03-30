@@ -1,14 +1,36 @@
-.mergeAccContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  width: 27rem;
-  margin: 2.2rem auto;
-  height: calc(100vh - 60px);
-  p {
-    width: 18.375rem;
-    margin-bottom: 0.4rem;
-    text-align: center;
+@import '@/shared/styles/media-queries';
+
+.mergeAccounts {
+  margin-top: 17px;
+
+  .mergeAccountsContainer {
+
+    @include media-mobile {
+      > img {
+        margin-top: 3rem;
+      }
+    }
+
+    gap: 1rem;
+    margin: 0 auto;
+    background-color: transparent;
+    border: 0;
+
+    > h3 {
+      line-height: 0;
+    }
+
+    > p {
+      text-align: center;
+    }
+
+  }
+
+
+  .mergeAccounts__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
   }
 }
