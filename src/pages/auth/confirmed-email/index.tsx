@@ -11,7 +11,7 @@ import styles from './confirmed-email.module.scss'
 import broConfirmImage from '@/shared/assets/icons/login/bro-congratulations.svg'
 import { RoutersPath } from '@/shared/constants/paths'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
-import { Button, ButtonTheme } from '@/shared/ui'
+import { Button, ButtonSize, ButtonTheme, FormContainer } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -27,13 +27,16 @@ const ConfirmedEmailPage = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Auth' })
 
   return (
-    <div className={styles.confirmedContainer}>
-      <h3>{t('Congratulations')}</h3>
-      <p>{t('EmailConfirmed')}</p>
-      <Link href={RoutersPath.signIn}>
-        <Button theme={ButtonTheme.FILLED}>{t('SignIn')}</Button>
-      </Link>
-      <Image src={broConfirmImage} alt={'women login account in her phone'} />
+    <div className={styles.confirmedEmail}>
+      <FormContainer title={'Congratulations'} className={styles.confirmedEmailContainer}>
+        <p>{t('EmailConfirmed')}</p>
+        <Link href={RoutersPath.signIn}>
+          <Button theme={ButtonTheme.FILLED} size={ButtonSize.MIDDLE}>
+            {t('SignIn')}
+          </Button>
+        </Link>
+        <Image src={broConfirmImage} alt={'women login account in her phone'} />
+      </FormContainer>
     </div>
   )
 }
