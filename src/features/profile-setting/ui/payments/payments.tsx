@@ -70,7 +70,7 @@ export const Payments = () => {
                   <TCell className={styles.item}>
                     {formatDate(item.endDateOfSubscription, 'mm.dd.yyyy')}
                   </TCell>
-                  <TCell className={styles.item}>{item.price}</TCell>
+                  <TCell className={styles.item}>${item.price}</TCell>
                   <TCell className={styles.item}>
                     {(() => {
                       if (item.subscriptionType === 'DAY') {

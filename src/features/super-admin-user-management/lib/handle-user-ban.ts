@@ -28,16 +28,7 @@ export function useBanUserMutation() {
             getUserVariables.statusFilter === 'UNBLOCKED'
               ? data?.getUsers?.users.filter(el => el.id !== user?.id)
               : data?.getUsers?.users.map(el =>
-                  el.id === user?.id
-                    ? {
-                        ...el,
-                        userBan: {
-                          __typename: 'UserBan',
-                          createdAt: Date(),
-                          reason: '',
-                        },
-                      }
-                    : el
+                  el.id === user?.id ? { ...el, userBan: { createdAt: Date(), reason: '' } } : el
                 ),
         },
       }

@@ -6,12 +6,11 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { AccountType } from '../../../../entities/account-type'
-import { PaymentButtons } from '../../../../entities/payment-buttons'
-import { SubscriptionType } from '../../../../entities/subscription-type'
-
 import styles from './management.module.scss'
 
+import { AccountType } from '@/entities/account-type'
+import { PaymentButtons } from '@/entities/payment-buttons'
+import { SubscriptionType } from '@/entities/subscription-type'
 import {
   useCancelAutoRenewalMutation,
   useCreateNewSubscriptionMutation,
@@ -71,6 +70,16 @@ export const Management = () => {
   }
 
   const onSubmit: SubmitHandler<NewSubscriptionType> = async (data: NewSubscriptionType) => {
+    switch (data.typeSubscription) {
+      case 'DAY':
+        data.amount = 10
+        break
+      case 'WEEKLY':
+        data.amount = 50
+        break
+      case 'MONTHLY':
+        data.amount = 100
+    }
     await createNewSubscription(data)
       .unwrap()
       .then(data => {
