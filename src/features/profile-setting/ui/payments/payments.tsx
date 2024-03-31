@@ -12,12 +12,12 @@ import { LinearLoader, Modal, Pagination, TBody, TCell, THead, THeader, TRow } f
 import { Table } from '@/shared/ui/table/table'
 
 export const Payments = () => {
-  const { data: payments, isLoading, isError } = useGetSubscriptionsQuery(undefined)
+  const { data: payments, isLoading, isError } = useGetSubscriptionsQuery()
   const [error, setError] = useState(false)
   const [allPayments, setAllPayment] = useState<SubscriptionDataType[]>([])
   const [page, setPage] = useState(1)
   const [itemsCountForPage, setItemsCountForPage] = useState(10)
-  const [totalCount, setTotalCount] = useState(100)
+  const [totalCount, setTotalCount] = useState(0)
 
   const { t } = useTranslation('common', { keyPrefix: 'Payments' })
   const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
@@ -37,7 +37,9 @@ export const Payments = () => {
     if (payments) {
       setError(isError)
       setTotalCount(payments.length)
-      setAllPayment(payments)
+      setAllPayment(
+        [...payments].sort((a, b) => Date.parse(b.dateOfPayment) - Date.parse(a.dateOfPayment))
+      )
     }
   }, [payments])
 
