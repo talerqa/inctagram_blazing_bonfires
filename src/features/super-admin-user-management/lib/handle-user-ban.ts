@@ -31,7 +31,11 @@ export function useBanUserMutation() {
                   el.id === user?.id
                     ? {
                         ...el,
-                        userBan: { createdAt: Date(), reason: '' },
+                        userBan: {
+                          __typename: 'UserBan',
+                          createdAt: Date(),
+                          reason: '',
+                        },
                       }
                     : el
                 ),
@@ -52,7 +56,7 @@ export function useBanUserMutation() {
     },
   })
 
-  const handleBanUser = (banReason: string, user: User | null) => {
+  return (banReason: string, user: User | null) => {
     void banUser({
       variables: {
         banReason,
@@ -65,6 +69,4 @@ export function useBanUserMutation() {
       },
     })
   }
-
-  return handleBanUser
 }

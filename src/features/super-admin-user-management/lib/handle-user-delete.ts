@@ -42,7 +42,7 @@ export function useDeleteUserMutation() {
     },
   })
 
-  const handleDeleteUser = (user: User | null) => {
+  return (user: User | null) => {
     void deleteUser({
       variables: {
         userId: user?.id || 0,
@@ -54,6 +54,4 @@ export function useDeleteUserMutation() {
       },
     })
   }
-
-  return handleDeleteUser
 }

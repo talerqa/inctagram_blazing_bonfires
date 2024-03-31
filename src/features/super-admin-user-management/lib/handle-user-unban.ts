@@ -52,7 +52,7 @@ export function useUnbanUserMutation() {
     },
   })
 
-  const handleUnbanUser = (user: User | null) => {
+  return (user: User | null) => {
     void unbanUser({
       variables: {
         userId: user?.id || 0,
@@ -64,6 +64,4 @@ export function useUnbanUserMutation() {
       },
     })
   }
-
-  return handleUnbanUser
 }
