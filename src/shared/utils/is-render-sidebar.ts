@@ -10,7 +10,7 @@ export const isRenderSidebar = (pathname: string) => {
     RoutersPath.mergeAccounts,
     RoutersPath.invalidVerificationLink,
     RoutersPath.forgotPassword,
-    RoutersPath.createNewPassword,
+    RoutersPath.authRecovery,
     RoutersPath.authConfirmedEmail,
     RoutersPath.authTermsOfService,
     RoutersPath.authPrivacyPolicy,

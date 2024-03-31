@@ -6,7 +6,7 @@ export const enum RoutersPath {
   sentEmail = '/sent-email',
   mergeAccounts = '/merge-accounts',
   forgotPassword = '/forgot-password',
-  createNewPassword = '/create-new-password',
+  authRecovery = '/auth/recovery',
   invalidVerificationLink = '/invalid-verification-link',
   authExpiredVerificationLink = '/auth/expired-verification-link',
   authRegistrationConfirmation = '/auth/registration-confirmation',

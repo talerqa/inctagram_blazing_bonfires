@@ -1,9 +1,36 @@
+@import '@/shared/styles/media-queries';
+
 .formContainer {
   display: flex;
-  gap: 1.5rem;
   flex-direction: column;
+  gap: 1.5rem;
   align-items: center;
+
   width: 100%;
+
+  .formContainer__btnsAndRecaptcha {
+    @include media-mobile {
+      flex-direction: column-reverse;
+      gap: 2.25rem;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+
+    width: 100%;
+
+
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+
+      width: 100%;
+    }
+  }
 }
 
 .forgotHelpText {

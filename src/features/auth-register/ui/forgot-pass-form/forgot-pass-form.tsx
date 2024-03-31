@@ -93,30 +93,34 @@ export function ForgotPass() {
               <p>{t('LinkHasBeenSent')}</p>
             </Modal>
           )}
-          {!isSentPass ? (
-            <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>
-              {t('SendLink')}
-            </Button>
-          ) : (
-            <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>
-              {t('SendAgain')}
-            </Button>
-          )}
-          <Link href={RoutersPath.signIn}>
-            <Button
-              className={styles.oppositeBtn}
-              theme={ButtonTheme.CLEAR}
-              size={ButtonSize.MIDDLE}
-            >
-              {t('BackToSignIn')}
-            </Button>
-          </Link>
-          <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-            onChange={onChangeRecaptchaHandler}
-            theme={'dark'}
-            aria-required
-          />
+          <div className={styles.formContainer__btnsAndRecaptcha}>
+            <div className={styles.btns}>
+              {!isSentPass ? (
+                <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>
+                  {t('SendLink')}
+                </Button>
+              ) : (
+                <Button size={ButtonSize.STRETCHED} className={styles.sendLinkBtn}>
+                  {t('SendAgain')}
+                </Button>
+              )}
+              <Link href={RoutersPath.signIn}>
+                <Button
+                  className={styles.oppositeBtn}
+                  theme={ButtonTheme.CLEAR}
+                  size={ButtonSize.MIDDLE}
+                >
+                  {t('BackToSignIn')}
+                </Button>
+              </Link>
+            </div>
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+              onChange={onChangeRecaptchaHandler}
+              theme={'dark'}
+              aria-required
+            />
+          </div>
         </form>
       </FormContainer>
     </>

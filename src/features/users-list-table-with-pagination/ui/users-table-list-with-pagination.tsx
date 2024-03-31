@@ -6,7 +6,12 @@ import { useDispatch } from 'react-redux'
 import { UsersListTable } from '@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table'
 import { GET_USERS_LIST } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
-import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
+import {
+  setAdminLoading,
+  setPageNumber,
+  setPageSize,
+} from '@/pages/super-admin/modal/slices/admin-reducer'
+import { RoutersPath } from '@/shared/constants/paths'
 import { useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 import { Pagination, TableSkeleton } from '@/shared/ui'
 import { SortType } from '@/shared/ui/table/table'
@@ -18,7 +23,12 @@ export const UsersTableListWithPagination = () => {
   useEffect(() => {
     void refetch()
   }, [getUserVariables.statusFilter])
-  const { data: usersTableData, refetch } = useQuery(GET_USERS_LIST, {
+
+  const {
+    data: usersTableData,
+    refetch,
+    loading,
+  } = useQuery(GET_USERS_LIST, {
     variables: getUserVariables,
     context: {
       headers: {
@@ -26,6 +36,13 @@ export const UsersTableListWithPagination = () => {
       },
     },
   })
+
+  if (loading) {
+    dispatch(setAdminLoading(true))
+  }
+  if (!loading) {
+    dispatch(setAdminLoading(false))
+  }
 
   if (!usersTableData) return <TableSkeleton key={'skeleton10'} numRows={10} />
 

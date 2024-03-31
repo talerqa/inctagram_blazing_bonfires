@@ -16,7 +16,7 @@ import { GetUserVariablesType } from '@/shared/hooks/use-get-user-variables'
 import { errorHandler } from '@/shared/utils'
 
 export function getAllSubscriptionPayments(getUserVariables: GetUserVariablesType) {
-  const { data: allSubscriptionPaymentsData } = useQuery(GET_ALL_SUBSCRIPTION_PAYMENTS, {
+  const { data: allSubscriptionPayments, loading } = useQuery(GET_ALL_SUBSCRIPTION_PAYMENTS, {
     variables: getUserVariables,
     context: {
       headers: {
@@ -25,5 +25,5 @@ export function getAllSubscriptionPayments(getUserVariables: GetUserVariablesTyp
     },
   })
 
-  return allSubscriptionPaymentsData
+  return { allSubscriptionPayments, loading }
 }

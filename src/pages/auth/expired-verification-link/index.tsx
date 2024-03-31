@@ -15,7 +15,7 @@ import { ResendVerificationLinkType } from '@/shared/api/services/auth/auth.api.
 import broResend from '@/shared/assets/icons/login/bro-resend.svg'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { ShortLangs } from '@/shared/types/lang-switcher-types'
-import { Modal, CircularLoader, Button, ButtonSize, ButtonTheme } from '@/shared/ui'
+import { Modal, CircularLoader, Button, ButtonSize, ButtonTheme, FormContainer } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -65,21 +65,26 @@ const ExpiredVerificationLinkPage = () => {
         </Modal>
       )}
       {isLoading && <CircularLoader />}
-      <div className={styles.expiredContainer}>
-        <h3
-          style={
-            i18n.language === ShortLangs.RU ? { marginBottom: '0', fontSize: '1rem' } : undefined
-          }
+      <div className={styles.expired}>
+        <FormContainer
+          className={styles.expiredContainer}
+          title={t('EmailVerificationExpired')}
+          // style={
+          //   i18n.language === ShortLangs.RU ? { marginBottom: '0', fontSize: '1rem' } : undefined
+          // }
         >
-          {t('EmailVerificationExpired')}
-        </h3>
-        <p>{t('LookLikeVerification')}</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Button theme={ButtonTheme.FILLED} size={ButtonSize.LARGE}>
-            {t('ResendVerificationLink')}
-          </Button>
-        </form>
-        <Image src={broResend} alt={'man waits and looks at clock'} />
+          <p>{t('LookLikeVerification')}</p>
+          <div className={styles.linkAndImageContainer}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Button theme={ButtonTheme.FILLED} size={ButtonSize.LARGE}>
+                {t('ResendVerificationLink')}
+              </Button>
+            </form>
+            <div className={styles.image}>
+              <Image src={broResend} alt={'man waits and looks at clock'} />
+            </div>
+          </div>
+        </FormContainer>
       </div>
     </>
   )
