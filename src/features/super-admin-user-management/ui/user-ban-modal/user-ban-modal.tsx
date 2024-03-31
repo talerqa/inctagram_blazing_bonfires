@@ -36,7 +36,7 @@ export const UserBanModal = () => {
     }
   }
 
-  const handleSetoOtherReasonToBan = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSetOtherReasonToBan = (e: ChangeEvent<HTMLInputElement>) => {
     // add explanation for 'other reason' ban selection
     dispatch(setUsersBlockReason(t('Admin.AnotherReason') + ' ' + e.target.value))
   }
@@ -83,7 +83,7 @@ export const UserBanModal = () => {
             <Input
               placeholder={t('Admin.AddReason')}
               type={InputType.TEXT}
-              onChange={handleSetoOtherReasonToBan}
+              onChange={handleSetOtherReasonToBan}
             />
           )}
           <div className={s.btns}>
