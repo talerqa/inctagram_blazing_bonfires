@@ -134,20 +134,24 @@ export const Management = () => {
           <div className={styles.listWrapper}>
             <div className={styles.currentSubscriptionRow}>
               <p className={styles.currentSubscriptionColumnName}>{t('ExpireAt')}:</p>
-              <p className={styles.currentSubscriptionColumnName} style={{ marginLeft: '10px' }}>
-                {t('NextPayment')}:
-              </p>
+              {currentSubscriptions?.hasAutoRenewal && (
+                <p className={styles.currentSubscriptionColumnName} style={{ marginLeft: '10px' }}>
+                  {t('NextPayment')}:
+                </p>
+              )}
             </div>
             {currentLocalSubs.map((item: SubscriptionDataType, index) => {
               return (
                 <div key={index}>
                   <div className={styles.currentSubscriptionRow}>
                     <p className={styles.currentSubscriptionColumnData}>
-                      {formatDate(item.endDateOfSubscription, 'mm.dd.yyyy')}
+                      {formatDate(item.endDateOfSubscription, 'dd.mm.yyyy')}
                     </p>
-                    <p className={styles.currentSubscriptionColumnData}>
-                      {formatDate(item.dateOfPayment, 'mm.dd.yyyy')}
-                    </p>
+                    {currentSubscriptions?.hasAutoRenewal && (
+                      <p className={styles.currentSubscriptionColumnData}>
+                        {formatDate(item.dateOfPayment, 'dd.mm.yyyy')}
+                      </p>
+                    )}
                   </div>
                 </div>
               )

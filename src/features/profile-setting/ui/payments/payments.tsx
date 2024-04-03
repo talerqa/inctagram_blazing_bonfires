@@ -67,10 +67,10 @@ export const Payments = () => {
               {currentPayments.map((item: SubscriptionDataType, index: number) => (
                 <TRow key={index} className={styles.line}>
                   <TCell className={styles.item}>
-                    {formatDate(item.dateOfPayment, 'mm.dd.yyyy')}
+                    {formatDate(item.dateOfPayment, 'dd.mm.yyyy')}
                   </TCell>
                   <TCell className={styles.item}>
-                    {formatDate(item.endDateOfSubscription, 'mm.dd.yyyy')}
+                    {formatDate(item.endDateOfSubscription, 'dd.mm.yyyy')}
                   </TCell>
                   <TCell className={styles.item}>${item.price}</TCell>
                   <TCell className={styles.item}>
