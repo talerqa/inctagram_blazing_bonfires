@@ -3,6 +3,7 @@
 .profileContainer {
   display: flex;
   margin-bottom: 3rem;
+  max-height: 12.75rem;
 
   .avatarContainer {
     grid-area: avatar;
@@ -18,9 +19,8 @@
   .profileDataContainer{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.4375rem;
     margin-left: 2.5rem;
-
   }
 }
 
