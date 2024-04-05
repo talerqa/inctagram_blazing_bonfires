@@ -94,7 +94,6 @@ function Profile() {
         {posts.map(p => (
           <>
             <figure className={style.photoWrapper}>
-              return (
               <Image
                 key={p.id}
                 src={p?.images[0]?.url}
@@ -105,7 +104,6 @@ function Profile() {
                 // width={234}
                 // height={228}
               />
-              )
             </figure>
             {isPostActive && (
               <PostModal

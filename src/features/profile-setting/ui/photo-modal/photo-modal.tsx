@@ -78,7 +78,7 @@ export const PhotoModal = ({ closeWindow, savePhoto }: Props) => {
       <Modal
         title={t('AddProfilePhoto')}
         callBackCloseWindow={closeWindow}
-        styles={{ width: '492px', height: '564px' }}
+        styles={{ maxWidth: '492px', height: '564px' }}
         isShowButton={false}
       >
         <div className={styles.contentWrapper}>
