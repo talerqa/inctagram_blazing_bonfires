@@ -1,28 +1,52 @@
-.profileContainer {
+@import '@/shared/styles/media-queries';
+
   .photosContainer {
-    display: flex;
+    @include media-extra-small {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media-min-mobile {
+      gap: 3px;
+    }
+
+    @include media-min-small {
+      gap: 0.75rem;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
 
     margin-top: 3rem;
+
+    .photoWrapper {
+      @include media-min-small {
+        height: 176px;
+      }
+
+      @include media-min-s-medium {
+        height: 234px;
+      }
+
+      @include media-mobile {
+        height: 108px;
+      }
+
+      all: unset;
+
+      position: relative;
+
+      width: 100%;
+      min-width: 108px;
+      height: 100%;
+      min-height: 108px;
+
+      img {
+        object-fit: cover;
+      }
+    }
   }
-}
 
-.photoWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: space-evenly;
-}
-
-.photo {
-  cursor: pointer;
-}
-
-.postsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
-}
