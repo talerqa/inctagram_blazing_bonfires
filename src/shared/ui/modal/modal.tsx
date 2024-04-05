@@ -32,7 +32,7 @@ export const Modal = ({
   mainButtonCB,
 }: Props) => {
   const refModalWindow = useRef<HTMLDivElement | null>(null)
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState({ isVisible: true, opacity: 0 })
 
   const closeOpenMenu = (e: DocumentEventMap['mousedown']) => {
     if (
@@ -40,7 +40,7 @@ export const Modal = ({
       isOpen &&
       !refModalWindow.current!.contains(e.target as HTMLDivElement)
     ) {
-      setIsOpen(false)
+      setIsOpen({ isVisible: false, opacity: 0 })
       callBackCloseWindow()
     }
   }
@@ -51,6 +51,14 @@ export const Modal = ({
   const extraButtonHandler = () => {
     extraButtonCB && extraButtonCB()
   }
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsOpen(prevState => ({ ...prevState, opacity: prevState.isVisible ? 1 : 0 }))
+    }, 10)
+
+    return () => clearTimeout(timeoutId)
+  }, [isOpen])
 
   useEffect(() => {
     if (isOpen) {
@@ -64,7 +72,11 @@ export const Modal = ({
 
   return (
     <div className={style.windowWrapper}>
-      <div style={styles ? styles : {}} className={style.mainWindow} ref={refModalWindow}>
+      <div
+        style={{ ...styles, opacity: isOpen.opacity }}
+        className={style.mainWindow}
+        ref={refModalWindow}
+      >
         <div className={style.header}>
           <div>{title}</div>
           <div>
