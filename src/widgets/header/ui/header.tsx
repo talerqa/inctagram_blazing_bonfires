@@ -16,8 +16,10 @@ import { NotificationIcon } from '@/shared/assets/icons'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'
 import { RoutersPath } from '@/shared/constants/paths'
-import { DropdownMenu, Text } from '@/shared/ui'
+import { convertTimeUnitToDays } from '@/shared/libs/format-dates/format-dates'
+import { DropdownMenu, TCell, Text } from '@/shared/ui'
 import { Card } from '@/shared/ui/card/Card'
+import { findDate } from '@/shared/utils'
 import { LanguageSelect } from '@/widgets/lang-switcher'
 
 export const Header = ({ isMobile }: { isMobile?: boolean }) => {
@@ -51,18 +53,19 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
                 <div className={styles.ball}>
                   <NotificationIcon onClick={() => setShowNotifications(!showNotifications)} />
                   {showNotifications && (
-                    <Card headerText={'notifications'}>
+                    <Card headerText={'notifications'} className={styles.notificationContainer}>
                       {notifications.data.items.map(item => (
                         <div key={item.id} className={styles.notification}>
-                          <Text as={'h6'} color={'light'}>
-                            New notification!
-                          </Text>
-                          <Text as={'p'} color={'light'}>
-                            {item.message}{' '}
+                          <Text as={'p'} color={'light'} weight={'bold'} className={styles.text}>
+                            New notification!{' '}
                             <span style={{ color: 'lightblue' }}>{item.isRead && 'New'}</span>
                           </Text>
-                          <Text as={'p'} color={'light'}>
-                            {item.notifyAt}
+                          {/*<TCell>{findDate.formatToNumeric(user.createdAt)}</TCell>*/}
+                          <Text as={'p'} color={'light'} className={styles.text}>
+                            {item.message}{' '}
+                          </Text>
+                          <Text as={'p'} color={'light'} className={styles.text}>
+                            {findDate.format(item.notifyAt)}
                           </Text>
                         </div>
                       ))}

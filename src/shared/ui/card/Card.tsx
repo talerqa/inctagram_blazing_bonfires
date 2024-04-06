@@ -4,12 +4,13 @@ import s from './Card.module.scss'
 
 export const Card = ({ headerText, children, ...props }) => {
   const styles = {
-    position: 'absolute',
-    // textWrap: 'nowrap',
-    top: 0,
-    left: -283,
+    // position: 'absolute',
+    // // textWrap: 'nowrap',
+    // top: 0,
+    // left: -283,
     background: 'var(--color-dark-500)',
     zIindex: 4,
+    overflowY: 'scroll',
   }
 
   const headerStyle = {

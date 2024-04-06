@@ -46,10 +46,27 @@
       display: flex;
       align-items: center;
 
-      .notification {
-        display: flex;
-        flex-direction: column;
+      .notificationContainer {
+        position: absolute;
+        top: 35px;
+        left: -310px;
 
+
+        max-width: 355px;
+        max-height: 425px;
+
+
+        .notification {
+          display: flex;
+          flex-direction: column;
+          padding: 1rem 0;
+          border-bottom: 1px solid grey;
+
+          .text {
+            line-height: var(--line-height-l);
+          }
+
+        }
       }
 
       .ball {
