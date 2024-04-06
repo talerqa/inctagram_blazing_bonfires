@@ -2,6 +2,7 @@ export const Notification = ({
   width = 24,
   height = 24,
   fill = 'white',
+  ...props
 }: {
   width?: number
   height?: number
@@ -9,6 +10,7 @@ export const Notification = ({
 }) => {
   return (
     <svg
+      {...props}
       width={width}
       height={height}
       viewBox="0 0 18 20"

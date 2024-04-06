@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
+import { io } from 'socket.io-client'
 
 import { baseURL } from '../base-url.api'
 
@@ -8,6 +9,10 @@ import {
   GetUserFollowersResponseType,
   GetUserFollowingsResponseType,
 } from '@/shared/api/services/profile/profile.api.types'
+
+enum ChatEvent {
+  ReceiverNotifications = 'notifications',
+}
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',
@@ -104,6 +109,53 @@ export const profileApi = createApi({
           }
         },
       }),
+      getNotifications: build.query<
+        any,
+        { cursor?: number; sortBy?: string; pageSize?: string; sortDirection?: string }
+      >({
+        query: ({ cursor }) => {
+          return {
+            method: 'GET',
+            url: `notifications/${cursor}`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+            },
+          }
+        },
+      }),
+      // notifications: build.query<any, void>({
+      //   query: () => 'notifications',
+      //   async onCacheEntryAdded(arg, { cacheDataLoaded, cacheEntryRemoved, updateCachedData }) {
+      //     const accessToken = localStorage.getItem('accessToken')
+      //     const queryParams = {
+      //       query: {
+      //         accessToken,
+      //       },
+      //     }
+      //
+      //     try {
+      //       await cacheDataLoaded
+      //       // the /chat-messages endpoint responded already
+      //
+      //       // const socket = io(process.env.NEXT_PUBLIC_NOTIFICATIONS_SOCKET_API, {
+      //       const socket = io('https://inctagram.work/', queryParams)
+      //
+      //       socket.on(ChatEvent.ReceiverNotifications, (message: any) => {
+      //         updateCachedData(draft => {
+      //           draft.push(message)
+      //         })
+      //       })
+      //
+      //       await cacheEntryRemoved
+      //
+      //       socket.off('connect')
+      //       socket.off(ChatEvent.ReceiverNotifications)
+      //     } catch {
+      //       // if cacheEntryRemoved resolved before cacheDataLoaded,
+      //       // cacheDataLoaded throws
+      //     }
+      //   },
+      // }),
     }
   },
 })
@@ -116,4 +168,6 @@ export const {
   useGetProfileUserQuery,
   useGetProfileFollowingsQuery,
   useGetProfileFollowersQuery,
+  useNotificationsQuery,
+  useGetNotificationsQuery,
 } = profileApi
