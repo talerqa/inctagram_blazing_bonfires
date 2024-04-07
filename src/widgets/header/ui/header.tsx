@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import * as RDropdownMenu from '@radix-ui/react-dropdown-menu'
 import Image from 'next/image'
@@ -26,11 +26,13 @@ import { useTranslateNotificationMessage } from '@/widgets/header/ui/helpers/use
 import { LanguageSelect } from '@/widgets/lang-switcher'
 
 export const Header = ({ isMobile }: { isMobile?: boolean }) => {
-  const { data: notifications } = useGetNotificationsQuery({
+  const { data: initialNotifications } = useGetNotificationsQuery({
     cursor: 214,
     sortBy: 'notifyAt',
     sortDirection: 'desc',
   })
+  const [notifications, setNotifications] = useState<any>(initialNotifications)
+
   const [showNotifications, setShowNotifications] = useState(false)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const { translateNotificationMessage } = useTranslateNotificationMessage()
@@ -38,12 +40,23 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
   const { t } = useTranslation('common')
   const router = useRouter()
   const mainPath = router.pathname.split('/')
-  const getNotific = useGetNotificationsSocket()
 
   // const messages = useNotificationsQuery()
+  const newNotification = useGetNotificationsSocket()
+
+  console.log(newNotification, 'NOTIFICATIONS AND ERROR')
+  useEffect(() => {
+    if (newNotification?.notification) {
+      // Merge new notifications with existing notifications
+      setNotifications(prevNotifications => ({
+        ...prevNotifications,
+        items: [...prevNotifications.items, { ...newNotification?.notification }],
+      }))
+    }
+  }, [])
 
   // console.log(messages, 'WEBSOCKET')
-  console.log(notifications, 'Notifications')
+  console.log(notifications, 'NotificationsFROM webscoekt')
 
   if (!notifications) return null
 
@@ -52,7 +65,7 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
       <header className={styles.header}>
         <div className={styles.headerWrapper}>
           <Link href="/" className={styles.logo}>
-            Inctagram
+            <span className={styles.shimmer}>Inctagram</span>
             {mainPath[1] === 'super-admin' && (
               <span className={styles.adminDescription}>
                 <span className={styles.adminDescriptionThin}>Super</span>Admin
@@ -70,11 +83,11 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
                     setIsOpen={setShowNotifications}
                     icon={<NotificationIcon />}
                   >
-                    {notifications.items.map(item => (
+                    {notifications?.items?.map(item => (
                       <div key={item.id} className={styles.notification}>
                         <Text as={'p'} color={'light'} weight={'bold'} className={styles.text}>
                           {t('Notifications.notifications')}{' '}
-                          <span>{item.isRead && t('Notifications.new')}</span>
+                          <span>{item.isRead === false && t('Notifications.new')}</span>
                         </Text>
                         <Text as={'p'} color={'light'} className={styles.text}>
                           {translateNotificationMessage(item.message)}

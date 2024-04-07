@@ -7,24 +7,34 @@ import { GetNotificationsSocketApi } from '@/widgets/header/api/get-notification
 
 export const useGetNotificationsSocket = () => {
   const accessToken = localStorage.getItem('accessToken')
-  const [notifications, setNotifications] = useState<NotificationsItemType | null>(null)
+  const [notification, setNotification] = useState<NotificationsItemType | null>(null)
+  const [error, setError] = useState('')
 
-  if (!accessToken) return
+  if (!accessToken) return null
 
   const connectSocket = () => {
     GetNotificationsSocketApi.createConnection(accessToken)
 
     GetNotificationsSocketApi.socket?.on('notifications', (data: NotificationsItemType) => {
       console.log(data)
-      setNotifications(data)
+      setNotification(data)
+    })
+
+    GetNotificationsSocketApi.socket?.onAny((event, ...args) => {
+      console.log('onAny Event:', event)
+      console.log('onAny Args:', args)
+      if (event.message?.length) {
+        setError(JSON.stringify(event))
+        console.log(event)
+      }
     })
   }
 
-  console.log(notifications, ' NOTIFICATIONS')
+  console.log(notification, ' NOTIFICATIONS')
 
   useEffect(() => {
     connectSocket()
   }, [])
 
-  return { notifications }
+  return { notification, error }
 }
