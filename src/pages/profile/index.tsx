@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useSelector } from 'react-redux'
 
 import style from './profile.module.scss'
 
 import { PostModal } from '@/entities/post-modal/post-modal'
 import { ProfileData } from '@/features/profile-data/profile-data'
-import { PostResponseType } from '@/shared/api'
+import { PostResponseType, selectIsMobile } from '@/shared/api'
 import {
   useLazyGetPublicPostQuery,
   useLazyGetPublicUserPostsQuery,
@@ -90,28 +91,29 @@ function Profile() {
     <div className={style.profileContainer}>
       <ProfileData profileData={profileData} />
       <div className={style.photosContainer}>
-        <div className={style.photoWrapper}>
-          {posts.map(p => {
-            return (
+        {posts.map(p => (
+          <>
+            <figure className={style.photoWrapper}>
               <Image
                 key={p.id}
                 src={p?.images[0]?.url}
                 alt={'post image'}
                 className={style.photo}
                 onClick={() => getPost(p.id).unwrap().then(togglePostModal)}
-                width={234}
-                height={228}
+                fill
+                // width={234}
+                // height={228}
               />
-            )
-          })}
-          {isPostActive && (
-            <PostModal
-              postData={postData}
-              togglePostModal={togglePostModal}
-              profileData={profileData}
-            />
-          )}
-        </div>
+            </figure>
+            {isPostActive && (
+              <PostModal
+                postData={postData}
+                togglePostModal={togglePostModal}
+                profileData={profileData}
+              />
+            )}
+          </>
+        ))}
       </div>
     </div>
   )

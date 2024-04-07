@@ -2,15 +2,15 @@
 
 .subscribersContainer {
   @include media-s-medium {
-    gap: 58px;
+    gap: 3.5rem;
   }
 
   @include media-extra-small {
-    gap: 33px;
+    gap: 1rem;
   }
 
   display: flex;
-  gap: 100px;
+  gap: 6.25rem;
 
   .item {
     display: flex;

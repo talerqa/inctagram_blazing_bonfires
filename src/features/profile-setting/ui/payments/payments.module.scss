@@ -1,4 +1,10 @@
+@import '@/shared/styles/media-queries';
+
 .wrapper {
+  @include media-small {
+    padding: 0;
+  }
+
   width: 100%;
   margin-top: 24px;
   padding: 0 4rem 0 1.5rem;
@@ -12,6 +18,12 @@
 
 .head,
 .line {
+  height: 48px;
+}
+
+.lineMobile {
+  display: flex;
+  justify-content: space-between;
   height: 48px;
 }
 
@@ -31,9 +43,34 @@
   text-align: left;
 }
 
+.itemMobile {
+  tr {
+  border: none !important; }
+}
+
 .pagination {
   display: flex;
-  align-items: center;
   gap: 32px;
+  align-items: center;
   color: white;
+}
+
+.tableMobile {
+  .bodyMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  th, td {
+    padding: 6px 12px;
+    background-color: var(--color-dark-500);
+    border: var(--color-dark-500);
+  }
+
+  .bodyItem{
+    padding: 1rem 0;
+    background: var(--color-dark-500);
+    border: 1px solid var(--color-dark-100);
+  }
 }
