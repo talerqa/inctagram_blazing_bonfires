@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast, Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
@@ -68,7 +68,7 @@ export const AdminSignInForm = () => {
   })
 
   const onSubmit = handleSubmit((args: LoginFormType) => {
-    loginAdmin({
+    void loginAdmin({
       variables: { email: String(args.email), password: String(args.password) },
     })
   })
@@ -92,7 +92,9 @@ export const AdminSignInForm = () => {
             error={t(errors.password?.message || '')}
             {...register('password')}
           />
-          <Button size={ButtonSize.STRETCHED}>{tAuth('SignIn')}</Button>
+          <Button className={styles.btn} size={ButtonSize.STRETCHED}>
+            {tAuth('SignIn')}
+          </Button>
         </form>
       </FormContainer>
     </>
