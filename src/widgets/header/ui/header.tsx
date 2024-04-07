@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 import * as RDropdownMenu from '@radix-ui/react-dropdown-menu'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+
+import { useGetNotificationsSocket } from '../api/use-get-notifications'
 
 import styles from './header.module.scss'
 
@@ -16,42 +18,34 @@ import { NotificationIcon } from '@/shared/assets/icons'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'
 import { RoutersPath } from '@/shared/constants/paths'
-import { convertTimeUnitToDays } from '@/shared/libs/format-dates/format-dates'
-import { CircularLoader, DropdownMenu, TCell, Text } from '@/shared/ui'
+import { DropdownMenu, Text } from '@/shared/ui'
 import { Card } from '@/shared/ui/card/Card'
-import { findDate } from '@/shared/utils'
+import { useFindDateDifference } from '@/shared/utils/useFindDateDifference'
+import { getNumberOfNewNotifications } from '@/widgets/header/ui/helpers/get-number-of-new-notifications'
+import { useTranslateNotificationMessage } from '@/widgets/header/ui/helpers/use-translate-notification-message'
 import { LanguageSelect } from '@/widgets/lang-switcher'
 
 export const Header = ({ isMobile }: { isMobile?: boolean }) => {
-  const [count, setCounter] = useState(3)
+  const { data: notifications } = useGetNotificationsQuery({
+    cursor: 214,
+    sortBy: 'notifyAt',
+    sortDirection: 'desc',
+  })
   const [showNotifications, setShowNotifications] = useState(false)
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
+  const { translateNotificationMessage } = useTranslateNotificationMessage()
+  const { findDateDifference } = useFindDateDifference()
   const { t } = useTranslation('common')
   const router = useRouter()
   const mainPath = router.pathname.split('/')
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const getNotific = useGetNotificationsSocket()
+
   // const messages = useNotificationsQuery()
-  const notifications = useGetNotificationsQuery({ sortBy: 'notifyAt', sortDirection: 'desc' })
-
-  const notificationMessage = (message: string) => {
-    const splittedMessage = message.split(' ')
-    const notificationDaysNumber = splittedMessage[splittedMessage.length - 2]
-    const notificationDayWord = splittedMessage[splittedMessage.length - 1]
-
-    if (message.includes('The next subscription payment will be debited from your account after')) {
-      return (
-        t('Notifications.paymentWillBeDebited') +
-        ' ' +
-        notificationDaysNumber +
-        ' ' +
-        t(`Notifications.${notificationDayWord}  `)
-      )
-    }
-  }
 
   // console.log(messages, 'WEBSOCKET')
   console.log(notifications, 'Notifications')
 
-  if (!notifications.data) return 'LOADINg'
+  if (!notifications) return null
 
   return (
     <>
@@ -71,28 +65,29 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
                 <div className={styles.ball}>
                   <Card
                     isOpen={showNotifications}
-                    headerText={'Notifications'}
+                    headerText={`${t('Notifications.notifications')}`}
                     className={styles.notificationContainer}
                     setIsOpen={setShowNotifications}
                     icon={<NotificationIcon />}
                   >
-                    {notifications.data.items.map(item => (
+                    {notifications.items.map(item => (
                       <div key={item.id} className={styles.notification}>
                         <Text as={'p'} color={'light'} weight={'bold'} className={styles.text}>
                           {t('Notifications.notifications')}{' '}
                           <span>{item.isRead && t('Notifications.new')}</span>
                         </Text>
-                        {/*<TCell>{findDate.formatToNumeric(user.createdAt)}</TCell>*/}
                         <Text as={'p'} color={'light'} className={styles.text}>
-                          {notificationMessage(item.message)}
+                          {translateNotificationMessage(item.message)}
                         </Text>
                         <Text as={'p'} color={'light'} className={styles.text}>
-                          {findDate.format(item.notifyAt)}
+                          {findDateDifference(item.notifyAt)}
                         </Text>
                       </div>
                     ))}
                   </Card>
-                  <div className={styles.count}>{count}</div>
+                  <div className={styles.count}>
+                    {getNumberOfNewNotifications(notifications.items)}
+                  </div>
                 </div>
               </>
             )}
@@ -116,12 +111,16 @@ export const Header = ({ isMobile }: { isMobile?: boolean }) => {
                     <EditPost />
                     <p>{t('Favorites')}</p>
                   </RDropdownMenu.Item>
-                  <RDropdownMenu.Item onSelect={() => setIsModalOpen(true)}>
+                  <RDropdownMenu.Item onSelect={() => setIsLogoutModalOpen(true)}>
                     <Image src={logoutImg} alt={''} />
                     <span className={styles.description}>{t('Auth.LogOut')}</span>
                   </RDropdownMenu.Item>
                 </DropdownMenu>
-                <Logout hidden={true} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+                <Logout
+                  hidden={true}
+                  isModalOpen={isLogoutModalOpen}
+                  setIsModalOpen={setIsLogoutModalOpen}
+                />
               </>
             )}
           </div>

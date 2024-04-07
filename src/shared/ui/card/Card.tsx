@@ -16,9 +16,11 @@ export const Card = forwardRef<HTMLDivElement, CardType>(
     const styles = {
       visible: {
         opacity: 1,
+        display: 'initial',
       },
       hidden: {
         opacity: 0,
+        display: 'none',
       },
     }
 
