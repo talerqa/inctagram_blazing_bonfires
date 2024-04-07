@@ -10,13 +10,6 @@ type Props = {
   className?: string
 } & FormHTMLAttributes<HTMLFormElement>
 
-export enum FormOption {
-  SIGNIN = 'signin',
-  SIGNUP = 'signup',
-  CREATEPASSWORD = 'createPassword',
-  FORGOTPASSWORD = 'forgotPassword',
-}
-
 export const FormContainer = ({ title, children, className }: Props) => {
   return (
     <div className={classNames(styles.formContainer, {}, [className ? className : ''])}>
