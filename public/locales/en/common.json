@@ -301,5 +301,15 @@
   "Page404": {
     "Sorry! Page non found!" : "Sorry! Page non found!",
     "Back to home page" : "Back to home page"
+  },
+  "Notifications": {
+    "notifications": "Notifications",
+    "newNotification": "New notifications",
+    "new": "new",
+    "paymentWillBeDebited": "The next subscription payment will be debited from your account after",
+    "subscriptionEnds": "Your subscription ends in",
+    "subscriptionIsActivatedUntil": "Your subscription has been activated and is valid until",
+    "day": "day",
+    "days": "days"
   }
 }

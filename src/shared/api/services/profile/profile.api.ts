@@ -6,6 +6,7 @@ import { baseURL } from '../base-url.api'
 
 import { AvatarsType, ProfileUserType } from '@/shared/api'
 import {
+  GetNotificationsResponseType,
   GetUserFollowersResponseType,
   GetUserFollowingsResponseType,
 } from '@/shared/api/services/profile/profile.api.types'
@@ -110,7 +111,7 @@ export const profileApi = createApi({
         },
       }),
       getNotifications: build.query<
-        any,
+        GetNotificationsResponseType,
         { cursor?: number; sortBy?: string; pageSize?: string; sortDirection?: string }
       >({
         query: ({ cursor }) => {

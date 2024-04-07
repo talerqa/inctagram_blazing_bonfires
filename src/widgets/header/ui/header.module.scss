@@ -55,6 +55,7 @@
         max-width: 355px;
         max-height: 425px;
 
+        background: var(--color-dark-500);
 
         .notification {
           display: flex;
@@ -64,6 +65,11 @@
 
           .text {
             line-height: var(--line-height-l);
+
+            > span {
+              font-weight: var(--font-weight-regular);
+              color: var(--color-info-500)
+            }
           }
 
         }

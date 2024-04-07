@@ -1,0 +1,25 @@
+.card {
+  .contentContainer {
+    cursor: initial;
+
+    z-index: 4;
+
+    overflow-y: scroll;
+
+    padding: 1rem;
+
+    background: var(--color-dark-500);
+
+    transition: opacity 0.5s ease;
+  }
+
+  .header {
+    padding: 0 0 1rem;
+
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-light-100);
+
+    border-bottom: 1px solid grey;
+  }
+}
