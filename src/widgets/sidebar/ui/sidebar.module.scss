@@ -6,7 +6,7 @@
 
   min-height: calc(100vh - 60px);
   padding: 0 3rem;
-  min-width: 220px;
+  width: 220px;
 
   border-right: 1px solid var(--color-dark-300);
 
@@ -41,7 +41,6 @@
     font-weight: 500;
     line-height: 24px;
     text-align: left;
-    text-wrap: nowrap;
     letter-spacing: 0;
 
     &:nth-child(6) {
@@ -71,7 +70,7 @@
 .linkWrapperActive {
   display: flex;
   color: var(--color-info-700);
-  text-wrap: nowrap;
+  min-width: 150px;
 
   svg {
     margin-right: 10px;
