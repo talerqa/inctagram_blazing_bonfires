@@ -55,7 +55,7 @@ export const ProfileData = ({ profileData }: Props) => {
             amountPublications={2128}
           />
           {!isMobile && (
-            <div className={style.textWrapperMobile}>
+            <div className={style.textWrapper}>
               <Text size={'regular'}>{profileData?.aboutMe}</Text>
             </div>
           )}
