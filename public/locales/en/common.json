@@ -303,6 +303,9 @@
     "Back to home page" : "Back to home page"
   },
   "SearchPage" : {
-    "Search": "Search"
+    "Search": "Search",
+    "RecentRequests": "Recent requests",
+    "EmptyPlace": "Oops! This place looks empty!",
+    "NoRecentRequests" :"No recent requests"
   }
 }

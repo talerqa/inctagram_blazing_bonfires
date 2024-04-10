@@ -29,7 +29,15 @@ const Search = () => {
         {t('Search')}
       </Text>
       <Input type={InputType.SEARCH} placeholder={t('Search')} />
-
+      <Text as={'p'} size={'medium'} weight={'semi_bold'} style={{ marginTop: '30px' }}>
+        {t('RecentRequests')}
+      </Text>
+      <Text as={'p'} size={'medium'} className={style.auxiliaryInfo} weight={'bold'}>
+        {t('EmptyPlace')}
+      </Text>
+      <Text as={'p'} size={'small'} className={style.auxiliaryInfoNext}>
+        {t('NoRecentRequests')}
+      </Text>
       {/*<IndexSearchList />*/}
     </div>
   )
