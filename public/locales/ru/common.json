@@ -306,5 +306,8 @@
   "Page404": {
     "Sorry! Page non found!" : "Извините, страница не найдена",
     "Back to home page" : "Вернуться на главную страницу"
+  },
+  "SearchPage" : {
+    "Search" : "Поиск"
   }
 }
