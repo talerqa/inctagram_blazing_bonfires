@@ -109,7 +109,7 @@ export const SideBar = () => {
             <MessengerIcon />
             {t('Messenger')}
           </div>
-          <div className={classNames.search}>
+          <div className={classNames.search} onClick={() => router.push(RoutersPath.search)}>
             <SearchIcon />
             {t('Search')}
           </div>
