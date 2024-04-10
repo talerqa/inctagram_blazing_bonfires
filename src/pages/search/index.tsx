@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SetStateAction, useEffect, useState } from 'react'
 
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import style from './search.module.scss'
 
-import IndexSearchList from '@/pages/search/users-search-list'
+import { useLazyGetUsersQuery } from '@/shared/api/services/users/users.api'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { Text, Input, InputType } from '@/shared/ui'
 
@@ -21,14 +21,25 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 }
 
 const Search = () => {
+  const [searchParams, setSearchParams] = useState<string>('')
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
+
+  const [trigger, { data }] = useLazyGetUsersQuery()
+  const onSetInput = (e: string) => {
+    trigger({ str: e })
+    setSearchParams(e)
+  }
 
   return (
     <div>
       <Text as={'h1'} size={'xl'}>
         {t('Search')}
       </Text>
-      <Input type={InputType.SEARCH} placeholder={t('Search')} />
+      <Input
+        type={InputType.SEARCH}
+        placeholder={t('Search')}
+        onInput={event => onSetInput(event.currentTarget.value)}
+      />
       <Text as={'p'} size={'medium'} weight={'semi_bold'} style={{ marginTop: '30px' }}>
         {t('RecentRequests')}
       </Text>
@@ -38,7 +49,13 @@ const Search = () => {
       <Text as={'p'} size={'small'} className={style.auxiliaryInfoNext}>
         {t('NoRecentRequests')}
       </Text>
-      {/*<IndexSearchList />*/}
+      {data &&
+        searchParams &&
+        data.items.map(user => (
+          <Text key={user.id} color={'light'}>
+            {user.userName}
+          </Text>
+        ))}
     </div>
   )
 }
