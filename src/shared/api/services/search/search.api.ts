@@ -2,10 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { baseURL } from '@/shared/api/services/base-url.api'
-import { usersResponseType } from '@/shared/api/services/users/users.api.types'
+import { usersResponseType } from '@/shared/api/services/search/search.api.types'
 
-export const usersApi = createApi({
-  reducerPath: 'usersAPI',
+export const searchApi = createApi({
+  reducerPath: 'searchAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: baseURL,
     credentials: 'same-origin',
@@ -33,4 +33,4 @@ export const usersApi = createApi({
   }),
 })
 
-export const { useLazyGetUsersQuery, useGetUsersQuery } = usersApi
+export const { useLazyGetUsersQuery, useGetUsersQuery } = searchApi

@@ -9,3 +9,15 @@
   text-align: center;
   margin-top: 6px;
 }
+
+.userItemWrapper {
+  display: flex;
+  border: 1px solid gray;
+}
+
+.avatar {
+  background: #0a6638;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}

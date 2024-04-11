@@ -6,8 +6,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import style from './search.module.scss'
 
-import UserItem from '@/shared/api/services/users/user-item'
-import { useLazyGetUsersQuery } from '@/shared/api/services/users/users.api'
+import UserItem from '@/pages/search/user-item'
+import { useLazyGetUsersQuery } from '@/shared/api/services/search/search.api'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { Text, Input, InputType } from '@/shared/ui'
 
