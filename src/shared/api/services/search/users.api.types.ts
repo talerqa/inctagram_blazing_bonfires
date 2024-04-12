@@ -1,5 +1,5 @@
-export type usersResponseType = {
-  items: userType[]
+export type UsersResponseType = {
+  items: UserType[]
   nextCursor: null | number
   page: number
   pageSize: number
@@ -8,11 +8,18 @@ export type usersResponseType = {
   totalCount: number
 }
 
-export type userType = {
-  avatars: []
+export type UserType = {
+  avatars: AvatarType[]
   createdAt: string
   firstName: string | null
   id: number
   lastName: string | null
   userName: string
+}
+
+export type AvatarType = {
+  url?: string
+  width?: string
+  height?: string
+  fileSize?: string
 }

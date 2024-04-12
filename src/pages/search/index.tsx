@@ -6,6 +6,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import style from './search.module.scss'
 
+import AuxiliaryText from '@/pages/search/auxiliary-text'
+import RecentRequestText from '@/pages/search/recent-request-text'
 import UserItem from '@/pages/search/user-item'
 import { useLazyGetUsersQuery } from '@/shared/api/services/search/search.api'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
@@ -42,19 +44,14 @@ const Search = () => {
         placeholder={t('Search')}
         onInput={event => onSetInput(event.currentTarget.value)}
       />
+      <div className={style.userList}>
+        {data && searchParams && data.items.map(user => <UserItem key={user.id} user={user} />)}
+      </div>
 
-      {data && searchParams && data.items.map(user => <UserItem key={user.id} user={user} />)}
       {!searchParams && (
         <>
-          <Text as={'p'} size={'medium'} weight={'semi_bold'} style={{ marginTop: '30px' }}>
-            {t('RecentRequests')}
-          </Text>
-          <Text as={'p'} size={'medium'} className={style.auxiliaryInfo} weight={'bold'}>
-            {t('EmptyPlace')}
-          </Text>
-          <Text as={'p'} size={'small'} className={style.auxiliaryInfoNext}>
-            {t('NoRecentRequests')}
-          </Text>
+          <RecentRequestText />
+          <AuxiliaryText />
         </>
       )}
     </div>

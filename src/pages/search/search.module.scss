@@ -9,10 +9,20 @@
   text-align: center;
   margin-top: 6px;
 }
+.userList {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
 
 .userItemWrapper {
   display: flex;
-  margin: 12px;
+  padding: 6px 0;
+  cursor: pointer;
+  &:hover {
+    background: #131313;
+    border-radius: 5px;
+  }
 }
 
 .avatar {
