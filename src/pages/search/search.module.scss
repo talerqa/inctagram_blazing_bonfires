@@ -12,12 +12,28 @@
 
 .userItemWrapper {
   display: flex;
-  border: 1px solid gray;
+  margin: 12px;
 }
 
 .avatar {
-  background: #0a6638;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-light-900);
+  overflow: hidden;
+}
+
+.userInfo {
+  padding-left: 10px;
+}
+
+.userName {
+  text-decoration: underline;
+}
+
+.userFirstName {
+  color: var(--color-light-900)
 }
