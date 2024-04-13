@@ -1,0 +1,45 @@
+.modalWrapper {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(0 0 0 / 50%);
+
+  .modal {
+    min-width: 400px;
+    background-color: var(--color-dark-500);
+
+    .modalHeader {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 12px 24px;
+
+      border-bottom: 1px solid var(--color-dark-100);
+
+      .modalTitle {
+        margin: 0; // reset Dialog.Title default margin
+
+        font-size: 20px;
+        font-weight: 700;
+        font-style: normal;
+        line-height: 36px;
+        color: #fff;
+      }
+
+      .link {
+
+      }
+    }
+
+    .modalContent {
+      background-color: var(--color-dark-500);
+    }
+  }
+}

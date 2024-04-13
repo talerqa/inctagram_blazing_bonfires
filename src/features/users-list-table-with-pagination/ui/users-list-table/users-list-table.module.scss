@@ -1,0 +1,54 @@
+.bannedIconWithUserIdContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.iconsContainer {
+  display: flex;
+  justify-content: flex-end;
+
+  tr td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: none;
+  }
+}
+
+.DropdownMenuItem {
+  user-select: none;
+
+  position: relative;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+
+  height: 20px;
+  padding: 20px 10px;
+
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-light-100);
+
+  border-radius: 3px;
+  outline: none;
+}
+
+.profileLink {
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-light-900);
+  }
+
+  &:visited {
+    color: var(--color-light-900);
+  }
+
+  &:visited:hover {
+    color: var(--color-light-100);
+  }
+}

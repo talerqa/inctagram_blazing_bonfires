@@ -12,7 +12,7 @@ The project involves a team of 10 members, including 6 frontend developers, 1 ba
 - Jest: A JavaScript testing framework.
 - Storybook: A development environment for UI components.
 - Jira: A project management and collaboration tool.
-- 
+
 ## Feature Slice Design (FSD) - Project Structure
 
 ```
@@ -22,6 +22,12 @@ The project involves a team of 10 members, including 6 frontend developers, 1 ba
 ├── /shared       # Shared styles and utilities
 └── /widgets      # Reusable UI widgets
 ```
+
+## Styleguide
+Follow the styleguide of IT-Incubator for proper naming, refactoring and the suchlike within the project.
+
+The link for the styleguide is as follows: https://code-style.it-incubator.io/react
+
 ## Getting Started
 
 To get started with inctagram, follow the steps below:

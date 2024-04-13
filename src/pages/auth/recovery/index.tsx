@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { CreateNewPassForm } from '@/features/auth-register'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale === undefined) throw new Error()
@@ -16,9 +16,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-const CreateNewPassword = () => {
+const RecoveryPage = () => {
   return <CreateNewPassForm />
 }
 
-CreateNewPassword.getLayout = getLayout
-export default CreateNewPassword
+RecoveryPage.getLayout = getLayout
+export default RecoveryPage

@@ -1,15 +1,20 @@
+import React from 'react'
+
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useSelector } from 'react-redux'
 
-import styles from './PrivacyPolicy.module.scss'
+import styles from './privacy-policy.module.scss'
 
-import backIcon from '@/shared/assets/icons/icons/arrowBackIcon.svg'
+import { selectIsMobile } from '@/shared/api'
+import backIcon from '@/shared/assets/icons/icons/arrow-back-icon.svg'
 import { RoutersPath } from '@/shared/constants/paths'
-import { useGetQueryParams } from '@/shared/hooks/useGetQueryParams'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { useGetQueryParams } from '@/shared/hooks/use-get-query-params'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -28,6 +33,7 @@ const PrivacyPolicyPage = () => {
     i18n: { t: tRoot },
   } = useTranslation('common', { keyPrefix: 'Auth' })
   const { t: tProfile } = useTranslation('common', { keyPrefix: 'ProfileSettings' })
+  const isMobile = useSelector(selectIsMobile)
 
   const router = useRouter()
   const { query } = useGetQueryParams()
@@ -41,20 +47,21 @@ const PrivacyPolicyPage = () => {
   }
 
   return (
-    <>
+    <div className={styles.privacyPolicy}>
       <div className={styles.container}>
-        <Button
-          onClick={handleReturnOnPrevious}
-          theme={ButtonTheme.NOBORDER}
-          size={ButtonSize.LARGE}
-          className={styles.backBtn}
-        >
-          <Image src={backIcon} alt={'icon row back'} />
-          {previousPage === RoutersPath.signUp
-            ? t('BackToSignUp')
-            : tProfile('BackToSignUpProfileSettings')}
-        </Button>
-        <p className={styles.articleHeader}>{tRoot('PrivacyPolicy')}</p>
+        <div className={styles.headContainer}>
+          <Link href={previousPage as string} className={styles.backContainer}>
+            <Image src={backIcon} alt={'icon row back'} />
+            {!isMobile && (
+              <p>
+                {previousPage === RoutersPath.signUp
+                  ? t('BackToSignUp')
+                  : tProfile('BackToSignUpProfileSettings')}
+              </p>
+            )}
+          </Link>
+          <p className={styles.articleHeader}>{tRoot('PrivacyPolicy')}</p>
+        </div>
         <div className={styles.articleContainer}>
           <p className={styles.articleText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -127,7 +134,7 @@ const PrivacyPolicyPage = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

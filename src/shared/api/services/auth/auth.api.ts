@@ -2,8 +2,8 @@ import { BaseQueryFn, FetchArgs, FetchBaseQueryError, retry } from '@reduxjs/too
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { algByDecodingToken } from '../../utils/algByDecodingToken'
-import { baseURL } from '../baseUrl.api'
+import { algByDecodingToken } from '../../utils/alg-by-decoding-token'
+import { baseURL } from '../base-url.api'
 
 import {
   BaseUserType,

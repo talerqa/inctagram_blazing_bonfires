@@ -71,3 +71,5 @@ export {
 } from './services/subscriptions/subscriptions.api'
 
 export { publicApi } from './services/public/public.api'
+
+export { selectIsMobile, setIsMobile } from './services/app/app.slice'

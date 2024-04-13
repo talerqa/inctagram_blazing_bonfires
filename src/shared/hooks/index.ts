@@ -1,1 +1,1 @@
-export { useTruncateText } from './useTruncateText'
+export { useTruncateText } from './use-truncate-text'

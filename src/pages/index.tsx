@@ -6,17 +6,28 @@ import { Toaster } from 'react-hot-toast'
 
 import s from './index.module.scss'
 
-import { PublicPost } from '@/entities/publicPost'
+import { PublicPost } from '@/entities/public-post'
 import { postsApi } from '@/shared/api'
 import { GetAllPublicPostsResponseType } from '@/shared/api/services/posts/posts.api.types'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { wrapper } from '@/shared/providers/storeProvider/model/store'
-import { ServerSidePropsType } from '@/shared/types/commonTypes'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
+import { wrapper } from '@/shared/providers/store-provider/model/store'
+import { ServerSidePropsType } from '@/shared/types/common-types'
 import { ContentWrapper } from '@/shared/ui'
-import { RegisteredUsersTablo } from '@/shared/ui/registeredUsersTablo/ui/RegisteredUsersTablo'
+import { RegisteredUsersTablo } from '@/shared/ui/registered-users-tablo/ui/registered-users-tablo'
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   store => async context => {
+    const { query } = context
+    const isSuccess = query.success === 'true'
+
+    if (isSuccess) {
+      return {
+        redirect: {
+          destination: '/profile/account-management/?success=true',
+          permanent: false,
+        },
+      }
+    }
     //fetch publicPosts
 
     if (context.locale === undefined) throw new Error()

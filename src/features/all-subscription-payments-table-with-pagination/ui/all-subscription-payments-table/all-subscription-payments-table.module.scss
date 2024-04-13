@@ -1,0 +1,14 @@
+.avatarWithUsernameContainer {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  & > p {
+    margin-left: 1rem;
+    text-wrap: none;
+  }
+
+  .avatar {
+    border-radius: 50%;
+  }
+}

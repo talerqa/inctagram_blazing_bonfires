@@ -1,0 +1,35 @@
+@import '@/shared/styles/media-queries';
+
+.confirmedEmail {
+  @include media-mobile {
+      margin-top: 1rem;
+
+  }
+
+  .confirmedEmailContainer {
+
+    @include media-mobile {
+      > img {
+        margin-top: 1rem;
+      }
+    }
+
+    margin: 0 auto;
+    background-color: transparent;
+    border: 0;
+
+    > h3 {
+      margin-bottom: 2rem;
+      line-height: 0;
+    }
+
+    > p {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+  }
+
+  button {
+    margin-bottom: 3rem;
+  }
+}

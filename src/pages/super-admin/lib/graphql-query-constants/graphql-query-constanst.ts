@@ -94,3 +94,128 @@ export const UNBAN_USER = gql(`
     unbanUser(userId: $userId)
 }
   `)
+
+export const DELETE_USER = gql(`
+  mutation DeleteUser($userId: Int!) {
+    removeUser(userId: $userId)
+}
+  `)
+
+const IMAGES_FRAGMENT = gql(`
+  fragment ProfileImagesFragment on ImagePost {
+    id,
+    createdAt,
+    url,
+    width
+    height
+    fileSize
+  }
+`)
+
+export const GET_USER_PROFILE_POSTS_BY_ID = gql(`
+  query GetPostsByUser($userId: Int!, $endCursorId: Int) {
+  getPostsByUser(userId: $userId, endCursorId: $endCursorId){
+    pagesCount,
+    pageSize,
+    totalCount,
+    items {...ProfileImagesFragment} 
+  }
+}
+  `)
+
+export const GET_USER = gql(`
+  query GetUser($userId: Int!) {
+  getUser(userId: $userId){
+    id,
+    userName,
+    email,
+    createdAt,
+    profile {
+        id, 
+        userName,
+        firstName,
+        lastName,
+        city,
+        dateOfBirth,
+        aboutMe, 
+        createdAt, 
+        avatars {
+        	url, width, height, fileSize 
+        }
+      },
+    userBan { reason, createdAt } 
+  }
+}
+  `)
+
+export const GET_USER_PAYMENTS = gql(`
+  query GetPaymentsByUser($userId: Int!, $pageSize: Int, $pageNumber: Int, $sortBy: String, $sortDirection: SortDirection) {
+  getPaymentsByUser(userId: $userId, pageSize: $pageSize, pageNumber: $pageNumber, sortBy:$sortBy, sortDirection: $sortDirection){
+    pagesCount,
+    page,
+    pageSize,
+    totalCount,
+    items {
+      id,
+      businessAccountId,
+      status,
+      dateOfPayment,
+      startDate,
+      endDate,
+      type,
+      price,
+      paymentType,
+      payments {
+          id,
+          userId,
+          paymentMethod,
+          amount,
+          currency,
+          createdAt,
+          endDate,
+          type
+        }
+     }
+  }
+}
+  `)
+
+export const GET_ALL_SUBSCRIPTION_PAYMENTS = gql(`
+  query GetSubscriptionPayments(
+    $pageSize: Int = 10
+  $pageNumber: Int = 1
+  $sortBy: String = "createdAt"
+  $sortDirection: SortDirection = desc
+  $searchTerm: String
+  ) {
+    getPayments(
+      pageSize: $pageSize
+    pageNumber: $pageNumber
+    sortBy: $sortBy
+    sortDirection: $sortDirection
+    searchTerm: $searchTerm
+  ) {
+      pagesCount
+      page
+      pageSize
+      totalCount
+      items {
+        id
+        userId
+        paymentMethod
+        amount
+        currency
+        createdAt
+        endDate
+        type
+          userName
+        avatars {
+          url
+          width
+          height
+          fileSize
+        }
+      }
+    }
+  }
+  `)

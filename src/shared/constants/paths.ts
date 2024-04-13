@@ -6,7 +6,7 @@ export const enum RoutersPath {
   sentEmail = '/sent-email',
   mergeAccounts = '/merge-accounts',
   forgotPassword = '/forgot-password',
-  createNewPassword = '/create-new-password',
+  authRecovery = '/auth/recovery',
   invalidVerificationLink = '/invalid-verification-link',
   authExpiredVerificationLink = '/auth/expired-verification-link',
   authRegistrationConfirmation = '/auth/registration-confirmation',
@@ -24,6 +24,6 @@ export const enum RoutersPath {
   superAdminStatistics = '/super-admin/statistics',
   superAdminPaymentsList = '/super-admin/payments-list',
   superAdminPostsList = '/super-admin/posts-list',
+  superAdminUserProfile = '/super-admin/user-profile',
   apiAuthGithubLogin = 'https://inctagram.work/api/v1/auth/github/login',
-  apiAuthGoogleLogin = 'https://inctagram.work/api/v1/auth/google/login',
 }

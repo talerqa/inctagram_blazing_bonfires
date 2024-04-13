@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { baseURL } from '../baseUrl.api'
+import { baseURL } from '../base-url.api'
 
 import {
   CurrentSubscriptionType,
@@ -21,7 +21,7 @@ export const subscriptionsApi = createApi({
   tagTypes: ['dataPSubscriptions'],
   endpoints: build => {
     return {
-      getSubscriptions: build.query<SubscriptionDataType[], any>({
+      getSubscriptions: build.query<SubscriptionDataType[], void>({
         query: () => ({
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
@@ -51,7 +51,7 @@ export const subscriptionsApi = createApi({
           body,
         }),
       }),
-      cancelAutoRenewal: build.mutation<any, void>({
+      cancelAutoRenewal: build.mutation<void, void>({
         query: () => ({
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,

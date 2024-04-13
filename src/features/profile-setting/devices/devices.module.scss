@@ -1,0 +1,29 @@
+@import '@/shared/styles/media-queries';
+
+.container {
+  @include media-small {
+    padding: 0 0 1.5rem 1.5rem;
+  }
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 4rem 1.5rem 1.5rem;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.terminateBtn {
+  @include media-small {
+    width: 100%;
+    height: 2.25rem;
+  }
+
+  margin: 1.5rem 0 1.5rem auto;
+}
+
+.currentDevice{
+  margin-top: 1.875rem;
+}

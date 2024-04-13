@@ -1,0 +1,31 @@
+@import '@/shared/styles/media-queries';
+
+.AdminLayoutBody {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  .adminRightSideBodyContainer {
+    @include media-small {
+      padding: 2rem 1rem 1rem;
+    }
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    width: 100%;
+    padding: 3.5rem 3.5rem 4rem;
+
+    .superAdminRightSideBody {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+    }
+  }
+}
+
+.fullWidth {
+  max-width: initial !important;
+}

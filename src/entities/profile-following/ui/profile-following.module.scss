@@ -1,0 +1,26 @@
+@import '@/shared/styles/media-queries';
+
+.subscribersContainer {
+  @include media-s-medium {
+    gap: 3.5rem;
+  }
+
+  @include media-extra-small {
+    gap: 1rem;
+  }
+
+  display: flex;
+  gap: 6.25rem;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.text,
+.amount {
+  @include media-extra-small {
+    font-size: var(--font-size-12);
+  }
+}

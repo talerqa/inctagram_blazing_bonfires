@@ -1,0 +1,172 @@
+@import '@/shared/styles/media-queries';
+
+.generalInfoContainer {
+  .container {
+
+    @include media-small {
+      padding: 0;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    width: 100%;
+    padding: 0 4rem 1.5rem 1.5rem;
+  }
+
+  .content {
+
+    @include media-small {
+      flex-direction: column;
+    }
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+
+    label {
+      display: flex;
+      font-size: var(--font-size-m);
+      color: var(--color-light-900);
+    }
+  }
+
+  .photoContent {
+    width: 100%;
+
+    //width: 12rem;
+    margin: 3rem 3.5rem 1.5rem 0;
+  }
+
+  .textFieldsContent {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+    margin-top: 24px;
+
+    .textContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .textareaContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+      resize: none;
+    }
+  }
+
+  .calendar {
+    position: relative;
+    width: 100%;
+  }
+
+  .agreementLink {
+    position: relative;
+    z-index: 10;
+
+    &:link {
+      color: var(--color-danger-500);
+    }
+  }
+
+  .aboutMeTextarea {
+    resize: vertical;
+
+    width: 100%;
+    padding: 10px;
+
+    color: var(--color-light-900);
+
+    background-color: var(--color-dark-500);
+    border: 1px solid var(--color-dark-100);
+    outline: none;
+
+    &:hover:enabled {
+      color: var(--color-light-900);
+      border: 1px solid var(--color-light-900);
+    }
+
+    &:focus:enabled {
+      border: 1px solid var(--color-info-500);
+      outline: 1px solid var(--color-info-500);
+
+      &.errorMessage {
+        border: 1px solid var(--color-danger-500);
+        outline: none;
+      }
+    }
+
+    &:active:enabled {
+      color: var(--color-light-100);
+      border-color: var(--color-light-100);
+      outline: none;
+
+      &::placeholder {
+        color: var(--color-light-100);
+      }
+    }
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    margin: 1.5rem 0;
+    background-color: var(--color-dark-300);
+  }
+
+  .button {
+    @include media-small {
+      width: 100%;
+      height: 3rem !important;
+    }
+
+    color: var(--color-light-900);
+    background-color: var(--color-info-900);
+
+    &:hover {
+      background-color: var(--color-info-700);
+    }
+
+    &:disabled {
+      cursor: auto;
+      background-color: var(--color-info-100);
+    }
+  }
+
+  .errorTextarea {
+    position: absolute;
+    bottom: -1.5rem;
+
+    font-size: var(--font-size-s);
+    line-height: 24px;
+    color: var(--color-danger-500);
+  }
+
+  .errorCalendar {
+    position: absolute;
+    font-size: var(--font-size-s);
+    line-height: 24px;
+    color: var(--color-danger-500);
+  }
+}
+
+.textField {
+  width: 100%;
+  height: 100%;
+  margin-top: 48px;
+}
+
+.city {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
