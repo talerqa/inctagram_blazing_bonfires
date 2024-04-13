@@ -9,7 +9,7 @@ import { ProfileFollowing } from '@/entities/profile-following'
 import { PublicProfileType } from '@/shared/api/services/public/public.api.types'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'
-import { Text } from '@/shared/ui'
+import { Button, Text } from '@/shared/ui'
 
 type PropsType = {
   data: PublicProfileType
@@ -42,10 +42,14 @@ export const PublicProfileData = (props: PropsType) => {
         />
       </div>
       <div className={style.profileDataContainer}>
-        <div>
+        <div className={style.profileDataHeader}>
           <Text as={'p'} size={'xxl'} weight={'bold'} className={style.userName}>
             {userName}
           </Text>
+          <div className={style.buttonsContainer}>
+            <Button>Follow</Button>
+            <Button>SendMessage</Button>
+          </div>
         </div>
         <div className={style.profileInfo}>
           <ProfileFollowing
