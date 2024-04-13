@@ -16,7 +16,16 @@ type Props = {
 
 const UserItem = ({ user }: Props) => {
   const onUserClick = () => {
-    // sessionStorage.setItem('recentRequestUsers', String(user))
+    if (typeof localStorage !== 'undefined')
+      if (localStorage.getItem('recentRequestUsers')) {
+        const usersArray = JSON.parse(localStorage.getItem('recentRequestUsers') as string)
+
+        usersArray.push(user)
+        localStorage.setItem('recentRequestUsers', JSON.stringify(usersArray))
+      } else {
+        localStorage.setItem('recentRequestUsers', JSON.stringify([user]))
+      }
+
     router.push(`${RoutersPath.profile}/${user.id}`)
   }
   const avatar = user?.avatars[1]?.url || mockupPhoto

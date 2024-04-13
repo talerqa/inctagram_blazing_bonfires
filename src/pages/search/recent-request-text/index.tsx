@@ -8,7 +8,7 @@ const RecentRequestText = () => {
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
 
   return (
-    <Text as={'p'} size={'medium'} weight={'semi_bold'} style={{ marginTop: '30px' }}>
+    <Text as={'p'} size={'medium'} weight={'semi_bold'} style={{ marginTop: '20px' }}>
       {t('RecentRequests')}
     </Text>
   )
