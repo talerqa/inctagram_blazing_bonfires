@@ -34,6 +34,7 @@
   height: 48px;
   background: var(--color-light-900);
   overflow: hidden;
+  min-width: 48px;
 }
 
 .userInfo {
@@ -42,8 +43,10 @@
 
 .userName {
   text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
 .userFirstName {
-  color: var(--color-light-900)
+  color: var(--color-light-900);
+  overflow-wrap: anywhere;
 }
