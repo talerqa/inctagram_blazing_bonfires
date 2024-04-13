@@ -11,6 +11,7 @@ import AuxiliaryText from '@/pages/search/auxiliary-text'
 import RecentRequestText from '@/pages/search/recent-request-text'
 import UserItem from '@/pages/search/user-item'
 import { useLazyGetUsersQuery } from '@/shared/api/services/search/search.api'
+import { UserType } from '@/shared/api/services/search/users.api.types'
 import search from '@/shared/assets/icons/search/search'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
 import { Text, Input, InputType } from '@/shared/ui'
@@ -29,7 +30,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 const Search = () => {
   const [searchParams, setSearchParams] = useState<string>('')
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
-  const [recentUsers, setRecentUsers] = useState()
+  const [recentUsers, setRecentUsers] = useState<UserType[]>()
 
   const [trigger, { data }] = useLazyGetUsersQuery()
   const onSetInput = debounce((e: string) => {
@@ -63,6 +64,8 @@ const Search = () => {
       {searchParams && data?.totalCount === 0 && <AuxiliaryText />}
       {!recentUsers ?? <AdditionalText />}
       {!searchParams && recentUsers && <RecentRequestText />}
+
+      {!searchParams && recentUsers?.map(user => <UserItem key={user.id} user={user} />)}
     </div>
   )
 }

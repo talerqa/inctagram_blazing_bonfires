@@ -20,7 +20,9 @@ const UserItem = ({ user }: Props) => {
       if (localStorage.getItem('recentRequestUsers')) {
         const usersArray = JSON.parse(localStorage.getItem('recentRequestUsers') as string)
 
-        usersArray.push(user)
+        const existingUser = usersArray.find((item: { id: number }) => item.id === user.id)
+
+        !existingUser && usersArray.push(user)
         localStorage.setItem('recentRequestUsers', JSON.stringify(usersArray))
       } else {
         localStorage.setItem('recentRequestUsers', JSON.stringify([user]))
