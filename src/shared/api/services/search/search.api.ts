@@ -16,13 +16,16 @@ export const searchApi = createApi({
     }
   },
   endpoints: builder => ({
-    getUsers: builder.query<UsersResponseType, { str: string }>({
+    getUsers: builder.query<
+      UsersResponseType,
+      { str: string; pageSize: number; pageNumber: number }
+    >({
       query: arg => {
-        const { str } = arg
+        const { str, pageSize, pageNumber } = arg
 
         return {
           method: 'GET',
-          url: `users?search=${str}`,
+          url: `users?search=${str}&pageSize=${pageSize}&pageNumber=${pageNumber}`,
           params: { str },
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
