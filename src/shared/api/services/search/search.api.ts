@@ -33,7 +33,33 @@ export const searchApi = createApi({
         }
       },
     }),
+    getFollowers: builder.query<any, any>({
+      query: arg => {
+        const { userName } = arg
+
+        return {
+          method: 'GET',
+          url: `users/${userName}/followers`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+          },
+        }
+      },
+    }),
+    getFollowing: builder.query<any, any>({
+      query: arg => {
+        const { userName } = arg
+
+        return {
+          method: 'GET',
+          url: `users/${userName}/following`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+          },
+        }
+      },
+    }),
   }),
 })
 
-export const { useLazyGetUsersQuery, useGetUsersQuery } = searchApi
+export const { useLazyGetUsersQuery, useGetFollowersQuery, useGetFollowingQuery } = searchApi

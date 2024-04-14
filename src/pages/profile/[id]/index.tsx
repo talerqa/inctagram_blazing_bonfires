@@ -89,6 +89,8 @@ function PublicProfilePage(props: PropsType) {
   const amountPost = postData.items?.length
   const isAuth = false /* todo не залогинен */
 
+  console.log(profileData, 'profiledata')
+
   return (
     <div className={style.publicProfileWrapper}>
       <Toaster position={'bottom-center'} />
