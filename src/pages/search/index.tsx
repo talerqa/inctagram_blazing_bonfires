@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -11,9 +11,9 @@ import AuxiliaryText from '@/pages/search/auxiliary-text'
 import RecentRequestText from '@/pages/search/recent-request-text'
 import UserItem from '@/pages/search/user-item'
 import { useLazyGetUsersQuery } from '@/shared/api/services/search/search.api'
-import { UsersResponseType, UserType } from '@/shared/api/services/search/users.api.types'
+import { UserType } from '@/shared/api/services/search/users.api.types'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
-import { Text, Input, InputType } from '@/shared/ui'
+import { Input, InputType, Text } from '@/shared/ui'
 import { debounce } from '@/shared/utils/debounce'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -27,32 +27,44 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 }
 
 const Search = () => {
-  console.log('render')
   const [searchParams, setSearchParams] = useState<string>('')
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
   const [recentUsers, setRecentUsers] = useState<UserType[]>()
 
-  console.log(searchParams, 'searchparams')
   const [trigger, { data }] = useLazyGetUsersQuery()
   const onSetInput = debounce((e: string) => {
+    setCurrentPage(1)
     setSearchParams(prevState => e)
     trigger({ str: e, pageSize: 14, pageNumber: 1 })
     if (!searchParams) {
-      setInfUsers([])
+      setUsers([])
     }
   })
 
-  const [infUsers, setInfUsers] = useState<UserType[]>()
-  const [infCurrentPage, setInfCurrentPage] = useState<number>(1)
+  const [users, setUsers] = useState<UserType[]>()
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [totalUsersCount, setTotalUsersCount] = useState<number | undefined>(30)
   const infScrollHandler = (e: any) => {
-    trigger({ str: searchParams, pageSize: 14, pageNumber: 2 })
-    setInfUsers(data?.items)
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+        100 &&
+      users &&
+      totalUsersCount &&
+      users.length < totalUsersCount
+    ) {
+      trigger({ str: searchParams, pageSize: 14, pageNumber: currentPage + 1 })
+    }
   }
 
-  console.log(infUsers, 'infUsers')
-
   useEffect(() => {
-    setInfUsers(data?.items)
+    setTotalUsersCount(data?.totalCount)
+    if (data && data?.page > 1) {
+      setUsers(users?.concat(data.items))
+      setCurrentPage(prevState => prevState + 1)
+    } else {
+      setUsers(data?.items)
+    }
   }, [data])
 
   useEffect(() => {
@@ -61,7 +73,7 @@ const Search = () => {
     return () => {
       document.removeEventListener('scroll', infScrollHandler)
     }
-  }, [searchParams])
+  }, [searchParams, currentPage, totalUsersCount])
 
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
@@ -84,7 +96,7 @@ const Search = () => {
         onInput={event => onSetInput(event.currentTarget.value)}
       />
       <div className={style.userList}>
-        {data && searchParams && infUsers?.map(user => <UserItem key={user.id} user={user} />)}
+        {data && searchParams && users?.map(user => <UserItem key={user.id} user={user} />)}
       </div>
       {searchParams && data?.totalCount === 0 && <AuxiliaryText />}
       {!recentUsers && <AdditionalText />}
