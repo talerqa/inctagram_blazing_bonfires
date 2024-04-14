@@ -7,7 +7,7 @@ import style from './public-profile-data.module.scss'
 
 import { ProfileFollowing } from '@/entities/profile-following'
 import { PublicProfileType } from '@/shared/api/services/public/public.api.types'
-import { useGetFollowersQuery, useGetFollowingQuery } from '@/shared/api/services/search/search.api'
+import { useGetUserDataQuery } from '@/shared/api/services/search/search.api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'
 import { Button, Text } from '@/shared/ui'
@@ -30,10 +30,12 @@ export const PublicProfileData = (props: PropsType) => {
 
   const notImageClass = clsx(style.avatar, !avatars[0] && style.notAvatar)
 
-  const { data: followersData } = useGetFollowersQuery({ userName })
-  const { data: followingData } = useGetFollowingQuery({ userName })
+  // const { data: followersData } = useGetFollowersQuery({ userName })
+  // const { data: followingData } = useGetFollowingQuery({ userName })
+  const { data } = useGetUserDataQuery({ userName })
 
-  console.log(followersData, 'datafolowers')
+  console.log(data, 'sgsfsfsdfsdfsd')
+  // console.log(followersData, 'datafolowers')
 
   return (
     <div className={style.profileContainer}>
@@ -59,8 +61,8 @@ export const PublicProfileData = (props: PropsType) => {
         </div>
         <div className={style.profileInfo}>
           <ProfileFollowing
-            amountFollowing={followingData?.totalCount}
-            amountFollowers={followersData?.totalCount}
+            amountFollowing={data?.followingCount}
+            amountFollowers={data?.followersCount}
             amountPublications={amountPost}
           />
         </div>

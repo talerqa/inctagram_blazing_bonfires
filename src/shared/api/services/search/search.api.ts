@@ -33,26 +33,39 @@ export const searchApi = createApi({
         }
       },
     }),
-    getFollowers: builder.query<any, any>({
+    // getFollowers: builder.query<any, any>({
+    //   query: arg => {
+    //     const { userName } = arg
+    //
+    //     return {
+    //       method: 'GET',
+    //       url: `users/${userName}/followers`,
+    //       headers: {
+    //         Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+    //       },
+    //     }
+    //   },
+    // }),
+    // getFollowing: builder.query<any, any>({
+    //   query: arg => {
+    //     const { userName } = arg
+    //
+    //     return {
+    //       method: 'GET',
+    //       url: `users/${userName}/following`,
+    //       headers: {
+    //         Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+    //       },
+    //     }
+    //   },
+    // }),
+    getUserData: builder.query<any, any>({
       query: arg => {
         const { userName } = arg
 
         return {
           method: 'GET',
-          url: `users/${userName}/followers`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
-          },
-        }
-      },
-    }),
-    getFollowing: builder.query<any, any>({
-      query: arg => {
-        const { userName } = arg
-
-        return {
-          method: 'GET',
-          url: `users/${userName}/following`,
+          url: `users/${userName}`,
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
           },
@@ -62,4 +75,9 @@ export const searchApi = createApi({
   }),
 })
 
-export const { useLazyGetUsersQuery, useGetFollowersQuery, useGetFollowingQuery } = searchApi
+export const {
+  useLazyGetUsersQuery,
+  // useGetFollowersQuery,
+  // useGetFollowingQuery,
+  useGetUserDataQuery,
+} = searchApi
