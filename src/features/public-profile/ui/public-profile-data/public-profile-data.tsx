@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { clsx } from 'clsx'
 import Image from 'next/image'
@@ -11,7 +11,7 @@ import { PublicProfileType } from '@/shared/api/services/public/public.api.types
 import { useFollowUserMutation, useGetUserDataQuery } from '@/shared/api/services/search/search.api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'
-import { Button, ButtonTheme, LinearLoader, Text } from '@/shared/ui'
+import { Button, ButtonTheme, LinearLoader, Modal, Text } from '@/shared/ui'
 
 type PropsType = {
   data: PublicProfileType
@@ -32,7 +32,7 @@ export const PublicProfileData = (props: PropsType) => {
   const notImageClass = clsx(style.avatar, !avatars[0] && style.notAvatar)
 
   const { data: userData } = useGetUserDataQuery({ userName })
-  const [followUser, { isLoading, error: errorFollowUser }] = useFollowUserMutation()
+  const [followUser, { isLoading }] = useFollowUserMutation()
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
 
   return (
