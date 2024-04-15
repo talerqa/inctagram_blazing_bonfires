@@ -311,6 +311,8 @@
     "Search" : "Поиск",
     "RecentRequests" : "Недавние запросы",
     "EmptyPlace": "Упс! Это место выглядит пустым!",
-    "NoRecentRequests" :"Нет недавних запросов"
+    "NoRecentRequests" :"Нет недавних запросов",
+    "Follow": "Подписаться",
+    "Unfollow": "Отписаться"
   }
 }

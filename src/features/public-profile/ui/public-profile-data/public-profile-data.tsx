@@ -2,16 +2,16 @@ import React from 'react'
 
 import { clsx } from 'clsx'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 
 import style from './public-profile-data.module.scss'
 
 import { ProfileFollowing } from '@/entities/profile-following'
-import { useUpdateAvatarMutation } from '@/shared/api/services/profile/profile.api'
 import { PublicProfileType } from '@/shared/api/services/public/public.api.types'
 import { useFollowUserMutation, useGetUserDataQuery } from '@/shared/api/services/search/search.api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'
-import { Button, Text } from '@/shared/ui'
+import { Button, ButtonTheme, Text } from '@/shared/ui'
 
 type PropsType = {
   data: PublicProfileType
@@ -33,13 +33,10 @@ export const PublicProfileData = (props: PropsType) => {
 
   // const { data: followersData } = useGetFollowersQuery({ userName })
   // const { data: followingData } = useGetFollowingQuery({ userName })
-  const { data } = useGetUserDataQuery({ userName })
+  const { data: userData } = useGetUserDataQuery({ userName })
   const [followUser, { isLoading: followUserLoading, error: errorFollowUser }] =
     useFollowUserMutation()
-
-  useUpdateAvatarMutation()
-  console.log(data, 'sgsfsfsdfsdfsd')
-  // console.log(followersData, 'datafolowers')
+  const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
 
   return (
     <div className={style.profileContainer}>
@@ -59,14 +56,21 @@ export const PublicProfileData = (props: PropsType) => {
             {userName}
           </Text>
           <div className={style.buttonsContainer}>
-            <Button onClick={() => followUser({ selectedUserId: id })}>Follow</Button>
+            {!userData?.isFollowing ? (
+              <Button onClick={() => followUser({ selectedUserId: id })}>{t('Follow')}</Button>
+            ) : (
+              <Button theme={ButtonTheme.CLEAR} onClick={() => followUser({ selectedUserId: id })}>
+                {t('Unfollow')}
+              </Button>
+            )}
+
             <Button>SendMessage</Button>
           </div>
         </div>
         <div className={style.profileInfo}>
           <ProfileFollowing
-            amountFollowing={data?.followingCount}
-            amountFollowers={data?.followersCount}
+            amountFollowing={userData?.followingCount}
+            amountFollowers={userData?.followersCount}
             amountPublications={amountPost}
           />
         </div>

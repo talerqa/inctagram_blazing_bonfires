@@ -306,6 +306,8 @@
     "Search": "Search",
     "RecentRequests": "Recent requests",
     "EmptyPlace": "Oops! This place looks empty!",
-    "NoRecentRequests" :"No recent requests"
+    "NoRecentRequests" :"No recent requests",
+    "Follow": "Follow",
+    "Unfollow": "Unfollow"
   }
 }

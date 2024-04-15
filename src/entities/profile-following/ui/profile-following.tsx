@@ -7,9 +7,9 @@ import style from './profile-following.module.scss'
 import { Text } from '@/shared/ui'
 
 type ProfileFollowingType = {
-  amountFollowing: number
-  amountFollowers: number
-  amountPublications: number
+  amountFollowing: number | undefined
+  amountFollowers: number | undefined
+  amountPublications: number | undefined
   className?: string
 }
 

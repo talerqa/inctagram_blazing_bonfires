@@ -60,7 +60,7 @@ export const searchApi = createApi({
     //     }
     //   },
     // }),
-    getUserData: builder.query<ExtendedUserType, { userName: string }>({
+    getUserData: builder.query<ExtendedUserType, { userName: string } | { userName: undefined }>({
       query: arg => {
         const { userName } = arg
 
@@ -74,7 +74,7 @@ export const searchApi = createApi({
       },
       providesTags: ['dataUser'],
     }),
-    followUser: builder.mutation<void, { selectedUserId: number }>({
+    followUser: builder.mutation<void, { selectedUserId: number } | { selectedUserId: undefined }>({
       query: data => {
         return {
           method: 'POST',

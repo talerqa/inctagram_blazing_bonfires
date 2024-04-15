@@ -8,6 +8,7 @@ import style from './profile-data.module.scss'
 
 import { ProfileFollowing } from '@/entities/profile-following'
 import { ProfileUserType } from '@/shared/api/services/profile/profile.api.types'
+import { useGetUserDataQuery } from '@/shared/api/services/search/search.api'
 import noImage from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import { ShortLangs } from '@/shared/types/lang-switcher-types'
 import { Button, Text } from '@/shared/ui'
@@ -19,6 +20,8 @@ export const ProfileData = ({ profileData }: Props) => {
   const {
     i18n: { t: tRoot, language },
   } = useTranslation('common', { keyPrefix: 'Profile' })
+
+  const { data: userData } = useGetUserDataQuery({ userName: profileData?.userName })
 
   return (
     <div className={style.headerContainer}>
@@ -41,7 +44,11 @@ export const ProfileData = ({ profileData }: Props) => {
             {tRoot('ProfileSetting')}
           </Button>
         </div>
-        <ProfileFollowing amountFollowing={2128} amountFollowers={2128} amountPublications={2128} />
+        <ProfileFollowing
+          amountFollowing={userData?.followingCount}
+          amountFollowers={userData?.followersCount}
+          amountPublications={userData?.publicationsCount}
+        />
         <div className={style.textWrapper}>
           <Text size={'regular'}>{profileData?.aboutMe}</Text>
         </div>
