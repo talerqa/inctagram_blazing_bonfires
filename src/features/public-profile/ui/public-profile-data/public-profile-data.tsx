@@ -6,8 +6,9 @@ import Image from 'next/image'
 import style from './public-profile-data.module.scss'
 
 import { ProfileFollowing } from '@/entities/profile-following'
+import { useUpdateAvatarMutation } from '@/shared/api/services/profile/profile.api'
 import { PublicProfileType } from '@/shared/api/services/public/public.api.types'
-import { useGetUserDataQuery } from '@/shared/api/services/search/search.api'
+import { useFollowUserMutation, useGetUserDataQuery } from '@/shared/api/services/search/search.api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'
 import { Button, Text } from '@/shared/ui'
@@ -19,7 +20,7 @@ type PropsType = {
 
 export const PublicProfileData = (props: PropsType) => {
   const {
-    data: { userName, aboutMe, avatars },
+    data: { userName, aboutMe, avatars, id },
     amountPost,
   } = props
 
@@ -33,7 +34,10 @@ export const PublicProfileData = (props: PropsType) => {
   // const { data: followersData } = useGetFollowersQuery({ userName })
   // const { data: followingData } = useGetFollowingQuery({ userName })
   const { data } = useGetUserDataQuery({ userName })
+  const [followUser, { isLoading: followUserLoading, error: errorFollowUser }] =
+    useFollowUserMutation()
 
+  useUpdateAvatarMutation()
   console.log(data, 'sgsfsfsdfsdfsd')
   // console.log(followersData, 'datafolowers')
 
@@ -55,7 +59,7 @@ export const PublicProfileData = (props: PropsType) => {
             {userName}
           </Text>
           <div className={style.buttonsContainer}>
-            <Button>Follow</Button>
+            <Button onClick={() => followUser({ selectedUserId: id })}>Follow</Button>
             <Button>SendMessage</Button>
           </div>
         </div>

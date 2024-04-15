@@ -23,3 +23,19 @@ export type AvatarType = {
   height?: string
   fileSize?: string
 }
+
+export type ExtendedUserType = {
+  id: number
+  userName: string
+  firstName: string
+  lastName: string
+  city: string
+  dateOfBirth: string
+  aboutMe: string
+  avatars: AvatarType
+  isFollowing: boolean
+  isFollowedBy: boolean
+  followingCount: number
+  followersCount: number
+  publicationsCount: number
+}

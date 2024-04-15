@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
 import { baseURL } from '@/shared/api/services/base-url.api'
-import { UsersResponseType } from '@/shared/api/services/search/users.api.types'
+import { ExtendedUserType, UsersResponseType } from '@/shared/api/services/search/users.api.types'
 
 export const searchApi = createApi({
   reducerPath: 'searchAPI',
@@ -15,6 +15,7 @@ export const searchApi = createApi({
       return action.payload[reducerPath]
     }
   },
+  tagTypes: ['dataUser'],
   endpoints: builder => ({
     getUsers: builder.query<
       UsersResponseType,
@@ -59,7 +60,7 @@ export const searchApi = createApi({
     //     }
     //   },
     // }),
-    getUserData: builder.query<any, any>({
+    getUserData: builder.query<ExtendedUserType, { userName: string }>({
       query: arg => {
         const { userName } = arg
 
@@ -71,6 +72,20 @@ export const searchApi = createApi({
           },
         }
       },
+      providesTags: ['dataUser'],
+    }),
+    followUser: builder.mutation<void, { selectedUserId: number }>({
+      query: data => {
+        return {
+          method: 'POST',
+          url: `users/following`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+          },
+          body: data,
+        }
+      },
+      invalidatesTags: ['dataUser'],
     }),
   }),
 })
@@ -80,4 +95,5 @@ export const {
   // useGetFollowersQuery,
   // useGetFollowingQuery,
   useGetUserDataQuery,
+  useFollowUserMutation,
 } = searchApi
