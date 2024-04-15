@@ -31,8 +31,6 @@ export const PublicProfileData = (props: PropsType) => {
 
   const notImageClass = clsx(style.avatar, !avatars[0] && style.notAvatar)
 
-  // const { data: followersData } = useGetFollowersQuery({ userName })
-  // const { data: followingData } = useGetFollowingQuery({ userName })
   const { data: userData } = useGetUserDataQuery({ userName })
   const [followUser, { isLoading: followUserLoading, error: errorFollowUser }] =
     useFollowUserMutation()
