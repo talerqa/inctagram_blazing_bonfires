@@ -3,7 +3,7 @@ import React from 'react'
 import NextImage from 'next/image'
 import router from 'next/router'
 
-import style from '../search.module.scss'
+import style from '../../../pages/search/search.module.scss'
 
 import { UserType } from '@/shared/api/services/search/users.api.types'
 import mockupPhoto from '@/shared/assets/icons/avatar-profile/not-photo.png'

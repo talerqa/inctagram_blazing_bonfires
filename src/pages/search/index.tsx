@@ -4,12 +4,13 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import AdditionalText from '../../features/search/additional-text'
+import AuxiliaryText from '../../features/search/auxiliary-text'
+import RecentRequestText from '../../features/search/recent-request-text'
+import UserItem from '../../features/search/user-item'
+
 import style from './search.module.scss'
 
-import AdditionalText from '@/pages/search/additional-text'
-import AuxiliaryText from '@/pages/search/auxiliary-text'
-import RecentRequestText from '@/pages/search/recent-request-text'
-import UserItem from '@/pages/search/user-item'
 import { useLazyGetUsersQuery } from '@/shared/api/services/search/search.api'
 import { UserType } from '@/shared/api/services/search/users.api.types'
 import { getLayout } from '@/shared/layouts/main-layout/main-layout'
