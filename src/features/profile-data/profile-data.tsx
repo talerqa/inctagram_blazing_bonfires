@@ -29,54 +29,54 @@ export const ProfileData = ({ profileData }: Props) => {
   return (
     <>
       {isLoading && <LinearLoader />}
-    <div className={style.headerWrapper}>
-      <div className={style.headerContainer}>
-        <div className={style.avatarContainer}>
-          <Image
-            src={profileData?.avatars?.[0]?.url ?? noImage}
-            alt={'avatar'}
-            width={204}
-            height={204}
-          />
-        </div>
-        <div className={style.profileInfoContainer}>
-          <div className={style.profileTitleContainer}>
+      <div className={style.headerWrapper}>
+        <div className={style.headerContainer}>
+          <div className={style.avatarContainer}>
+            <Image
+              src={profileData?.avatars?.[0]?.url ?? noImage}
+              alt={'avatar'}
+              width={204}
+              height={204}
+            />
+          </div>
+          <div className={style.profileInfoContainer}>
+            <div className={style.profileTitleContainer}>
+              {!isMobile && (
+                <>
+                  <b>{profileData?.userName}</b>
+                  <Button
+                    className={style.buttonProfileSetting}
+                    style={language === ShortLangs.RU ? { fontSize: '0.875rem' } : undefined}
+                    onClick={() => router.push(`profile/general-information`)}
+                  >
+                    {tRoot('ProfileSetting')}
+                  </Button>
+                </>
+              )}
+            </div>
+            <ProfileFollowing
+              amountFollowing={userData?.followingCount}
+              amountFollowers={userData?.followersCount}
+              amountPublications={userData?.publicationsCount}
+            />
             {!isMobile && (
-              <>
-                <b>{profileData?.userName}</b>
-                <Button
-                  className={style.buttonProfileSetting}
-                  style={language === ShortLangs.RU ? { fontSize: '0.875rem' } : undefined}
-                  onClick={() => router.push(`profile/general-information`)}
-                >
-                  {tRoot('ProfileSetting')}
-                </Button>
-              </>
+              <div className={style.textWrapper}>
+                <Text size={'regular'}>{profileData?.aboutMe}</Text>
+              </div>
             )}
           </div>
-          <ProfileFollowing
-            amountFollowing={userData?.followingCount}
-            amountFollowers={userData?.followersCount}
-            amountPublications={userData?.publicationsCount}
-          />
-          {!isMobile && (
-            <div className={style.textWrapper}>
+        </div>
+        {isMobile && (
+          <>
+            <div className={style.username}>
+              <b>{profileData?.userName}</b>
+            </div>
+            <div className={style.textWrapperMobile}>
               <Text size={'regular'}>{profileData?.aboutMe}</Text>
             </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
-      {isMobile && (
-        <>
-          <div className={style.username}>
-            <b>{profileData?.userName}</b>
-          </div>
-          <div className={style.textWrapperMobile}>
-            <Text size={'regular'}>{profileData?.aboutMe}</Text>
-          </div>
-        </>
-      )}
-    </div>
     </>
   )
 }
