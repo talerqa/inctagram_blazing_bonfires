@@ -12,6 +12,7 @@ import { appReducer } from '@/shared/api/services/app/app.slice'
 import { authReducer } from '@/shared/api/services/auth/auth.slice'
 import { postReducer } from '@/shared/api/services/posts/post.slice'
 import { postsApi } from '@/shared/api/services/posts/posts.api'
+import { searchApi } from '@/shared/api/services/search/search.api'
 import generalInfoReducer from '@/shared/providers/store-provider/slices/profile-settings/general-info-reducer'
 
 const rootReducer = combineReducers({
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [postsApi.reducerPath]: postsApi.reducer,
   [subscriptionsApi.reducerPath]: subscriptionsApi.reducer,
   [publicApi.reducerPath]: publicApi.reducer,
+  [searchApi.reducerPath]: searchApi.reducer,
 })
 
 export const makeStore = () => {
@@ -41,7 +43,8 @@ export const makeStore = () => {
         devicesApi.middleware,
         postsApi.middleware,
         subscriptionsApi.middleware,
-        publicApi.middleware
+        publicApi.middleware,
+        searchApi.middleware
       ),
   })
 }

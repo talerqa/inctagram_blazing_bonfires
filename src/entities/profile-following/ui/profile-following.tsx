@@ -7,9 +7,9 @@ import style from './profile-following.module.scss'
 import { Text } from '@/shared/ui'
 
 type ProfileFollowingType = {
-  amountFollowing: number
-  amountFollowers: number
-  amountPublications: number
+  amountFollowing: number | undefined
+  amountFollowers: number | undefined
+  amountPublications: number | undefined
   className?: string
 }
 
@@ -24,7 +24,6 @@ export const ProfileFollowing = (props: ProfileFollowingType) => {
         <Text as={'p'} weight={'bold'} size={'medium'} className={style.amount}>
           {amountFollowing}
         </Text>{' '}
-        {/*todo amount following */}
         <Text as={'p'} size={'medium'} className={style.text}>
           {t('Following')}
         </Text>
@@ -33,7 +32,6 @@ export const ProfileFollowing = (props: ProfileFollowingType) => {
         <Text as={'p'} weight={'bold'} size={'medium'} className={style.amount}>
           {amountFollowers}
         </Text>
-        {/*todo amount followers */}
         <Text as={'p'} size={'medium'} className={style.text}>
           {t('Followers')}
         </Text>

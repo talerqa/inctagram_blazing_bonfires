@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import { profile } from '@apollo/client/testing/internal'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'

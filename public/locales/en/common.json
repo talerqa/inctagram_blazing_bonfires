@@ -301,5 +301,13 @@
   "Page404": {
     "Sorry! Page non found!" : "Sorry! Page non found!",
     "Back to home page" : "Back to home page"
+  },
+  "SearchPage" : {
+    "Search": "Search",
+    "RecentRequests": "Recent requests",
+    "EmptyPlace": "Oops! This place looks empty!",
+    "NoRecentRequests" :"No recent requests",
+    "Follow": "Follow",
+    "Unfollow": "Unfollow"
   }
 }
