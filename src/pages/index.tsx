@@ -17,6 +17,17 @@ import { RegisteredUsersTablo } from '@/shared/ui/registered-users-tablo/ui/regi
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   store => async context => {
+    const { query } = context
+    const isSuccess = query.success === 'true'
+
+    if (isSuccess) {
+      return {
+        redirect: {
+          destination: '/profile/account-management/?success=true',
+          permanent: false,
+        },
+      }
+    }
     //fetch publicPosts
 
     if (context.locale === undefined) throw new Error()

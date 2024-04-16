@@ -43,7 +43,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
   useEffect(() => {
     handleResize()
     function handleResize() {
-      dispatch(setIsMobile(window.innerWidth < 768))
+      dispatch(setIsMobile(window.innerWidth <= 768))
     }
     window.addEventListener('resize', handleResize)
 

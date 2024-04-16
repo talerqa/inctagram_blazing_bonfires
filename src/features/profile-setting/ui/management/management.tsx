@@ -106,7 +106,7 @@ export const Management = () => {
   useEffect(() => {
     if (success === 'true') {
       setSubscribed(true)
-      router.push('/profile/account-management')
+      void router.push('/profile/account-management')
     }
   }, [success])
 

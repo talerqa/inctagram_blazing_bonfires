@@ -50,23 +50,25 @@ export const ProfilePhoto = ({ outsideOnChange, value, deleteAvatar }: Props) =>
 
   return (
     <div className={styles.container}>
-      {isDeleteBtn && (
-        <div className={styles.delPhotoBtn}>
-          <RemoveAvatarButton
-            onClick={() => {
-              setIsModal(true)
-            }}
+      <div style={{ position: 'relative' }}>
+        {isDeleteBtn && (
+          <div className={styles.delPhotoBtn}>
+            <RemoveAvatarButton
+              onClick={() => {
+                setIsModal(true)
+              }}
+            />
+          </div>
+        )}
+        <div className={styles.photoContainer}>
+          <Image
+            src={photoSRC}
+            width={photoSRC === noImage ? 48 : 192}
+            height={photoSRC === noImage ? 48 : 192}
+            alt="avatar"
+            property="true"
           />
         </div>
-      )}
-      <div className={styles.photoContainer}>
-        <Image
-          src={photoSRC}
-          width={photoSRC === noImage ? 48 : 192}
-          height={photoSRC === noImage ? 48 : 192}
-          alt="avatar"
-          property="true"
-        />
       </div>
       <Button
         size={ButtonSize.STRETCHED}

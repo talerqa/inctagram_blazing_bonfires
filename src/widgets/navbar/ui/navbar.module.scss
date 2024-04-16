@@ -1,9 +1,20 @@
 @import '@/shared/styles/media-queries';
 
 .navbar {
+  scrollbar-width: none; // Firefox
+
+  overflow: scroll hidden;
   display: flex;
+
   padding: 0 4rem 0 1.5rem;
+
   text-align: center;
+  white-space: nowrap;
+
+  -ms-overflow-style: none; // IE, Edge
+  &::-webkit-scrollbar {
+    display: none; // hide Chrome, Safari, Opera
+  }
 }
 
 .navbar h3 {
@@ -13,8 +24,7 @@
   display: inline-block;
 
   width: 100%;
-  margin-top: 2.25rem;
-  margin-bottom: 0;
+  margin: 2.25rem 1rem 0 0;
   padding-bottom: 0.25rem;
 
   font-size: var(--font-size-l);

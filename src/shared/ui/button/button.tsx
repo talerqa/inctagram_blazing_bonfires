@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC } from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 
 import cls from './button.module.scss'
 
@@ -8,7 +8,6 @@ export enum ButtonTheme {
   NOBORDER = 'noborder',
   CLEAR = 'clear',
   FILLED = 'filled',
-  NOSTYLES = 'nostyles',
 }
 
 export enum ButtonSize {
