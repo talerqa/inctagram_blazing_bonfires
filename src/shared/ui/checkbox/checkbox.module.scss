@@ -18,6 +18,8 @@
 }
 
 .checkbox {
+  display: flex;
+  flex-shrink: 0;
   cursor: pointer;
 
   position: relative;
@@ -54,7 +56,7 @@
 
   position: absolute;
   top: 51%;
-  left: 42%;
+ left: 13px;
   transform: translate(-50%, -50%);
 
   width: 32px;
@@ -95,4 +97,7 @@
 
 .labelDisabled {
   color: #7e7676;
+}
+.label:hover{
+  cursor: pointer;
 }

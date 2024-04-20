@@ -60,7 +60,10 @@ export const Switcher = ({ options, initialValue, changeHandlerExtraFn }: Props)
             src={arrow}
             alt="Arrow"
             className={style.arrowImg}
-            style={{ transform: isOpenSelect ? 'rotate(180deg)' : 'rotate(0)' }}
+            style={{
+              transform: isOpenSelect ? 'rotate(180deg)' : 'rotate(0)',
+              transition: '200ms transform',
+            }}
           />
         </div>
       )}

@@ -26,12 +26,12 @@ export const LanguageSelect = () => {
         pathname !==
         (RoutersPath.authRegistrationConfirmation || RoutersPath.authExpiredVerificationLink)
       ) {
-        router.push({ pathname, query }, asPath, { locale: langFromLocal })
+        void router.push({ pathname, query }, asPath, { locale: langFromLocal })
       }
     } else {
       setInitialValue(defaultLang)
       localStorage.setItem('i18nextLng', defaultLang)
-      router.push({ pathname, query }, asPath, { locale: defaultLang })
+      void router.push({ pathname, query }, asPath, { locale: defaultLang })
     }
   }, [])
 
@@ -42,7 +42,7 @@ export const LanguageSelect = () => {
 
   const changeHandlerExtraFn = (argChangeHandler: string) => {
     localStorage.setItem('i18nextLng', argChangeHandler)
-    router.push({ pathname, query }, asPath, { locale: argChangeHandler })
+    void router.push({ pathname, query }, asPath, { locale: argChangeHandler })
   }
 
   return (

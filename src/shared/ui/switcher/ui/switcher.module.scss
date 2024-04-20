@@ -4,7 +4,7 @@
   position: relative;
 
 
-  width: 100%;
+  width: 163px;
   height: 100%;
 
   font-size: 16px;
@@ -53,7 +53,7 @@
     position: absolute;
 
     width: 100%;
-    padding-top: 8px;
+
 
     background: var(--color-dark-700);
     border: 1px solid #4c4c4c;
@@ -61,7 +61,6 @@
 
     .option {
       width: inherit;
-      padding-bottom: 10px;
 
       .optionContent {
         @include media-small {
@@ -72,6 +71,7 @@
         display: flex;
         align-items: center;
         padding-left: 12px;
+        height: 34px;
 
         &:hover {
           cursor: pointer;
