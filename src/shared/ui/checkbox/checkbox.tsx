@@ -23,12 +23,14 @@ export const Checkbox = forwardRef<HTMLInputElement, Props>(
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
     }
+    const checkboxId = children ? children.toString() : ''
 
     return (
       <div className={classNames.root}>
         <div className={styles.checkboxLabel}>
           <input
             checked={value}
+            id={checkboxId}
             type={'checkbox'}
             className={styles.checkbox}
             disabled={disabled}
@@ -37,8 +39,12 @@ export const Checkbox = forwardRef<HTMLInputElement, Props>(
             ref={ref}
           />
           <span className={styles.check}></span>
+          {children && (
+            <label className={styles.label} htmlFor={checkboxId}>
+              {children}
+            </label>
+          )}
         </div>
-        <label>{children}</label>
         <p className={styles.error}>{error && !value ? error : ''}</p>
       </div>
     )
