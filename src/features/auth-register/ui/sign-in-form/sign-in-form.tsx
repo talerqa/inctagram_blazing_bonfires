@@ -12,7 +12,6 @@ import styles from './sign-in-form.module.scss'
 
 import { OAuth } from '@/features/auth-register/ui/oauth/oauth'
 import { LoginFormType, useLoginMutation } from '@/shared/api'
-import { useLoginMutation, LoginFormType } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
 import { Button, ButtonSize, FormContainer, Input, InputType, LinearLoader } from '@/shared/ui'
 
