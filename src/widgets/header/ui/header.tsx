@@ -13,9 +13,7 @@ import { Logout } from '@/features/logout'
 import { DeletePost } from '@/features/post/ui/icons/delete-post'
 import { EditPost } from '@/features/post/ui/icons/edit-post'
 import { useGetNotificationsQuery } from '@/shared/api/services/profile/profile.api'
-import {
-  NotificationsItemType,
-} from '@/shared/api/services/profile/profile.api.types'
+import { NotificationsItemType } from '@/shared/api/services/profile/profile.api.types'
 import { NotificationIcon } from '@/shared/assets/icons'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'

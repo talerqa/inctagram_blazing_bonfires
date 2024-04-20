@@ -124,39 +124,6 @@ export const profileApi = createApi({
           }
         },
       }),
-      // notifications: build.query<any, void>({
-      //   query: () => 'notifications',
-      //   async onCacheEntryAdded(arg, { cacheDataLoaded, cacheEntryRemoved, updateCachedData }) {
-      //     const accessToken = localStorage.getItem('accessToken')
-      //     const queryParams = {
-      //       query: {
-      //         accessToken,
-      //       },
-      //     }
-      //
-      //     try {
-      //       await cacheDataLoaded
-      //       // the /chat-messages endpoint responded already
-      //
-      //       // const socket = io(process.env.NEXT_PUBLIC_NOTIFICATIONS_SOCKET_API, {
-      //       const socket = io('https://inctagram.work/', queryParams)
-      //
-      //       socket.on(ChatEvent.ReceiverNotifications, (message: any) => {
-      //         updateCachedData(draft => {
-      //           draft.push(message)
-      //         })
-      //       })
-      //
-      //       await cacheEntryRemoved
-      //
-      //       socket.off('connect')
-      //       socket.off(ChatEvent.ReceiverNotifications)
-      //     } catch {
-      //       // if cacheEntryRemoved resolved before cacheDataLoaded,
-      //       // cacheDataLoaded throws
-      //     }
-      //   },
-      // }),
     }
   },
 })
