@@ -1,5 +1,12 @@
+@import '@/shared/styles/media-queries';
+
 .generalInfoContainer {
   .container {
+
+    @include media-small {
+      padding: 0;
+    }
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -9,11 +16,14 @@
   }
 
   .content {
+
+    @include media-small {
+      flex-direction: column;
+    }
+
     display: flex;
-    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-
     width: 100%;
 
     label {
@@ -24,15 +34,18 @@
   }
 
   .photoContent {
-    width: 12rem;
+    width: 100%;
+
+    //width: 12rem;
     margin: 3rem 3.5rem 1.5rem 0;
   }
 
   .textFieldsContent {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
+
+    width: 100%;
+    height: 100%;
     margin-top: 24px;
 
     .textContainer {
@@ -72,22 +85,24 @@
     width: 100%;
     padding: 10px;
 
+    color: var(--color-light-900);
+
     background-color: var(--color-dark-500);
     border: 1px solid var(--color-dark-100);
-    color: var(--color-light-900);
     outline: none;
 
     &:hover:enabled {
-      border: 1px solid var(--color-light-900);
       color: var(--color-light-900);
+      border: 1px solid var(--color-light-900);
     }
+
     &:focus:enabled {
       border: 1px solid var(--color-info-500);
       outline: 1px solid var(--color-info-500);
 
       &.errorMessage {
-        outline: none;
         border: 1px solid var(--color-danger-500);
+        outline: none;
       }
     }
 
@@ -110,6 +125,11 @@
   }
 
   .button {
+    @include media-small {
+      width: 100%;
+      height: 3rem !important;
+    }
+
     color: var(--color-light-900);
     background-color: var(--color-info-900);
 
@@ -139,11 +159,13 @@
     color: var(--color-danger-500);
   }
 }
+
 .textField {
-  margin-top: 48px;
   width: 100%;
   height: 100%;
+  margin-top: 48px;
 }
+
 .city {
   margin-top: 24px;
   margin-bottom: 24px;

@@ -4,9 +4,9 @@
   "MyProfile": "Профиль",
   "Messenger": "Сообщения",
   "Search": "Поиск",
-  "UserList": "Список пользователей",
-  "PaymentsList": "Список платежей",
-  "PostsList": "Список постов",
+  "UserList": "Пользователи",
+  "PaymentsList": "Платежи",
+  "PostsList": "Посты",
   "Statistics": "Статистика",
   "Favorites": "Избранное",
   "Description": "Описание",
@@ -136,7 +136,7 @@
     "CurrentSubscription": "Текущая подписка",
     "ExpireAt": "Истекает",
     "NextPayment": "Следующий платеж",
-    "AutoRenewal": "Авто-обновление",
+    "AutoRenewal": "Автообновление",
     "AccountType": "Тип аккаунта",
     "Personal": "Личный",
     "Business": "Бизнес",
@@ -184,7 +184,7 @@
   "UserListTable": {
     "UserID": "ID пользователя",
     "Name": "Имя",
-    "ProfileLink": "Никнейм пользователя",
+    "ProfileLink": "Никнейм",
     "CreatedAt": "Дата создания",
     "NotBlocked": "Не заблокирован",
     "Blocked": "Заблокирован",
@@ -199,7 +199,7 @@
     "Subscription": "Тип подписки",
     "PaymentType": "Тип выплаты",
     "PaymentMethod": "Тип выплаты",
-    "AutoUpdate": "Автоматические обновление"
+    "AutoUpdate": "Автообновление"
   },
   "FollowersTable": {
     "UserID": "ID пользователя",
@@ -316,5 +316,12 @@
     "subscriptionIsActivatedUntil": "Ваша подписка активирована и действительна до",
     "day": "день",
     "days": "дней"
+  "SearchPage" : {
+    "Search" : "Поиск",
+    "RecentRequests" : "Недавние запросы",
+    "EmptyPlace": "Упс! Это место выглядит пустым!",
+    "NoRecentRequests" :"Нет недавних запросов",
+    "Follow": "Подписаться",
+    "Unfollow": "Отписаться"
   }
 }

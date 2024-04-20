@@ -24,8 +24,15 @@
   }
 }
 
+.profileDataHeader {
+  display: flex;
+  justify-content: space-between;
+}
 
-
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
 
 .profileWrapper {
   display: grid;

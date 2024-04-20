@@ -32,7 +32,9 @@ export const SideBar = () => {
     myProfile: clsx(
       router.pathname === RoutersPath.profile ? style.linkWrapperActive : style.linkWrapper
     ),
-    search: clsx(router.pathname === 'replace' ? style.linkWrapperActive : style.linkWrapper),
+    search: clsx(
+      router.pathname === RoutersPath.search ? style.linkWrapperActive : style.linkWrapper
+    ),
     messenger: clsx(router.pathname === 'replace' ? style.linkWrapperActive : style.linkWrapper),
     createPost: style.linkWrapper,
     home: clsx(router.pathname === RoutersPath.home ? style.linkWrapperActive : style.linkWrapper),
@@ -109,7 +111,7 @@ export const SideBar = () => {
             <MessengerIcon />
             {t('Messenger')}
           </div>
-          <div className={classNames.search}>
+          <div className={classNames.search} onClick={() => router.push(RoutersPath.search)}>
             <SearchIcon />
             {t('Search')}
           </div>

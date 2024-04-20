@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useGoogleLogin } from '@react-oauth/google'
 import Image from 'next/image'
@@ -14,8 +14,18 @@ import { useLoginViaGoogleMutation } from '@/shared/api/services/auth/auth.api'
 import githubIcon from '@/shared/assets/icons/socialIcons/github-icon.svg'
 import googleIcon from '@/shared/assets/icons/socialIcons/google-icon.svg'
 import { RoutersPath } from '@/shared/constants/paths'
+import { CircularLoader } from '@/shared/ui'
+
+type Loader = {
+  github?: boolean
+  google?: boolean
+}
 
 export const OAuth = () => {
+  const [showLoader, setShowLoader] = useState<Loader>({
+    github: false,
+    google: false,
+  })
   const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
   const router = useRouter()
   const [loginViaGoogle] = useLoginViaGoogleMutation()
@@ -42,6 +52,10 @@ export const OAuth = () => {
 
   const onGithubLogin = () => {
     router.push(RoutersPath.apiAuthGithubLogin)
+    setShowLoader({ github: true })
+    setTimeout(() => {
+      setShowLoader({ github: false })
+    }, 5000)
   }
 
   if (isLoggedIn) {
@@ -56,12 +70,16 @@ export const OAuth = () => {
         src={googleIcon}
         alt="google icon"
       />
-      <Image
-        onClick={onGithubLogin}
-        className={styles.socialIcon}
-        src={githubIcon}
-        alt="github icon"
-      />
+      {showLoader.github ? (
+        <CircularLoader />
+      ) : (
+        <Image
+          onClick={onGithubLogin}
+          className={styles.socialIcon}
+          src={githubIcon}
+          alt="github icon"
+        />
+      )}
     </div>
   )
 }

@@ -311,5 +311,12 @@
     "subscriptionIsActivatedUntil": "Your subscription has been activated and is valid until",
     "day": "day",
     "days": "days"
+  "SearchPage" : {
+    "Search": "Search",
+    "RecentRequests": "Recent requests",
+    "EmptyPlace": "Oops! This place looks empty!",
+    "NoRecentRequests" :"No recent requests",
+    "Follow": "Follow",
+    "Unfollow": "Unfollow"
   }
 }

@@ -16,6 +16,10 @@
   border-bottom: 1px solid #333;
 
   .headerWrapper{
+    padding: 0 3.5rem 0 3.5rem;
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
