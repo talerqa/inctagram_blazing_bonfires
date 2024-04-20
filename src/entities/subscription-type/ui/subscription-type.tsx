@@ -27,21 +27,21 @@ export const SubscriptionType = (props: PropsType) => {
             <RoundCheckbox
               key={'day'}
               value={'DAY'}
-              label={<p>{t('$10per1Day')}</p>}
+              label={t('$10per1Day')}
               onChange={onChange}
               checked={value === 'DAY'}
             />
             <RoundCheckbox
               key={'weekly'}
               value={'WEEKLY'}
-              label={<p>{t('$50per7Days')}</p>}
+              label={t('$50per7Days')}
               onChange={onChange}
               checked={value === 'WEEKLY'}
             />
             <RoundCheckbox
               key={'monthly'}
               value={'MONTHLY'}
-              label={<p>{t('$100per1month')}</p>}
+              label={t('$100per1month')}
               onChange={onChange}
               checked={value === 'MONTHLY'}
             />

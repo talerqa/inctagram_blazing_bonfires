@@ -24,13 +24,13 @@ export const AccountType = (props: PropsType) => {
       <RoundCheckbox
         name={'accType'}
         onChange={setAccountType}
-        label={<p className={styles.listItem}>{t('Personal')}</p>}
+        label={t('Personal')}
         checked={accType === 'personal'}
       />
       <RoundCheckbox
         name={'accType'}
         onChange={() => setAccType('business')}
-        label={<p className={styles.listItem}>{t('Business')}</p>}
+        label={t('Business')}
         checked={accType === 'business' || (currentLocalSubs && currentLocalSubs.length > 0)}
       />
     </div>
