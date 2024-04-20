@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast, Toaster } from 'react-hot-toast'
-import { useSelector } from 'react-redux'
 import * as yup from 'yup'
 
-import { emailRegex } from './lib'
 import styles from './sign-in-form.module.scss'
 
 import { OAuth } from '@/features/auth-register/ui/oauth/oauth'
-import { useLoginMutation, LoginFormType, selectIsLoggedIn } from '@/shared/api'
+import { LoginFormType, useLoginMutation } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
-import { LinearLoader, Input, InputType, FormContainer, Button, ButtonSize } from '@/shared/ui'
+import { Button, ButtonSize, FormContainer, Input, InputType, LinearLoader } from '@/shared/ui'
 
 export const SignInForm = () => {
   const { t: tAuth } = useTranslation('common', { keyPrefix: 'Auth' })

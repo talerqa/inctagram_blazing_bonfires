@@ -169,6 +169,5 @@ export const {
   useGetProfileUserQuery,
   useGetProfileFollowingsQuery,
   useGetProfileFollowersQuery,
-  useNotificationsQuery,
   useGetNotificationsQuery,
 } = profileApi

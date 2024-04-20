@@ -29,7 +29,9 @@ export const useFindDateDifference = () => {
 
       const currentLanguage = i18n.language
 
-      if (secondsDifference < 60) {
+      if (yearsDifference < 0) {
+        return `${yearsDifference} ${pluralize(yearsDifference, 'YearsAgo', currentLanguage)}`
+      } else if (secondsDifference < 60) {
         return `${secondsDifference} ${pluralize(secondsDifference, 'SecondsAgo', currentLanguage)}`
       } else if (minutesDifference < 60) {
         return `${minutesDifference} ${pluralize(minutesDifference, 'MinutesAgo', currentLanguage)}`
@@ -41,8 +43,6 @@ export const useFindDateDifference = () => {
         return `${weeksDifference} ${pluralize(weeksDifference, 'WeeksAgo', currentLanguage)}`
       } else if (monthsDifference < 12) {
         return `${monthsDifference} ${pluralize(monthsDifference, 'MonthsAgo', currentLanguage)}`
-      } else {
-        return `${yearsDifference} ${pluralize(yearsDifference, 'YearsAgo', currentLanguage)}`
       }
     },
   }
