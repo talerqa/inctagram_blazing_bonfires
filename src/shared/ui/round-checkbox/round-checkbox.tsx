@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, ReactNode, Ref } from 'react'
+import { ChangeEvent, forwardRef, ReactNode } from 'react'
 import * as React from 'react'
 
 import styles from './round-checkbox.module.scss'
@@ -14,11 +14,13 @@ type Props = {
 
 export const RoundCheckbox = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const { label, checked, error, onChange, value, ...rest } = props
+  const checkboxId = label ? label.toString() : ''
 
   return (
     <>
       <div className={styles.checkboxWrapper}>
         <input
+          id={checkboxId}
           value={value}
           type={'radio'}
           onChange={onChange}
@@ -27,7 +29,9 @@ export const RoundCheckbox = forwardRef<HTMLInputElement, Props>((props, ref) =>
           {...rest}
           ref={ref}
         />
-        <label htmlFor="#">{label}</label>
+        <label className={styles.label} htmlFor={checkboxId}>
+          {label}
+        </label>
       </div>
     </>
   )
