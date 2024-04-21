@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { clsx } from 'clsx'
-import { LinkProps } from 'next/link'
 
 import style from './text.module.scss'
 
@@ -19,7 +18,7 @@ export const Text = <T extends ElementType>(
   const {
     size = 'regular',
     weight = 'regular',
-    color = 'primary',
+    color = 'light',
     className,
     children,
     as: Component = 'div',
