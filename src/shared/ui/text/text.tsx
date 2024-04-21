@@ -16,7 +16,15 @@ export type TextType<T extends ElementType> = {
 export const Text = <T extends ElementType>(
   props: TextType<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextType<T>>
 ) => {
-  const { size, weight, color, className, children, as: Component = 'div', ...rest } = props
+  const {
+    size = 'regular',
+    weight = 'regular',
+    color = 'primary',
+    className,
+    children,
+    as: Component = 'div',
+    ...rest
+  } = props
 
   const classname = clsx(
     style.default,

@@ -11,9 +11,9 @@ import * as yup from 'yup'
 import styles from './sign-in-form.module.scss'
 
 import { OAuth } from '@/features/auth-register/ui/oauth/oauth'
-import { useLoginMutation, LoginFormType } from '@/shared/api'
+import { LoginFormType, useLoginMutation } from '@/shared/api'
 import { RoutersPath } from '@/shared/constants/paths'
-import { LinearLoader, Input, InputType, FormContainer, Button, ButtonSize } from '@/shared/ui'
+import { Button, ButtonSize, FormContainer, Input, InputType, LinearLoader } from '@/shared/ui'
 
 export const SignInForm = () => {
   const { t: tAuth } = useTranslation('common', { keyPrefix: 'Auth' })

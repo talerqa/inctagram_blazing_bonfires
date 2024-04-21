@@ -1,13 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
+import { io } from 'socket.io-client'
 
 import { baseURL } from '../base-url.api'
 
 import { AvatarsType, ProfileUserType } from '@/shared/api'
 import {
+  GetNotificationsResponseType,
   GetUserFollowersResponseType,
   GetUserFollowingsResponseType,
 } from '@/shared/api/services/profile/profile.api.types'
+
+enum ChatEvent {
+  ReceiverNotifications = 'notifications',
+}
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',
@@ -104,6 +110,20 @@ export const profileApi = createApi({
           }
         },
       }),
+      getNotifications: build.query<
+        GetNotificationsResponseType,
+        { cursor?: number; sortBy?: string; pageSize?: string; sortDirection?: string }
+      >({
+        query: ({ cursor }) => {
+          return {
+            method: 'GET',
+            url: `notifications/${cursor}`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+            },
+          }
+        },
+      }),
     }
   },
 })
@@ -116,4 +136,5 @@ export const {
   useGetProfileUserQuery,
   useGetProfileFollowingsQuery,
   useGetProfileFollowersQuery,
+  useGetNotificationsQuery,
 } = profileApi

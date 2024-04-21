@@ -43,6 +43,16 @@ export type GetUserFollowingsResponseType = {
   items: FollowingUsers[]
 }
 
+export type GetNotificationsResponseType = {
+  items: NotificationsItemType[]
+}
+export type NotificationsItemType = {
+  id: number
+  isRead: boolean
+  message: string
+  notifyAt: string
+}
+
 export type FollowingUsers = {
   id: number
   userId: number

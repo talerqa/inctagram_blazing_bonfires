@@ -307,6 +307,15 @@
     "Sorry! Page non found!" : "Извините, страница не найдена",
     "Back to home page" : "Вернуться на главную страницу"
   },
+  "Notifications": {
+    "notifications": "Уведомления",
+    "newNotification": "Новое уведомление",
+    "new": "Новое",
+    "paymentWillBeDebited": "Следующий платеж у вас спишется через",
+    "subscriptionEnds": "Ваша подписка истекает через",
+    "subscriptionIsActivatedUntil": "Ваша подписка активирована и действительна до",
+    "day": "день",
+    "days": "дней"
   "SearchPage" : {
     "Search" : "Поиск",
     "RecentRequests" : "Недавние запросы",
