@@ -78,7 +78,7 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
     <header className={styles.header}>
       <div className={styles.headerWrapper}>
         <Link href="/" className={styles.logo}>
-          Instagram
+          Inсtagram
           {mainPath[1] === 'super-admin' && (
             <span className={styles.adminDescription}>
               <span className={styles.adminDescriptionThin}>Super</span>Admin
@@ -98,14 +98,14 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
                 >
                   {notifications?.map(item => (
                     <div key={item.id} className={styles.notification}>
-                      <Text as={'p'} color={'light'} weight={'bold'} className={styles.text}>
+                      <Text as={'p'} weight={'bold'} className={styles.text}>
                         {t('Notifications.notifications')}{' '}
                         <span>{!item.isRead && t('Notifications.new')}</span>
                       </Text>
-                      <Text as={'p'} color={'light'} className={styles.text}>
+                      <Text as={'p'} className={styles.text}>
                         {translateNotificationMessage(item.message)}
                       </Text>
-                      <Text as={'p'} color={'light'} className={styles.text}>
+                      <Text as={'p'} className={styles.text}>
                         {findDateDifference(item.notifyAt)}
                       </Text>
                     </div>
