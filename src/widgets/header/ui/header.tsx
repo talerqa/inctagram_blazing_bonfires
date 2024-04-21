@@ -78,7 +78,7 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
     <header className={styles.header}>
       <div className={styles.headerWrapper}>
         <Link href="/" className={styles.logo}>
-          <span className={styles.shimmer}>Inctagram</span>
+          Instagram
           {mainPath[1] === 'super-admin' && (
             <span className={styles.adminDescription}>
               <span className={styles.adminDescriptionThin}>Super</span>Admin
