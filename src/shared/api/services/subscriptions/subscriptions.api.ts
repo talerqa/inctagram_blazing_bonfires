@@ -36,7 +36,7 @@ export const subscriptionsApi = createApi({
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
             },
-            url: `subscriptions/current-subscriptions`,
+            url: `subscriptions/current-payment-subscriptions`,
             method: 'GET',
           }
         },
