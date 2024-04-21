@@ -317,6 +317,7 @@
     "subscriptionIsActivatedUntil": "Ваша подписка активирована и действительна до",
     "day": "день",
     "days": "дней"
+  },
   "SearchPage" : {
     "Search" : "Поиск",
     "RecentRequests" : "Недавние запросы",
