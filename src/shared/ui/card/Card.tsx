@@ -28,7 +28,7 @@ export const Card = forwardRef<HTMLDivElement, CardType>(
       const handleClickOutside = (event: MouseEvent) => {
         if (notificationRef.current && !notificationRef.current.contains(event.target)) {
           // Click occurred outside of the notification container, so close it
-          setIsOpen(false)
+          isOpen && iconRef.current?.click()
         }
       }
 
@@ -37,11 +37,15 @@ export const Card = forwardRef<HTMLDivElement, CardType>(
       return () => {
         document.removeEventListener('mousedown', handleClickOutside)
       }
-    }, [])
+    }, [isOpen])
+    const iconRef = useRef<HTMLDivElement>(null)
 
     return (
       <div className={s.card} ref={notificationRef}>
-        <div onClick={() => setIsOpen(!isOpen)}>{icon}</div>
+        <div onClick={() => setIsOpen(!isOpen)} ref={iconRef} className={s.iconContainer}>
+          <div className={s.arrow} style={isOpen ? styles.visible : styles.hidden}></div>
+          {icon}
+        </div>
         <div
           style={isOpen ? styles.visible : styles.hidden}
           className={s.contentContainer + ' ' + className}

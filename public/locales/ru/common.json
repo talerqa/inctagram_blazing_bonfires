@@ -310,6 +310,7 @@
   },
   "Notifications": {
     "notifications": "Уведомления",
+    "notification": "Уведомление",
     "newNotification": "Новое уведомление",
     "new": "Новое",
     "paymentWillBeDebited": "Следующий платеж у вас спишется через",

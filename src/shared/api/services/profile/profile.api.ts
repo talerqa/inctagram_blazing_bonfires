@@ -26,7 +26,7 @@ export const profileApi = createApi({
       return action.payload[reducerPath]
     }
   },
-  tagTypes: ['dataProfile'],
+  tagTypes: ['dataProfile', 'getNotification'],
   endpoints: build => {
     return {
       getProfileUser: build.query<ProfileUserType, void>({
@@ -123,6 +123,20 @@ export const profileApi = createApi({
             },
           }
         },
+        providesTags: ['getNotification'],
+      }),
+      markAsReadNotification: build.mutation<void, { ids: number[] }>({
+        query: ids => {
+          return {
+            method: 'PUT',
+            url: 'notifications/mark-as-read',
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+            },
+            body: ids,
+          }
+        },
+        invalidatesTags: ['getNotification'],
       }),
     }
   },
@@ -137,4 +151,5 @@ export const {
   useGetProfileFollowingsQuery,
   useGetProfileFollowersQuery,
   useGetNotificationsQuery,
+  useMarkAsReadNotificationMutation,
 } = profileApi
