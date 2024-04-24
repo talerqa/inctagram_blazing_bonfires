@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import * as RDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { clsx } from 'clsx'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,9 +13,12 @@ import styles from './header.module.scss'
 import { Logout } from '@/features/logout'
 import { DeletePost } from '@/features/post/ui/icons/delete-post'
 import { EditPost } from '@/features/post/ui/icons/edit-post'
-import { useGetNotificationsQuery } from '@/shared/api/services/profile/profile.api'
+import {
+  useGetNotificationsQuery,
+  useMarkAsReadNotificationMutation,
+} from '@/shared/api/services/profile/profile.api'
 import { NotificationsItemType } from '@/shared/api/services/profile/profile.api.types'
-import { NotificationIcon } from '@/shared/assets/icons'
+import { NotificationIcon, NotificationOpenIcon } from '@/shared/assets/icons'
 import logoutImg from '@/shared/assets/icons/logout/logout.svg'
 import { ThreeDots } from '@/shared/assets/icons/three-dots/icon/three-dots'
 import { RoutersPath } from '@/shared/constants/paths'
@@ -45,6 +49,8 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
     cursor: Number(LocalStorageManager.getLastNotificationCursorId()) || undefined,
     sortDirection: 'asc',
   })
+  const newNotificationsId = notifications.filter(item => !item.isRead).map(item => item.id)
+  const [markAsReadNotification] = useMarkAsReadNotificationMutation()
 
   useEffect(() => {
     if (initialNotifications && initialNotifications.items) {
@@ -73,6 +79,14 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
       ])
     }
   }, [newNotification])
+  const newNotificationNumber = getNumberOfNewNotifications(notifications)
+  const notificationOpenHandler = (isOpen: boolean) => {
+    setShowNotifications(isOpen)
+    if (showNotifications && !isOpen && newNotificationNumber) {
+      markAsReadNotification({ ids: newNotificationsId })
+    }
+  }
+  const readTextStyle = clsx(styles.text, styles.read)
 
   return (
     <header className={styles.header}>
@@ -93,27 +107,39 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
                   isOpen={showNotifications}
                   headerText={`${t('Notifications.notifications')}`}
                   className={styles.notificationContainer}
-                  setIsOpen={setShowNotifications}
-                  icon={<NotificationIcon />}
+                  setIsOpen={notificationOpenHandler}
+                  icon={
+                    showNotifications ? (
+                      <NotificationOpenIcon className={styles.iconContainer} />
+                    ) : (
+                      <div className={styles.iconContainer}>
+                        <NotificationIcon />
+                        {!!newNotificationNumber && (
+                          <div className={styles.count}>{newNotificationNumber}</div>
+                        )}
+                      </div>
+                    )
+                  }
                 >
                   {notifications?.map(item => (
                     <div key={item.id} className={styles.notification}>
-                      <Text as={'p'} weight={'bold'} className={styles.text}>
-                        {t('Notifications.notifications')}{' '}
+                      <Text
+                        as={'p'}
+                        weight={'bold'}
+                        className={item.isRead ? readTextStyle : styles.text}
+                      >
+                        {t('Notifications.notification')}{' '}
                         <span>{!item.isRead && t('Notifications.new')}</span>
                       </Text>
-                      <Text as={'p'} className={styles.text}>
+                      <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
                         {translateNotificationMessage(item.message)}
                       </Text>
-                      <Text as={'p'} className={styles.text}>
+                      <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
                         {findDateDifference(item.notifyAt)}
                       </Text>
                     </div>
                   ))}
                 </Card>
-                <div className={styles.count}>
-                  {notifications && getNumberOfNewNotifications(notifications)}
-                </div>
               </div>
             </>
           )}

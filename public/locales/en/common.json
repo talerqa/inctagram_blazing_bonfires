@@ -305,6 +305,7 @@
   },
   "Notifications": {
     "notifications": "Notifications",
+    "notification": "Notification",
     "newNotification": "New notifications",
     "new": "New",
     "paymentWillBeDebited": "The next subscription payment will be debited from your account after",

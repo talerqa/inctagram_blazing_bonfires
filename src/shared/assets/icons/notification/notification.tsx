@@ -1,9 +1,11 @@
+import { SVGProps } from 'react'
+
 export const Notification = ({
   width = 24,
   height = 24,
   fill = 'white',
   ...props
-}: {
+}: SVGProps<SVGSVGElement> & {
   width?: number
   height?: number
   fill?: 'white' | 'black'

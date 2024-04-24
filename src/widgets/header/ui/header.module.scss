@@ -44,12 +44,10 @@
       position: relative;
       display: flex;
       align-items: center;
-
       .notificationContainer {
         position: absolute;
-        top: 35px;
+        top: 45px;
         left: -310px;
-
 
         max-width: 355px;
         max-height: 425px;
@@ -70,6 +68,9 @@
               color: var(--color-info-500)
             }
           }
+          .read {
+            color: var(--color-light-900);
+          }
 
         }
       }
@@ -83,22 +84,29 @@
         display: flex;
         margin-right: 2.5rem;
       }
-
-      .count {
+      .iconContainer {
         position: relative;
-        right: 0.8125rem;
-
+        top: 3px;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        .count {
+          position: absolute;
+          bottom: 1rem;
+          left: 0.8rem;
 
-        width: 0.8125rem;
-        height: 0.8125rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-        font-size: 0.5rem;
+          width: 0.8125rem;
+          height: 0.8125rem;
 
-        background: var(--color-danger-500);
-        border-radius: 50%;
+          font-size: 0.5rem;
+
+          background: var(--color-danger-500);
+          border-radius: 50%;
+        }
       }
     }
 

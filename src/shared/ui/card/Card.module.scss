@@ -1,8 +1,22 @@
 .card {
+  .iconContainer {
+    position: relative;
+    .arrow {
+      position: absolute;
+      rotate: 45deg;
+      top: 32px;
+      right: 0;
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-dark-500);
+      transition: opacity 0.5s ease;
+    }
+  }
   .contentContainer {
+    position: relative;
     cursor: initial;
 
-    z-index: 4;
+    z-index: 11;
 
     overflow-y: scroll;
 
