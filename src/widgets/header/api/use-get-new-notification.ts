@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
-
-import { Socket } from 'socket.io-client'
+import { useState } from 'react'
 
 import { NotificationsItemType } from '@/shared/api/services/profile/profile.api.types'
 import { LocalStorageManager } from '@/shared/storages/local-storage-manager/local-storage-manager'
@@ -18,26 +16,20 @@ export const useGetNewNotification = (): UseGetNotificationsSocketType => {
 
   if (!accessToken) return { newNotification: null, error: 'Access token not found' }
 
-  const connectSocket = () => {
-    if (!GetNotificationsSocketApi.socket) {
-      GetNotificationsSocketApi.createConnection(accessToken)
-    }
-
-    GetNotificationsSocketApi.socket?.on('notifications', (data: NotificationsItemType) => {
-      setNewNotification(data)
-      LocalStorageManager.setLastNotificationCursorId(String(data.id))
-    })
-
-    GetNotificationsSocketApi.socket?.onAny((event, ...args) => {
-      if (event.message?.length) {
-        setError(JSON.stringify(event))
-      }
-    })
+  if (!GetNotificationsSocketApi.socket) {
+    GetNotificationsSocketApi.createConnection(accessToken)
   }
 
-  useEffect(() => {
-    connectSocket()
-  }, [])
+  GetNotificationsSocketApi.socket?.on('notifications', (data: NotificationsItemType) => {
+    setNewNotification(data)
+    LocalStorageManager.setLastNotificationCursorId(String(data.id))
+  })
+
+  GetNotificationsSocketApi.socket?.onAny(event => {
+    if (event.message?.length) {
+      setError(JSON.stringify(event))
+    }
+  })
 
   return { newNotification, error }
 }

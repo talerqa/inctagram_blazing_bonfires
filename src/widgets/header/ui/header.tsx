@@ -131,7 +131,7 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
                         >
                           {!item.isRead
                             ? t('Notifications.newNotification')
-                            : t('Notifications.notification')}
+                            : t('Notifications.notification')}{' '}
                           <span>{!item.isRead && t('Notifications.new')}</span>
                         </Text>
                         <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
