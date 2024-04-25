@@ -81,7 +81,7 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
   }, [newNotification])
   const newNotificationNumber = getNumberOfNewNotifications(notifications)
   const notificationOpenHandler = (isOpen: boolean) => {
-    setShowNotifications(isOpen)
+    notifications?.length && setShowNotifications(isOpen)
     if (showNotifications && !isOpen && newNotificationNumber) {
       markAsReadNotification({ ids: newNotificationsId })
     }
@@ -103,43 +103,47 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
           {mainPath[1] !== 'super-admin' && (
             <>
               <div className={styles.ball}>
-                <Card
-                  isOpen={showNotifications}
-                  headerText={`${t('Notifications.notifications')}`}
-                  className={styles.notificationContainer}
-                  setIsOpen={notificationOpenHandler}
-                  icon={
-                    showNotifications ? (
-                      <NotificationOpenIcon className={styles.iconContainer} />
-                    ) : (
-                      <div className={styles.iconContainer}>
-                        <NotificationIcon />
-                        {!!newNotificationNumber && (
-                          <div className={styles.count}>{newNotificationNumber}</div>
-                        )}
+                {!!notifications?.length && (
+                  <Card
+                    isOpen={showNotifications}
+                    headerText={`${t('Notifications.notifications')}`}
+                    className={styles.notificationContainer}
+                    setIsOpen={notificationOpenHandler}
+                    icon={
+                      showNotifications ? (
+                        <NotificationOpenIcon className={styles.iconContainer} />
+                      ) : (
+                        <div className={styles.iconContainer}>
+                          <NotificationIcon />
+                          {!!newNotificationNumber && (
+                            <div className={styles.count}>{newNotificationNumber}</div>
+                          )}
+                        </div>
+                      )
+                    }
+                  >
+                    {notifications?.map(item => (
+                      <div key={item.id} className={styles.notification}>
+                        <Text
+                          as={'p'}
+                          weight={'bold'}
+                          className={item.isRead ? readTextStyle : styles.text}
+                        >
+                          {!item.isRead
+                            ? t('Notifications.newNotification')
+                            : t('Notifications.notification')}
+                          <span>{!item.isRead && t('Notifications.new')}</span>
+                        </Text>
+                        <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
+                          {translateNotificationMessage(item.message)}
+                        </Text>
+                        <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
+                          {findDateDifference(item.notifyAt)}
+                        </Text>
                       </div>
-                    )
-                  }
-                >
-                  {notifications?.map(item => (
-                    <div key={item.id} className={styles.notification}>
-                      <Text
-                        as={'p'}
-                        weight={'bold'}
-                        className={item.isRead ? readTextStyle : styles.text}
-                      >
-                        {t('Notifications.notification')}{' '}
-                        <span>{!item.isRead && t('Notifications.new')}</span>
-                      </Text>
-                      <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
-                        {translateNotificationMessage(item.message)}
-                      </Text>
-                      <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
-                        {findDateDifference(item.notifyAt)}
-                      </Text>
-                    </div>
-                  ))}
-                </Card>
+                    ))}
+                  </Card>
+                )}
               </div>
             </>
           )}
