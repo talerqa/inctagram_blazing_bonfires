@@ -124,16 +124,21 @@
       align-items: center;
 
       .addCommentButton {
-        cursor: pointer;
         padding: 6px 12px;
 
         font-size: var(--font-size-m);
         font-weight: 600;
-        color: var(--color-info-500);
+
 
         background-color: inherit;
         border: none;
         outline: none;
+        &:enabled {
+          color: var(--color-info-500);
+        }
+        &:disabled {
+          color: var(--color-info-900);
+        }
       }
     }
   }
