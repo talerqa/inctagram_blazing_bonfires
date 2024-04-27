@@ -17,7 +17,7 @@ import noImage from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import likeIcon from '@/shared/assets/icons/icons/like-icon.svg'
 import saveIcon from '@/shared/assets/icons/icons/save-icon.svg'
 import shareIcon from '@/shared/assets/icons/icons/share-icon.svg'
-import { Input, InputType } from '@/shared/ui'
+import { Button, Input, InputType } from '@/shared/ui'
 import { findDate } from '@/shared/utils/find-date'
 
 export const Comment = ({ avatarOwner, createdAt, id }: PostResponseType) => {
@@ -30,12 +30,7 @@ export const Comment = ({ avatarOwner, createdAt, id }: PostResponseType) => {
   const schema = yup.object().shape({
     content: yup.string().required('Error.RequiredField'),
   })
-  const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<{ content: string }>({
+  const { register, reset, handleSubmit } = useForm<{ content: string }>({
     mode: 'onChange',
     resolver: yupResolver(schema),
     defaultValues: {
@@ -123,7 +118,9 @@ export const Comment = ({ avatarOwner, createdAt, id }: PostResponseType) => {
               }}
               onChange={e => setCurrentValue(e.target.value)}
             />
-            <button className={styles.addCommentButton}>{t('Publish')}</button>
+            <Button className={styles.addCommentButton} disabled={!currentValue}>
+              {t('Publish')}
+            </Button>
           </form>
         </div>
       )}
