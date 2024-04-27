@@ -40,6 +40,7 @@ export const subscriptionsApi = createApi({
             method: 'GET',
           }
         },
+        providesTags: ['dataPSubscriptions'],
       }),
       createNewSubscription: build.mutation<ResponseNewSubscriptionType, NewSubscriptionType>({
         query: body => ({
@@ -59,6 +60,26 @@ export const subscriptionsApi = createApi({
           url: 'subscriptions/canceled-auto-renewal',
           method: 'POST',
         }),
+        async onQueryStarted(_, { dispatch, queryFulfilled }) {
+          const patchResult = dispatch(
+            subscriptionsApi.util.updateQueryData('getCurrentSubscriptions', _, draft => {
+              return { ...draft, hasAutoRenewal: false }
+            })
+          )
+
+          try {
+            await queryFulfilled
+          } catch {
+            patchResult.undo()
+
+            /**
+             * Alternatively, on failure you can invalidate the corresponding cache tags
+             * to trigger a re-fetch:
+             * dispatch(api.util.invalidateTags(['Post']))
+             */
+          }
+        },
+        invalidatesTags: ['dataPSubscriptions'],
       }),
     }
   },
