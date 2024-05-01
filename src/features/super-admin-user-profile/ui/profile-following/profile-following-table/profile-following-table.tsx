@@ -9,7 +9,7 @@ import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
 import { findDate } from '@/shared/utils'
 
-type ProfileFollowersTableType = {
+type ProfileFollowingTableType = {
   items: Follow[]
   handleSort: (sort: SortType) => void
   sort: SortType
@@ -17,13 +17,13 @@ type ProfileFollowersTableType = {
   columns: any
 }
 
-export const ProfileFollowersTable = ({
+export const ProfileFollowingTable = ({
   items,
   sort,
   handleSort,
   skeletonRowsNum,
   columns,
-}: ProfileFollowersTableType) => {
+}: ProfileFollowingTableType) => {
   return (
     <NewTable>
       <TableHeader columns={columns} sort={sort} onSort={handleSort} />
