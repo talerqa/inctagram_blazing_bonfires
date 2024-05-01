@@ -24,8 +24,6 @@ export const ProfileFollowersTable = ({
   skeletonRowsNum,
   columns,
 }: ProfileFollowersTableType) => {
-  console.log(items, 'items')
-
   return (
     <NewTable>
       <TableHeader columns={columns} sort={sort} onSort={handleSort} />

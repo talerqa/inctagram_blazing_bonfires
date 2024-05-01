@@ -34,17 +34,17 @@ export const ProfileFollowers = ({ userId }: { userId: number }) => {
   return (
     <>
       <ProfileFollowersTable
-        skeletonRowsNum={followersData.getFollowing.pageSize}
-        items={followersData.getFollowing.items}
+        skeletonRowsNum={followersData.getFollowers.pageSize}
+        items={followersData.getFollowers.items}
         handleSort={handleSort}
         sort={sort}
         columns={columns}
       />
       <Pagination
         handlePageChange={handlePageChange}
-        totalPages={followersData.getFollowing.pagesCount}
-        totalCount={followersData.getFollowing.totalCount}
-        itemsPerPage={followersData.getFollowing.pageSize}
+        totalPages={followersData.getFollowers.pagesCount}
+        totalCount={followersData.getFollowers.totalCount}
+        itemsPerPage={followersData.getFollowers.pageSize}
         currentPage={getUserVariables.pageNumber}
         handleSetItemsPerPage={handleSetItemsPerPage}
         selectOptions={selectOptionsOfDecksToDisplay}

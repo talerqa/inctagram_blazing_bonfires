@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { getFollowersUsersData } from '@/features/super-admin-user-profile/lib/get-followers-table-data'
+import { getFollowingUsersData } from '@/features/super-admin-user-profile/lib/get-following-table-data'
 import { getUserFollowersColumns } from '@/features/super-admin-user-profile/ui/profile-followers/constants'
 import { ProfileFollowingTable } from '@/features/super-admin-user-profile/ui/profile-following/profile-following-table/profile-following-table'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
@@ -13,11 +14,11 @@ import { SortType } from '@/shared/ui/table/table'
 export const ProfileFollowing = ({ userId }: { userId: number }) => {
   const dispatch = useDispatch()
   const { getUserVariables, sort, setSort } = useGetUserVariables()
-  const followersData = getFollowersUsersData(getUserVariables as GetUserVariablesType, userId)
+  const followingData = getFollowingUsersData(getUserVariables as GetUserVariablesType, userId)
 
   const columns = getUserFollowersColumns()
 
-  if (!followersData) return <CircularLoader />
+  if (!followingData) return <CircularLoader />
 
   const handleSetItemsPerPage = (numOfItemsPerPage: number) => {
     dispatch(setPageNumber(1))
@@ -34,17 +35,17 @@ export const ProfileFollowing = ({ userId }: { userId: number }) => {
   return (
     <>
       <ProfileFollowingTable
-        skeletonRowsNum={followersData.getFollowing.pageSize}
-        items={followersData.getFollowing.items}
+        skeletonRowsNum={followingData.getFollowing.pageSize}
+        items={followingData.getFollowing.items}
         handleSort={handleSort}
         sort={sort}
         columns={columns}
       />
       <Pagination
         handlePageChange={handlePageChange}
-        totalPages={followersData.getFollowing.pagesCount}
-        totalCount={followersData.getFollowing.totalCount}
-        itemsPerPage={followersData.getFollowing.pageSize}
+        totalPages={followingData.getFollowing.pagesCount}
+        totalCount={followingData.getFollowing.totalCount}
+        itemsPerPage={followingData.getFollowing.pageSize}
         currentPage={getUserVariables.pageNumber}
         handleSetItemsPerPage={handleSetItemsPerPage}
         selectOptions={selectOptionsOfDecksToDisplay}
