@@ -32,12 +32,12 @@ export const ProfileFollowingTable = ({
         {items?.map(item => {
           return (
             <TRow key={item.id}>
-              <TCell>{item.id}</TCell>
+              <TCell>{item.userId}</TCell>
               <TCell>{item.userName}</TCell>
               <TCell>
                 <Link
                   className={s.profileLink}
-                  href={RoutersPath.superAdminUserProfile + '/' + item.id}
+                  href={RoutersPath.superAdminUserProfile + '/' + item.userId}
                   style={{ textDecoration: 'underline' }}
                 >
                   {item.userName}
