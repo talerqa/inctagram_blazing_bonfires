@@ -16,36 +16,6 @@ import { PublicProfileType } from '@/shared/api/services/public/public.api.types
 import { GetUserVariablesType } from '@/shared/hooks/use-get-user-variables'
 import { errorHandler } from '@/shared/utils'
 
-// export async function getUserFollowersData(userId: number) {
-//   let followers
-//
-//   try {
-//     const { data: profileData } = await useGetPublicProfileQuery(userId)
-//
-//     if (profileData) {
-//       followers = await activateProfileFollowers(profileData.userName)
-//     }
-//   } catch {
-//     console.log('error')
-//   }
-//
-//   return followers
-// }
-//
-// async function activateProfileFollowers(userName: string) {
-//   const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
-//   const { data: followers, error } = useGetProfileFollowersQuery({ userName })
-//   // const { data: followers } = useGetProfileFollowersQuery({ userName: 'DenInc122335544' })
-//
-//   if (!followers) return []
-//   if (error) {
-//     errorHandler(error, tError('NotAuthorization'), tError('TryAgain'), tError('NetworkError'))
-//   }
-//
-//   //TODO
-//   return followers
-// }
-
 export function getFollowersUsersData(
   { statusFilter, searchTerm, ...sortAndPaginationData }: GetUserVariablesType,
   selectedUserId: number

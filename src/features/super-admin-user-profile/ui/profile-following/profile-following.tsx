@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux'
 
 import { getFollowersUsersData } from '@/features/super-admin-user-profile/lib/get-followers-table-data'
 import { getUserFollowersColumns } from '@/features/super-admin-user-profile/ui/profile-followers/constants'
-import { ProfileFollowersTable } from '@/features/super-admin-user-profile/ui/profile-followers/profile-followers-table/profile-followers-table'
+import { ProfileFollowingTable } from '@/features/super-admin-user-profile/ui/profile-following/profile-following-table/profile-following-table'
 import { setPageNumber, setPageSize } from '@/pages/super-admin/modal/slices/admin-reducer'
 import { GetUserVariablesType, useGetUserVariables } from '@/shared/hooks/use-get-user-variables'
 import { CircularLoader, Pagination } from '@/shared/ui'
 import { SortType } from '@/shared/ui/table/table'
 
-export const ProfileFollowers = ({ userId }: { userId: number }) => {
+export const ProfileFollowing = ({ userId }: { userId: number }) => {
   const dispatch = useDispatch()
   const { getUserVariables, sort, setSort } = useGetUserVariables()
   const followersData = getFollowersUsersData(getUserVariables as GetUserVariablesType, userId)
@@ -33,7 +33,7 @@ export const ProfileFollowers = ({ userId }: { userId: number }) => {
 
   return (
     <>
-      <ProfileFollowersTable
+      <ProfileFollowingTable
         skeletonRowsNum={followersData.getFollowing.pageSize}
         items={followersData.getFollowing.items}
         handleSort={handleSort}
