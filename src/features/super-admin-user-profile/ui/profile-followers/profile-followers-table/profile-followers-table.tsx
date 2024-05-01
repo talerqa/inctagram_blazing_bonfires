@@ -24,26 +24,28 @@ export const ProfileFollowersTable = ({
   skeletonRowsNum,
   columns,
 }: ProfileFollowersTableType) => {
+  console.log(items, 'items')
+
   return (
     <NewTable>
       <TableHeader columns={columns} sort={sort} onSort={handleSort} />
+      {!items && <TableSkeleton numRows={skeletonRowsNum} />}
       <TBody>
-        {!items && <TableSkeleton numRows={skeletonRowsNum} />}
-        {items.map(item => {
+        {items?.map(item => {
           return (
             <TRow key={item.id}>
-              <TCell>{findDate.formatToNumeric(item.dateOfPayment)}</TCell>
-              <TCell>{findDate.formatToNumeric(item.endDate)}</TCell>
+              <TCell>{item.id}</TCell>
+              <TCell>{item.userName}</TCell>
               <TCell>
                 <Link
                   className={s.profileLink}
                   href={RoutersPath.superAdminUserProfile + '/' + item.id}
+                  style={{ textDecoration: 'underline' }}
                 >
-                  {item.price}
+                  {item.userName}
                 </Link>
               </TCell>
-              <TCell>{item.type}</TCell>
-              <TCell>{capitalizeString(item.paymentType)}</TCell>
+              <TCell>{findDate.formatToNumeric(item.createdAt)}</TCell>
             </TRow>
           )
         })}
