@@ -33,7 +33,7 @@ const NotFound = () => {
       <div className={styles.errorImage}>
         <Error404></Error404>
       </div>
-      <Text>{t('Sorry! Page non found!')}</Text>
+      <Text>{t('Sorry! Page not found!')}</Text>
       <Link href={mainPath[1] === 'super-admin' ? RoutersPath.superAdmin : RoutersPath.home}>
         <Button>{t('Back to home page')}</Button>
       </Link>

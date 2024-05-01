@@ -137,7 +137,7 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
                         <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
                           {translateNotificationMessage(item.message)}
                         </Text>
-                        <Text as={'p'} className={item.isRead ? readTextStyle : styles.text}>
+                        <Text as={'p'} className={readTextStyle}>
                           {findDateDifference(item.notifyAt)}
                         </Text>
                       </div>
