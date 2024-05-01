@@ -13,6 +13,7 @@ import {
   setPhotosCount,
 } from '@/shared/api/services/posts/post.slice'
 import { ImageDataType, PostResponseType } from '@/shared/api/services/posts/posts.api.types'
+import noImage from '@/shared/assets/icons/image/no-image.svg'
 
 type Props = {
   postData: PostResponseType | undefined
@@ -32,15 +33,13 @@ export const PostImages = ({ postData }: Props) => {
 
   return (
     <div className={style.sliderWrapper}>
-      {images.length && (
-        <Image
-          src={images[currentIndex]?.url}
-          alt={''}
-          height={562}
-          width={490}
-          style={{ objectFit: 'cover' }}
-        />
-      )}
+      <Image
+        src={images.length ? images[currentIndex]?.url : noImage}
+        alt={images.length ? 'image' : 'no image'}
+        height={562}
+        width={490}
+        style={{ objectFit: 'cover' }}
+      />
       {images.length > 1 && <SlideBar styles={style} />}
     </div>
   )
