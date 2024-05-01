@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Subscription, SubscriptionType } from '@/__generated__/graphql'
+import { SubscriptionByPaymentModel } from '@/__generated__/graphql'
 import { convertTimeUnitToDays } from '@/shared/libs/format-dates/format-dates'
 import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
 import { capitalizeString, findDate } from '@/shared/utils'
 
 type ProfilePaymentsTableType = {
-  items: Subscription[]
+  items: SubscriptionByPaymentModel[]
   handleSort: (sort: SortType) => void
   sort: SortType
   skeletonRowsNum: number

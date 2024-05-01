@@ -2,7 +2,6 @@ import React from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { getFollowersUsersData } from '@/features/super-admin-user-profile/lib/get-followers-table-data'
 import { getFollowingUsersData } from '@/features/super-admin-user-profile/lib/get-following-table-data'
 import { getUserFollowersColumns } from '@/features/super-admin-user-profile/ui/profile-followers/constants'
 import { ProfileFollowingTable } from '@/features/super-admin-user-profile/ui/profile-following/profile-following-table/profile-following-table'

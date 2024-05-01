@@ -2,15 +2,15 @@ import React from 'react'
 
 import Link from 'next/link'
 
-import { Subscription } from '@/__generated__/graphql'
+import { Follow } from '@/__generated__/graphql'
 import s from '@/features/users-list-table-with-pagination/ui/users-list-table/users-list-table.module.scss'
 import { RoutersPath } from '@/shared/constants/paths'
 import { NewTable, TableSkeleton, TBody, TCell, TRow } from '@/shared/ui'
 import { SortType, TableHeader } from '@/shared/ui/table/table'
-import { capitalizeString, findDate } from '@/shared/utils'
+import { findDate } from '@/shared/utils'
 
 type ProfileFollowersTableType = {
-  items: Subscription[]
+  items: Follow[]
   handleSort: (sort: SortType) => void
   sort: SortType
   skeletonRowsNum: number
