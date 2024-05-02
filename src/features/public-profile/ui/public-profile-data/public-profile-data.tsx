@@ -3,7 +3,6 @@ import React from 'react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-import { useSelector } from 'react-redux'
 
 import style from './public-profile-data.module.scss'
 
@@ -33,7 +32,7 @@ export const PublicProfileData = (props: PropsType) => {
 
   const notImageClass = clsx(style.avatar, !avatars[0] && style.notAvatar)
 
-  const { data: userData, isLoading: isLoadingIsFollow } = useGetUserDataQuery({ userName })
+  const { data: userData } = useGetUserDataQuery({ userName })
   const [followUser, { isLoading }] = useFollowUserMutation()
   const { data: meData } = useGetProfileUserQuery()
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
