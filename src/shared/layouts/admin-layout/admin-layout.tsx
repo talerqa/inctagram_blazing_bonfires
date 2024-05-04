@@ -22,6 +22,8 @@ const AdminLayout: NextPage<PropsWithChildren> = ({ children }) => {
   const isMobile = useSelector(selectIsMobile)
   const showSidebar =
     (router.pathname === RoutersPath.superAdminUsersList ||
+      router.pathname === RoutersPath.superAdminStatistics ||
+      router.pathname === RoutersPath.superAdminPostsList ||
       router.pathname === RoutersPath.superAdminPaymentsList) &&
     isAdminLogged
 

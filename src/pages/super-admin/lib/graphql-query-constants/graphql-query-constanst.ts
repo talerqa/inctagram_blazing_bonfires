@@ -253,3 +253,27 @@ export const GET_FOLLOWERS_USERS = gql(`
   }
 }
 `)
+
+export const GET_ALL_POSTS = gql(`
+  query GetPosts(
+  $endCursorPostId: Int
+  $searchTerm: String
+  $pageSize: Int = 10
+  $sortBy: String = "createdAt"
+  $sortDirection: SortDirection = desc
+  ) {
+    getPosts(endCursorPostId:$endCursorPostId, searchTerm: $searchTerm, pageSize: $pageSize, sortBy:$sortBy, sortDirection: $sortDirection) {
+      pagesCount,
+        pageSize,
+        totalCount,
+        items {
+        images { id, createdAt, url, width, height, fileSize }
+        id
+        ownerId
+        description
+        createdAt
+        updatedAt
+        postOwner { id, userName, firstName, lastName, avatars { url, width, height, fileSize } }
+      }
+    }
+  }`)

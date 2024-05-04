@@ -17,7 +17,6 @@ export const ProfilePayments = ({ userId }: { userId: number }) => {
   const paymentsData = getUserPaymentsData(getUserVariables as GetUserVariablesType, userId)
   const columns = getPaymentsColumnHeaders()
 
-  console.log(paymentsData, 'paymentsData')
   if (!paymentsData) return <CircularLoader />
 
   const handleSetItemsPerPage = (numOfItemsPerPage: number) => {
