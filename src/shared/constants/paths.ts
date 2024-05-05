@@ -1,4 +1,4 @@
-export const enum RoutersPath {
+export const enum git {
   home = '/',
   profile = '/profile',
   signIn = '/sign-in',
