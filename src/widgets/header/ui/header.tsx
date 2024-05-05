@@ -87,11 +87,15 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
     }
   }
   const readTextStyle = clsx(styles.text, styles.read)
+  const isSuperAdmin = mainPath[1] === 'super-admin'
 
   return (
     <header className={styles.header}>
       <div className={styles.headerWrapper}>
-        <Link href="/" className={styles.logo}>
+        <Link
+          href={isSuperAdmin ? RoutersPath.superAdmin : RoutersPath.home}
+          className={styles.logo}
+        >
           Inсtagram
           {mainPath[1] === 'super-admin' && (
             <span className={styles.adminDescription}>
