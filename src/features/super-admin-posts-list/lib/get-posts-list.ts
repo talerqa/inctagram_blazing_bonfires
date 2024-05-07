@@ -10,14 +10,23 @@ export type PostsListResult = {
   pageSize?: number
   pagesCount?: number
   totalCount?: number
+  subscribeToMore?: any
   error: ApolloError | string
 }
 
-export const getPostsList = (): PostsListResult => {
-  const { getUserVariables, sort, setSort } = useGetUserVariables()
-  const { data: postsList, error } = useQuery(GET_ALL_POSTS, {
+type GetPostsListType = {
+  endCursorPostId: number
+}
+
+export const getPostsList = ({ endCursorPostId }: GetPostsListType): PostsListResult => {
+  const { getUserVariables } = useGetUserVariables()
+  const {
+    data: postsList,
+    error,
+    subscribeToMore,
+  } = useQuery(GET_ALL_POSTS, {
     variables: {
-      endCursorPostId: 0,
+      endCursorPostId,
       ...getUserVariables,
     },
     context: {
@@ -32,5 +41,6 @@ export const getPostsList = (): PostsListResult => {
   return {
     ...postsList?.getPosts,
     error: '',
+    subscribeToMore,
   }
 }

@@ -1,0 +1,81 @@
+import React, { useRef, useState } from 'react'
+
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+
+import s from './post.module.scss'
+
+import { Post as PostType } from '@/__generated__/graphql'
+import { setSearchParameter } from '@/features/super-admin-user-management/model/user-management-slice'
+import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
+import { selectIsLoggedIn } from '@/shared/api'
+import noImage from '@/shared/assets/icons/image/no-image.svg'
+import { RoutersPath } from '@/shared/constants/paths'
+import { useTruncateText } from '@/shared/hooks'
+import { Input, InputType, Text } from '@/shared/ui'
+import { findDate } from '@/shared/utils/find-date'
+
+export const Post = (post: PostType) => {
+  const {
+    images,
+    // owner: { lastName, firstName },
+    // avatarOwner,
+    postOwner,
+    description,
+    createdAt,
+    ownerId,
+    id,
+  } = post
+
+  const { t } = useTranslation('common', { keyPrefix: 'Post' })
+  const [isPostActive, setIsPostActive] = useState(false)
+  const postCreatedAt = findDate.difference(createdAt)
+  const router = useRouter()
+  const nodeRef = useRef(null)
+
+  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, semiTruncatedDynamicText } =
+    useTruncateText(description, 200, 70)
+
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  // const togglePostModal = (id: number) => {
+  //   if (!isLoggedIn) {
+  //     router.push(`${RoutersPath.profile}/${ownerId}/?data=${id}`)
+  //   } else {
+  //     setIsPostActive(!isPostActive)
+  //   }
+  // }
+
+  const userName = `${postOwner.firstName} ${postOwner.lastName}` || t('AnonymousUser')
+
+  return (
+    <div className={s.post} key={id}>
+      <div className={s.postLinkWrapper}>
+        <Image
+          src={images?.[0]?.url ?? noImage}
+          width={234}
+          height={isShowMoreActive ? 110 : 240}
+          alt="Picture of the post"
+        />
+        <div className={s.postContentWrapper}>
+          <Image src={images?.[0]?.url ?? noImage} width={36} height={36} alt={'Avatar picture'} />
+          <h3 className={s.profileUrl}>{userName}</h3>
+        </div>
+      </div>
+      <Text size={'small'} style={{ color: 'var(--color-light-900)' }}>
+        {postCreatedAt}
+      </Text>
+      <p className={s.postDescription}>
+        {semiTruncatedDynamicText}
+        {'...'}
+        {displayShowMore && (
+          <span onClick={() => setIsShowMoreActive(!isShowMoreActive)} className={s.showMore}>
+            {isShowMoreActive ? 'Hide' : 'Show more'}
+          </span>
+        )}
+      </p>
+      {/*{isPostActive && <PostModal postData={post} togglePostModal={() => togglePostModal(id)} />}*/}
+    </div>
+  )
+}

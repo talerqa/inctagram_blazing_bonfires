@@ -267,13 +267,64 @@ export const GET_ALL_POSTS = gql(`
         pageSize,
         totalCount,
         items {
-        images { id, createdAt, url, width, height, fileSize }
-        id
-        ownerId
-        description
-        createdAt
-        updatedAt
-        postOwner { id, userName, firstName, lastName, avatars { url, width, height, fileSize } }
+          images { id, createdAt, url, width, height, fileSize }
+          id
+          ownerId
+          description
+          createdAt
+          updatedAt
+          postOwner { id, userName, firstName, lastName, avatars { url, width, height, fileSize } }
       }
     }
   }`)
+
+export const GET_POSTS_BY_USER_ADMIN = gql(`query GetPostsByUserAdmin(
+  $userId: Int = 1
+  $endCursorId: Int = 1
+) {
+  getPostsByUser(userId:$userId, endCursorId: $endCursorId) {
+    pagesCount,
+      pageSize,
+      totalCount,
+      items {
+      id
+      url
+      width
+      height
+      createdAt
+      fileSize
+    }
+  }
+}`)
+
+export const POSTS_SUBSCRIPTION = gql(`
+  subscription GetPostsSubscription {
+    postAdded {
+      images {
+        id
+        createdAt
+        url
+        width
+        height
+        fileSize
+      }
+      id
+      ownerId
+      description
+      createdAt
+      updatedAt
+      postOwner {
+        id
+        userName
+        firstName
+        lastName
+        avatars {
+          url
+          width
+          height
+          fileSize
+        }
+      }
+    }
+  }
+`)

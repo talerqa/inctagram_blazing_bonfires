@@ -39,6 +39,7 @@
     "eslint-config-next": "13.4.11",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
+    "graphql-ws": "^5.16.0",
     "i18next": "23.4.1",
     "jwt-decode": "3.1.2",
     "moment": "2.29.4",
