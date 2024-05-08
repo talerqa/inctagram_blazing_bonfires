@@ -1,8 +1,6 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 
-import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { RoutersPath } from '@/shared/constants/paths'
 import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
