@@ -6,8 +6,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useSelector } from 'react-redux'
 
-import { Comment } from '@/entities/post-modal/comment/comment'
-import { Description } from '@/entities/post-modal/description/description'
+import { Comments } from '@/entities/post-modal/comments/comments'
 import styles from '@/entities/post-modal/post-modal.module.scss'
 import { EditDeletePost } from '@/features/post/ui/edit-delete-post/edit-delete-post'
 import { EditDescriptionPost } from '@/features/post/ui/edit-description-modal/edit-description-post'
@@ -105,8 +104,7 @@ export const PostModal = ({ postData, togglePostModal, profileData }: Props) => 
                   />
                 )}
               </div>
-              <Description {...postData} />
-              <Comment {...postData} />
+              <Comments {...postData} />
             </div>
           </div>
         </div>

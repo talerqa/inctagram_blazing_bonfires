@@ -14,6 +14,8 @@ import {
   PostResponseType,
   PostsType,
   UpdatePostRequestType,
+  GetCommentsRequestType,
+  GetCommentsResponseType,
 } from '@/shared/api/services/posts/posts.api.types'
 
 export const postsApi = createApi({
@@ -24,7 +26,7 @@ export const postsApi = createApi({
       return action.payload[reducerPath]
     }
   },
-  tagTypes: ['editPost', 'deletePost', 'createPost'],
+  tagTypes: ['editPost', 'deletePost', 'createPost', 'getPostComments'],
   endpoints: build => {
     return {
       createPost: build.mutation<PostResponseType, PostsType>({
@@ -131,7 +133,25 @@ export const postsApi = createApi({
             body: { content },
           }
         },
-        // invalidatesTags: ['editPost'],
+        invalidatesTags: ['getPostComments'],
+      }),
+      getPostComments: build.query<GetCommentsResponseType, GetCommentsRequestType>({
+        query: ({ postId, pageNumber, pageSize, sortBy, sortDirection }) => {
+          return {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
+            },
+            url: `posts/${postId}/comments`,
+            params: {
+              pageSize,
+              pageNumber,
+              sortBy,
+              sortDirection,
+            },
+          }
+        },
+        providesTags: ['getPostComments'],
       }),
     }
   },
@@ -146,4 +166,5 @@ export const {
   useUpdatePostMutation,
   useGetAllPublicPostsQuery,
   useCreatePostCommentMutation,
+  useGetPostCommentsQuery,
 } = postsApi
