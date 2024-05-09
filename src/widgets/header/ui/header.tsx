@@ -93,7 +93,7 @@ const ClientHeader = ({ isMobile }: { isMobile?: boolean }) => {
     <header className={styles.header}>
       <div className={styles.headerWrapper}>
         <Link
-          href={isSuperAdmin ? RoutersPath.superAdmin : RoutersPath.home}
+          href={isSuperAdmin ? RoutersPath.superAdminUsersList : RoutersPath.home}
           className={styles.logo}
         >
           Inсtagram
