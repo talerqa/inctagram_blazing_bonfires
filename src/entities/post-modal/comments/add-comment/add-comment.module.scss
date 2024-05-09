@@ -1,0 +1,40 @@
+.addCommentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 72px;
+  padding: 0 12px 0 18px;
+  border-top: 1px solid var(--color-dark-100);
+
+  .addCommentForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .addCommentButton {
+      display: flex;
+      justify-content: center;
+      padding: 8px 12px;
+
+      font-size: var(--font-size-m);
+      font-weight: 600;
+
+
+      background-color: inherit;
+      border: none;
+      outline: none;
+      &:enabled {
+        color: var(--color-info-500);
+      }
+      &:disabled {
+        color: var(--color-info-900);
+      }
+    }
+    .addCommentInput {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0;
+    }
+  }
+}

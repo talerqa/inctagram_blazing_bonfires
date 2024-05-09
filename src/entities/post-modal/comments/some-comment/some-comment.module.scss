@@ -1,10 +1,10 @@
-.descriptionContainer {
+.commentContainer {
   display: flex;
 
   gap: 12px;
 
   width: 100%;
-  padding: 10px 24px;
+  padding: 6px 24px;
 
   .avatarContainer {
     cursor: pointer;
@@ -19,20 +19,20 @@
     border-radius: 50%;
   }
 
-  .descriptionWrapper {
+  .commentTextAndLikeWrapper {
     width: 100%;
     max-width: 385px;
 
-    .descriptionTextContainer {
+    .commentTextContainer {
       display: flex;
       gap: 24px;
       justify-content: space-between;
 
-      .descriptionText {
+      .commentText {
         font-size: var(--font-size-s);
         word-break: break-word;
 
-        .descriptionTextName {
+        .commentTextName {
           cursor: pointer;
           margin-right: 0.5rem;
           font-weight: var(--font-weight-bold);
@@ -42,14 +42,27 @@
         }
       }
     }
+    .commentLikeContainer {
+      cursor: pointer;
+      &:hover{
+        opacity: 0.5;
+      }
+    }
 
-    .descriptionInfoContainer {
+    .commentInfoContainer {
       display: inline-flex;
       gap: 12px;
       font-size: var(--font-size-xs);
 
-      .descriptionTime {
+      .commentTime,
+      .commentLikes,
+      .commentAnswer {
         color: var(--color-light-900);
+      }
+
+      .commentAnswer {
+        font-weight: 600;
+        cursor: pointer;
       }
     }
   }
