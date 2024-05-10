@@ -11,7 +11,7 @@ import { PostResponseType } from '@/shared/api'
 import { useCreatePostCommentMutation } from '@/shared/api/services/posts/posts.api'
 import { Button, Input, InputType } from '@/shared/ui'
 
-export const AddComment = ({ id }: PostResponseType) => {
+export const AddComment = ({ id, resetUpload }: PostResponseType & { resetUpload: () => void }) => {
   const schema = yup.object().shape({
     content: yup.string().required('Error.RequiredField'),
   })
@@ -30,6 +30,7 @@ export const AddComment = ({ id }: PostResponseType) => {
       .then(() => {
         reset()
         setCurrentValue('')
+        resetUpload()
       })
       .catch(error => {
         const errMessage = error.data.messages[0].message

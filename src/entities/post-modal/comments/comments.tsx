@@ -87,7 +87,15 @@ export const Comments = (props: PostResponseType) => {
         </div>
         <div className={styles.postDate}>{postCreatedAt}</div>
       </div>
-      {isLoggedIn && <AddComment {...props} />}
+      {isLoggedIn && (
+        <AddComment
+          {...props}
+          resetUpload={() => {
+            setItems(undefined)
+            setPageNumber(1)
+          }}
+        />
+      )}
     </div>
   )
 }
