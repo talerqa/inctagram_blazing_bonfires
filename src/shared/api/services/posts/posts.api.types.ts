@@ -12,6 +12,7 @@ export type PostResponseType = {
     firstName: string
     lastName: string
   }
+  likesCount: number
 }
 export type PostsType = {
   description: string
@@ -62,7 +63,36 @@ export type GetUserPostsRequestType = {
   pageNumber: number
   endCursorPostId: number
 }
+export type GetCommentsRequestType = {
+  postId: number
+  pageSize?: number
+  pageNumber?: number
+  sortBy?: string
+  sortDirection?: 'desc' | 'asc'
+}
+export type CommentType = {
+  id: number
+  postId: number
+  from: {
+    id: number
+    username: string
+    avatars: Array<{
+      url: string
+      width: number
+      height: number
+      fileSize: number
+      createdAt: string
+    }>
+  }
+  content: string
+  createdAt: string
+}
 
+export type GetCommentsResponseType = {
+  pageSize: number
+  totalCount: number
+  items: Array<CommentType>
+}
 export type CreatePostRequest = {
   description: string
 }

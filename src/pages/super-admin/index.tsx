@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -8,11 +8,9 @@ import { getAdminLayout } from '@/shared/layouts/admin-layout/admin-layout'
 const SuperAdminHome = () => {
   const router = useRouter()
 
-  useLayoutEffect(() => {
-    if (!router.isReady) return
-
-    router.replace(RoutersPath.superAdminUsersList).then()
-  }, [])
+  useEffect(() => {
+    router.replace(RoutersPath.superAdminUsersList)
+  }, [router])
 
   return <div></div>
 }

@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next'
 import style from './public-profile-data.module.scss'
 
 import { ProfileFollowing } from '@/entities/profile-following'
+import { useGetProfileUserQuery } from '@/shared/api'
 import { PublicProfileType } from '@/shared/api/services/public/public.api.types'
 import { useFollowUserMutation, useGetUserDataQuery } from '@/shared/api/services/search/search.api'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
@@ -33,7 +34,10 @@ export const PublicProfileData = (props: PropsType) => {
 
   const { data: userData } = useGetUserDataQuery({ userName })
   const [followUser, { isLoading }] = useFollowUserMutation()
+  const { data: meData } = useGetProfileUserQuery()
   const { t } = useTranslation('common', { keyPrefix: 'SearchPage' })
+
+  const isMe = meData?.id === id
 
   return (
     <>
@@ -54,20 +58,22 @@ export const PublicProfileData = (props: PropsType) => {
             <Text as={'p'} size={'xxl'} weight={'bold'} className={style.userName}>
               {userName}
             </Text>
-            <div className={style.buttonsContainer}>
-              {!userData?.isFollowing ? (
-                <Button onClick={() => followUser({ selectedUserId: id })}>{t('Follow')}</Button>
-              ) : (
-                <Button
-                  theme={ButtonTheme.CLEAR}
-                  onClick={() => followUser({ selectedUserId: id })}
-                >
-                  {t('Unfollow')}
-                </Button>
-              )}
+            {!isMe && (
+              <div className={style.buttonsContainer}>
+                {!userData?.isFollowing ? (
+                  <Button onClick={() => followUser({ selectedUserId: id })}>{t('Follow')}</Button>
+                ) : (
+                  <Button
+                    theme={ButtonTheme.CLEAR}
+                    onClick={() => followUser({ selectedUserId: id })}
+                  >
+                    {t('Unfollow')}
+                  </Button>
+                )}
 
-              <Button>SendMessage</Button>
-            </div>
+                <Button>SendMessage</Button>
+              </div>
+            )}
           </div>
           <div className={style.profileInfo}>
             <ProfileFollowing
