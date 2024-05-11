@@ -25,9 +25,16 @@
 
   .postContentWrapper {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     align-items: center;
+    justify-content: space-between;
+
     line-height: 0.75rem;
+
+    > div {
+      display: flex;
+      gap: 1rem;
+    }
 
     img {
       border-radius: 50%;

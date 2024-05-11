@@ -49,40 +49,16 @@ const PostsList = () => {
     }
   }, [items])
 
-  const { data, loading, error } = useSubscription(POSTS_SUBSCRIPTION)
-
-  console.log(data, 'SUBSCRIPTON')
-  console.log(loading, 'LOADING')
-  console.log(error, 'ERROR')
+  const { data, error, loading } = useSubscription(POSTS_SUBSCRIPTION)
 
   useEffect(() => {
-    const subscribeToNewPosts = () => {
-      subscribeToMore({
-        document: POSTS_SUBSCRIPTION,
-        updateQuery: (prev: any, { subscriptionData, error }: any) => {
-          if (error) {
-            console.error('Subscription error:', error)
+    if (!data?.postAdded) return
+    setPosts([data.postAdded, ...posts])
+  }, [data])
 
-            return prev
-          }
-          // if (!subscriptionData.data) return {
-          //   console.error('Subscription error:', error)
-          //   prev
-          // }
-          const newPost = subscriptionData.data.postAdded
+  console.log(data?.postAdded)
 
-          setPosts([...prev, newPost])
-          // return {
-          //   ...prev,
-          //   getPosts: [...prev.getPosts],
-          //   items: [...prev.getPosts.items, newPost], // Add the new post to existing posts
-          // }
-        },
-      })
-    }
-
-    subscribeToNewPosts()
-  }, [])
+  console.log(posts, ' POSTS')
 
   return (
     <div className={s.posts}>
