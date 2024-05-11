@@ -9,9 +9,13 @@ import * as yup from 'yup'
 import styles from '@/entities/post-modal/comments/add-comment/add-comment.module.scss'
 import { PostResponseType } from '@/shared/api'
 import { useCreatePostCommentMutation } from '@/shared/api/services/posts/posts.api'
+import { CommentType } from '@/shared/api/services/posts/posts.api.types'
 import { Button, Input, InputType } from '@/shared/ui'
 
-export const AddComment = ({ id, resetUpload }: PostResponseType & { resetUpload: () => void }) => {
+export const AddComment = ({
+  id,
+  addNewComment,
+}: PostResponseType & { addNewComment: (newItem: CommentType) => void }) => {
   const schema = yup.object().shape({
     content: yup.string().required('Error.RequiredField'),
   })
@@ -27,10 +31,10 @@ export const AddComment = ({ id, resetUpload }: PostResponseType & { resetUpload
   const onSubmit = ({ content }: { content: string }) => {
     createPostComment({ postId: id, content })
       .unwrap()
-      .then(() => {
+      .then(res => {
         reset()
         setCurrentValue('')
-        resetUpload()
+        addNewComment(res)
       })
       .catch(error => {
         const errMessage = error.data.messages[0].message

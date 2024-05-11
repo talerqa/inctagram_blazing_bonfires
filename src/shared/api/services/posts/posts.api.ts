@@ -166,5 +166,5 @@ export const {
   useUpdatePostMutation,
   useGetAllPublicPostsQuery,
   useCreatePostCommentMutation,
-  useGetPostCommentsQuery,
+  useLazyGetPostCommentsQuery,
 } = postsApi

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -9,14 +9,13 @@ import styles from './comment.module.scss'
 import { AddComment } from '@/entities/post-modal/comments/add-comment/add-comment'
 import { SomeComment } from '@/entities/post-modal/comments/some-comment/some-comment'
 import { Description } from '@/entities/post-modal/description/description'
-import { selectIsLoggedIn } from '@/shared/api'
-import { useGetPostCommentsQuery } from '@/shared/api/services/posts/posts.api'
+import { selectIsLoggedIn, useMeQuery } from '@/shared/api'
+import { useLazyGetPostCommentsQuery } from '@/shared/api/services/posts/posts.api'
 import { CommentType, PostResponseType } from '@/shared/api/services/posts/posts.api.types'
 import noImage from '@/shared/assets/icons/avatar-profile/not-photo.png'
 import likeIcon from '@/shared/assets/icons/icons/like-icon.svg'
 import saveIcon from '@/shared/assets/icons/icons/save-icon.svg'
 import shareIcon from '@/shared/assets/icons/icons/share-icon.svg'
-import PlusCircle from '@/shared/assets/icons/plus-circle/plus-circle'
 import { CircularLoader } from '@/shared/ui'
 import { findDate } from '@/shared/utils'
 
@@ -28,33 +27,57 @@ export const Comments = (props: PostResponseType) => {
 
   const [pageNumber, setPageNumber] = useState(1)
   const [items, setItems] = useState<Array<CommentType> | undefined>(undefined)
-  const { data: CommentData, isLoading } = useGetPostCommentsQuery({
-    postId: id,
-    pageNumber,
-    pageSize: 10,
+  const [nextPageLoading, setNextPageLoading] = useState(false)
+  const [getComments, { data: commentData, isLoading }] = useLazyGetPostCommentsQuery()
+  const { data: userData } = useMeQuery()
+  const userId = userData?.userId
+  const commentRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      setPageNumber(prevNumber => prevNumber + 1)
+    }
   })
 
   useEffect(() => {
-    if (items && CommentData?.items) {
-      setItems([...items, ...CommentData.items])
-    } else if (CommentData?.items) {
-      setItems(CommentData.items)
+    getComments({
+      postId: id,
+      pageNumber: 1,
+      pageSize: 10,
+    })
+      .then(res => setItems(res.data?.items))
+      .then(() => observer.observe(bottomRef?.current as HTMLDivElement))
+  }, [])
+
+  useEffect(() => {
+    if (items && commentData && commentData?.totalCount > items?.length) {
+      setNextPageLoading(true)
+      getComments({
+        postId: id,
+        pageNumber,
+        pageSize: 10,
+      }).then(res => {
+        if (items) {
+          setItems(prevItems => [
+            ...(prevItems as CommentType[]),
+            ...(res.data?.items as CommentType[]),
+          ])
+        }
+        setNextPageLoading(false)
+      })
     }
-  }, [CommentData])
+  }, [pageNumber])
+  const myComments = items?.filter(com => com.from.id === userId) as CommentType[]
+  const notMyComments = items?.filter(com => com.from.id !== userId) as CommentType[]
+  const sortedIComments = myComments && notMyComments ? [...myComments, ...notMyComments] : items
 
   return (
     <div className={styles.commentContainerWrapper}>
-      <div className={styles.allComments}>
+      <div className={styles.allComments} ref={commentRef}>
         <Description {...props} />
-        {items?.map(item => <SomeComment {...item} key={item.id} isLoggedIn />)}
-        {!!CommentData?.totalCount &&
-          !!items?.length &&
-          CommentData?.totalCount > items?.length && (
-            <div className={styles.plusIconContainer} onClick={() => setPageNumber(pageNumber + 1)}>
-              <PlusCircle className={styles.plusIcon} />
-            </div>
-          )}
-        {isLoading && <CircularLoader />}
+        {sortedIComments?.map(item => <SomeComment {...item} key={item.id} isLoggedIn />)}
+        <div ref={bottomRef}>{(isLoading || nextPageLoading) && <CircularLoader />}</div>
       </div>
       <div className={styles.summaryContainer}>
         {isLoggedIn && (
@@ -89,9 +112,9 @@ export const Comments = (props: PostResponseType) => {
       {isLoggedIn && (
         <AddComment
           {...props}
-          resetUpload={() => {
-            setItems(undefined)
-            setPageNumber(1)
+          addNewComment={(newItem: CommentType) => {
+            !!items && setItems([newItem, ...items])
+            commentRef.current?.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
           }}
         />
       )}
