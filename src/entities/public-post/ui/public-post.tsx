@@ -30,8 +30,10 @@ export const PublicPost = (post: PostResponseType) => {
   const postCreatedAt = findDate.difference(createdAt)
   const router = useRouter()
 
-  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, dynamicText, semiTruncatedText } =
-    useTruncateText(description, 80)
+  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, dynamicText } = useTruncateText(
+    description,
+    80
+  )
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const togglePostModal = (id: number) => {
     if (!isLoggedIn) {
