@@ -1,4 +1,5 @@
-import { ApolloError, useQuery } from '@apollo/client'
+import { ApolloError, DocumentNode, FetchMoreOptions, useQuery } from '@apollo/client'
+import { ApolloQueryResult, OperationVariables } from '@apollo/client/core'
 
 import { Post } from '@/__generated__/graphql'
 import { GET_ALL_POSTS } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
@@ -12,6 +13,7 @@ export type PostsListResult = {
   totalCount?: number
   subscribeToMore?: any
   error: ApolloError | string
+  fetchMore?: any
 }
 
 type GetPostsListType = {
@@ -24,6 +26,7 @@ export const getPostsList = ({ endCursorPostId }: GetPostsListType): PostsListRe
     data: postsList,
     error,
     subscribeToMore,
+    fetchMore,
   } = useQuery(GET_ALL_POSTS, {
     variables: {
       endCursorPostId,
@@ -42,5 +45,6 @@ export const getPostsList = ({ endCursorPostId }: GetPostsListType): PostsListRe
     ...postsList?.getPosts,
     error: '',
     subscribeToMore,
+    fetchMore,
   }
 }

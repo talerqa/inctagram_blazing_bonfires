@@ -4,11 +4,12 @@ import { useSubscription } from '@apollo/client'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 
 import s from './posts-list.module.scss'
 
-import { Post as PostType } from '@/__generated__/graphql'
+import { GetPostsQuery, Post as PostType } from '@/__generated__/graphql'
 import { getPostsList } from '@/features/super-admin-posts-list/lib/get-posts-list'
 import { Post } from '@/features/super-admin-posts-list/ui/post/post'
 import { setSearchParameter } from '@/features/super-admin-user-management/model/user-management-slice'
@@ -39,9 +40,27 @@ const PostsList = () => {
     (value: string) => dispatch(setSearchParameter(value)),
     500
   )
+  const { data, error, loading } = useSubscription(POSTS_SUBSCRIPTION)
 
-  const { items, subscribeToMore } = getPostsList({ endCursorPostId: 0 }) // 0 returns last posts
+  const { items, fetchMore } = getPostsList({ endCursorPostId: 743 }) // 0 returns last posts
   const [posts, setPosts] = useState<PostType[]>([])
+  const [offset, setOffset] = useState(10)
+
+  const loadMore = () => {
+    const lastPostId = posts[posts.length - 1].id
+
+    fetchMore({ variables: { endCursorPostId: lastPostId } })
+      .then(({ data }: { data: GetPostsQuery }) => {
+        debugger
+        const newPosts = [...posts, ...data.getPosts.items]
+
+        setPosts(newPosts)
+        setOffset(prev => prev + 10)
+      })
+      .catch((error: any) => {
+        toast.error('Error fetching more posts:', error)
+      })
+  }
 
   useEffect(() => {
     if (items) {
@@ -49,12 +68,26 @@ const PostsList = () => {
     }
   }, [items])
 
-  const { data, error, loading } = useSubscription(POSTS_SUBSCRIPTION)
-
   useEffect(() => {
     if (!data?.postAdded) return
     setPosts([data.postAdded, ...posts])
   }, [data])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollHeight, scrollTop, clientHeight } = document.documentElement
+      const isNearBottom = scrollTop + clientHeight >= scrollHeight - 50
+
+      if (isNearBottom) {
+        loadMore()
+      }
+      console.log('HANDLE SCROLL TRIGGERED')
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [loading, loadMore])
 
   console.log(data?.postAdded)
 

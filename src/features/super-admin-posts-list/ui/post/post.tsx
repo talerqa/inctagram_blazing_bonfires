@@ -59,7 +59,7 @@ export const Post = (post: PostType) => {
     dispatch(setSelectedUser(user))
   }
 
-  console.log(post, 'POST')
+  // console.log(post, 'POST')
 
   const userName = `${postOwner.firstName} ${postOwner.lastName}` || t('AnonymousUser')
 
