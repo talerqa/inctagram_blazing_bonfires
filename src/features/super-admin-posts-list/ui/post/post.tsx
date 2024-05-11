@@ -24,42 +24,19 @@ import { Input, InputType, Text } from '@/shared/ui'
 import { findDate } from '@/shared/utils/find-date'
 
 export const Post = (post: PostType) => {
-  const {
-    images,
-    // owner: { lastName, firstName },
-    // avatarOwner,
-    postOwner,
-    description,
-    createdAt,
-    ownerId,
-    id,
-  } = post
+  const { images, postOwner, description, createdAt, id } = post
 
   const { t } = useTranslation('common', { keyPrefix: 'Post' })
-  const [isPostActive, setIsPostActive] = useState(false)
   const postCreatedAt = findDate.difference(createdAt)
-  const router = useRouter()
-  const nodeRef = useRef(null)
   const dispatch = useDispatch()
 
   const { displayShowMore, isShowMoreActive, setIsShowMoreActive, semiTruncatedDynamicText } =
     useTruncateText(description, 200, 70)
 
-  const isLoggedIn = useSelector(selectIsLoggedIn)
-  // const togglePostModal = (id: number) => {
-  //   if (!isLoggedIn) {
-  //     router.push(`${RoutersPath.profile}/${ownerId}/?data=${id}`)
-  //   } else {
-  //     setIsPostActive(!isPostActive)
-  //   }
-  // }
-
   const openBanModal = (user: User) => {
     dispatch(setBanModalOpenStatus(true))
     dispatch(setSelectedUser(user))
   }
-
-  // console.log(post, 'POST')
 
   const userName = `${postOwner.firstName} ${postOwner.lastName}` || t('AnonymousUser')
 
@@ -100,7 +77,6 @@ export const Post = (post: PostType) => {
             </span>
           )}
         </p>
-        {/*{isPostActive && <PostModal postData={post} togglePostModal={() => togglePostModal(id)} />}*/}
       </div>
       <UserBanModal />
     </>
