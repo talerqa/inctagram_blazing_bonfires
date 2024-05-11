@@ -21,12 +21,11 @@ import { CircularLoader } from '@/shared/ui'
 import { findDate } from '@/shared/utils'
 
 export const Comments = (props: PostResponseType) => {
-  const { avatarOwner, createdAt, id } = props
+  const { avatarOwner, createdAt, id, likesCount } = props
   const postCreatedAt = findDate.format(createdAt)
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const { t } = useTranslation('common', { keyPrefix: 'Post' })
 
-  const postLikes = props.likesCount
   const [pageNumber, setPageNumber] = useState(1)
   const [items, setItems] = useState<Array<CommentType> | undefined>(undefined)
   const { data: CommentData, isLoading } = useGetPostCommentsQuery({
@@ -82,7 +81,7 @@ export const Comments = (props: PostResponseType) => {
             />
           </div>
           <p className={styles.totalLikesCount}>
-            {postLikes.toLocaleString()} {t('Likes')}
+            {likesCount.toLocaleString()} {t('Likes')}
           </p>
         </div>
         <div className={styles.postDate}>{postCreatedAt}</div>
