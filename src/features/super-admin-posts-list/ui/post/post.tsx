@@ -53,7 +53,7 @@ export const Post = (post: PostType) => {
           <div className={s.postContentWrapper}>
             <div>
               <Image
-                src={images?.[0]?.url ?? noImage}
+                src={postOwner?.avatars?.[0]?.url ?? noImage}
                 width={36}
                 height={36}
                 alt={'Avatar picture'}

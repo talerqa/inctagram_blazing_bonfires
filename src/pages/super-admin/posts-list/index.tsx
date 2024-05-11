@@ -1,27 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { useSubscription } from '@apollo/client'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Toast, toast } from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './posts-list.module.scss'
 
-import { GetPostsQuery, Post as PostType } from '@/__generated__/graphql'
+import { GetPostsQuery } from '@/__generated__/graphql'
 import { getPostsList } from '@/features/super-admin-posts-list/lib/get-posts-list'
 import { Post } from '@/features/super-admin-posts-list/ui/post/post'
 import { setSearchParameter } from '@/features/super-admin-user-management/model/user-management-slice'
-import {
-  GET_ALL_POSTS,
-  GET_POSTS_BY_USER_ADMIN,
-  POSTS_SUBSCRIPTION,
-} from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
+import { POSTS_SUBSCRIPTION } from '@/pages/super-admin/lib/graphql-query-constants/graphql-query-constanst'
 import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
 import {
   addLastAddedPostToUsersPosts,
-  selectAdminLoading,
   selectUsersPosts,
   setUsersPosts,
 } from '@/pages/super-admin/modal/slices/admin-reducer'
@@ -49,7 +44,7 @@ const PostsList = () => {
   )
   const { data, error, loading } = useSubscription(POSTS_SUBSCRIPTION) // data is recently added Post
 
-  const { items, fetchMore } = getPostsList({ endCursorPostId: 0 }) // 0 returns last posts
+  const { items, fetchMore } = getPostsList({ endCursorPostId: 0 }) // 0 returns last 10 posts
 
   const loadMore = () => {
     if (!usersPosts.length) return
@@ -57,8 +52,6 @@ const PostsList = () => {
 
     fetchMore({ variables: { endCursorPostId: lastPostId } })
       .then(({ data }: { data: GetPostsQuery }) => {
-        // const newPosts = [...posts, ...data.getPosts.items]
-
         dispatch(setUsersPosts(data.getPosts.items))
       })
       .catch((error: Error) => {
@@ -98,8 +91,6 @@ const PostsList = () => {
     toast.error('Error fetching posts:', error as any)
   }
 
-  console.log(usersPosts, 'userposts')
-
   return (
     <div className={s.posts}>
       <Input
@@ -109,7 +100,6 @@ const PostsList = () => {
         placeholder={t('Search')}
         onChange={handleSearch}
       />
-      Posts List
       <div className={s.postsContainer}>
         {usersPosts && usersPosts.map(post => <Post key={post.id} {...post} />)}
       </div>
