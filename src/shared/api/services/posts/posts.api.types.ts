@@ -76,7 +76,13 @@ export type CommentType = {
   from: {
     id: number
     username: string
-    avatars: [{}]
+    avatars: Array<{
+      url: string
+      width: number
+      height: number
+      fileSize: number
+      createdAt: string
+    }>
   }
   content: string
   createdAt: string
