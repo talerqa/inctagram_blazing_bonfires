@@ -15,8 +15,7 @@ import {
 import { BannedIcon } from '@/shared/assets/icons'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 import { useTruncateText } from '@/shared/hooks'
-import { Text } from '@/shared/ui'
-import Carousel from '@/shared/ui/carousel/Carousel'
+import { Text, Carousel } from '@/shared/ui'
 import { findDate } from '@/shared/utils/find-date'
 
 export const Post = (post: PostType) => {

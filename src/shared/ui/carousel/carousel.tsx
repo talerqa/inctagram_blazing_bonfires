@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import s from './carousel.module.scss'
 
-const Carousel = ({ images, isShowMoreActive }: any) => {
+export const Carousel = ({ images, isShowMoreActive }: any) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedCircleIndex, setSelectedCircleIndex] = useState(activeIndex)
   const [isFading, setIsFading] = useState(false)
@@ -71,5 +71,3 @@ const Carousel = ({ images, isShowMoreActive }: any) => {
     </div>
   )
 }
-
-export default Carousel
