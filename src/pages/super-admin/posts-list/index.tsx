@@ -53,6 +53,8 @@ const PostsList = () => {
     fetchMore({ variables: { endCursorPostId: lastPostId } })
       .then(({ data }: { data: GetPostsQuery }) => {
         dispatch(setUsersPosts(data.getPosts.items))
+
+        return
       })
       .catch((error: Error) => {
         toast.error('Error fetching more posts:', error as any)
@@ -60,6 +62,7 @@ const PostsList = () => {
   }
 
   useEffect(() => {
+    if (usersPosts.length > 0) return
     if (items) {
       dispatch(setUsersPosts(items))
     }
@@ -75,7 +78,7 @@ const PostsList = () => {
     // If near bottom fetch more posts
     const handleScroll = () => {
       const { scrollHeight, scrollTop, clientHeight } = document.documentElement
-      const isNearBottom = scrollTop + clientHeight >= scrollHeight - 50
+      const isNearBottom = scrollTop + clientHeight >= scrollHeight - 1
 
       if (isNearBottom) {
         loadMore()
