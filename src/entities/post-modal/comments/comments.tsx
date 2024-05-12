@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
+import { toast } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 
 import styles from './comment.module.scss'
@@ -46,8 +47,16 @@ export const Comments = (props: PostResponseType) => {
       pageNumber: 1,
       pageSize: 10,
     })
-      .then(res => setItems(res.data?.items))
-      .then(() => observer.observe(bottomRef?.current as HTMLDivElement))
+      .unwrap()
+      .then(res => {
+        setItems(res.items)
+        observer.observe(bottomRef?.current as HTMLDivElement)
+      })
+      .catch(error => {
+        const errMessage = error.data.messages[0].message
+
+        toast.error(errMessage)
+      })
   }, [])
 
   useEffect(() => {
@@ -57,15 +66,22 @@ export const Comments = (props: PostResponseType) => {
         postId: id,
         pageNumber,
         pageSize: 10,
-      }).then(res => {
-        if (items) {
-          setItems(prevItems => [
-            ...(prevItems as CommentType[]),
-            ...(res.data?.items as CommentType[]),
-          ])
-        }
-        setNextPageLoading(false)
       })
+        .unwrap()
+        .then(res => {
+          if (items) {
+            setItems(prevItems => [
+              ...(prevItems as CommentType[]),
+              ...(res.items as CommentType[]),
+            ])
+          }
+          setNextPageLoading(false)
+        })
+        .catch(error => {
+          const errMessage = error.data.messages[0].message
+
+          toast.error(errMessage)
+        })
     }
   }, [pageNumber])
   const myComments = items?.filter(com => com.from.id === userId) as CommentType[]
