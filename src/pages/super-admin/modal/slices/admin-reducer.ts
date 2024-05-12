@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { ProfileImagesFragmentFragment, SortDirection } from '@/__generated__/graphql'
+import {
+  Post as PostType,
+  ProfileImagesFragmentFragment,
+  SortDirection,
+} from '@/__generated__/graphql'
 import { RootState } from '@/shared/providers/store-provider'
 import { SortType } from '@/shared/ui/table/table'
 
@@ -11,6 +15,7 @@ type AdminInitialStateType = {
   sortDirection: SortDirection
   adminLoading: boolean
   selectedUserImages: ProfileImagesFragmentFragment[]
+  usersPosts: PostType[]
 }
 
 const adminSlice = createSlice({
@@ -22,6 +27,7 @@ const adminSlice = createSlice({
     sortDirection: 'desc',
     adminLoading: false,
     selectedUserImages: [],
+    usersPosts: [],
   },
   reducers: {
     setPageSize(state, action: PayloadAction<number>) {
@@ -36,11 +42,24 @@ const adminSlice = createSlice({
     setSelectedUserImages(state, action: PayloadAction<ProfileImagesFragmentFragment[]>) {
       state.selectedUserImages = action.payload
     },
+    setUsersPosts(state, action: PayloadAction<PostType[]>) {
+      state.usersPosts = [...state.usersPosts, ...action.payload]
+    },
+    addLastAddedPostToUsersPosts(state, action: PayloadAction<PostType>) {
+      state.usersPosts = [action.payload, ...state.usersPosts]
+    },
   },
 })
 
-export const { setPageSize, setPageNumber, setAdminLoading, setSelectedUserImages } =
-  adminSlice.actions
+export const {
+  setPageSize,
+  setPageNumber,
+  setAdminLoading,
+  setSelectedUserImages,
+  addLastAddedPostToUsersPosts,
+  setUsersPosts,
+} = adminSlice.actions
 export default adminSlice.reducer
 
 export const selectAdminLoading = (state: RootState) => state.admin.adminLoading
+export const selectUsersPosts = (state: RootState) => state.admin.usersPosts

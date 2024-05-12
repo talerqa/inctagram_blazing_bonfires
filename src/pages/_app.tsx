@@ -1,7 +1,10 @@
 import '../shared/styles/globals.scss'
 import { ReactElement, ReactNode, useEffect } from 'react'
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache, split, from, HttpLink } from '@apollo/client'
+import { removeTypenameFromVariables } from '@apollo/client/link/remove-typename'
+import { WebSocketLink } from '@apollo/client/link/ws'
+import { getMainDefinition } from '@apollo/client/utilities'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { GetStaticProps } from 'next'
 import type { AppProps } from 'next/app'
@@ -9,13 +12,42 @@ import { NextPage } from 'next/types'
 import { appWithTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Provider, useDispatch } from 'react-redux'
+import { SubscriptionClient } from 'subscriptions-transport-ws'
 
+import { getAdminBasicCredentials } from '@/pages/super-admin/lib/utils/utils'
 import { setIsMobile } from '@/shared/api/services/app/app.slice'
 import { WithAuth } from '@/shared/hoc/with-auth/with-auth'
 import { wrapper } from '@/shared/providers/store-provider/model/store'
 
-const client = new ApolloClient({
+// TOFIX: doesnt remove __typename
+const removeTypenameLink = removeTypenameFromVariables()
+
+const wsLink = new WebSocketLink(
+  new SubscriptionClient('ws://inctagram.work/api/v1/graphql', {
+    connectionParams: {
+      authToken: `Basic ${getAdminBasicCredentials()}`,
+    },
+  })
+)
+
+const httpLink = new HttpLink({
   uri: 'https://inctagram.work/api/v1/graphql',
+})
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query)
+
+    return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+  },
+  wsLink,
+  httpLink
+)
+
+const link = from([removeTypenameLink, splitLink])
+
+const client = new ApolloClient({
+  link: link,
   cache: new InMemoryCache(),
 })
 

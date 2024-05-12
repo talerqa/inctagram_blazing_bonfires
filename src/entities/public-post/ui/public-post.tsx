@@ -30,7 +30,7 @@ export const PublicPost = (post: PostResponseType) => {
   const postCreatedAt = findDate.difference(createdAt)
   const router = useRouter()
 
-  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, fullText } = useTruncateText(
+  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, dynamicText } = useTruncateText(
     description,
     80
   )
@@ -65,7 +65,7 @@ export const PublicPost = (post: PostResponseType) => {
       </div>
       <div>{postCreatedAt}</div>
       <p className={s.postDescription}>
-        {fullText}{' '}
+        {dynamicText}{' '}
         {displayShowMore && (
           <span onClick={() => setIsShowMoreActive(!isShowMoreActive)} className={s.showMore}>
             {isShowMoreActive ? 'Hide' : 'Show more'}

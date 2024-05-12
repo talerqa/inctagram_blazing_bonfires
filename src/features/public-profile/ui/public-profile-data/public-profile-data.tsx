@@ -25,7 +25,7 @@ export const PublicProfileData = (props: PropsType) => {
     amountPost,
   } = props
 
-  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, fullText } = useTruncateText(
+  const { displayShowMore, isShowMoreActive, setIsShowMoreActive, dynamicText } = useTruncateText(
     aboutMe,
     150
   )
@@ -85,7 +85,7 @@ export const PublicProfileData = (props: PropsType) => {
 
           <div className={style.profileTitleContainer}>
             <Text as={'p'} size={'regular'} weight={'regular'} className={style.fullText}>
-              {aboutMe ? fullText : ''}{' '}
+              {aboutMe ? dynamicText : ''}{' '}
               {displayShowMore && (
                 <Text
                   onClick={() => setIsShowMoreActive(!isShowMoreActive)}

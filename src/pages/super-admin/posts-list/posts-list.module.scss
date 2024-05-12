@@ -1,0 +1,17 @@
+@import '@/shared/styles/media-queries';
+
+.posts{
+  margin-left: -35px;
+
+  .postsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.5rem;
+
+   }
+
+  .loadingSpinner {
+    margin-top: 2rem;
+  }
+}

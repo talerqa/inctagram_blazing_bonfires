@@ -57,7 +57,7 @@ export const UserBanModal = () => {
   return (
     <NewPostModal
       isOpen={isOpen}
-      setIsOpen={value => dispatch(setBanModalOpenStatus(value))}
+      setIsOpen={() => dispatch(setBanModalOpenStatus(true))}
       title={t('Admin.BanUser')}
       right={
         <NextImage

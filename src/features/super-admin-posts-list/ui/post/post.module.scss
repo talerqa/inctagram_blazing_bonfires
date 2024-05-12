@@ -1,11 +1,20 @@
 .post {
   max-width: 234px;
   height: 100%;
+  max-height: 402px;
 
   .postContentWrapper {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     align-items: center;
+    justify-content: space-between;
+
+    line-height: 0.75rem;
+
+    > div {
+      display: flex;
+      gap: 1rem;
+    }
 
     img {
       border-radius: 50%;
@@ -14,7 +23,6 @@
 
   .postLinkWrapper {
     img {
-      cursor: pointer;
       object-fit: cover;
     }
   }
@@ -32,6 +40,6 @@
   .postDescription {
     overflow: hidden;
     word-wrap: break-word;
-    white-space: pre-wrap; /* This allows for wrapping at line breaks */
+    white-space: pre-wrap;
   }
 }

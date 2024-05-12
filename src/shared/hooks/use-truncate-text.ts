@@ -1,12 +1,24 @@
 import { useState } from 'react'
 
-export const useTruncateText = (text: string | undefined | null, value: number) => {
+export const useTruncateText = (
+  text: string | undefined | null,
+  value: number,
+  semiTruncatedValue?: number
+) => {
   const [isShowMoreActive, setIsShowMoreActive] = useState(false)
 
   const truncatedText = `${text?.substring(0, value)}`
-  /* todo точки  заменить*/
+  const semiFullText = `${text?.substring(0, semiTruncatedValue)}`
   const displayShowMore = String(text).length > value
-  const fullText = displayShowMore && isShowMoreActive ? text : truncatedText
+  const dynamicText = displayShowMore && isShowMoreActive ? text : truncatedText
+  const semiTruncatedDynamicText =
+    displayShowMore && isShowMoreActive ? truncatedText : semiFullText
 
-  return { fullText, setIsShowMoreActive, isShowMoreActive, displayShowMore }
+  return {
+    dynamicText,
+    setIsShowMoreActive,
+    isShowMoreActive,
+    displayShowMore,
+    semiTruncatedDynamicText,
+  }
 }

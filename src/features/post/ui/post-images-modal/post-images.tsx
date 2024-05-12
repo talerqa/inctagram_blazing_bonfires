@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,9 +16,11 @@ import { ImageDataType, PostResponseType } from '@/shared/api/services/posts/pos
 import noImage from '@/shared/assets/icons/image/no-image.svg'
 
 type Props = {
-  postData: PostResponseType | undefined
+  postData: PostResponseType | undefined | any
+  wrapperStyle?: CSSProperties
+  imgStyle?: CSSProperties
 }
-export const PostImages = ({ postData }: Props) => {
+export const PostImages = ({ postData, wrapperStyle, imgStyle }: Props) => {
   const [images, setImages] = useState<ImageDataType[]>([])
   const currentIndex = useSelector(selectCurrentPhotoIndex)
   const dispatch = useDispatch()
@@ -32,14 +34,19 @@ export const PostImages = ({ postData }: Props) => {
   }, [postData])
 
   return (
-    <div className={style.sliderWrapper}>
-      <Image
-        src={images.length ? images[currentIndex]?.url : noImage}
-        alt={images.length ? 'image' : 'no image'}
-        height={562}
-        width={490}
-        style={{ objectFit: 'cover' }}
-      />
+    <div className={style.sliderWrapper} style={{ ...wrapperStyle }}>
+      {images.length && (
+        <Image
+          src={images.length ? images[currentIndex]?.url : noImage}
+          alt={images.length ? 'image' : 'no image'}
+          height={(imgStyle && imgStyle.height && +imgStyle.height) || 562}
+          width={(imgStyle && imgStyle?.width && +imgStyle.width) || 490}
+          style={{
+            objectFit: 'cover',
+            ...imgStyle,
+          }}
+        />
+      )}
       {images.length > 1 && <SlideBar styles={style} />}
     </div>
   )
