@@ -112,7 +112,13 @@ export type CreatePostCommentResponseType = {
   from: {
     id: number
     username: string
-    avatars: Array<{}>
+    avatars: Array<{
+      url: string
+      width: number
+      height: number
+      fileSize: number
+      createdAt: string
+    }>
   }
   content: string
   createdAt: string

@@ -28,7 +28,7 @@ export const SomeComment = ({
         className={styles.avatarContainer}
         onClick={() => router.push(`${RoutersPath.profile}/${from.id}`)}
       >
-        <Image src={from.avatars[1].url ?? noImage} alt={'avatar'} objectFit="cover" fill={true} />
+        <Image src={from.avatars[1]?.url ?? noImage} alt={'avatar'} objectFit="cover" fill={true} />
       </div>
       <div className={styles.commentTextAndLikeWrapper}>
         <div className={styles.commentTextContainer}>
