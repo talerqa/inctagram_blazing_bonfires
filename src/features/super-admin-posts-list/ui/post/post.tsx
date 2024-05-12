@@ -1,26 +1,22 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import s from './post.module.scss'
 
 import { Post as PostType, User } from '@/__generated__/graphql'
-import { UnbanUserModal, UserBanModal } from '@/features/super-admin-user-management'
+import { UserBanModal } from '@/features/super-admin-user-management'
 import {
   setBanModalOpenStatus,
-  setSearchParameter,
   setSelectedUser,
 } from '@/features/super-admin-user-management/model/user-management-slice'
-import { handleInputChange } from '@/pages/super-admin/lib/utils/utils'
-import { selectIsLoggedIn } from '@/shared/api'
 import { BannedIcon } from '@/shared/assets/icons'
 import noImage from '@/shared/assets/icons/image/no-image.svg'
-import { RoutersPath } from '@/shared/constants/paths'
 import { useTruncateText } from '@/shared/hooks'
-import { Input, InputType, Text } from '@/shared/ui'
+import { Text } from '@/shared/ui'
+import Carousel from '@/shared/ui/carousel/Carousel'
 import { findDate } from '@/shared/utils/find-date'
 
 export const Post = (post: PostType) => {
@@ -40,16 +36,14 @@ export const Post = (post: PostType) => {
 
   const userName = `${postOwner.firstName} ${postOwner.lastName}` || t('AnonymousUser')
 
+  if (!images) return
+
   return (
     <>
       <div className={s.post} key={id}>
         <div className={s.postLinkWrapper}>
-          <Image
-            src={images?.[0]?.url ?? noImage}
-            width={234}
-            height={isShowMoreActive ? 110 : 240}
-            alt="Picture of the post"
-          />
+          <Carousel images={images} isShowMoreActive={isShowMoreActive} />
+
           <div className={s.postContentWrapper}>
             <div>
               <Image
