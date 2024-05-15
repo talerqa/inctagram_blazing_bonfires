@@ -12,7 +12,7 @@ export class GetNotificationsSocketApi {
 
     this.socket = io(
       process.env.NEXT_PUBLIC_NOTIFICATIONS_SOCKET_API || 'https://inctagram.work/',
-      queryParams
+      { transports: ['websocket'], secure: true, query: queryParams }
     )
 
     this.socket.on('connect', () => {
