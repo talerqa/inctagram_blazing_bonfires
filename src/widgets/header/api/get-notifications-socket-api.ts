@@ -23,4 +23,8 @@ export class GetNotificationsSocketApi {
       console.log('disconnect from notifications socket', e)
     })
   }
+
+  static stopConnection() {
+    this.socket?.disconnect()
+  }
 }
