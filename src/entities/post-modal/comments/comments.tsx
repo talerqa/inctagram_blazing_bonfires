@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
+import { toast } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 
 import styles from './comment.module.scss'
@@ -33,6 +34,7 @@ export const Comments = (props: PostResponseType) => {
   const userId = userData?.userId
   const commentRef = useRef<HTMLDivElement>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
 
   const observer = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) {
@@ -51,7 +53,9 @@ export const Comments = (props: PostResponseType) => {
         setItems(res.items)
         observer.observe(bottomRef?.current as HTMLDivElement)
       })
-      .catch(() => {})
+      .catch(() => {
+        toast.error(tError('SomethingWentWrong'))
+      })
   }, [])
 
   useEffect(() => {
@@ -72,7 +76,9 @@ export const Comments = (props: PostResponseType) => {
           }
           setNextPageLoading(false)
         })
-        .catch(() => {})
+        .catch(() => {
+          toast.error(tError('SomethingWentWrong'))
+        })
     }
   }, [pageNumber])
   const myComments = items?.filter(com => com.from.id === userId) as CommentType[]
