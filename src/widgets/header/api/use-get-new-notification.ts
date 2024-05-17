@@ -23,6 +23,7 @@ export const useGetNewNotification = (): UseGetNotificationsSocketType => {
   GetNotificationsSocketApi.socket?.on('notifications', (data: NotificationsItemType) => {
     setNewNotification(data)
     LocalStorageManager.setLastNotificationCursorId(String(data.id))
+    // prettier wtf
   })
 
   GetNotificationsSocketApi.socket?.onAny(event => {
