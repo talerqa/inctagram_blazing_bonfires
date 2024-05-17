@@ -34,6 +34,7 @@ export const Comments = (props: PostResponseType) => {
   const userId = userData?.userId
   const commentRef = useRef<HTMLDivElement>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const { t: tError } = useTranslation('common', { keyPrefix: 'Error' })
 
   const observer = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) {
@@ -52,10 +53,8 @@ export const Comments = (props: PostResponseType) => {
         setItems(res.items)
         observer.observe(bottomRef?.current as HTMLDivElement)
       })
-      .catch(error => {
-        const errMessage = error.data.messages[0].message
-
-        toast.error(errMessage)
+      .catch(() => {
+        toast.error(tError('SomethingWentWrong'))
       })
   }, [])
 
@@ -77,10 +76,8 @@ export const Comments = (props: PostResponseType) => {
           }
           setNextPageLoading(false)
         })
-        .catch(error => {
-          const errMessage = error.data.messages[0].message
-
-          toast.error(errMessage)
+        .catch(() => {
+          toast.error(tError('SomethingWentWrong'))
         })
     }
   }, [pageNumber])
