@@ -8,10 +8,9 @@ const nextConfig = {
 
     config.plugins.push(
       new NextFederationPlugin({
-        name: 'ms-host-inctagram',
+        name: 'host_inctagram',
         remotes: {
-          remote: 'remote@http://localhost:3001/remote.js',
-          // next1: `next1@http://localhost:3001/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
+          Messenger: 'inctagram_remote_messenger_app@http://localhost:3001/remoteEntry.js',
         },
         filename: 'static/chunks/remoteEntry.js',
         exposes: {

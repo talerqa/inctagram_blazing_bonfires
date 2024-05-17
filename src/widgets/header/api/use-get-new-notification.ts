@@ -16,18 +16,14 @@ export const useGetNewNotification = (): UseGetNotificationsSocketType => {
 
   if (!accessToken) return { newNotification: null, error: 'Access token not found' }
 
+  if (!GetNotificationsSocketApi.socket) {
+    GetNotificationsSocketApi.createConnection(accessToken)
+  }
+
   GetNotificationsSocketApi.socket?.on('notifications', (data: NotificationsItemType) => {
     setNewNotification(data)
     LocalStorageManager.setLastNotificationCursorId(String(data.id))
   })
-
-  useEffect(() => {
-    if (!GetNotificationsSocketApi.socket) {
-      GetNotificationsSocketApi.createConnection(accessToken)
-    }
-
-    return () => GetNotificationsSocketApi.stopConnection()
-  }, [])
 
   GetNotificationsSocketApi.socket?.onAny(event => {
     if (event.message?.length) {
