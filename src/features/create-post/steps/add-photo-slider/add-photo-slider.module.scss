@@ -1,0 +1,84 @@
+.buttonPanel {
+  position: absolute;
+  background-color: var(--color-dark-500);
+  opacity: 80%;
+  padding: 12px;
+  bottom: 51px;
+  right: 12px;
+  .thumbnailContainer {
+    display: flex;
+
+    .buttonImageWrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .thumbnailImage {
+        cursor: pointer;
+        padding: 2px;
+      }
+      .deleteButton {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 12px;
+        height: 12px;
+        background-color: var(--color-dark-300);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 6px;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+.buttonsContainer {
+  display: flex;
+
+  .inputPhoto {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+.popoverBtn {
+  .sizeButton {
+    background-color: var(--color-dark-500);
+    opacity: 80%;
+    border: none;
+    .imageIconOpen {
+      display: none;
+    }
+    .imageIcon {
+      display: inline-flex;
+    }
+    &:hover {
+      .imageIcon {
+        display: inline-flex;
+        opacity: 0.7;
+      }
+    }
+  }
+  &[data-headlessui-state='open'] {
+      .imageIcon {
+        display: none;
+      }
+    .imageIconOpen {
+      display: inline-flex;
+    }
+    &:hover {
+      .imageIcon {
+        display: none;
+      }
+    }
+  }
+}
+

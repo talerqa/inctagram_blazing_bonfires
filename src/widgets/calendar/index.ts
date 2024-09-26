@@ -1,1 +1,1 @@
-export { Calendar } from '@/widgets/calendar/ui/Calendar'
+export { Calendar } from '@/widgets/calendar/ui/calendar'

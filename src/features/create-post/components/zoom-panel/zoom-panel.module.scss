@@ -1,0 +1,44 @@
+.relative {
+  position: relative;
+}
+
+.zoomPanel {
+  position: absolute;
+  bottom: 42px;
+  background-color: var(--color-dark-500);
+  opacity: 80%;
+  padding: 10px;
+  border-radius: 2px;
+}
+.popoverBtn {
+  .sizeButton {
+    background-color: var(--color-dark-500);
+    opacity: 80%;
+    border: none;
+    .zoomIcon {
+      display: inline-flex;
+    }
+    .zoomIconOpen {
+      display: none;
+    }
+    &:hover {
+      .zoomIcon {
+        display: inline-flex;
+        opacity: 0.7;
+      }
+    }
+  }
+  &[data-headlessui-state='open'] {
+    .zoomIcon {
+      display: none;
+    }
+    .zoomIconOpen {
+      display: inline-flex;
+    }
+    &:hover {
+      .zoomIcon {
+        display: none;
+      }
+    }
+  }
+}

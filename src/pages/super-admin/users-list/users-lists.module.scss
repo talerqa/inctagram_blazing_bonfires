@@ -1,0 +1,32 @@
+.usersListPage {
+  width: 100%;
+
+  .inputAndSelect {
+    display: flex;
+    gap: 10%;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 24px;
+
+    & button {
+      min-width: 176px;
+      padding: 6px 12px;
+    }
+
+    & button > span:first-child {
+      text-wrap: none;
+    }
+
+    .search {
+      width: 70%;
+      min-width: 234px;
+    }
+
+    .triggerBtn {
+      width: 234px;
+    }
+  }
+}

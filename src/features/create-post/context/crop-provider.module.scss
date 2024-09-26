@@ -1,0 +1,11 @@
+@import '@/shared/styles/media-queries';
+
+.create {
+  @include media-small {
+    & > p {
+      display: none;
+    }
+  }
+
+  display: flex;
+}

@@ -1,0 +1,68 @@
+.relative {
+  position: relative;
+}
+
+.buttonPanel {
+  position: absolute;
+  background-color: var(--color-dark-500);
+  padding: 10px;
+  border-radius: 2px;
+  bottom: 42px;
+  width: 160px;
+  opacity: 80%;
+}
+
+.button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+
+  width: 100%;
+  padding-right: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  fill: white;
+}
+
+.popoverBtn {
+  .sizeButton {
+    background-color: var(--color-dark-500);
+    opacity: 80%;
+    border: none;
+    .ratioIcon {
+      display: inline-flex;
+    }
+    .ratioIconOpen {
+      display: none;
+    }
+    &:hover {
+      .ratioIcon {
+        display: inline-flex;
+        opacity: 0.7;
+      }
+    }
+  }
+  &[data-headlessui-state='open'] {
+    .ratioIcon {
+      display: none;
+    }
+    .ratioIconOpen {
+      display: inline-flex;
+    }
+    &:hover {
+      .ratioIcon {
+        display: none;
+      }
+    }
+  }
+
+}
+.aspect {
+  color: var(--color-light-900);
+}
+.current {
+  color: var(--color-light-100);
+}

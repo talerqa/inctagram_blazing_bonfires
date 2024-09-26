@@ -1,0 +1,52 @@
+.auxiliaryInfo {
+  color: var(--color-light-900);
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.auxiliaryInfoNext {
+  color: var(--color-light-900);
+  text-align: center;
+  margin-top: 6px;
+}
+.userList {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.userItemWrapper {
+  display: flex;
+  padding: 6px 0;
+  cursor: pointer;
+  &:hover {
+    background: #131313;
+    border-radius: 5px;
+  }
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  background: var(--color-light-900);
+  overflow: hidden;
+  min-width: 48px;
+}
+
+.userInfo {
+  padding-left: 10px;
+}
+
+.userName {
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.userFirstName {
+  color: var(--color-light-900);
+  overflow-wrap: anywhere;
+}

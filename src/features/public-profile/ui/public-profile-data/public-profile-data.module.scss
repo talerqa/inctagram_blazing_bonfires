@@ -1,0 +1,148 @@
+@import '@/shared/styles/media-queries';
+
+.profileContainer {
+  display: flex;
+  margin-bottom: 3rem;
+  max-height: 12.75rem;
+
+  .avatarContainer {
+    grid-area: avatar;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .notAvatar {
+      box-shadow: 0 0 2px var(--color-light-900);
+    }
+  }
+
+  .profileDataContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1.4375rem;
+    margin-left: 2.5rem;
+  }
+}
+
+.profileDataHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.profileWrapper {
+  display: grid;
+  grid-template-areas:
+    'avatar userName '
+    'avatar profileInfo'
+    'avatar info';
+  grid-template-columns: auto;
+  grid-template-rows: 56px 71px;
+
+  max-width: 972px;
+  padding: 0 2px;
+}
+
+.avatar {
+  border-radius: 50%;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.profileInfo {
+  display: flex;
+  grid-area: profileInfo;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profileTitleContainer {
+  display: flex;
+  grid-area: info;
+  flex-direction: column;
+}
+
+.fullText {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.showMore {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.userName {
+  grid-area: userName;
+}
+
+/////media
+
+@include media-s-medium {
+  .fullText {
+    max-width: 330px;
+    font-size: var(--font-size-12);
+  }
+}
+
+@include media-small {
+  .profileWrapper {
+    grid-template-areas:
+      'avatar profileInfo'
+      'userName userName'
+      'info  info';
+    grid-template-rows: auto auto;
+  }
+
+  .avatar {
+    width: 124px;
+    height: 124px;
+  }
+
+  .profileInfoContainer {
+    margin-left: 27px;
+  }
+
+  .userName {
+    margin: 0;
+    font-size: var(--font-size-16);
+  }
+
+  .profileTitleContainer {
+    margin-left: 0;
+  }
+
+  .fullText {
+    max-width: 500px;
+  }
+}
+
+@include media-extra-small {
+  .fullText {
+    max-width: 330px;
+  }
+
+  .avatar {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+@include media-mobile {
+  .avatar {
+    width: 72px;
+    height: 72px;
+  }
+
+  .profileInfoContainer {
+    margin-left: 12px;
+  }
+}

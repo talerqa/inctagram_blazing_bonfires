@@ -1,0 +1,32 @@
+.modalContentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px 24px;
+  max-width: 450px;
+
+  .btnsContainer {
+    display: flex;
+    flex-direction: column;
+
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .button {
+        width: 130px;
+        padding: 6px 24px;
+      }
+    }
+  }
+
+  button {
+    padding: 8px;
+  }
+}
+.closeIcon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,66 @@
+@import '@/shared/styles/media-queries';
+
+
+.termOfService {
+  @include media-extra-small {
+    padding: 24px 0;
+  }
+
+  padding: 24px 64px;
+
+  .container {
+    @include media-small {
+      padding: 0 15px;
+    }
+
+    position: relative;
+    width: 100%;
+    padding: 0 97px;
+  }
+
+  .headContainer {
+
+    @include media-extra-small {
+      margin-top: 17px;
+      margin-bottom: 14px;
+    }
+
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .backContainer {
+
+      @include media-extra-small {
+        position: initial;
+        top: 0;
+      }
+
+      position: absolute;
+      top: -60px;
+      left: 0;
+
+      display: flex;
+      gap: 12px;
+
+      > p {
+        color: var(--color-light-100);
+      }
+    }
+
+  }
+
+  .articleHeader {
+    flex-grow: 1;
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: center;
+  }
+
+  .articleText {
+    text-align: center;
+  }
+
+}

@@ -1,0 +1,99 @@
+.descriptionContainer {
+  display: flex;
+  flex-grow: 1;
+  gap: 12px;
+
+  width: 100%;
+  padding: 10px 24px;
+
+  .avatarContainer {
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+  }
+
+  .descriptionTextAndLikeWrapper {
+    width: 100%;
+    max-width: 385px;
+
+    .descriptionTextContainer {
+      display: flex;
+      gap: 24px;
+      justify-content: space-between;
+
+      .descriptionText {
+        font-size: var(--font-size-s);
+        word-break: break-word;
+
+        .descriptionTextName {
+          cursor: pointer;
+          margin-right: 0.5rem;
+          font-weight: var(--font-weight-bold);
+        }
+      }
+    }
+
+    .descriptionInfoContainer {
+      display: inline-flex;
+      gap: 12px;
+      font-size: var(--font-size-xs);
+
+      .descriptionTime,
+      .descriptionLikes,
+      .descriptionAnswer {
+        color: var(--color-light-900);
+      }
+
+      .descriptionAnswer {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.summaryContainer {
+  margin-top: auto;
+  padding: 12px 24px 7px;
+  border-top: 1px solid var(--color-dark-100);
+
+  .actionsContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 24px;
+    margin-bottom: 20px;
+
+    .likeShareContainer {
+      display: flex;
+      gap: 24px;
+    }
+  }
+
+  .totalLikes {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    .totalLikesCount {
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-m);
+      color: var(--color-light-100);
+    }
+
+    .totalLikesAvatar {
+      border-radius: 24px;
+    }
+  }
+
+  .postDate {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-s);
+    color: var(--color-light-900);
+  }
+}

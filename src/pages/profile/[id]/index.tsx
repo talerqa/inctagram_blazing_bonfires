@@ -1,20 +1,21 @@
 import React from 'react'
 
 import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Toaster } from 'react-hot-toast'
 
-import style from './ProfileId.module.scss'
+import style from './profile-id.module.scss'
 
-import { PublicProfileData, PublicProfilePosts } from '@/features/publicProfile'
+import { PublicProfileData, PublicProfilePosts } from '@/features/public-profile'
 import { publicApi } from '@/shared/api'
 import {
   PublicProfilePostsResponseType,
   PublicProfileType,
 } from '@/shared/api/services/public/public.api.types'
-import { getLayout } from '@/shared/layouts/mainLayout/MainLayout'
-import { wrapper } from '@/shared/providers/storeProvider/model/store'
-import { ServerSidePropsType } from '@/shared/types/commonTypes'
+import { getLayout } from '@/shared/layouts/main-layout/main-layout'
+import { wrapper } from '@/shared/providers/store-provider/model/store'
+import { ServerSidePropsType } from '@/shared/types/common-types'
 import { ContentWrapper } from '@/shared/ui'
 
 type PropsType = {
@@ -82,6 +83,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
 function PublicProfilePage(props: PropsType) {
   const { profileData, postData } = props
+  const router = useRouter()
+  const clickedPostId = Number(router?.query?.data)
 
   const amountPost = postData.items?.length
   const isAuth = false /* todo не залогинен */
@@ -97,7 +100,9 @@ function PublicProfilePage(props: PropsType) {
             </div>
             <div className={style.postsContainer}>
               {postData &&
-                postData.items.map(post => <PublicProfilePosts key={post.id} {...post} />)}
+                postData.items.map(post => (
+                  <PublicProfilePosts key={post.id} clickedPostId={clickedPostId} {...post} />
+                ))}
             </div>
           </div>
         )}

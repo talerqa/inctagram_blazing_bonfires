@@ -1,0 +1,12 @@
+.errorWrapper {
+  margin: 0 auto;
+  width: 495px;
+  height: 60px;
+  padding: 6px 60px;
+  border: 1px solid var(--color-danger-500);
+  background: var(--color-danger-900);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
-import { baseURL } from '../baseUrl.api'
+import { baseURL } from '../base-url.api'
 
 import {
   GetAllPostsArgs,
@@ -117,15 +117,18 @@ export const postsApi = createApi({
         },
         invalidatesTags: ['editPost'],
       }),
-      createPostComment: build.query<CreatePostCommentResponseType, CreatePostCommentRequestType>({
+      createPostComment: build.mutation<
+        CreatePostCommentResponseType,
+        CreatePostCommentRequestType
+      >({
         query: ({ postId, content }) => {
           return {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken') as string}`,
             },
-            url: `posts/${postId}`,
-            body: content,
+            url: `posts/${postId}/comments`,
+            body: { content },
           }
         },
         // invalidatesTags: ['editPost'],
@@ -142,5 +145,5 @@ export const {
   useDeletePostMutation,
   useUpdatePostMutation,
   useGetAllPublicPostsQuery,
-  useCreatePostCommentQuery,
+  useCreatePostCommentMutation,
 } = postsApi
